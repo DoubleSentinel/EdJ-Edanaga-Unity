@@ -2,6 +2,9 @@
 # VSCode config
 .vscode/
 
+# IntelliJ config
+.idea
+
 ## Windows ignores
 # Windows thumbnail cache files
 Thumbs.db
