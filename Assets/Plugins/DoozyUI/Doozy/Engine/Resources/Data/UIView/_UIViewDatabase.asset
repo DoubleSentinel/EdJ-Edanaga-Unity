@@ -16,5 +16,9 @@ MonoBehaviour:
   CategoryNames:
   - Custom
   - General
+  - Chapter2
+  - LanguageSelectionMenu
   Categories:
   - {fileID: 11400000, guid: 66045c85f7e9847ef8fb37f099243c8e, type: 2}
+  - {fileID: 11400000, guid: 6abca8ef23377374fb880e0d48bd076b, type: 2}
+  - {fileID: 11400000, guid: 2df0f7b4d49adf149bf788b7dfb05297, type: 2}

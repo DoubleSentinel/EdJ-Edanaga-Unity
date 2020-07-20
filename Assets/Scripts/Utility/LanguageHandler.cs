@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LanguageHandler : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class LanguageHandler : MonoBehaviour
     public void ChangeLanguage(string language)
     {
         currentLanguage = language;
-        m_UItranslator.FetchTranslation(currentLanguage, "test_menu");
+        m_UItranslator.FetchTranslation(currentLanguage, SceneManager.GetActiveScene().name);
     }
 
 }

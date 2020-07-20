@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42f06ff6cc543ea942180e019f0fc8d, type: 3}
-  m_Name: UIView_General
+  m_Name: UIButton_Chapter2
   m_EditorClassIdentifier: 
-  CategoryName: General
-  DatabaseType: 2
+  CategoryName: Chapter2
+  DatabaseType: 0
   Names:
-  - Unnamed
+  - CallTarget
