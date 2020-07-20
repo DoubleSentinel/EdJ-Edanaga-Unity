@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
 using TMPro;
+using Doozy.Engine;
 
 public class UITranslator : MonoBehaviour
 {
@@ -11,40 +10,42 @@ public class UITranslator : MonoBehaviour
 
     private BackendAPI m_api;
 
-    private JSONNode translation;
+    private Dictionary<string, GameObject> referenceMap;
+    
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        // fetch translation data
-        m_api = controllers.GetComponent<BackendAPI>();
-        Dictionary<string, string> filters = new Dictionary<string, string>();
-        filters.Add("language", "EN");
-        filters.Add("scene", "test_menu");
-        m_api.ApiPull("ui", filters, ConvertJSONToObject);
-    }
-
-    private void ConvertJSONToObject(string json)
-    {
-        translation = JSON.Parse(json);
-        TranslateUI();
-    }
-
-    private void TranslateUI()
-    {
-        //TODO: YOU fookin retard, why do you think with your ass?
+        // build local reference map
+        referenceMap = new Dictionary<string, GameObject>();
         foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
         {
-            foreach (JSONNode translatedUIElement in translation["data"][0]["elements"])
+            referenceMap.Add(translatableObject.name, translatableObject);
+        }
+    }
+
+    public void FetchTranslation(string language, string scene)
+    {
+        m_api = controllers.GetComponent<BackendAPI>();
+        Dictionary<string, string> filters = new Dictionary<string, string>();
+        filters.Add("language", language);
+        filters.Add("scene", scene);
+        m_api.ApiPull("ui", filters, TranslateUI);
+    }
+    
+    private void TranslateUI(string json)
+    {
+        JSONNode translation = JSON.Parse(json);
+        foreach (JSONNode element in translation["data"][0]["elements"])
+        {
+            try
             {
-                try
-                {
-                    Transform label = translatableObject.transform.GetChild(0);
-                    label.gameObject.GetComponent<TextMeshProUGUI>().SetText(translatedUIElement["text_value"]);
-                }
-                catch (UnityException e)
-                {
-                    translatableObject.GetComponent<TextMeshProUGUI>().SetText(translatedUIElement["text_value"]);
-                }
+                // edge case where the label is a child of the element
+                Transform label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
+                label.gameObject.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+            }
+            catch (UnityException)
+            {
+                referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
         }
     }

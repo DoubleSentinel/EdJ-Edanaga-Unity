@@ -32,6 +32,7 @@ public class BackendAPI : MonoBehaviour
             if(webRequest.isNetworkError || webRequest.isHttpError)
             {
                 // failed to access api error handling
+                print(webRequest.error);
                 yield break;
             } else {
                 callbackSuccess(webRequest.downloadHandler.text);
