@@ -44,7 +44,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: -7855693675992668276, guid: ab054cf50cfe255488cdcfe70433f52a, type: 2}
-  SelectedNodes: []
+  - {fileID: -5017507267653788958, guid: ab054cf50cfe255488cdcfe70433f52a, type: 2}
+  - {fileID: -7846474839311562757, guid: ab054cf50cfe255488cdcfe70433f52a, type: 2}
+  SelectedNodes:
+  - {fileID: 5739405873325594145, guid: ab054cf50cfe255488cdcfe70433f52a, type: 2}
   GraphTabs:
   - IsRootTab: 1
     Graph: {fileID: 11400000, guid: ab054cf50cfe255488cdcfe70433f52a, type: 2}

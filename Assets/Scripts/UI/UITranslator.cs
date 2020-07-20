@@ -2,6 +2,7 @@
 using SimpleJSON;
 using UnityEngine;
 using TMPro;
+using Doozy.Engine;
 
 public class UITranslator : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UITranslator : MonoBehaviour
     private BackendAPI m_api;
 
     private Dictionary<string, GameObject> referenceMap;
-
+    
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
@@ -20,15 +21,17 @@ public class UITranslator : MonoBehaviour
         {
             referenceMap.Add(translatableObject.name, translatableObject);
         }
-
-        // fetch translation data
-        m_api = controllers.GetComponent<BackendAPI>();
-        Dictionary<string, string> filters = new Dictionary<string, string>();
-        filters.Add("language", "EN");
-        filters.Add("scene", "test_menu");
-        m_api.ApiPull("ui", filters, TranslateUI);
     }
 
+    public void FetchTranslation(string language, string scene)
+    {
+        m_api = controllers.GetComponent<BackendAPI>();
+        Dictionary<string, string> filters = new Dictionary<string, string>();
+        filters.Add("language", language);
+        filters.Add("scene", scene);
+        m_api.ApiPull("ui", filters, TranslateUI);
+    }
+    
     private void TranslateUI(string json)
     {
         JSONNode translation = JSON.Parse(json);
@@ -40,7 +43,7 @@ public class UITranslator : MonoBehaviour
                 Transform label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
                 label.gameObject.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
-            catch (UnityException e)
+            catch (UnityException)
             {
                 referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
