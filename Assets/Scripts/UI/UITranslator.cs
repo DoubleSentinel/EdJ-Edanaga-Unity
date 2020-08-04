@@ -19,6 +19,8 @@ public class UITranslator : MonoBehaviour
         {
             controllers = GameObject.Find("Controllers");
         }
+        m_api = controllers.GetComponent<BackendAPI>();
+        
         // build local reference map
         referenceMap = new Dictionary<string, GameObject>();
         foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
@@ -29,7 +31,6 @@ public class UITranslator : MonoBehaviour
 
     public void FetchTranslation(string language, string scene)
     {
-        m_api = controllers.GetComponent<BackendAPI>();
         Dictionary<string, string> filters = new Dictionary<string, string>();
         filters.Add("language", language);
         filters.Add("scene", scene);
