@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -34,21 +37,19 @@ public class BackendAPI : MonoBehaviour
 
     public void ApiPost(string endpoint, Dictionary<string, string> formFields, Action<string> callbackSuccess)
     {
-        string url = BASEAPIURL + "/" + endpoint;
-        WWWForm form = new WWWForm();
-
-        foreach (KeyValuePair<string, string> field in formFields)
-        {
-            form.AddField(field.Key, field.Value);
-        }
-
-        StartCoroutine(PostRequest(url, form, callbackSuccess));
+        string url = BASEAPIURL + "/" + endpoint + "/";
+        StartCoroutine(PostRequest(url, FlatDictToJSON(formFields), callbackSuccess));
     }
 
-    private IEnumerator PostRequest(string url, WWWForm form, Action<string> callbackSuccess = null)
+    private IEnumerator PostRequest(string url, string JSONbody, Action<string> callbackSuccess = null)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        using (UnityWebRequest webRequest = new UnityWebRequest(url, "POST"))
         {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(JSONbody);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer(); 
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            
             yield return webRequest.SendWebRequest();
             
             if (webRequest.isNetworkError || webRequest.isHttpError)
@@ -73,7 +74,6 @@ public class BackendAPI : MonoBehaviour
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
                 // failed to access api error handling
-                print(uri);
                 print(webRequest.error);
             }
             else
@@ -81,5 +81,12 @@ public class BackendAPI : MonoBehaviour
                 callbackSuccess?.Invoke(webRequest.downloadHandler.text);
             }
         }
+    }
+    
+    private string FlatDictToJSON(Dictionary<string,string> dict)
+    {
+        var entries = dict.Select(d =>
+            string.Format("\"{0}\": \"{1}\"", d.Key, d.Value));
+        return "{" + string.Join(",", entries) + "}";
     }
 }
