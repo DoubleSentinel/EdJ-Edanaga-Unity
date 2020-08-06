@@ -1,22 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LanguageHandler : MonoBehaviour
 {
     private string currentLanguage;
 
-    private UITranslator m_UItranslator;
-    //private ConversationTranslator m_ConTranslator;
+    [HideInInspector]
+    public UITranslator m_translator;
 
+    [DllImport("__Internal")]
+    private static extern string getLanguage();
     private void Awake()
     {
-        m_UItranslator = GameObject.Find("MasterCanvas").GetComponent<UITranslator>();
+        try
+        {
+            currentLanguage = getLanguage();
+        } catch (EntryPointNotFoundException)
+        {
+            currentLanguage = "EN";
+        }
     }
 
-    public void ChangeLanguage(string language)
+    public void translateUI()
     {
-        currentLanguage = language;
-        m_UItranslator.FetchTranslation(currentLanguage, SceneManager.GetActiveScene().name);
+        m_translator.FetchTranslation(currentLanguage, SceneManager.GetActiveScene().name);
     }
-
 }

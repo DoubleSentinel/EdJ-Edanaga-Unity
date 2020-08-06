@@ -20,6 +20,7 @@ public class UITranslator : MonoBehaviour
             controllers = GameObject.Find("Controllers");
         }
         m_api = controllers.GetComponent<BackendAPI>();
+        controllers.GetComponent<LanguageHandler>().m_translator = this;
         
         // build local reference map
         referenceMap = new Dictionary<string, GameObject>();
@@ -34,7 +35,7 @@ public class UITranslator : MonoBehaviour
         Dictionary<string, string> filters = new Dictionary<string, string>();
         filters.Add("language", language);
         filters.Add("scene", scene);
-        m_api.ApiPull("ui", filters, TranslateUI);
+        m_api.ApiList("ui", filters, TranslateUI);
     }
     
     private void TranslateUI(string json)

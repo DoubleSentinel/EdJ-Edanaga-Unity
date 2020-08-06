@@ -24,7 +24,13 @@ public class BackendAPI : MonoBehaviour
         }
     }
 
-    public void ApiPull(string endpoint, Dictionary<string, string> filters, Action<string> callbackSuccess)
+    public void ApiFetch(string endpoint, string id, Action<string> callbackSuccess)
+    {
+        string uri = BASEAPIURL + "/" + endpoint + "/" + id + "/";
+        StartCoroutine(GetRequest(uri, callbackSuccess));
+    }
+    
+    public void ApiList(string endpoint, Dictionary<string, string> filters, Action<string> callbackSuccess)
     {
         string uri = BASEAPIURL + "/" + endpoint + "/?";
         foreach (KeyValuePair<string, string> filter in filters)
