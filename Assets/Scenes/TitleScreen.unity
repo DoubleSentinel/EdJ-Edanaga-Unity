@@ -1691,7 +1691,7 @@ RectTransform:
   m_Children:
   - {fileID: 918677453}
   m_Father: {fileID: 1546740555}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7219,7 +7219,7 @@ RectTransform:
   m_Children:
   - {fileID: 1294949160}
   m_Father: {fileID: 1546740555}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7606,7 +7606,7 @@ RectTransform:
   m_Children:
   - {fileID: 679272650}
   m_Father: {fileID: 1546740555}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10936,6 +10936,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8041915280962898666, guid: 5fc31914bfb79d54da62f306dfba9843,
+        type: 3}
+      propertyPath: defaultLanguage
+      value: EN
+      objectReference: {fileID: 0}
     - target: {fileID: 8041915280962898667, guid: 5fc31914bfb79d54da62f306dfba9843,
         type: 3}
       propertyPath: m_Name
@@ -11055,10 +11060,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2079649602}
+  - {fileID: 482465226}
+  - {fileID: 812176343}
   - {fileID: 896777587}
   - {fileID: 1838888307}
-  - {fileID: 812176343}
-  - {fileID: 482465226}
   m_Father: {fileID: 760120369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12385,7 +12390,7 @@ RectTransform:
   m_Children:
   - {fileID: 232889851}
   m_Father: {fileID: 1546740555}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14992,7 +14997,7 @@ GameObject:
   - component: {fileID: 2050616472}
   m_Layer: 0
   m_Name: lblCreateTitle
-  m_TagString: Translatable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15148,7 +15153,7 @@ GameObject:
   - component: {fileID: 2079649603}
   m_Layer: 0
   m_Name: lblTitle
-  m_TagString: Translatable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,7 +9,10 @@ using SimpleJSON;
 
 public class LanguageHandler : MonoBehaviour
 {
-    private string m_currentLanguageID;
+    [SerializeField]
+    private string defaultLanguage = "EN";
+    
+    private string m_currentLanguageId;
 
     private Dictionary<string, string> languages;
 
@@ -31,22 +34,23 @@ public class LanguageHandler : MonoBehaviour
             }
             try
             {
-                m_currentLanguageID = languages[getLanguage()];
+                m_currentLanguageId = languages[getLanguage()];
             }
             catch (EntryPointNotFoundException)
             {
-                m_currentLanguageID = languages["EN"];
+                m_currentLanguageId = languages[defaultLanguage];
             }
+            translateUI();
         }, null);
     }
 
     public void translateUI()
     {
-        translator.FetchTranslation(m_currentLanguageID, SceneManager.GetActiveScene().name);
+        translator.FetchTranslation(m_currentLanguageId, SceneManager.GetActiveScene().name);
     }
 
     public string GetCurrentLanguage()
     {
-        return languages.FirstOrDefault(lang => lang.Value == m_currentLanguageID).Key;
+        return languages.FirstOrDefault(lang => lang.Value == m_currentLanguageId).Key;
     }
 }
