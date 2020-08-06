@@ -2,7 +2,6 @@
 using SimpleJSON;
 using UnityEngine;
 using TMPro;
-using Doozy.Engine;
 
 public class UITranslator : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class UITranslator : MonoBehaviour
             controllers = GameObject.Find("Controllers");
         }
         m_api = controllers.GetComponent<BackendAPI>();
-        controllers.GetComponent<LanguageHandler>().m_translator = this;
+        controllers.GetComponent<LanguageHandler>().translator = this;
         
         // build local reference map
         referenceMap = new Dictionary<string, GameObject>();
@@ -32,10 +31,10 @@ public class UITranslator : MonoBehaviour
 
     public void FetchTranslation(string language, string scene)
     {
-        Dictionary<string, string> filters = new Dictionary<string, string>();
+        Dictionary<string, object> filters = new Dictionary<string, object>();
         filters.Add("language", language);
         filters.Add("scene", scene);
-        m_api.ApiList("ui", filters, TranslateUI);
+        m_api.ApiList("ui", TranslateUI, filters);
     }
     
     private void TranslateUI(string json)

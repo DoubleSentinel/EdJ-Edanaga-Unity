@@ -30,18 +30,20 @@ public class BackendAPI : MonoBehaviour
         StartCoroutine(GetRequest(uri, callbackSuccess));
     }
     
-    public void ApiList(string endpoint, Dictionary<string, string> filters, Action<string> callbackSuccess)
+    public void ApiList(string endpoint, Action<string> callbackSuccess, Dictionary<string, object> filters = null)
     {
         string uri = BASEAPIURL + "/" + endpoint + "/?";
-        foreach (KeyValuePair<string, string> filter in filters)
+        if (filters != null)
         {
-            uri += filter.Key + "=" + filter.Value + "&";
+            foreach (KeyValuePair<string, object> filter in filters)
+            {
+                uri += filter.Key + "=" + filter.Value + "&";
+            }
         }
-
         StartCoroutine(GetRequest(uri, callbackSuccess));
     }
 
-    public void ApiPost(string endpoint, Dictionary<string, string> formFields, Action<string> callbackSuccess)
+    public void ApiPost(string endpoint, Dictionary<string, object> formFields, Action<string> callbackSuccess)
     {
         string url = BASEAPIURL + "/" + endpoint + "/";
         StartCoroutine(PostRequest(url, FlatDictToJSON(formFields), callbackSuccess));
@@ -89,7 +91,7 @@ public class BackendAPI : MonoBehaviour
         }
     }
     
-    private string FlatDictToJSON(Dictionary<string,string> dict)
+    private string FlatDictToJSON(Dictionary<string,object> dict)
     {
         var entries = dict.Select(d =>
             string.Format("\"{0}\": \"{1}\"", d.Key, d.Value));

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Doozy.Engine.UI;
 using UnityEngine;
 using SimpleJSON;
 using TMPro;
@@ -15,6 +16,8 @@ public class Authentication : MonoBehaviour
 
     private GameObject controllers;
 
+    private UIView createView;
+    
     private Button confirmButton;
     private Button loginButton;
 
@@ -23,7 +26,7 @@ public class Authentication : MonoBehaviour
     private string username;
     private string password;
     private string passwordConfirmation;
-    
+
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
@@ -32,8 +35,11 @@ public class Authentication : MonoBehaviour
             controllers = GameObject.Find("Controllers");
         }
         m_api = controllers.GetComponent<BackendAPI>();
+        
         confirmButton = GameObject.Find("btnConfirmCreate").GetComponent<Button>();
         loginButton = GameObject.Find("btnLogin").GetComponent<Button>();
+
+        createView = GameObject.Find("View - CreateAccount").GetComponent<UIView>();
     }
 
     private bool DoesUsernameExist(JSONNode apiResponse)
@@ -95,27 +101,25 @@ public class Authentication : MonoBehaviour
     // Checking usernames for availability on creation or existence on login
     public void CheckUsername(GameObject caller)
     {
-        Dictionary<string, string> filters = new Dictionary<string, string>();
-        filters.Add("username", username);
-        m_api.ApiList("is_user", filters, response =>
+        Dictionary<string, object> filters = new Dictionary<string, object> {{"username", username}};
+        m_api.ApiList("is_user", response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
             bool doesUserExist = DoesUsernameExist(nodeResponse);
             ChangeColor(caller, doesUserExist? Color.green: Color.red);
             loginButton.interactable = doesUserExist;
             userId = doesUserExist ? (string) nodeResponse["data"][0]["id"] : "";
-        });
+        }, filters);
     }
     public void CheckUsernameAvailability(GameObject caller)
     {
-        Dictionary<string, string> filters = new Dictionary<string, string>();
-        filters.Add("username", username);
-        m_api.ApiList("is_user", filters, response =>
+        Dictionary<string, object> filters = new Dictionary<string, object> {{"username", username}};
+        m_api.ApiList("is_user", response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
             isUsernameValid = !DoesUsernameExist(nodeResponse);
             ChangeColor(caller, isUsernameValid? Color.green: Color.red);
-        });
+        }, filters);
     }
     public void Login()
     {
@@ -125,12 +129,10 @@ public class Authentication : MonoBehaviour
             JSONNode nodeResponse = JSON.Parse(response);
             if (password == nodeResponse["userpass"])
             {
-                print("login success");
-                //SceneManager.LoadScene("Chapter2.1");
+                SceneManager.LoadScene("Chapter2.1");
             }
             else
             {
-                print("login failed");
                 ChangeColor(GameObject.Find("inptPassword"),Color.red);
             }
         });
@@ -140,14 +142,16 @@ public class Authentication : MonoBehaviour
     {
         passwordConfirmation = "";
         HashPassword();
-        Dictionary<string, string> parameters = new Dictionary<string, string>();
-        // TODO get the language preference from the LanguageHandler
-        parameters.Add("language_preference", "EN");
-        parameters.Add("username", username);
-        parameters.Add("userpass", password);
+        Dictionary<string, object> parameters = new Dictionary<string, object>
+        {
+            {"language_preference", GetComponent<LanguageHandler>().GetCurrentLanguage()},
+            {"username", username},
+            {"userpass", password}
+        };
         m_api.ApiPost("create_auth_user", parameters, response =>
         {
-            //Login();
+            confirmButton.interactable = false;
+            createView.Hide();
         }); 
     }
 }
