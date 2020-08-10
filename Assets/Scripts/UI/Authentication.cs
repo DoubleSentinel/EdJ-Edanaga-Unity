@@ -16,14 +16,14 @@ public class Authentication : MonoBehaviour
 
     private GameObject controllers;
 
-    private UIView createView;
-    
     private Button confirmButton;
     private Button loginButton;
+    private Button submitPasswordChangeButton;
 
     private Dictionary<string, object> api_params;
     
     private bool isUsernameValid;
+    private bool doesUserExist;
     private string userId;
     private string username;
     private string password;
@@ -41,9 +41,8 @@ public class Authentication : MonoBehaviour
         api_params = new Dictionary<string, object>();
         
         confirmButton = GameObject.Find("btnConfirmCreate").GetComponent<Button>();
+        submitPasswordChangeButton = GameObject.Find("btnConfirmChange").GetComponent<Button>();
         loginButton = GameObject.Find("btnLogin").GetComponent<Button>();
-
-        createView = GameObject.Find("View - CreateAccount").GetComponent<UIView>();
     }
 
     private bool DoesUsernameExist(JSONNode apiResponse)
@@ -100,6 +99,7 @@ public class Authentication : MonoBehaviour
         passwordConfirmation = caller.GetComponent<TMP_InputField>().text;
         ChangeColor(caller, password == passwordConfirmation? Color.green: Color.red );
         confirmButton.interactable = isUsernameValid && password == passwordConfirmation;
+        submitPasswordChangeButton.interactable = doesUserExist && password == passwordConfirmation;
     }
 
     // Checking usernames for availability on creation or existence on login
@@ -110,7 +110,7 @@ public class Authentication : MonoBehaviour
         m_api.ApiList("is_user", response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
-            bool doesUserExist = DoesUsernameExist(nodeResponse);
+            doesUserExist = DoesUsernameExist(nodeResponse);
             ChangeColor(caller, doesUserExist? Color.green: Color.red);
             loginButton.interactable = doesUserExist;
             userId = doesUserExist ? (string) nodeResponse["data"][0]["id"] : "";
