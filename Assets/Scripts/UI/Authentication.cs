@@ -21,6 +21,8 @@ public class Authentication : MonoBehaviour
     private Button confirmButton;
     private Button loginButton;
 
+    private Dictionary<string, object> api_params;
+    
     private bool isUsernameValid;
     private string userId;
     private string username;
@@ -35,6 +37,8 @@ public class Authentication : MonoBehaviour
             controllers = GameObject.Find("Controllers");
         }
         m_api = controllers.GetComponent<BackendAPI>();
+        
+        api_params = new Dictionary<string, object>();
         
         confirmButton = GameObject.Find("btnConfirmCreate").GetComponent<Button>();
         loginButton = GameObject.Find("btnLogin").GetComponent<Button>();
@@ -101,7 +105,8 @@ public class Authentication : MonoBehaviour
     // Checking usernames for availability on creation or existence on login
     public void CheckUsername(GameObject caller)
     {
-        Dictionary<string, object> filters = new Dictionary<string, object> {{"username", username}};
+        api_params.Clear();
+        api_params.Add("username", username);
         m_api.ApiList("is_user", response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
@@ -109,25 +114,29 @@ public class Authentication : MonoBehaviour
             ChangeColor(caller, doesUserExist? Color.green: Color.red);
             loginButton.interactable = doesUserExist;
             userId = doesUserExist ? (string) nodeResponse["data"][0]["id"] : "";
-        }, filters);
+        }, api_params);
     }
     public void CheckUsernameAvailability(GameObject caller)
     {
-        Dictionary<string, object> filters = new Dictionary<string, object> {{"username", username}};
+        api_params.Clear();
+        api_params.Add("username", username);
         m_api.ApiList("is_user", response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
             isUsernameValid = !DoesUsernameExist(nodeResponse);
             ChangeColor(caller, isUsernameValid? Color.green: Color.red);
-        }, filters);
+        }, api_params);
     }
     public void Login()
     {
         HashPassword();
-        m_api.ApiFetch("create_auth_user", userId, response =>
+        api_params.Clear();
+        api_params.Add("username", username);
+        api_params.Add("userpass", password);
+        m_api.ApiPost("login_user", api_params, response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
-            if (password == nodeResponse["userpass"])
+            if (nodeResponse["error"]["code"] == 200 && nodeResponse["error"]["message"] == "ok")
             {
                 SceneManager.LoadScene("Chapter2.1");
             }
@@ -148,10 +157,9 @@ public class Authentication : MonoBehaviour
             {"username", username},
             {"userpass", password}
         };
-        m_api.ApiPost("create_auth_user", parameters, response =>
+        m_api.ApiPost("crud_user", parameters, response =>
         {
             confirmButton.interactable = false;
-            createView.Hide();
         }); 
     }
 }

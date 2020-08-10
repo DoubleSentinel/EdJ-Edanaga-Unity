@@ -17,5 +17,5 @@ MonoBehaviour:
   Names:
   - Login
   - CreateAccount
-  - CreateAndLogin
+  - SubmitCreation
   - 
