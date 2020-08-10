@@ -49,9 +49,38 @@ public class BackendAPI : MonoBehaviour
         StartCoroutine(PostRequest(url, FlatDictToJSON(formFields), callbackSuccess));
     }
 
+    public void ApiPut(string endpoint, Dictionary<string, object> formFields, Action<string> callbackSuccess)
+    {
+        string url = BASEAPIURL + "/" + endpoint + "/";
+        StartCoroutine(PutRequest(url, FlatDictToJSON(formFields), callbackSuccess));
+    }
     private IEnumerator PostRequest(string url, string JSONbody, Action<string> callbackSuccess = null)
     {
         using (UnityWebRequest webRequest = new UnityWebRequest(url, "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(JSONbody);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer(); 
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            
+            yield return webRequest.SendWebRequest();
+            
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                // failed to access api error handling
+                print(url);
+                print(webRequest.error);
+            }
+            else
+            {
+                callbackSuccess?.Invoke(webRequest.downloadHandler.text);
+            }
+        }
+    }
+    
+    private IEnumerator PutRequest(string url, string JSONbody, Action<string> callbackSuccess = null)
+    {
+        using (UnityWebRequest webRequest = new UnityWebRequest(url, "PUT"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(JSONbody);
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);

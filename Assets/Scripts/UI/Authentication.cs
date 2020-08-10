@@ -151,15 +151,19 @@ public class Authentication : MonoBehaviour
     {
         passwordConfirmation = "";
         HashPassword();
-        Dictionary<string, object> parameters = new Dictionary<string, object>
-        {
-            {"language_preference", GetComponent<LanguageHandler>().GetCurrentLanguage()},
-            {"username", username},
-            {"userpass", password}
-        };
-        m_api.ApiPost("crud_user", parameters, response =>
-        {
-            confirmButton.interactable = false;
-        }); 
+        api_params.Clear();
+        api_params.Add("language_preference", GetComponent<LanguageHandler>().GetCurrentLanguage());
+        api_params.Add("username", username);
+        api_params.Add("userpass", password);
+        m_api.ApiPost("crud_user", api_params, null); 
+    }
+    
+    public void ChangePassword()
+    {
+        passwordConfirmation = "";
+        HashPassword();
+        api_params.Clear();
+        api_params.Add("userpass", password);
+        m_api.ApiPut("crud_user/" + userId, api_params, null); 
     }
 }

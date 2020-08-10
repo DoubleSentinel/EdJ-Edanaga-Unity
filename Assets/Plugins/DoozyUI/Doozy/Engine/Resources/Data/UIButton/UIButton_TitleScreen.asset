@@ -18,4 +18,6 @@ MonoBehaviour:
   - Login
   - CreateAccount
   - SubmitCreation
+  - ChangePassword
+  - SubmitChangePassword
   - 
