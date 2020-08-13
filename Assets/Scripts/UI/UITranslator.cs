@@ -14,8 +14,6 @@ public class UITranslator : MonoBehaviour
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        
-        // build local reference map
         referenceMap = new Dictionary<string, GameObject>();
         foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
         {
@@ -27,7 +25,7 @@ public class UITranslator : MonoBehaviour
             controllers = GameObject.Find("Controllers");
         }
         m_api = controllers.GetComponent<BackendAPI>();
-        controllers.GetComponent<LanguageHandler>().translator = this;
+        controllers.GetComponent<LanguageHandler>().UiTranslator = this;
     }
 
     public void FetchTranslation(string language, string scene)

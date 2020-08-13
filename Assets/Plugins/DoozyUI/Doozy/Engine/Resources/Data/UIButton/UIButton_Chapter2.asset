@@ -15,4 +15,5 @@ MonoBehaviour:
   CategoryName: Chapter2
   DatabaseType: 0
   Names:
-  - CallTarget
+  - CallObjective
+  - 

@@ -17,7 +17,7 @@ public class LanguageHandler : MonoBehaviour
     private Dictionary<string, string> languages;
 
     [HideInInspector]
-    public UITranslator translator;
+    public UITranslator UiTranslator;
 
     [DllImport("__Internal")]
     private static extern string getLanguage();
@@ -46,11 +46,16 @@ public class LanguageHandler : MonoBehaviour
 
     public void translateUI()
     {
-        translator.FetchTranslation(m_currentLanguageId, SceneManager.GetActiveScene().name);
+        UiTranslator.FetchTranslation(m_currentLanguageId, SceneManager.GetActiveScene().name);
     }
 
     public string GetCurrentLanguage()
     {
         return languages.FirstOrDefault(lang => lang.Value == m_currentLanguageId).Key;
+    }
+
+    public string GetCurrentLanguageID()
+    {
+        return m_currentLanguageId;
     }
 }
