@@ -16,4 +16,7 @@ MonoBehaviour:
   DatabaseType: 0
   Names:
   - CallObjective
+  - ContinueTo2.2
+  - ContinueToTradeOff
+  - ContinueToSwing
   - 

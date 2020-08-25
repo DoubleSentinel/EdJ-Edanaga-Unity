@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42f06ff6cc543ea942180e019f0fc8d, type: 3}
-  m_Name: UIView_Chapter2
+  m_Name: UIView_Swing
   m_EditorClassIdentifier: 
-  CategoryName: Chapter2
+  CategoryName: Swing
   DatabaseType: 2
   Names:
-  - 2.1 Town
-  - 2.1.2 PhoneCall
-  - 2.2.1_6_8 - Bargain
-  - 2.2.1 Title
-  - 2.2.2 Bargain - Tables
+  - 2.2.8 Share Drinks
+  - 2.2.9 Final Drinks
+  - 2.2.B Help
