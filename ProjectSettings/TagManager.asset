@@ -43,3 +43,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Feets
+    uniqueID: 3178601803
+    locked: 0
+  - name: Arm
+    uniqueID: 2718477511
+    locked: 0
+  - name: Body
+    uniqueID: 3725566223
+    locked: 0
+  - name: Arm2
+    uniqueID: 551409959
+    locked: 0
+  - name: Head_bg
+    uniqueID: 3342785011
+    locked: 0
+  - name: Head
+    uniqueID: 3563210727
+    locked: 0
