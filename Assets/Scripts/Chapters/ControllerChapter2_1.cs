@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownViewController : MonoBehaviour
+public class ControllerChapter2_1 : MonoBehaviour
 {
     [SerializeField]
     private Button btnContinue;
@@ -16,6 +16,7 @@ public class TownViewController : MonoBehaviour
         {
             btnContinue = GameObject.Find("btnContinue").GetComponent<Button>();
         }
+        GameObject.Find("Controllers").GetComponent<LanguageHandler>().translateUI();
     }
 
     public void UpdateObjectiveButton(GameObject caller)

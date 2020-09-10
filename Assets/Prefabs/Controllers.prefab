@@ -57,3 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d115932ed27106d4b953dc7f4baca330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLanguage: EN
+  UiTranslator: {fileID: 0}

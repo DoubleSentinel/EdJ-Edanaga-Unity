@@ -40,7 +40,6 @@ public class LanguageHandler : MonoBehaviour
             {
                 m_currentLanguageId = languages[defaultLanguage];
             }
-            translateUI();
         }, null);
     }
 

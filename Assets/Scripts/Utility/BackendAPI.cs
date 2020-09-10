@@ -14,6 +14,9 @@ public class BackendAPI : MonoBehaviour
     private static extern string getAPIHost();
 
     public string BASEAPIURL;
+    
+    [HideInInspector]
+    public Dictionary<string, object> parameters;
 
     void Awake()
     {
@@ -22,6 +25,7 @@ public class BackendAPI : MonoBehaviour
         {
             BASEAPIURL = getAPIHost();
         }
+        parameters = new Dictionary<string, object>();
     }
 
     public void ApiFetch(string endpoint, string id, Action<string> callbackSuccess)

@@ -1,91 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7761416496669676381
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 840a439e06374673a9115ed02deb5a54, type: 3}
-  m_Name: UINode
-  m_EditorClassIdentifier: 
-  ErrorNodeNameIsEmpty: 0
-  ErrorDuplicateNameFoundInGraph: 0
-  m_inputSockets:
-  - m_connectionMode: 1
-    m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: 76a24688-4cb0-4673-8814-876d79d02fe6
-      m_inputNodeId: 6454baef-1eab-4fa8-af64-a716eaacf055
-      m_inputSocketId: 1c592fa2-a3b9-4b3d-9aa0-f527ffee55f9
-      m_outputNodeId: d312cd8c-3543-4dfb-b1a2-de4a08cd372a
-      m_outputSocketId: 8eedb053-83c2-4cb2-9a74-a367de6c5072
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 0
-    m_canBeDeleted: 0
-    m_canBeReordered: 0
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 38
-    m_id: 1c592fa2-a3b9-4b3d-9aa0-f527ffee55f9
-    m_nodeId: 6454baef-1eab-4fa8-af64-a716eaacf055
-    m_socketName: InputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_outputSockets:
-  - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 1
-    m_canBeReordered: 1
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 62
-    m_id: e6da764a-05e2-4e51-9793-7aaca17fc5ac
-    m_nodeId: 6454baef-1eab-4fa8-af64-a716eaacf055
-    m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_nodeType: 4
-  m_allowDuplicateNodeName: 0
-  m_allowEmptyNodeName: 0
-  m_canBeDeleted: 1
-  m_debugMode: 0
-  m_useFixedUpdate: 0
-  m_useLateUpdate: 0
-  m_useUpdate: 0
-  m_height: 128
-  m_width: 216
-  m_x: 288
-  m_y: -72
-  m_minimumInputSocketsCount: 1
-  m_minimumOutputSocketsCount: 1
-  m_graphId: 6c7158b9-7022-412d-804e-537f630f3191
-  m_id: 6454baef-1eab-4fa8-af64-a716eaacf055
-  m_name: 2.2.1/6/8 - TradeOff
-  m_notes: 
-  m_onEnterShowViews:
-  - Category: Chapter2
-    InstantAction: 0
-    Name: 2.2.2 Bargain - Tables
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
-  m_onExitHideViews: []
 --- !u!114 &-7440374936664284650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,7 +132,10 @@ MonoBehaviour:
     Name: 2.2.2 Bargain - Tables
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.2.2 Bargain - Tables
 --- !u!114 &-4408941180446937399
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,7 +225,10 @@ MonoBehaviour:
   m_onEnterShowViews: []
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.2.1 Title
 --- !u!114 &-3418554130093598435
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,10 +315,16 @@ MonoBehaviour:
   m_id: fc92f37c-39b8-4d90-92ad-83fd73e830a5
   m_name: Swing - 2.2.8 Share Drinks
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: Swing
+    InstantAction: 0
+    Name: 2.2.8 Share Drinks
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Swing
+    InstantAction: 0
+    Name: 2.2.8 Share Drinks
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +349,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 6c7158b9-7022-412d-804e-537f630f3191
-  m_lastModified: 132428412808577821
+  m_lastModified: 132442072412371290
 --- !u!114 &312171904327899575
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,7 +503,10 @@ MonoBehaviour:
     Name: 2.2.1_6_8 - Bargain
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.2.1_6_8 - Bargain
 --- !u!114 &7577858422730177320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,7 +593,13 @@ MonoBehaviour:
   m_id: a8429b6f-2059-4a16-8455-3088475c8b82
   m_name: TradeOff - 2.2.3/5 - Battle
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: TradeOff
+    InstantAction: 0
+    Name: 2.2.3 Table Battle
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: TradeOff
+    InstantAction: 0
+    Name: 2.2.3 Table Battle
