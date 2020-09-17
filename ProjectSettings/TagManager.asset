@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Translatable
   - ConversationGroup
+  - Character
+  - Table
   layers:
   - Default
   - TransparentFX
