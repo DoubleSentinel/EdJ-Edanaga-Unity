@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Translatable
   - ConversationGroup
+  - Color:Contour
+  - Color:Fond
+  - Color:Accent
+  - Color:Blanc
   layers:
   - Default
   - TransparentFX
