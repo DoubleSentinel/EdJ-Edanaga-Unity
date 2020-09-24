@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
+using TMPro;
 using UnityEngine;
 
 public class ConversationHandler : MonoBehaviour
@@ -30,19 +31,31 @@ public class ConversationHandler : MonoBehaviour
         foreach (string title in conversationTitles)
         {
             m_api.parameters.Clear();
-            m_api.parameters.Add("scene", title);
+            m_api.parameters.Add("conversation_title", title);
             m_api.parameters.Add("language", controllers.GetComponent<LanguageHandler>().GetCurrentLanguage());
             
             m_api.ApiList("scenes", response =>
             {
-                conversations.Add(title, JSONNode.Parse(response));
+                conversations.Add(title, JSONNode.Parse(response)["data"][0]);
             }, m_api.parameters);
         }
     }
 
     public void GenerateConversation(string title)
     {
+        string decoded =
+            BackendAPI.DecodeEncodedNonAsciiCharacters(conversations[title]["conversation_content"][2]["text"]);
+        ;
+        GetComponentInChildren<TextMeshProAnimated>().text = decoded;
+        //TODO: step 1 add all text to page overflow
+        //TODO: step 2 get show characters with
+            print(GetComponentInChildren<TextMeshProAnimated>().textInfo.);
         
     }
 
+
+    public void NextConversationItem()
+    {
+        //conversationBubble.GetComponentInChildren<TextMeshProAnimated>().ReadText()
+    }
 }

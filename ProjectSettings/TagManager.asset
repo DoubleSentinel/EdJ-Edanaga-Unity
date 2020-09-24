@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Translatable
-  - ConversationGroup
   - Character
   - Table
+  - DialogBubble
   layers:
   - Default
   - TransparentFX

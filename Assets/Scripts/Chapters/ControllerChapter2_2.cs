@@ -7,9 +7,11 @@ using UnityEngine;
 public class ControllerChapter2_2 : MonoBehaviour
 {
     // Scene references
-    [SerializeField] private GameObject sceneMC;
+    [SerializeField] private GameObject sceneHost;
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
+    
+    [SerializeField] private GameObject HostBargainConversationBubble;
 
     // Local variables
     private GameObject controllers;
@@ -34,7 +36,10 @@ public class ControllerChapter2_2 : MonoBehaviour
         tradeoffs = new List<(GameObject, GameObject)>();
 
         m_api = controllers.GetComponent<BackendAPI>();
-        GameObject.Find("Controllers").GetComponent<LanguageHandler>().translateUI();
+        
+        controllers.GetComponent<LanguageHandler>().translateUI();
+        
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().FetchConversations();
     }
 
     // Start is called before the first frame update
@@ -59,11 +64,14 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
             height,
             depth));
-        sceneMC.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
+        sceneHost.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
             height,
             depth));
         scenePlayer.SetActive(true);
-        sceneMC.SetActive(true);
+        sceneHost.SetActive(true);
+        
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation("test");
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationItem();
     }
 
     public void SetupBargainTables()

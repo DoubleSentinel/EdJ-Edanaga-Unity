@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1394388445746374966}
   - component: {fileID: 7609699163246259643}
   - component: {fileID: 7854895283878917035}
-  - component: {fileID: 6631525033184189463}
   m_Layer: 0
   m_Name: Conversation
   m_TagString: Untagged
@@ -75,16 +74,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6631525033184189463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8734855581716784732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b5ba1de8747ef448a8a2acc5969b6bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controllers: {fileID: 0}
