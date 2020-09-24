@@ -6,14 +6,33 @@ using UnityEngine.Events;
 
 namespace TMPro
 {
-    public enum Emotion { happy, sad, surprised, angry };
-    [System.Serializable] public class EmotionEvent : UnityEvent<Emotion> { }
+    public enum Emotion
+    {
+        happy,
+        sad,
+        surprised,
+        angry
+    };
 
-    [System.Serializable] public class ActionEvent : UnityEvent<string> { }
+    [System.Serializable]
+    public class EmotionEvent : UnityEvent<Emotion>
+    {
+    }
 
-    [System.Serializable] public class TextRevealEvent : UnityEvent<char> { }
+    [System.Serializable]
+    public class ActionEvent : UnityEvent<string>
+    {
+    }
 
-    [System.Serializable] public class DialogueEvent : UnityEvent { }
+    [System.Serializable]
+    public class TextRevealEvent : UnityEvent<char>
+    {
+    }
+
+    [System.Serializable]
+    public class DialogueEvent : UnityEvent
+    {
+    }
 
     /// <summary>
     /// Class derivated from TextMeshProUGUI used to add the ability to display text with a typewriter effect and add more tag for action and emotion
@@ -45,13 +64,16 @@ namespace TMPro
                     displayText += subTexts[i];
                 else if (!isCustomTag(subTexts[i].Replace(" ", "")))
                     displayText += $"<{subTexts[i]}>";
+                else
+                    EvaluateTag(subTexts[i].Replace(" ", ""));
             }
+
             // check to see if a tag is our own
             bool isCustomTag(string tag)
             {
                 return tag.StartsWith("speed=");
             }
-            
+
             // send that string to textmeshpro and hide all of it, then start reading
             this.text = displayText;
             maxVisibleCharacters = 0;
@@ -66,6 +88,46 @@ namespace TMPro
             StartCoroutine(Read(ParseText(newText)));
         }
 
+        public IEnumerator ReadPage(int pageNumber)
+        {
+            if (overflowMode == TextOverflowModes.Page)
+            {
+                isInCoroutine = true;
+
+                pageToDisplay = pageNumber;
+                // the indexes are offset by one between what is displayed as a page
+                // and what index values are saved in textInfo.pageInfo because TextMeshPro
+                // starts displays at 0 and 1 for the first page.
+                int numberOfCharactersToReveal = textInfo.pageInfo[pageNumber -1].lastCharacterIndex -
+                                                 textInfo.pageInfo[pageNumber -1].firstCharacterIndex + 1;
+
+                int offset = textInfo.pageInfo[pageNumber-1].firstCharacterIndex;
+                for (int character = offset; character <= numberOfCharactersToReveal + offset; character++)
+                {
+                    maxVisibleCharacters = character;
+                    yield return new WaitForSeconds(1f / speed);
+                }
+
+                isInCoroutine = false;
+                yield return null;
+            }
+        }
+
+        public IEnumerator ReadAllPages()
+        {
+            if (overflowMode == TextOverflowModes.Page)
+            {
+                ForceMeshUpdate();
+
+                for (int page = 1; page <= textInfo.pageCount; page++)
+                {
+                    pageToDisplay = page;
+                    yield return ReadPage(page);
+                }
+                yield return null;
+            }
+        }
+
         IEnumerator Read(string[] subTexts)
         {
             isInCoroutine = true;
@@ -75,9 +137,9 @@ namespace TMPro
             while (subCounter < subTexts.Length)
             {
                 // if 
-                if (subCounter % 2 == 1)
+                if (subCounter % 2 == 0)
                 {
-                    yield return EvaluateTag(subTexts[subCounter].Replace(" ", ""));
+                    EvaluateTag(subTexts[subCounter].Replace(" ", ""));
                 }
                 else
                 {
@@ -88,37 +150,36 @@ namespace TMPro
                         maxVisibleCharacters++;
                         yield return new WaitForSeconds(1f / speed);
                     }
+
                     visibleCounter = 0;
                 }
+
                 subCounter++;
             }
+
             isInCoroutine = false;
             yield return null;
 
-            WaitForSeconds EvaluateTag(string tag)
-            {
-                if (tag.Length > 0)
-                {
-                    if (tag.StartsWith("speed="))
-                    {
-                        speed = float.Parse(tag.Split('=')[1]);
-                    }
-                    else if (tag.StartsWith("pause="))
-                    {
-                        return new WaitForSeconds(float.Parse(tag.Split('=')[1]));
-                    }
-                    else if (tag.StartsWith("emotion="))
-                    {
-                        onEmotionChange.Invoke((Emotion)System.Enum.Parse(typeof(Emotion), tag.Split('=')[1]));
-                    }
-                    else if (tag.StartsWith("action="))
-                    {
-                        onAction.Invoke(tag.Split('=')[1]);
-                    }
-                }
-                return null;
-            }
             onDialogueFinish.Invoke();
+        }
+
+        private void EvaluateTag(string tag)
+        {
+            if (tag.Length > 0)
+            {
+                if (tag.StartsWith("speed="))
+                {
+                    speed = float.Parse(tag.Split('=')[1]);
+                }
+                else if (tag.StartsWith("emotion="))
+                {
+                    onEmotionChange.Invoke((Emotion) System.Enum.Parse(typeof(Emotion), tag.Split('=')[1]));
+                }
+                else if (tag.StartsWith("action="))
+                {
+                    onAction.Invoke(tag.Split('=')[1]);
+                }
+            }
         }
 
         private void Update()
@@ -132,6 +193,7 @@ namespace TMPro
 
                 // Wait for next frame to avoid skipping a text too early
                 StartCoroutine(InvokeFinish());
+
                 IEnumerator InvokeFinish()
                 {
                     yield return new WaitForEndOfFrame();

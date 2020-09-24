@@ -47,10 +47,8 @@ public class ConversationHandler : MonoBehaviour
             BackendAPI.DecodeEncodedNonAsciiCharacters(conversations[title]["conversation_content"][2]["text"]);
         ;
         GetComponentInChildren<TextMeshProAnimated>().text = decoded;
-        //TODO: step 1 add all text to page overflow
-        //TODO: step 2 get show characters with
-            print(GetComponentInChildren<TextMeshProAnimated>().textInfo.);
         
+        StartCoroutine(GetComponentInChildren<TextMeshProAnimated>().ReadAllPages());
     }
 
 
