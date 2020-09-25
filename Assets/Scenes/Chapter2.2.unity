@@ -21509,6 +21509,11 @@ PrefabInstance:
       propertyPath: conversationTitles.Array.data[0]
       value: test
       objectReference: {fileID: 0}
+    - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: conversationTitles.Array.data[1]
+      value: test
+      objectReference: {fileID: 0}
     - target: {fileID: 2740507126779298128, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_Material

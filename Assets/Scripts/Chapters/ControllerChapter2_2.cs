@@ -71,7 +71,8 @@ public class ControllerChapter2_2 : MonoBehaviour
         sceneHost.SetActive(true);
         
         HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation("test");
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationItem();
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+        
     }
 
     public void SetupBargainTables()

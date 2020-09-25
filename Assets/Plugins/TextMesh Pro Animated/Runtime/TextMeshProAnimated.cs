@@ -47,9 +47,10 @@ namespace TMPro
 
         // Helper for text skip
         private string currentText = "";
-        private bool isInCoroutine = false;
+        [HideInInspector]
+        public bool isWriting = false;
 
-        public string[] ParseText(string text)
+        public string ParseText(string text)
         {
             this.text = string.Empty;
             // split the whole text into parts based off the <> tags 
@@ -77,91 +78,74 @@ namespace TMPro
             // send that string to textmeshpro and hide all of it, then start reading
             this.text = displayText;
             maxVisibleCharacters = 0;
-            return subTexts;
-        }
-
-        public void ReadText(string newText)
-        {
-            // Display error if the newText is empty
-            if (newText.Trim() == "") newText = "ERROR This text should not be seen !";
-            currentText = newText;
-            StartCoroutine(Read(ParseText(newText)));
+            return string.Concat(subTexts);
         }
 
         public IEnumerator ReadPage(int pageNumber)
         {
             if (overflowMode == TextOverflowModes.Page)
             {
-                isInCoroutine = true;
+                isWriting = true;
 
                 pageToDisplay = pageNumber;
                 // the indexes are offset by one between what is displayed as a page
                 // and what index values are saved in textInfo.pageInfo because TextMeshPro
                 // starts displays at 0 and 1 for the first page.
-                int numberOfCharactersToReveal = textInfo.pageInfo[pageNumber -1].lastCharacterIndex -
-                                                 textInfo.pageInfo[pageNumber -1].firstCharacterIndex + 1;
+                int numberOfCharactersToReveal = textInfo.pageInfo[pageNumber - 1].lastCharacterIndex -
+                    textInfo.pageInfo[pageNumber - 1].firstCharacterIndex + 1;
 
-                int offset = textInfo.pageInfo[pageNumber-1].firstCharacterIndex;
+                int offset = textInfo.pageInfo[pageNumber - 1].firstCharacterIndex;
                 for (int character = offset; character <= numberOfCharactersToReveal + offset; character++)
                 {
                     maxVisibleCharacters = character;
                     yield return new WaitForSeconds(1f / speed);
                 }
 
-                isInCoroutine = false;
+                isWriting = false;
                 yield return null;
             }
         }
 
-        public IEnumerator ReadAllPages()
+        public IEnumerator ReadAllPages(UnityEvent unityEvent)
         {
             if (overflowMode == TextOverflowModes.Page)
             {
-                ForceMeshUpdate();
-
                 for (int page = 1; page <= textInfo.pageCount; page++)
                 {
                     pageToDisplay = page;
                     yield return ReadPage(page);
                 }
+
                 yield return null;
             }
         }
 
-        IEnumerator Read(string[] subTexts)
-        {
-            isInCoroutine = true;
-
-            int subCounter = 0;
-            int visibleCounter = 0;
-            while (subCounter < subTexts.Length)
-            {
-                // if 
-                if (subCounter % 2 == 0)
-                {
-                    EvaluateTag(subTexts[subCounter].Replace(" ", ""));
-                }
-                else
-                {
-                    while (visibleCounter < subTexts[subCounter].Length)
-                    {
-                        onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
-                        visibleCounter++;
-                        maxVisibleCharacters++;
-                        yield return new WaitForSeconds(1f / speed);
-                    }
-
-                    visibleCounter = 0;
-                }
-
-                subCounter++;
-            }
-
-            isInCoroutine = false;
-            yield return null;
-
-            onDialogueFinish.Invoke();
-        }
+//        IEnumerator Read(string[] subTexts)
+//        {
+//            isInCoroutine = true;
+//
+//            int subCounter = 0;
+//            int visibleCounter = 0;
+//            while (subCounter < subTexts.Length)
+//            {
+//                if (subCounter % 2 != 0)
+//                {
+//                    while (visibleCounter < subTexts[subCounter].Length)
+//                    {
+//                        onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
+//                        visibleCounter++;
+//                        maxVisibleCharacters++;
+//                        yield return new WaitForSeconds(1f / speed);
+//                    }
+//                }
+//                subCounter++;
+//            }
+//
+//            isInCoroutine = false;
+//            yield return null;
+//
+//            onDialogueFinish.Invoke();
+//        }
 
         private void EvaluateTag(string tag)
         {
@@ -182,12 +166,22 @@ namespace TMPro
             }
         }
 
+        // Use this for event based readpage by linking a button click or else
+        private IEnumerator WaitUntilEvent(UnityEvent unityEvent)
+        {
+            var trigger = false;
+            Action action = () => trigger = true;
+            unityEvent.AddListener(action.Invoke);
+            yield return new WaitUntil(() => trigger);
+            unityEvent.RemoveListener(action.Invoke);
+        }
+
         private void Update()
         {
             // Allow to skip the animation of the text
-            if (Input.GetKeyDown(KeyCode.Space) && isInCoroutine)
+            if (Input.GetKeyDown(KeyCode.Space) && isWriting)
             {
-                isInCoroutine = false;
+                isWriting = false;
                 StopAllCoroutines();
                 maxVisibleCharacters = currentText.Length;
 
