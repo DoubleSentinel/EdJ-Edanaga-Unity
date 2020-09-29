@@ -50,7 +50,7 @@ namespace TMPro
         [HideInInspector]
         public bool isWriting = false;
 
-        public string ParseText(string text)
+        public void ParseText(string text)
         {
             this.text = string.Empty;
             // split the whole text into parts based off the <> tags 
@@ -78,7 +78,35 @@ namespace TMPro
             // send that string to textmeshpro and hide all of it, then start reading
             this.text = displayText;
             maxVisibleCharacters = 0;
-            return string.Concat(subTexts);
+            ForceMeshUpdate();
+        }
+        
+        /** TODO: change this method to trigger events present on a page's text
+        * and create another method to clean text of custom tags before it is shown on a TMProAnimated
+        **/ 
+        public void ParsePage(string page)
+        {
+            // split the whole text into parts based off the <> tags 
+            // even numbers in the array are text, odd numbers are tags
+            string[] subTexts = page.Split('<', '>');
+
+            // textmeshpro still needs to parse its built-in tags, so we only include noncustom tags
+            string displayText = "";
+            for (int i = 0; i < subTexts.Length; i++)
+            {
+                if (i % 2 == 0)
+                    displayText += subTexts[i];
+                else if (!isCustomTag(subTexts[i].Replace(" ", "")))
+                    displayText += $"<{subTexts[i]}>";
+                else
+                    EvaluateTag(subTexts[i].Replace(" ", ""));
+            }
+
+            // check to see if a tag is our own
+            bool isCustomTag(string tag)
+            {
+                return tag.StartsWith("speed=");
+            }
         }
 
         public IEnumerator ReadPage(int pageNumber)
@@ -87,14 +115,16 @@ namespace TMPro
             {
                 isWriting = true;
 
+                ForceMeshUpdate();
                 pageToDisplay = pageNumber;
+                int pageInfoIndex = pageNumber - 1 < 0 ? 0 : pageNumber -1;
                 // the indexes are offset by one between what is displayed as a page
                 // and what index values are saved in textInfo.pageInfo because TextMeshPro
                 // starts displays at 0 and 1 for the first page.
-                int numberOfCharactersToReveal = textInfo.pageInfo[pageNumber - 1].lastCharacterIndex -
-                    textInfo.pageInfo[pageNumber - 1].firstCharacterIndex + 1;
+                int numberOfCharactersToReveal = textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
+                    textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1;
 
-                int offset = textInfo.pageInfo[pageNumber - 1].firstCharacterIndex;
+                int offset = textInfo.pageInfo[pageInfoIndex].firstCharacterIndex;
                 for (int character = offset; character <= numberOfCharactersToReveal + offset; character++)
                 {
                     maxVisibleCharacters = character;
@@ -116,36 +146,9 @@ namespace TMPro
                     yield return ReadPage(page);
                 }
 
-                yield return null;
+                yield return WaitUntilEvent(unityEvent);
             }
         }
-
-//        IEnumerator Read(string[] subTexts)
-//        {
-//            isInCoroutine = true;
-//
-//            int subCounter = 0;
-//            int visibleCounter = 0;
-//            while (subCounter < subTexts.Length)
-//            {
-//                if (subCounter % 2 != 0)
-//                {
-//                    while (visibleCounter < subTexts[subCounter].Length)
-//                    {
-//                        onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
-//                        visibleCounter++;
-//                        maxVisibleCharacters++;
-//                        yield return new WaitForSeconds(1f / speed);
-//                    }
-//                }
-//                subCounter++;
-//            }
-//
-//            isInCoroutine = false;
-//            yield return null;
-//
-//            onDialogueFinish.Invoke();
-//        }
 
         private void EvaluateTag(string tag)
         {

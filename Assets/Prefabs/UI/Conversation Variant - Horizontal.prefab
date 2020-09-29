@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3943388867000710231}
   m_Layer: 0
   m_Name: TextMeshPro Animated
-  m_TagString: DialogBubble
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sdfgdsfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfggggggggggggggggggggggggggggggggggggggggggggggggggg
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -134,14 +134,14 @@ MonoBehaviour:
   m_margin: {x: 10.206848, y: 6.379303, z: 8.930969, w: 6.379303}
   m_textInfo:
     textComponent: {fileID: 3943388867000710231}
-    characterCount: 106
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 2
-    pageCount: 1
-    materialCount: 2
+    lineCount: 0
+    pageCount: 0
+    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   onDialogueFinish:
     m_PersistentCalls:
       m_Calls: []
+  isWriting: 0
 --- !u!114 &2721753240777413108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3027,6 +3028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Conversation Variant - Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734855581716784732, guid: 57187af45588f4f4e844d8a192e190f3,
+        type: 3}
+      propertyPath: m_TagString
+      value: DialogBubble
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57187af45588f4f4e844d8a192e190f3, type: 3}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using SimpleJSON;
@@ -53,17 +54,22 @@ public class ConversationHandler : MonoBehaviour
         }
     }
 
-    public void GenerateConversation(string title)
+    // TODO: change this to use conversationTitles instead
+    public void GenerateConversation(int conversationId)
     {
-        currentConversationTitle = title;
-        foreach (JSONNode conversationExchange in conversations[title]["conversation_content"])
+        currentConversationTitle = conversationTitles[conversationId];
+        foreach (JSONNode conversationExchange in conversations[currentConversationTitle]["conversation_content"])
         {
             conversationExchange["text"] = BackendAPI.DecodeEncodedNonAsciiCharacters(conversationExchange["text"]);
         }
 
-        conversationBubble.text = conversations[currentConversationTitle]
-            ["conversation_content"][currentConversationSnippet]["text"];
-        conversationBubble.maxVisibleCharacters = 0;
+        conversationBubble.ParseText(conversations[currentConversationTitle]
+            ["conversation_content"][currentConversationSnippet]["text"]);
+    }
+
+    public void GenerateConversation(string title)
+    {
+        GenerateConversation(Array.IndexOf(conversationTitles, title));
     }
 
 
@@ -85,9 +91,9 @@ public class ConversationHandler : MonoBehaviour
                 currentConversationPage = 1;
                 currentConversationSnippet++;
 
-                conversationBubble.text = conversations[currentConversationTitle]
-                    ["conversation_content"][currentConversationSnippet]["text"];
-                conversationBubble.maxVisibleCharacters = 0;
+                conversationBubble.ParseText(conversations[currentConversationTitle]
+                    ["conversation_content"][currentConversationSnippet]["text"]);
+                NextConversationSnippet();
                 // This currently doesn't queue the first page of the next snippet until user presses button
                 // figure it out
             }
