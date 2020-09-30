@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: _SoundyDatabase
   m_EditorClassIdentifier: 
   DatabaseNames:
+  - Edanaga UI
   - General
   SoundDatabases:
   - {fileID: 11400000, guid: 04e7beef61a1c44d0a7efb71300410dc, type: 2}
+  - {fileID: 11400000, guid: 18eb04a2cdb555e4e840919bd4fcc18a, type: 2}
