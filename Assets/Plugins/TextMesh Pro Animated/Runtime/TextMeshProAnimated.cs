@@ -144,9 +144,9 @@ namespace TMPro
                 {
                     pageToDisplay = page;
                     yield return ReadPage(page);
+                    yield return WaitUntilEvent(unityEvent);
                 }
 
-                yield return WaitUntilEvent(unityEvent);
             }
         }
 

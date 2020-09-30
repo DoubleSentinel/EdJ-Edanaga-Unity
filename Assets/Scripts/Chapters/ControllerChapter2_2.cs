@@ -42,7 +42,6 @@ public class ControllerChapter2_2 : MonoBehaviour
 
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("DialogBubble"))
         {
-            print(o.name);
             o.GetComponent<ConversationHandler>().FetchConversations();
         }
     }

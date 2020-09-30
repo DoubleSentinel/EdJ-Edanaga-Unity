@@ -298,7 +298,10 @@ MonoBehaviour:
   m_id: b1cd7798-5da8-4a3f-aedb-b686fc58b0f1
   m_name: 2.2 Title
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.2.1 Title
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
@@ -425,7 +428,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 6c7158b9-7022-412d-804e-537f630f3191
-  m_lastModified: 132448090591850295
+  m_lastModified: 132428412808577821
 --- !u!114 &312171904327899575
 MonoBehaviour:
   m_ObjectHideFlags: 1
