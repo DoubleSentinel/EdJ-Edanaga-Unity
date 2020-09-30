@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7226302953576583650
+--- !u!114 &-5855622759119082922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: SoundDatabase_UI
+  m_Name: No Sound
   m_EditorClassIdentifier: 
-  DatabaseName: UI
+  DatabaseName: Ambiance
   SoundName: No Sound
   IgnoreListenerPause: 1
   Volume:
@@ -27,7 +27,7 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds: []
---- !u!114 &-726521365796003798
+--- !u!114 &-1780503428647623037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,10 +37,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: UI_TR_ChangeScene
+  m_Name: OneShots
   m_EditorClassIdentifier: 
-  DatabaseName: UI
-  SoundName: UI_TR_ChangeScene
+  DatabaseName: Ambiance
+  SoundName: OneShots
   IgnoreListenerPause: 1
   Volume:
     MinValue: 0
@@ -54,40 +54,9 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: a25f42fd81da0c149a84831e150d98ca, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 8640d6da7ac0fde40a37d1b6ea76b965, type: 3}
     Weight: 1
---- !u!114 &-456396997418342109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: UI_PC_Invalid
-  m_EditorClassIdentifier: 
-  DatabaseName: UI
-  SoundName: UI_PC_Invalid
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 0
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: 8ffdd6a7ed2767b4f8a01e6aa15f49e8, type: 3}
-    Weight: 1
-  - AudioClip: {fileID: 8300000, guid: ee8de81b96049dc4c800cb078078fce4, type: 3}
-    Weight: 1
-  - AudioClip: {fileID: 8300000, guid: de71b7b2b4bd193439b45e4aee527c70, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 4c4d3186ba22ab24db07525a8d4732b7, type: 3}
     Weight: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -99,26 +68,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b400ee936d64d0e93e3892c7c321e09, type: 3}
-  m_Name: SoundDatabase_EdanagaUI
+  m_Name: SoundDatabase_Ambiance
   m_EditorClassIdentifier: 
-  DatabaseName: UI
+  DatabaseName: Ambiance
   OutputAudioMixerGroup: {fileID: 0}
   SoundNames:
   - No Sound
+  - AMB_City
+  - Loops
   - No Sound
-  - UI_PC_Check
-  - UI_PC_Invalid
-  - UI_PC_Next
-  - UI_PC_Validation
-  - UI_TR_ChangeScene
+  - OneShots
+  - Test Loops
   Database:
-  - {fileID: -7226302953576583650}
-  - {fileID: 2921917995275301457}
-  - {fileID: -456396997418342109}
-  - {fileID: 4343734611800792762}
-  - {fileID: 1696745406998880289}
-  - {fileID: -726521365796003798}
---- !u!114 &1696745406998880289
+  - {fileID: -5855622759119082922}
+  - {fileID: 3766026188266235706}
+  - {fileID: 1759900531043160401}
+  - {fileID: -1780503428647623037}
+  - {fileID: 5954019191960072606}
+--- !u!114 &1759900531043160401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,10 +95,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: UI_PC_Validation
+  m_Name: Loops
   m_EditorClassIdentifier: 
-  DatabaseName: UI
-  SoundName: UI_PC_Validation
+  DatabaseName: Ambiance
+  SoundName: Loops
   IgnoreListenerPause: 1
   Volume:
     MinValue: 0
@@ -145,13 +112,9 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: 2a50d65bcf70107489397e87103bb966, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 2d886c66ca304df4a86f97f1bfbdfae9, type: 3}
     Weight: 1
-  - AudioClip: {fileID: 8300000, guid: 23bd38718eba9bc4b82b18c7c500a542, type: 3}
-    Weight: 1
-  - AudioClip: {fileID: 8300000, guid: d677a10bdecc6594ba08f64c7845f78b, type: 3}
-    Weight: 1
---- !u!114 &2921917995275301457
+--- !u!114 &3766026188266235706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,10 +124,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: UI_PC_Check
+  m_Name: AMB_City
   m_EditorClassIdentifier: 
-  DatabaseName: UI
-  SoundName: UI_PC_Check
+  DatabaseName: Ambiance
+  SoundName: AMB_City
   IgnoreListenerPause: 1
   Volume:
     MinValue: 0
@@ -178,13 +141,13 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: ea1e6a9e50893eb4fb2db77f6f454441, type: 3}
+  - AudioClip: {fileID: 8300000, guid: fb15fb50444b6284fb6e242d0e1a5a8a, type: 3}
     Weight: 1
-  - AudioClip: {fileID: 8300000, guid: 0af977a1dd848bc4e8769b52083f92d2, type: 3}
+  - AudioClip: {fileID: 8300000, guid: e561c3bb2133dd742ad8a53551d74fd4, type: 3}
     Weight: 1
-  - AudioClip: {fileID: 8300000, guid: aa13229e6e7f25046bea89025839a107, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 40b0aa1988f00c343858e72b7b224bb2, type: 3}
     Weight: 1
---- !u!114 &4343734611800792762
+--- !u!114 &5954019191960072606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,10 +157,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: UI_PC_Next
+  m_Name: Test Loops
   m_EditorClassIdentifier: 
-  DatabaseName: UI
-  SoundName: UI_PC_Next
+  DatabaseName: Ambiance
+  SoundName: Test Loops
   IgnoreListenerPause: 1
   Volume:
     MinValue: 0
@@ -211,7 +174,7 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: 35465658fcb6eea408eac5a06d08c187, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 23de8bf0f81934340ba53b5ef5c77287, type: 3}
     Weight: 1
-  - AudioClip: {fileID: 8300000, guid: a40b07d705c92a2419269ff6398e7fd9, type: 3}
+  - AudioClip: {fileID: 8300000, guid: ab4f9fbf1dd74ae42ba004383adbb8ab, type: 3}
     Weight: 1
