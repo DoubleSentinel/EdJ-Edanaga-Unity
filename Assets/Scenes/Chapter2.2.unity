@@ -8583,6 +8583,41 @@ PrefabInstance:
       propertyPath: m_textInfo.materialCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 745463520}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PrepareTradeOffs
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1918301119}
     - target: {fileID: 6345437523551562769, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: m_Name
@@ -14576,6 +14611,41 @@ PrefabInstance:
       propertyPath: m_textInfo.materialCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 745463520}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PrepareTradeOffs
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1047567293}
     - target: {fileID: 6345437523551562769, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: m_Name
@@ -15785,6 +15855,41 @@ PrefabInstance:
       propertyPath: m_textInfo.materialCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 745463520}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PrepareTradeOffs
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 670037945}
     - target: {fileID: 6345437523551562769, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: m_Name
@@ -42675,6 +42780,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 745463520}
@@ -42683,6 +42793,26 @@ PrefabInstance:
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1893387985}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PrepareTradeOffs
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6345437523159812911, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: m_Material

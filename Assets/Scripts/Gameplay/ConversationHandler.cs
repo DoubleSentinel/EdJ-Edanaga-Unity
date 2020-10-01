@@ -77,7 +77,7 @@ public class ConversationHandler : MonoBehaviour
     public void NextConversationSnippet()
     {
         // while there still are conversation snippets
-        if (currentConversationSnippet <= conversations[currentConversationTitle]["conversation_content"].Count)
+        if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
         {
             // as long as we're not at the end of all the pages, the button will show the next page
             if (currentConversationPage <= conversationBubble.textInfo.pageCount)
@@ -91,18 +91,19 @@ public class ConversationHandler : MonoBehaviour
                 currentConversationPage = 1;
                 currentConversationSnippet++;
 
-                conversationBubble.ParseText(conversations[currentConversationTitle]
-                    ["conversation_content"][currentConversationSnippet]["text"]);
-                NextConversationSnippet();
-                // This currently doesn't queue the first page of the next snippet until user presses button
-                // figure it out
+                try
+                {
+                    conversationBubble.ParseText(conversations[currentConversationTitle]
+                        ["conversation_content"][currentConversationSnippet]["text"]);
+                    NextConversationSnippet();
+                }
+                catch (NullReferenceException)
+                {
+                    currentConversationSnippet = 0;
+                    currentConversationPage = 1;
+                    conversationBubble.text = string.Empty;
+                }
             }
-        }
-        else
-        {
-            // end conversation
-            // TODO: remove dialog ui
-            currentConversationSnippet = 0;
         }
     }
 }

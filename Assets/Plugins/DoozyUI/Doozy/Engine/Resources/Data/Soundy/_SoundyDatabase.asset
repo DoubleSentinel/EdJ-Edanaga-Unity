@@ -15,8 +15,10 @@ MonoBehaviour:
   DatabaseNames:
   - Ambiance
   - General
+  - Music
   - UI
   SoundDatabases:
   - {fileID: 11400000, guid: 04e7beef61a1c44d0a7efb71300410dc, type: 2}
   - {fileID: 11400000, guid: 18eb04a2cdb555e4e840919bd4fcc18a, type: 2}
   - {fileID: 11400000, guid: 8d493d111bf5993438bb03c15d59783e, type: 2}
+  - {fileID: 11400000, guid: 256471bc92809694a969cc9d3267422e, type: 2}

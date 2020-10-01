@@ -49,13 +49,11 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   SpatialBlend: 0
-  Loop: 0
+  Loop: 1
   Mode: 0
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: 8640d6da7ac0fde40a37d1b6ea76b965, type: 3}
-    Weight: 1
   - AudioClip: {fileID: 8300000, guid: 4c4d3186ba22ab24db07525a8d4732b7, type: 3}
     Weight: 1
 --- !u!114 &11400000

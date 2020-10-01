@@ -53,6 +53,7 @@ namespace TMPro
         public void ParseText(string text)
         {
             this.text = string.Empty;
+            ForceMeshUpdate();
             // split the whole text into parts based off the <> tags 
             // even numbers in the array are text, odd numbers are tags
             string[] subTexts = text.Split('<', '>');
