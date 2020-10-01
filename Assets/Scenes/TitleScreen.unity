@@ -4579,7 +4579,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 539945008}
 --- !u!114 &522097164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7161,7 +7160,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 1844959822}
 --- !u!114 &556515426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9635,7 +9633,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 911218478}
 --- !u!114 &633534353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13083,7 +13080,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 679272651}
 --- !u!114 &896777589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13749,7 +13745,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -13794,7 +13790,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -1
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -19575,7 +19571,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 170490389}
 --- !u!114 &1594594246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22332,7 +22327,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 1498549853}
 --- !u!114 &1730558983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25327,7 +25321,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 232889852}
 --- !u!114 &1838888309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28784,7 +28777,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 1288746654}
 --- !u!114 &2086169924
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,6 +57,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
         {
             character.transform.position = Vector3.forward;
+            character.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
             character.SetActive(false);
         }
     }
@@ -65,13 +66,13 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void SetupBargainConversation()
     {
         float height = Screen.height * 0.8f / 2f;
-        float depth = 1f;
-        scenePlayer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
-            height,
-            depth));
-        sceneHost.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
-            height,
-            depth));
+        float depth = -0.9677734f;
+        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
+                                     height));
+        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
+                                   height));
+        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
+        sceneHost.transform.position = new Vector3(host.x, host.y, depth);
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
@@ -90,9 +91,10 @@ public class ControllerChapter2_2 : MonoBehaviour
             {
                 Vector3 tablePosition = GameObject.Find("UI" + family.name).transform.position;
                 objective.position = Camera.main.ScreenToWorldPoint(new Vector3(
-                    tablePosition.x + passage * offset * (Math.Abs(offset % 2) < 0.01 ? 1 : -1),
-                    tablePosition.y + passage * offset * (Math.Abs(offset % 2) < 0.01 ? -1 : 1),
+                    tablePosition.x + passage * offset * (passage % 2 < 0.01 ? 1 : -1),
+                    tablePosition.y + passage * offset * (passage % 2 < 0.01 ? -1 : 1),
                     depth));
+                objective.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 objective.gameObject.SetActive(true);
                 passage++;
             }
