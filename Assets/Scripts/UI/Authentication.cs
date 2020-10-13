@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using SimpleJSON;
 using TMPro;
@@ -24,6 +25,7 @@ public class Authentication : MonoBehaviour
 
     private bool isUsernameValid;
     private bool doesUserExist;
+    private string tokenId;
     private string userId;
     private string username;
     private string password;
@@ -87,7 +89,14 @@ public class Authentication : MonoBehaviour
         m_api.parameters.Clear();
         m_api.parameters.Add("token_url", token);
         m_api.parameters.Add("user_id", userId);
-        m_api.ApiPost("update_invite", m_api.parameters, null);
+        m_api.ApiPost("update_invite", m_api.parameters, response =>
+        {
+            JSONNode nodeResponse = JSON.Parse(response);
+            if (nodeResponse["error"]["code"] == 200 && nodeResponse["error"]["message"] == "ok")
+            {
+                tokenId = nodeResponse["error"]["id"];
+            }
+        });
     }
 
     /*
@@ -146,18 +155,27 @@ public class Authentication : MonoBehaviour
         }, m_api.parameters);
     }
 
-    public void Login()
+    public void Login(string sceneToLoad)
     {
         HashPassword();
         m_api.parameters.Clear();
         m_api.parameters.Add("username", username);
         m_api.parameters.Add("userpass", password);
+        print(username);
+        print(password);
         m_api.ApiPost("login_user", m_api.parameters, response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);
             if (nodeResponse["error"]["code"] == 200 && nodeResponse["error"]["message"] == "ok")
             {
-                SceneManager.LoadScene("Chapter2.1");
+                List<Objective> objectives = new List<Objective>();
+                foreach (JSONNode constant in nodeResponse["error"]["constants"])
+                {
+                    objectives.Add(Objective.CreateFromJSON(constant));
+                }
+
+                GetComponent<TestingEnvironment>().Objectives = objectives;
+                SceneManager.LoadScene(sceneToLoad);
             }
             else
             {
@@ -166,7 +184,7 @@ public class Authentication : MonoBehaviour
         });
     }
 
-    public void CreateAccount()
+    public void CreateAccount(string sceneToLoad)
     {
         passwordConfirmation = "";
         HashPassword();
@@ -179,6 +197,7 @@ public class Authentication : MonoBehaviour
             JSONNode nodeResponse = JSON.Parse(response);
             userId = nodeResponse["id"];
             LinkToToken();
+            Login(sceneToLoad);
         });
     }
 

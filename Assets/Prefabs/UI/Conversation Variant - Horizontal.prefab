@@ -33,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 6311421417353954289}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 98.17609}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00018310547, y: 0}
+  m_SizeDelta: {x: 0.00036621094, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4360267535100309767
 CanvasRenderer:
@@ -67,8 +67,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
+  m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 520
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2838,7 +2839,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 8814729910112536486}
 --- !u!1 &8794289720177172908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,17 +2982,17 @@ PrefabInstance:
     - target: {fileID: 1394388445746374966, guid: 57187af45588f4f4e844d8a192e190f3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -49.1
+      value: -60.5
       objectReference: {fileID: 0}
     - target: {fileID: 1394388445746374966, guid: 57187af45588f4f4e844d8a192e190f3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -400
       objectReference: {fileID: 0}
     - target: {fileID: 1394388445746374966, guid: 57187af45588f4f4e844d8a192e190f3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 98.17612
+      value: 121
       objectReference: {fileID: 0}
     - target: {fileID: 1394388445746374966, guid: 57187af45588f4f4e844d8a192e190f3,
         type: 3}
