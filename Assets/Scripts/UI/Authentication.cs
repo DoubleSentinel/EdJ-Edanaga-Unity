@@ -168,10 +168,11 @@ public class Authentication : MonoBehaviour
             JSONNode nodeResponse = JSON.Parse(response);
             if (nodeResponse["error"]["code"] == 200 && nodeResponse["error"]["message"] == "ok")
             {
-                List<Objective> objectives = new List<Objective>();
+                Dictionary<string, Objective> objectives = new Dictionary<string, Objective>();
                 foreach (JSONNode constant in nodeResponse["error"]["constants"])
                 {
-                    objectives.Add(Objective.CreateFromJSON(constant));
+                    Objective objectified = Objective.CreateFromJSON(constant.ToString());
+                    objectives.Add(objectified.name, objectified);
                 }
 
                 GetComponent<TestingEnvironment>().Objectives = objectives;

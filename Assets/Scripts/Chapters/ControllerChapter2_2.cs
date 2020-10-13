@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Doozy.Engine.Nody;
 using Doozy.Engine.UI;
+using TMPro;
 using UnityEngine;
 
 public class ControllerChapter2_2 : MonoBehaviour
@@ -25,7 +26,7 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     private BackendAPI m_api;
 
-    private List<(GameObject, GameObject)> tradeoffs;
+    private List<(GameObject, GameObject)> m_familyTradeoffs;
     private int currentTradeOffPair;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
@@ -34,7 +35,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         controllers = GameObject.Find("Controllers");
 
         currentTradeOffPair = -1;
-        tradeoffs = new List<(GameObject, GameObject)>();
+        m_familyTradeoffs = new List<(GameObject, GameObject)>();
 
         m_api = controllers.GetComponent<BackendAPI>();
 
@@ -105,26 +106,30 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void PrepareTradeOffs(GameObject family)
     {
         currentTradeOffPair = -1;
-        tradeoffs.Clear();
-        tradeoffs.Add((family.transform.GetChild(0).gameObject, family.transform.GetChild(1).gameObject));
+        m_familyTradeoffs.Clear();
+        m_familyTradeoffs.Add((family.transform.GetChild(0).gameObject, family.transform.GetChild(1).gameObject));
         if (family.transform.childCount == 3)
         {
-            tradeoffs.Add((family.transform.GetChild(1).gameObject, family.transform.GetChild(2).gameObject));
+            m_familyTradeoffs.Add((family.transform.GetChild(1).gameObject, family.transform.GetChild(2).gameObject));
         }
     }
 
     public void NextTradeOff()
     {
-        if (currentTradeOffPair < tradeoffs.Count - 1)
+        if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
         {
             currentTradeOffPair++;
             ClearCharacters();
 
-            ShowTradeoffBattler(tradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
-            ShowTradeoffBattler(tradeoffs[currentTradeOffPair].Item2, tradeoffRightBattlerUIPosition);
-
+            string leftObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item1.name;
+            string rightObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item2.name;
+            ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
+            ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item2, tradeoffRightBattlerUIPosition);
+            UpdateSliderLabels(leftObjectiveName, rightObjectiveName);
+            // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
+            // structure that handles these associations
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(
-                $"2.2.3_Battles_obj{tradeoffs[currentTradeOffPair].Item1.name.Last()}vsobj{tradeoffs[currentTradeOffPair].Item2.name.Last()}");
+                $"2.2.3_Battles_obj{leftObjectiveName.Last()}vsobj{rightObjectiveName.Last()}");
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
         }
         else
@@ -142,5 +147,42 @@ public class ControllerChapter2_2 : MonoBehaviour
             1.0f
         ));
         objective.SetActive(true);
+    }
+
+    private void UpdateSliderLabels(string leftObjectiveName, string rightObjectiveName)
+    {
+        // Representation sliders
+        //    Best value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].best.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].best.ToString();
+        //    worst value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].worst.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].worst.ToString();
+        //    unit value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].unit;
+        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].unit;
+        
+        // Compromise sliders
+        //    Best value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].best.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].best.ToString();
+        //    worst value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].worst.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].worst.ToString();
+        //    unit value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].unit;
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].unit;
     }
 }
