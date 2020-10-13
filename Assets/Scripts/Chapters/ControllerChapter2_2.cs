@@ -6,6 +6,7 @@ using Doozy.Engine.Nody;
 using Doozy.Engine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
         {
             character.transform.position = Vector3.forward;
-            character.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             character.SetActive(false);
         }
     }
@@ -69,9 +70,9 @@ public class ControllerChapter2_2 : MonoBehaviour
         float height = Screen.height * 0.8f / 2f;
         float depth = -0.9677734f;
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
-                                     height));
+            height));
         Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
-                                   height));
+            height));
         scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
         sceneHost.transform.position = new Vector3(host.x, host.y, depth);
         scenePlayer.SetActive(true);
@@ -125,7 +126,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             string rightObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item2.name;
             ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
             ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item2, tradeoffRightBattlerUIPosition);
-            UpdateSliderLabels(leftObjectiveName, rightObjectiveName);
+            UpdateSliders(leftObjectiveName, rightObjectiveName);
             // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
             // structure that handles these associations
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(
@@ -149,40 +150,73 @@ public class ControllerChapter2_2 : MonoBehaviour
         objective.SetActive(true);
     }
 
-    private void UpdateSliderLabels(string leftObjectiveName, string rightObjectiveName)
+    private void UpdateSliders(string leftObjectiveName, string rightObjectiveName)
     {
+        Objective leftObjective =
+            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()];
+        Objective rightObjective =
+            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()];
         // Representation sliders
         //    Best value
         tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].best.ToString();
+            leftObjective.best.ToString();
         tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].best.ToString();
+            rightObjective.best.ToString();
         //    worst value
         tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].worst.ToString();
+            leftObjective.worst.ToString();
         tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].worst.ToString();
+            rightObjective.worst.ToString();
         //    unit value
         tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].unit;
+            leftObjective.unit;
         tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].unit;
-        
+            rightObjective.unit;
+
         // Compromise sliders
         //    Best value
         tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].best.ToString();
+            rightObjective.best.ToString();
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().maxValue =
+            rightObjective.best;
         tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].best.ToString();
+            leftObjective.best.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().maxValue =
+            leftObjective.best;
         //    worst value
         tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].worst.ToString();
+            rightObjective.worst.ToString();
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().minValue =
+            rightObjective.worst;
         tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].worst.ToString();
+            leftObjective.worst.ToString();
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().minValue =
+            leftObjective.worst;
         //    unit value
         tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()].unit;
+            rightObjective.unit;
         tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()].unit;
+            leftObjective.unit;
+        //    starting value
+        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().value =
+            rightObjective.worst;
+        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().value =
+            rightObjective.worst;
+    }
+
+    public void SnapSliderToValue(GameObject caller)
+    {
+        float currentValue = caller.GetComponent<Slider>().value;
+        float[] subdivisions = new float[21];
+        float step = (caller.GetComponent<Slider>().maxValue - caller.GetComponent<Slider>().minValue) / 20;
+        for (int i = 0; i < subdivisions.Length; i++)
+        {
+            subdivisions[i] = i * step + caller.GetComponent<Slider>().minValue;
+        }
+
+        int closestValueIndex =
+            Array.IndexOf(subdivisions, subdivisions.OrderBy(a => Math.Abs(currentValue - a)).First());
+
+        caller.GetComponent<Slider>().value = subdivisions[closestValueIndex];
     }
 }

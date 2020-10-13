@@ -5327,6 +5327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248839986}
   - component: {fileID: 248839987}
+  - component: {fileID: 248839988}
   m_Layer: 0
   m_Name: LeftBattlerCompromiseSlider
   m_TagString: Untagged
@@ -5383,7 +5384,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5409,6 +5410,34 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &248839988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248839985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 745463520}
+          m_MethodName: SnapSliderToValue
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 248839985}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &302959015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25326,6 +25355,11 @@ PrefabInstance:
       propertyPath: conversationTitles.Array.data[5]
       value: 2.2.3_Battles_obj8vsobj9
       objectReference: {fileID: 0}
+    - target: {fileID: 2740507126779298128, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: m_padding
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3943388867000710231, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_textAlignment
@@ -26197,6 +26231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: conversationTitles.Array.data[5]
       value: 2.2.3_Battles_obj8vsobj9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740507126779298128, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: m_padding
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3943388867000710231, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
@@ -30813,7 +30852,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -32230,6 +32269,11 @@ PrefabInstance:
     - target: {fileID: 2094887339259257788, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2740507126779298128, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: m_padding
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4465038032204123291, guid: 0320dbd36062a00429c628a7606e860d,
@@ -41646,7 +41690,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -41829,6 +41873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037421561}
   - component: {fileID: 2037421562}
+  - component: {fileID: 2037421563}
   m_Layer: 0
   m_Name: RightBattlerCompromiseSlider
   m_TagString: Untagged
@@ -41885,7 +41930,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -41911,6 +41956,34 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2037421563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037421560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 745463520}
+          m_MethodName: SnapSliderToValue
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2037421560}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2050292572
 GameObject:
   m_ObjectHideFlags: 0
