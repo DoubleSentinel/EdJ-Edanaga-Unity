@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Doozy.Engine.Nody;
 using Doozy.Engine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ControllerChapter2_2 : MonoBehaviour
@@ -21,14 +23,20 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject HostBargainConversationBubble;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
 
+    private GameObject leftRepresentationSlider;
+    private GameObject leftCompromiseSlider;
+
+    private GameObject rightRepresentationSlider;
+    private GameObject rightCompromiseSlider;
 
     // Local variables
     private GameObject controllers;
-
     private BackendAPI m_api;
 
     private List<(GameObject, GameObject)> m_familyTradeoffs;
     private int currentTradeOffPair;
+
+    private GameObject tradeOffLoser;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -46,12 +54,16 @@ public class ControllerChapter2_2 : MonoBehaviour
         {
             o.GetComponent<ConversationHandler>().FetchConversations();
         }
+
+        leftRepresentationSlider = GameObject.Find("LeftBattlerRepresentationSlider");
+        leftCompromiseSlider = GameObject.Find("LeftBattlerCompromiseSlider");
+
+        rightRepresentationSlider = GameObject.Find("RightBattlerRepresentationSlider");
+        rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
+
+        HideTradeOffUI();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // --------------------  UI Callables  --------------------------------
     public void ClearCharacters()
@@ -68,7 +80,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void SetupBargainConversation()
     {
         float height = Screen.height * 0.8f / 2f;
-        float depth = -0.9677734f;
+        float depth = -1f;
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
             height));
         Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
@@ -82,6 +94,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
     }
 
+    // View - 2.2.2/7 - Tables
     public void SetupBargainTables()
     {
         float depth = 1f;
@@ -103,7 +116,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-    // TradeOff
+    // ---------------------- TradeOff -----------------------------------------
     public void PrepareTradeOffs(GameObject family)
     {
         currentTradeOffPair = -1;
@@ -115,6 +128,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
+    // Called by the Conversation Bubble UI button (UIButton)
     public void NextTradeOff()
     {
         if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
@@ -126,12 +140,13 @@ public class ControllerChapter2_2 : MonoBehaviour
             string rightObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item2.name;
             ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
             ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item2, tradeoffRightBattlerUIPosition);
-            UpdateSliders(leftObjectiveName, rightObjectiveName);
+            UpdateTradeOffSliders(leftObjectiveName, rightObjectiveName);
             // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
             // structure that handles these associations
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(
                 $"2.2.3_Battles_obj{leftObjectiveName.Last()}vsobj{rightObjectiveName.Last()}");
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
         }
         else
         {
@@ -140,83 +155,115 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-    private void ShowTradeoffBattler(GameObject objective, GameObject tradeoffLeftBattlerUiPosition)
+    // Called by the Left/RightBattlerSelectButtons on the TradeOff Battle View
+    public void SelectTradeOffWinner(GameObject caller)
+    {
+        string winner = caller.name == "LeftBattlerSelectButton"
+            ? m_familyTradeoffs[currentTradeOffPair].Item1.name
+            : m_familyTradeoffs[currentTradeOffPair].Item2.name;
+        string loser = caller.name == "RightBattlerSelectButton"
+            ? m_familyTradeoffs[currentTradeOffPair].Item1.name
+            : m_familyTradeoffs[currentTradeOffPair].Item2.name;
+        tradeOffLoser = Equals(caller.transform.parent.gameObject, tradeoffLeftBattlerUIPosition)
+            ? tradeoffRightBattlerUIPosition
+            : tradeoffLeftBattlerUIPosition;
+
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement =
+            new Tuple<string, string>(winner, loser);
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = EndTradeOffConversation;
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>()
+            .GenerateConversation("2.2.3_Battles_After_Selection");
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+
+        ToggleSelectionButtons();
+    }
+
+    // ---------------------------- Callback Functions on conversation Ends ------------
+    private void EndTradeOffConversation()
+    {
+        tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
+        tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
+        tradeOffLoser.transform.GetChild(2).GetComponent<Slider>().interactable = true;
+    }
+
+    private void ToggleSelectionButtons()
+    {
+        var left = tradeoffLeftBattlerUIPosition.transform.GetChild(0);
+        var right = tradeoffRightBattlerUIPosition.transform.GetChild(0);
+        left.gameObject.SetActive(!left.gameObject.activeSelf);
+        right.gameObject.SetActive(!right.gameObject.activeSelf);
+        left.GetComponent<CanvasGroup>().DOFade(left.gameObject.activeSelf ? 1 : 0, 0.2f);
+        right.GetComponent<CanvasGroup>().DOFade(right.gameObject.activeSelf ? 1 : 0, 0.2f);
+    }
+
+    // ---------------------------- Utility methods ----------------------------------------
+    private void ShowTradeoffBattler(GameObject objective, GameObject tradeOffUIPosition)
     {
         objective.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
-            tradeoffLeftBattlerUiPosition.transform.position.x,
-            tradeoffLeftBattlerUiPosition.transform.position.y,
+            tradeOffUIPosition.transform.position.x,
+            tradeOffUIPosition.transform.position.y,
             1.0f
         ));
         objective.SetActive(true);
     }
 
-    private void UpdateSliders(string leftObjectiveName, string rightObjectiveName)
+    private void UpdateTradeOffSliders(string leftObjectiveName, string rightObjectiveName)
     {
         Objective leftObjective =
             controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()];
         Objective rightObjective =
             controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()];
-        // Representation sliders
+        // Representation sliders labels
         //    Best value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+        leftRepresentationSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
             leftObjective.best.ToString();
-        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+        rightRepresentationSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
             rightObjective.best.ToString();
         //    worst value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+        leftRepresentationSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             leftObjective.worst.ToString();
-        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+        rightRepresentationSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             rightObjective.worst.ToString();
         //    unit value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+        leftRepresentationSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             leftObjective.unit;
-        tradeoffRightBattlerUIPosition.transform.GetChild(1).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+        rightRepresentationSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             rightObjective.unit;
 
         // Compromise sliders
         //    Best value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+        leftCompromiseSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
             rightObjective.best.ToString();
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().maxValue =
-            rightObjective.best;
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+        leftCompromiseSlider.GetComponent<Slider>().maxValue = 20;
+        rightCompromiseSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
             leftObjective.best.ToString();
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().maxValue =
-            leftObjective.best;
+        rightCompromiseSlider.GetComponent<Slider>().maxValue = 20;
         //    worst value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+        leftCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             rightObjective.worst.ToString();
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().minValue =
-            rightObjective.worst;
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(4).GetComponent<TextMeshProUGUI>().text =
+        rightCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             leftObjective.worst.ToString();
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().minValue =
-            leftObjective.worst;
         //    unit value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+        leftCompromiseSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             rightObjective.unit;
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetChild(5).GetComponent<TextMeshProUGUI>().text =
+        rightCompromiseSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             leftObjective.unit;
-        //    starting value
-        tradeoffLeftBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().value =
-            rightObjective.worst;
-        tradeoffRightBattlerUIPosition.transform.GetChild(2).GetComponent<Slider>().value =
-            rightObjective.worst;
+        //    default value
+        leftCompromiseSlider.GetComponent<Slider>().value = 0;
+        rightCompromiseSlider.GetComponent<Slider>().value = 0;
+        leftCompromiseSlider.GetComponent<Slider>().interactable = false;
+        rightCompromiseSlider.GetComponent<Slider>().interactable = false;
+        
+        HideTradeOffUI();
     }
-
-    public void SnapSliderToValue(GameObject caller)
+    
+    private void HideTradeOffUI()
     {
-        float currentValue = caller.GetComponent<Slider>().value;
-        float[] subdivisions = new float[21];
-        float step = (caller.GetComponent<Slider>().maxValue - caller.GetComponent<Slider>().minValue) / 20;
-        for (int i = 0; i < subdivisions.Length; i++)
-        {
-            subdivisions[i] = i * step + caller.GetComponent<Slider>().minValue;
-        }
-
-        int closestValueIndex =
-            Array.IndexOf(subdivisions, subdivisions.OrderBy(a => Math.Abs(currentValue - a)).First());
-
-        caller.GetComponent<Slider>().value = subdivisions[closestValueIndex];
+        tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;
+        tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;
+        tradeoffLeftBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
+        tradeoffRightBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
+        tradeoffLeftBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
+        tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
     }
 }

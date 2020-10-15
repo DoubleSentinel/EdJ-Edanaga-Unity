@@ -993,6 +993,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 92879807}
+  - component: {fileID: 92879808}
   m_Layer: 0
   m_Name: LeftBattler
   m_TagString: Untagged
@@ -1022,6 +1023,18 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &92879808
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92879806}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &110049821
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,14 +5411,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1014184227}
   m_FillRect: {fileID: 13573973}
   m_HandleRect: {fileID: 1014184226}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5650,6 +5663,7 @@ GameObject:
   - component: {fileID: 305997646}
   - component: {fileID: 305997645}
   - component: {fileID: 305997644}
+  - component: {fileID: 305997648}
   m_Layer: 0
   m_Name: LeftBattlerSelectButton
   m_TagString: Untagged
@@ -6556,7 +6570,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 745463520}
+            m_MethodName: SelectTradeOffWinner
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 305997642}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -8049,6 +8074,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305997642}
   m_CullTransparentMesh: 0
+--- !u!225 &305997648
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305997642}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &325195219
 GameObject:
   m_ObjectHideFlags: 0
@@ -15850,6 +15887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747268899}
+  - component: {fileID: 747268900}
   m_Layer: 0
   m_Name: RightBattler
   m_TagString: Untagged
@@ -15879,6 +15917,18 @@ RectTransform:
   m_AnchoredPosition: {x: -260, y: -30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &747268900
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747268898}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &801450022
 GameObject:
   m_ObjectHideFlags: 0
@@ -19800,6 +19850,7 @@ GameObject:
   - component: {fileID: 974700357}
   - component: {fileID: 974700356}
   - component: {fileID: 974700355}
+  - component: {fileID: 974700359}
   m_Layer: 0
   m_Name: RightBattlerSelectButton
   m_TagString: Untagged
@@ -20706,7 +20757,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 745463520}
+            m_MethodName: SelectTradeOffWinner
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 974700353}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -22199,6 +22261,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974700353}
   m_CullTransparentMesh: 0
+--- !u!225 &974700359
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974700353}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &982429855
 GameObject:
   m_ObjectHideFlags: 0
@@ -26200,7 +26274,7 @@ PrefabInstance:
     - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: conversationTitles.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
@@ -26231,6 +26305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: conversationTitles.Array.data[5]
       value: 2.2.3_Battles_obj8vsobj9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: conversationTitles.Array.data[6]
+      value: 2.2.3_Battles_After_Selection
       objectReference: {fileID: 0}
     - target: {fileID: 2740507126779298128, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
@@ -41944,14 +42023,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 452686923}
   m_FillRect: {fileID: 305342061}
   m_HandleRect: {fileID: 452686922}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:

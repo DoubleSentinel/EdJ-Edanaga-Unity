@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
+using System.Text.RegularExpressions;
 using SimpleJSON;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-
+using DG.Tweening;
 
 public class ConversationHandler : MonoBehaviour
 {
@@ -22,6 +19,15 @@ public class ConversationHandler : MonoBehaviour
     private int currentConversationPage;
     private int currentConversationSnippet;
     private TextMeshProAnimated conversationBubble;
+
+    public delegate void ConversationEnd();
+    public ConversationEnd callback;
+    
+    // parsing markers
+    private const string ObjectiveLoser = "objectiveloser";
+    private const string ObjectiveWinner = "objectivewinner";
+
+    public Tuple<string, string> winnerLoserReplacement = null;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -54,24 +60,24 @@ public class ConversationHandler : MonoBehaviour
         }
     }
 
-    // TODO: change this to use conversationTitles instead
     public void GenerateConversation(int conversationId)
     {
         currentConversationTitle = conversationTitles[conversationId];
         foreach (JSONNode conversationExchange in conversations[currentConversationTitle]["conversation_content"])
         {
-            conversationExchange["text"] = BackendAPI.DecodeEncodedNonAsciiCharacters(conversationExchange["text"]);
+            var decoded = BackendAPI.DecodeEncodedNonAsciiCharacters(conversationExchange["text"]);
+            conversationExchange["text"] = ReplaceCustomMarkers(decoded);
         }
 
         conversationBubble.ParseText(conversations[currentConversationTitle]
             ["conversation_content"][currentConversationSnippet]["text"]);
+        ToggleConversation(true);
     }
 
     public void GenerateConversation(string title)
     {
         GenerateConversation(Array.IndexOf(conversationTitles, title));
     }
-
 
     // Method used on button click and to start the conversation
     public void NextConversationSnippet()
@@ -91,19 +97,53 @@ public class ConversationHandler : MonoBehaviour
                 currentConversationPage = 1;
                 currentConversationSnippet++;
 
+                // Try to queue the next conversation snippet
                 try
                 {
                     conversationBubble.ParseText(conversations[currentConversationTitle]
                         ["conversation_content"][currentConversationSnippet]["text"]);
                     NextConversationSnippet();
                 }
+                // on a fail, reset iterators, hide the conversation bubble, trigger conversation end callback
                 catch (NullReferenceException)
                 {
                     currentConversationSnippet = 0;
                     currentConversationPage = 1;
                     conversationBubble.text = string.Empty;
+                    callback?.Invoke();
+                    ToggleConversation(false);
                 }
             }
         }
+    }
+
+    // Private utility functions
+    private string ReplaceCustomMarkers(string text)
+    {
+        // this pattern recognizes value tags
+        const string tag = @"val\(\w+:\w+\)|val\([A-Za-z0-9]*:\w+\)";
+        return Regex.Replace(text, tag, (match) =>
+        {
+            // extracts the parameters in the parentheses
+            string[] parameters = match.ToString().Split('(', ')')[1].Split(':');
+            var replacementObjective = controllers.GetComponent<TestingEnvironment>().Objectives;
+            if (winnerLoserReplacement != null)
+            {
+                switch (parameters[0].ToLower())
+                {
+                    case ObjectiveWinner:
+                        return replacementObjective[winnerLoserReplacement.Item1.ToLower()].GetValue(parameters[1]);
+                    case ObjectiveLoser:
+                        return replacementObjective[winnerLoserReplacement.Item2.ToLower()].GetValue(parameters[1]);
+                }
+            }
+
+            return replacementObjective[parameters[0].ToLower()].GetValue(parameters[1]);
+        });
+    }
+
+    private void ToggleConversation(bool showConversation)
+    {
+        conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade(showConversation ? 1f : 0f, 0.2f);
     }
 }
