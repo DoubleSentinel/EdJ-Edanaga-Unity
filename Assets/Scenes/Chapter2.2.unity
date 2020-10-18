@@ -32511,8 +32511,9 @@ GameObject:
   - component: {fileID: 1552149175}
   - component: {fileID: 1552149174}
   - component: {fileID: 1552149173}
+  - component: {fileID: 1552149177}
   m_Layer: 0
-  m_Name: Next
+  m_Name: NextTradeOff
   m_TagString: Translatable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34921,6 +34922,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552149171}
   m_CullTransparentMesh: 0
+--- !u!225 &1552149177
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552149171}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1566484962
 GameObject:
   m_ObjectHideFlags: 0

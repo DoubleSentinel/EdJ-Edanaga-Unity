@@ -128,7 +128,8 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-    // Called by the Conversation Bubble UI button (UIButton)
+    // Called by the Button moving onto the next Tradeoff Pair (Next)
+    // and by the TradeOff Battle view show event
     public void NextTradeOff()
     {
         if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
@@ -143,10 +144,13 @@ public class ControllerChapter2_2 : MonoBehaviour
             UpdateTradeOffSliders(leftObjectiveName, rightObjectiveName);
             // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
             // structure that handles these associations
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(
                 $"2.2.3_Battles_obj{leftObjectiveName.Last()}vsobj{rightObjectiveName.Last()}");
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
+            
+            ToggleNextTradeOffButton();
         }
         else
         {
@@ -169,7 +173,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             : tradeoffLeftBattlerUIPosition;
 
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement =
-            new Tuple<string, string>(winner, loser);
+            new[]{winner, loser};
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = EndTradeOffConversation;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>()
             .GenerateConversation("2.2.3_Battles_After_Selection");
@@ -184,6 +188,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
         tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
         tradeOffLoser.transform.GetChild(2).GetComponent<Slider>().interactable = true;
+        ToggleNextTradeOffButton();
     }
 
     private void ToggleSelectionButtons()
@@ -265,5 +270,11 @@ public class ControllerChapter2_2 : MonoBehaviour
         tradeoffRightBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
         tradeoffLeftBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
         tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    private void ToggleNextTradeOffButton()
+    {
+        var btn = GameObject.Find("NextTradeOff").GetComponent<CanvasGroup>();
+        btn.DOFade(Math.Abs(btn.alpha) < 0.01 ? 1 : 0, 0.2f);
     }
 }

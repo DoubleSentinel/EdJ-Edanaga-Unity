@@ -19,6 +19,7 @@ public class ConversationHandler : MonoBehaviour
     private int currentConversationPage;
     private int currentConversationSnippet;
     private TextMeshProAnimated conversationBubble;
+    private string[] conversationToRead;
 
     public delegate void ConversationEnd();
     public ConversationEnd callback;
@@ -27,7 +28,7 @@ public class ConversationHandler : MonoBehaviour
     private const string ObjectiveLoser = "objectiveloser";
     private const string ObjectiveWinner = "objectivewinner";
 
-    public Tuple<string, string> winnerLoserReplacement = null;
+    public string[] winnerLoserReplacement = new string[2];
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -63,14 +64,16 @@ public class ConversationHandler : MonoBehaviour
     public void GenerateConversation(int conversationId)
     {
         currentConversationTitle = conversationTitles[conversationId];
+        conversationToRead = new string[conversations[currentConversationTitle]["conversation_content"].Count];
+        int iterator = 0;
         foreach (JSONNode conversationExchange in conversations[currentConversationTitle]["conversation_content"])
         {
             var decoded = BackendAPI.DecodeEncodedNonAsciiCharacters(conversationExchange["text"]);
-            conversationExchange["text"] = ReplaceCustomMarkers(decoded);
+            conversationToRead[iterator] = ReplaceCustomMarkers(decoded);
+            iterator++;
         }
 
-        conversationBubble.ParseText(conversations[currentConversationTitle]
-            ["conversation_content"][currentConversationSnippet]["text"]);
+        conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
         ToggleConversation(true);
     }
 
@@ -100,12 +103,11 @@ public class ConversationHandler : MonoBehaviour
                 // Try to queue the next conversation snippet
                 try
                 {
-                    conversationBubble.ParseText(conversations[currentConversationTitle]
-                        ["conversation_content"][currentConversationSnippet]["text"]);
+                    conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
                     NextConversationSnippet();
                 }
                 // on a fail, reset iterators, hide the conversation bubble, trigger conversation end callback
-                catch (NullReferenceException)
+                catch (IndexOutOfRangeException)
                 {
                     currentConversationSnippet = 0;
                     currentConversationPage = 1;
@@ -117,11 +119,12 @@ public class ConversationHandler : MonoBehaviour
         }
     }
 
+    // TODO: figure out why second tradeoff doesnt update loser description correctly
     // Private utility functions
     private string ReplaceCustomMarkers(string text)
     {
         // this pattern recognizes value tags
-        const string tag = @"val\(\w+:\w+\)|val\([A-Za-z0-9]*:\w+\)";
+        const string tag = @"val\(\w+:\w+\)";
         return Regex.Replace(text, tag, (match) =>
         {
             // extracts the parameters in the parentheses
@@ -132,9 +135,9 @@ public class ConversationHandler : MonoBehaviour
                 switch (parameters[0].ToLower())
                 {
                     case ObjectiveWinner:
-                        return replacementObjective[winnerLoserReplacement.Item1.ToLower()].GetValue(parameters[1]);
+                        return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1]);
                     case ObjectiveLoser:
-                        return replacementObjective[winnerLoserReplacement.Item2.ToLower()].GetValue(parameters[1]);
+                        return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1]);
                 }
             }
 
