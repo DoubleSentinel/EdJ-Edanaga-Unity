@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Doozy.Engine;
 using Doozy.Engine.Nody;
 using Doozy.Engine.UI;
 using TMPro;
@@ -36,7 +37,10 @@ public class ControllerChapter2_2 : MonoBehaviour
     private List<(GameObject, GameObject)> m_familyTradeoffs;
     private int currentTradeOffPair;
 
-    private GameObject tradeOffLoser;
+    private GameObject tradeOffLoserUI;
+    private object[] tradeOffResult;
+    private string winnerName;
+    private string loserName;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -60,6 +64,9 @@ public class ControllerChapter2_2 : MonoBehaviour
 
         rightRepresentationSlider = GameObject.Find("RightBattlerRepresentationSlider");
         rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
+
+        // 0= tradeoff winner name, 1= tradeoff loser value
+        tradeOffResult = new object[2];
 
         HideTradeOffUI();
     }
@@ -107,7 +114,7 @@ public class ControllerChapter2_2 : MonoBehaviour
                 Vector3 tablePosition = GameObject.Find("UI" + family.name).transform.position;
                 objective.position = Camera.main.ScreenToWorldPoint(new Vector3(
                     tablePosition.x + passage * offset * (passage % 2 < 0.01 ? 1 : -1),
-                    tablePosition.y + passage * offset * (passage % 2 < 0.01 ? -1 : 1),
+                    tablePosition.y + passage * offset * (passage % 2 < 0.01 ? 1 : -1),
                     depth));
                 objective.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 objective.gameObject.SetActive(true);
@@ -128,10 +135,23 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
+
     // Called by the Button moving onto the next Tradeoff Pair (Next)
     // and by the TradeOff Battle view show event
     public void NextTradeOff()
     {
+        if (tradeOffLoserUI != null)
+        {
+            // setting selected winner result
+            var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
+            var slider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
+
+            tradeOffResult[0] = winnerName;
+            tradeOffResult[1] = CalculateUserInput(slider, loserData);
+
+            tradeOffLoserUI = null;
+        }
+
         if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
         {
             currentTradeOffPair++;
@@ -149,45 +169,47 @@ public class ControllerChapter2_2 : MonoBehaviour
                 $"2.2.3_Battles_obj{leftObjectiveName.Last()}vsobj{rightObjectiveName.Last()}");
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
-            
+
             ToggleNextTradeOffButton();
         }
         else
         {
-            GameObject.Find("Graph Controller - Chapter2.2").GetComponent<GraphController>()
-                .GoToNodeByName("2.2.2/7 - Tables");
+            GameEventMessage.SendEvent("GoToTables");
         }
     }
 
     // Called by the Left/RightBattlerSelectButtons on the TradeOff Battle View
     public void SelectTradeOffWinner(GameObject caller)
     {
-        string winner = caller.name == "LeftBattlerSelectButton"
+        winnerName = caller.name == "LeftBattlerSelectButton"
             ? m_familyTradeoffs[currentTradeOffPair].Item1.name
             : m_familyTradeoffs[currentTradeOffPair].Item2.name;
-        string loser = caller.name == "RightBattlerSelectButton"
+        loserName = caller.name == "RightBattlerSelectButton"
             ? m_familyTradeoffs[currentTradeOffPair].Item1.name
             : m_familyTradeoffs[currentTradeOffPair].Item2.name;
-        tradeOffLoser = Equals(caller.transform.parent.gameObject, tradeoffLeftBattlerUIPosition)
+        tradeOffLoserUI = Equals(caller.transform.parent.gameObject, tradeoffLeftBattlerUIPosition)
             ? tradeoffRightBattlerUIPosition
             : tradeoffLeftBattlerUIPosition;
 
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement =
-            new[]{winner, loser};
+            new[] {winnerName, loserName};
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = EndTradeOffConversation;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>()
             .GenerateConversation("2.2.3_Battles_After_Selection");
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
 
+        UpdateTradeOffLoserCompromiseSlider(controllers.GetComponent<TestingEnvironment>()
+            .Objectives[loserName.ToLower()]);
         ToggleSelectionButtons();
     }
 
     // ---------------------------- Callback Functions on conversation Ends ------------
     private void EndTradeOffConversation()
     {
+        // show tradeoff ui and activate the loser's compromise slider
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
         tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
-        tradeOffLoser.transform.GetChild(2).GetComponent<Slider>().interactable = true;
+        tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>().interactable = true;
         ToggleNextTradeOffButton();
     }
 
@@ -202,6 +224,12 @@ public class ControllerChapter2_2 : MonoBehaviour
     }
 
     // ---------------------------- Utility methods ----------------------------------------
+    private float CalculateUserInput(Slider slider, Objective loserData)
+    {
+        var step = (loserData.best - loserData.worst) / slider.maxValue;
+        return slider.value * step + loserData.worst;
+    }
+
     private void ShowTradeoffBattler(GameObject objective, GameObject tradeOffUIPosition)
     {
         objective.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
@@ -210,6 +238,17 @@ public class ControllerChapter2_2 : MonoBehaviour
             1.0f
         ));
         objective.SetActive(true);
+    }
+
+    private void UpdateTradeOffLoserCompromiseSlider(Objective loserData)
+    {
+        var slider = tradeOffLoserUI.transform.GetChild(2).gameObject;
+        //    update best/worst labels
+        slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = loserData.best.ToString();
+        slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = loserData.worst.ToString();
+        //    update slider handle label
+        slider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
+            loserData.worst.ToString();
     }
 
     private void UpdateTradeOffSliders(string leftObjectiveName, string rightObjectiveName)
@@ -243,10 +282,15 @@ public class ControllerChapter2_2 : MonoBehaviour
         rightCompromiseSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
             leftObjective.best.ToString();
         rightCompromiseSlider.GetComponent<Slider>().maxValue = 20;
-        //    worst value
+        //    worst value labels
         leftCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             rightObjective.worst.ToString();
         rightCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
+            leftObjective.worst.ToString();
+        //    slider handle value labels
+        leftCompromiseSlider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
+            rightObjective.worst.ToString();
+        rightCompromiseSlider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
             leftObjective.worst.ToString();
         //    unit value
         leftCompromiseSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
@@ -258,10 +302,10 @@ public class ControllerChapter2_2 : MonoBehaviour
         rightCompromiseSlider.GetComponent<Slider>().value = 0;
         leftCompromiseSlider.GetComponent<Slider>().interactable = false;
         rightCompromiseSlider.GetComponent<Slider>().interactable = false;
-        
+
         HideTradeOffUI();
     }
-    
+
     private void HideTradeOffUI()
     {
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;
@@ -274,7 +318,29 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     private void ToggleNextTradeOffButton()
     {
-        var btn = GameObject.Find("NextTradeOff").GetComponent<CanvasGroup>();
-        btn.DOFade(Math.Abs(btn.alpha) < 0.01 ? 1 : 0, 0.2f);
+        var go = GameObject.Find("NextTradeOff");
+        var btn = go.GetComponent<Button>();
+        var cg = btn.GetComponent<CanvasGroup>();
+        cg.DOFade(Math.Abs(cg.alpha) < 0.01 ? 1 : 0, 0.2f);
+        btn.interactable = !btn.interactable;
+    }
+
+    // -------------------- Utility UI callabales  -----------------------------
+    public void DeactivateButton(GameObject caller)
+    {
+        caller.GetComponent<Button>().interactable = false;
+    }
+
+    public void UpdateUserSelection(GameObject handleLabel)
+    {
+        var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
+        var slider = handleLabel.transform.parent.GetComponent<Slider>();
+        handleLabel.GetComponent<TextMeshProUGUI>().text = CalculateUserInput(slider, loserData).ToString();
+    }
+
+    public void ToggleHandleLabel(GameObject handleLabel)
+    {
+        var cg = handleLabel.GetComponent<CanvasGroup>();
+        cg.DOFade(Math.Abs(cg.alpha) < 0.01 ? 1 : 0, 0.2f);
     }
 }

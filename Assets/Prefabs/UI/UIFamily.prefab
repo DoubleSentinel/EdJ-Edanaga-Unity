@@ -2569,7 +2569,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 6345437522149327549}
 --- !u!1 &6345437522833016513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,7 +2714,7 @@ MonoBehaviour:
   DisableButtonBetweenClicksInterval: 0.2
   DoubleClickRegisterInterval: 0.2
   InputData:
-    EnableAlternateInputs: 1
+    EnableAlternateInputs: 0
     InputMode: 2
     KeyCode: 13
     KeyCodeAlt: 32
@@ -3552,7 +3551,7 @@ MonoBehaviour:
     m_behaviorType: 6
   OnClick:
     Animators: []
-    ButtonAnimationType: 0
+    ButtonAnimationType: 1
     DeselectButton: 0
     DisableInterval: 0.4
     Enabled: 1
@@ -3738,15 +3737,15 @@ MonoBehaviour:
         Duration: 1
       Fade:
         AnimationType: 5
-        Enabled: 0
+        Enabled: 1
         From: 0
         To: 0
-        By: 0.5
+        By: -1
         UseCustomFromAndTo: 0
         NumberOfLoops: -1
         LoopType: 1
         EaseType: 0
-        Ease: 1
+        Ease: 5
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -3754,8 +3753,8 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         StartDelay: 0
-        Duration: 1
-    TriggerEventsAfterAnimation: 0
+        Duration: 0.2
+    TriggerEventsAfterAnimation: 1
     m_behaviorType: 0
   OnDoubleClick:
     Animators: []
@@ -4982,7 +4981,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 6345437523761377470}
 --- !u!1 &6345437523159812909
 GameObject:
   m_ObjectHideFlags: 0

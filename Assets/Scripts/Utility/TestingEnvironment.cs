@@ -48,4 +48,5 @@ public class Objective
 public class TestingEnvironment : MonoBehaviour
 {
     public Dictionary<string, Objective> Objectives { get; set; }
+    public Dictionary<string, object[]> TradeOffResults { get; set; }
 }
