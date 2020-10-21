@@ -76,6 +76,7 @@ namespace TMPro
                 return tag.StartsWith("speed=");
             }
 
+            print(displayText);
             // send that string to textmeshpro and hide all of it, then start reading
             this.text = displayText;
             maxVisibleCharacters = 0;
@@ -115,15 +116,18 @@ namespace TMPro
             if (overflowMode == TextOverflowModes.Page)
             {
                 isWriting = true;
-
-                ForceMeshUpdate();
+                ResetState();
                 pageToDisplay = pageNumber;
                 int pageInfoIndex = pageNumber - 1 < 0 ? 0 : pageNumber -1;
                 // the indexes are offset by one between what is displayed as a page
                 // and what index values are saved in textInfo.pageInfo because TextMeshPro
                 // starts displays at 0 and 1 for the first page.
-                int numberOfCharactersToReveal = textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
-                    textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1;
+                int numberOfCharactersToReveal = Math.Abs(textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
+                    textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1);
+                print("pageInfoIndex: "+pageInfoIndex);
+                print("pageInfor.Count: "+textInfo.pageInfo.Length);
+                print("lastCharIndex: "+textInfo.pageInfo[pageInfoIndex].lastCharacterIndex);
+                print("firstCharIndex: "+textInfo.pageInfo[pageInfoIndex].firstCharacterIndex);
 
                 int offset = textInfo.pageInfo[pageInfoIndex].firstCharacterIndex;
                 for (int character = offset; character <= numberOfCharactersToReveal + offset; character++)
@@ -198,6 +202,13 @@ namespace TMPro
                     onDialogueFinish.Invoke();
                 }
             }
+        }
+
+        public void ResetState()
+        {
+            maxVisibleCharacters = 0;
+            StopAllCoroutines();
+            ForceMeshUpdate();
         }
     }
 }

@@ -63,6 +63,8 @@ public class ConversationHandler : MonoBehaviour
 
     public void GenerateConversation(int conversationId)
     {
+        currentConversationSnippet = 0;
+        currentConversationPage = 1;
         currentConversationTitle = conversationTitles[conversationId];
         conversationToRead = new string[conversations[currentConversationTitle]["conversation_content"].Count];
         int iterator = 0;
@@ -73,6 +75,7 @@ public class ConversationHandler : MonoBehaviour
             iterator++;
         }
 
+        conversationBubble.StopAllCoroutines();
         conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
         ToggleConversation(true);
     }
@@ -85,12 +88,18 @@ public class ConversationHandler : MonoBehaviour
     // Method used on button click and to start the conversation
     public void NextConversationSnippet()
     {
+       // print("title: "+currentConversationTitle);
+       // print("snippet: "+currentConversationSnippet);
+       // print("snippetCount: "+conversations[currentConversationTitle]["conversation_content"].Count);
+       // print("page: "+currentConversationPage);
+       // print("pageCount: " + conversationBubble.textInfo.pageCount);
         // while there still are conversation snippets
         if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
         {
             // as long as we're not at the end of all the pages, the button will show the next page
             if (currentConversationPage <= conversationBubble.textInfo.pageCount)
             {
+                conversationBubble.ResetState();
                 StartCoroutine(conversationBubble.ReadPage(currentConversationPage));
                 currentConversationPage++;
             }
@@ -119,7 +128,6 @@ public class ConversationHandler : MonoBehaviour
         }
     }
 
-    // TODO: figure out why second tradeoff doesnt update loser description correctly
     // Private utility functions
     private string ReplaceCustomMarkers(string text)
     {

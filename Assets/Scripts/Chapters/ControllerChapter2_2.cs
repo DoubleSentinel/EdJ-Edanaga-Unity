@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Doozy.Engine;
+using Doozy.Engine.Extensions;
 using Doozy.Engine.Nody;
 using Doozy.Engine.UI;
 using TMPro;
@@ -17,6 +18,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject sceneHost;
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
+    [SerializeField] private GameObject tradeOffFinalists;
 
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
@@ -34,13 +36,19 @@ public class ControllerChapter2_2 : MonoBehaviour
     private GameObject controllers;
     private BackendAPI m_api;
 
+    // TradeOff organization
     private List<(GameObject, GameObject)> m_familyTradeoffs;
     private int currentTradeOffPair;
 
+    // TradeOff Scoring vars
     private GameObject tradeOffLoserUI;
     private object[] tradeOffResult;
     private string winnerName;
     private string loserName;
+    
+    // BargainConversation vars
+    private int conversationIndex = 0;
+    private bool finals = false;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -97,7 +105,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(0);
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(conversationIndex);
         HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
     }
 
@@ -128,10 +136,11 @@ public class ControllerChapter2_2 : MonoBehaviour
     {
         currentTradeOffPair = -1;
         m_familyTradeoffs.Clear();
-        m_familyTradeoffs.Add((family.transform.GetChild(0).gameObject, family.transform.GetChild(1).gameObject));
-        if (family.transform.childCount == 3)
+        for (int i = 0; i < family.transform.childCount-1; i++)
         {
-            m_familyTradeoffs.Add((family.transform.GetChild(1).gameObject, family.transform.GetChild(2).gameObject));
+            var left = family.transform.GetChild(i).gameObject;
+            var right = family.transform.GetChild(i + 1).gameObject;
+            m_familyTradeoffs.Add((left, right));
         }
     }
 
@@ -143,11 +152,29 @@ public class ControllerChapter2_2 : MonoBehaviour
         if (tradeOffLoserUI != null)
         {
             // setting selected winner result
-            var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
+            var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
+            var winner2DCharacter = m_familyTradeoffs[currentTradeOffPair].Item1.name.ToLower() == winnerData.name
+                ? m_familyTradeoffs[currentTradeOffPair].Item1
+                : m_familyTradeoffs[currentTradeOffPair].Item2;
             var slider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
 
             tradeOffResult[0] = winnerName;
-            tradeOffResult[1] = CalculateUserInput(slider, loserData);
+            tradeOffResult[1] = CalculateUserInput(slider, winnerData);
+
+            // TODO: Change this to take the higher weight when there are multiple battles in one family
+            var familyName = winner2DCharacter.transform.parent.name;
+            try
+            {
+                controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
+            }
+            catch (ArgumentException)
+            {
+                controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
+            }
+
+            // this is shitty be careful go to Instantiate instead
+           // var winnerClone = winner2DCharacter.Clone();
+           // winnerClone.transform.SetParent(tradeOffFinalists.transform);
 
             tradeOffLoserUI = null;
         }
@@ -164,9 +191,18 @@ public class ControllerChapter2_2 : MonoBehaviour
             UpdateTradeOffSliders(leftObjectiveName, rightObjectiveName);
             // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
             // structure that handles these associations
+            string title = "";
+            if (finals)
+            {
+                title = $"2.2.5_FinalBattles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
+            }
+            else
+            {
+                title = $"2.2.3_Battles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
+            }
+
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
-            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(
-                $"2.2.3_Battles_obj{leftObjectiveName.Last()}vsobj{rightObjectiveName.Last()}");
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
             TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
 
@@ -174,7 +210,22 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
         else
         {
-            GameEventMessage.SendEvent("GoToTables");
+            // If all tradeoffs have been done, go to the finals conversation else back to tables
+            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4)
+            {
+                GameEventMessage.SendEvent("GoToFinalsConversation");
+                conversationIndex = 1;
+                finals = true;
+                HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = () =>
+                {
+                    GameEventMessage.SendEvent("GoToFinals");
+                    PrepareTradeOffs(tradeOffFinalists);
+                };
+            }
+            else
+            {
+                GameEventMessage.SendEvent("GoToTables");
+            }
         }
     }
 
@@ -199,7 +250,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
 
         UpdateTradeOffLoserCompromiseSlider(controllers.GetComponent<TestingEnvironment>()
-            .Objectives[loserName.ToLower()]);
+            .Objectives[winnerName.ToLower()]);
         ToggleSelectionButtons();
     }
 
@@ -240,15 +291,15 @@ public class ControllerChapter2_2 : MonoBehaviour
         objective.SetActive(true);
     }
 
-    private void UpdateTradeOffLoserCompromiseSlider(Objective loserData)
+    private void UpdateTradeOffLoserCompromiseSlider(Objective winnerData)
     {
         var slider = tradeOffLoserUI.transform.GetChild(2).gameObject;
         //    update best/worst labels
-        slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = loserData.best.ToString();
-        slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = loserData.worst.ToString();
+        slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = winnerData.best.ToString();
+        slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = winnerData.worst.ToString();
         //    update slider handle label
         slider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
-            loserData.worst.ToString();
+            winnerData.worst.ToString();
     }
 
     private void UpdateTradeOffSliders(string leftObjectiveName, string rightObjectiveName)
@@ -333,9 +384,10 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     public void UpdateUserSelection(GameObject handleLabel)
     {
-        var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
+        var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
         var slider = handleLabel.transform.parent.GetComponent<Slider>();
-        handleLabel.GetComponent<TextMeshProUGUI>().text = CalculateUserInput(slider, loserData).ToString();
+        handleLabel.GetComponent<TextMeshProUGUI>().text =
+            String.Format("{0:000.0}", CalculateUserInput(slider, winnerData).ToString());
     }
 
     public void ToggleHandleLabel(GameObject handleLabel)

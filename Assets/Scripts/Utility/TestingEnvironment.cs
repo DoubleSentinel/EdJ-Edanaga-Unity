@@ -47,6 +47,11 @@ public class Objective
 
 public class TestingEnvironment : MonoBehaviour
 {
+    private void Awake()
+    {
+        TradeOffResults = new Dictionary<string, object[]>();
+    }
+
     public Dictionary<string, Objective> Objectives { get; set; }
     public Dictionary<string, object[]> TradeOffResults { get; set; }
 }
