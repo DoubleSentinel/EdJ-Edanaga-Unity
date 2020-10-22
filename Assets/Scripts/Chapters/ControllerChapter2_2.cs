@@ -181,10 +181,10 @@ public class ControllerChapter2_2 : MonoBehaviour
                 lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
                 lastClone.name = lastClone.name.Remove(10);
                 var map = new int[4][];
-                map[0] = new int[]{ 0, 1};
-                map[1] = new int[]{ 2, 3, 4};
-                map[2] = new int[]{ 5, 6, 7};
-                map[3] = new int[]{ 8, 9};
+                map[0] = new[]{ 0, 1};
+                map[1] = new[]{ 2, 3, 4};
+                map[2] = new[]{ 5, 6, 7};
+                map[3] = new[]{ 8, 9};
                 for (int i = 0;i<map.Length;i++)
                 {
                     if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
@@ -192,6 +192,11 @@ public class ControllerChapter2_2 : MonoBehaviour
                 }
                 lastClone.SetActive(false);
             }
+           // else
+           // {
+           //     var familyName = winner2DCharacter.transform.parent.name;
+           //     controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add();
+           // }
 
             tradeOffLoserUI = null;
         }
@@ -316,7 +321,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = winnerData.best.ToString();
         slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = winnerData.worst.ToString();
         //    update slider handle label
-        slider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
+        slider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
             winnerData.worst.ToString();
     }
 
@@ -357,9 +362,9 @@ public class ControllerChapter2_2 : MonoBehaviour
         rightCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
             leftObjective.worst.ToString();
         //    slider handle value labels
-        leftCompromiseSlider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
+        leftCompromiseSlider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
             rightObjective.worst.ToString();
-        rightCompromiseSlider.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text =
+        rightCompromiseSlider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
             leftObjective.worst.ToString();
         //    unit value
         leftCompromiseSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
@@ -404,7 +409,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void UpdateUserSelection(GameObject handleLabel)
     {
         var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
-        var slider = handleLabel.transform.parent.GetComponent<Slider>();
+        var slider = handleLabel.transform.parent.parent.parent.GetComponent<Slider>();
         handleLabel.GetComponent<TextMeshProUGUI>().text =
             String.Format("{0:000.0}", CalculateUserInput(slider, winnerData).ToString());
     }
