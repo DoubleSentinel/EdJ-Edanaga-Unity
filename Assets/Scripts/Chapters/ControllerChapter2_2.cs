@@ -49,6 +49,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // BargainConversation vars
     private int conversationIndex = 0;
     private bool finals = false;
+    private GameObject lastClone;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -73,7 +74,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         rightRepresentationSlider = GameObject.Find("RightBattlerRepresentationSlider");
         rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
 
-        // 0= tradeoff winner name, 1= tradeoff loser value
+        // 0= tradeoff winner name, 1= tradeoff winner value
         tradeOffResult = new object[2];
 
         HideTradeOffUI();
@@ -149,6 +150,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // and by the TradeOff Battle view show event
     public void NextTradeOff()
     {
+        // this condition exists only when a tradeoff winner has been selected
         if (tradeOffLoserUI != null)
         {
             // setting selected winner result
@@ -162,19 +164,34 @@ public class ControllerChapter2_2 : MonoBehaviour
             tradeOffResult[1] = CalculateUserInput(slider, winnerData);
 
             // TODO: Change this to take the higher weight when there are multiple battles in one family
-            var familyName = winner2DCharacter.transform.parent.name;
-            try
+            if (!finals)
             {
-                controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
-            }
-            catch (ArgumentException)
-            {
-                controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
-            }
+                // Copying Finalist to Finalist group
+                var familyName = winner2DCharacter.transform.parent.name;
+                try
+                {
+                    controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
+                }
+                catch (ArgumentException)
+                {
+                    controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
+                    Destroy(lastClone);
+                }
 
-            // this is shitty be careful go to Instantiate instead
-           // var winnerClone = winner2DCharacter.Clone();
-           // winnerClone.transform.SetParent(tradeOffFinalists.transform);
+                lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
+                lastClone.name = lastClone.name.Remove(10);
+                var map = new int[4][];
+                map[0] = new int[]{ 0, 1};
+                map[1] = new int[]{ 2, 3, 4};
+                map[2] = new int[]{ 5, 6, 7};
+                map[3] = new int[]{ 8, 9};
+                for (int i = 0;i<map.Length;i++)
+                {
+                    if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
+                        lastClone.transform.SetSiblingIndex(i);
+                }
+                lastClone.SetActive(false);
+            }
 
             tradeOffLoserUI = null;
         }
@@ -210,8 +227,8 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
         else
         {
-            // If all tradeoffs have been done, go to the finals conversation else back to tables
-            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4)
+            // If all tradeoffs have been done and these aren't the finals, go to the finals conversation else back to tables
+            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4 && !finals)
             {
                 GameEventMessage.SendEvent("GoToFinalsConversation");
                 conversationIndex = 1;
@@ -258,6 +275,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     private void EndTradeOffConversation()
     {
         // show tradeoff ui and activate the loser's compromise slider
+        //TODO: replace these with ToggleTradeOffUI
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
         tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
         tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>().interactable = true;
@@ -357,6 +375,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         HideTradeOffUI();
     }
 
+    // TODO: rewrite this to toggle with fades
     private void HideTradeOffUI()
     {
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;

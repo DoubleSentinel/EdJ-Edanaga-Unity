@@ -88,18 +88,12 @@ public class ConversationHandler : MonoBehaviour
     // Method used on button click and to start the conversation
     public void NextConversationSnippet()
     {
-       // print("title: "+currentConversationTitle);
-       // print("snippet: "+currentConversationSnippet);
-       // print("snippetCount: "+conversations[currentConversationTitle]["conversation_content"].Count);
-       // print("page: "+currentConversationPage);
-       // print("pageCount: " + conversationBubble.textInfo.pageCount);
         // while there still are conversation snippets
         if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
         {
             // as long as we're not at the end of all the pages, the button will show the next page
             if (currentConversationPage <= conversationBubble.textInfo.pageCount)
             {
-                conversationBubble.ResetState();
                 StartCoroutine(conversationBubble.ReadPage(currentConversationPage));
                 currentConversationPage++;
             }

@@ -76,7 +76,6 @@ namespace TMPro
                 return tag.StartsWith("speed=");
             }
 
-            print(displayText);
             // send that string to textmeshpro and hide all of it, then start reading
             this.text = displayText;
             maxVisibleCharacters = 0;
@@ -116,7 +115,7 @@ namespace TMPro
             if (overflowMode == TextOverflowModes.Page)
             {
                 isWriting = true;
-                ResetState();
+                yield return ResetState();
                 pageToDisplay = pageNumber;
                 int pageInfoIndex = pageNumber - 1 < 0 ? 0 : pageNumber -1;
                 // the indexes are offset by one between what is displayed as a page
@@ -124,10 +123,6 @@ namespace TMPro
                 // starts displays at 0 and 1 for the first page.
                 int numberOfCharactersToReveal = Math.Abs(textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
                     textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1);
-                print("pageInfoIndex: "+pageInfoIndex);
-                print("pageInfor.Count: "+textInfo.pageInfo.Length);
-                print("lastCharIndex: "+textInfo.pageInfo[pageInfoIndex].lastCharacterIndex);
-                print("firstCharIndex: "+textInfo.pageInfo[pageInfoIndex].firstCharacterIndex);
 
                 int offset = textInfo.pageInfo[pageInfoIndex].firstCharacterIndex;
                 for (int character = offset; character <= numberOfCharactersToReveal + offset; character++)
@@ -204,8 +199,10 @@ namespace TMPro
             }
         }
 
-        public void ResetState()
+        public IEnumerator ResetState()
         {
+
+            yield return new WaitForEndOfFrame();
             maxVisibleCharacters = 0;
             StopAllCoroutines();
             ForceMeshUpdate();
