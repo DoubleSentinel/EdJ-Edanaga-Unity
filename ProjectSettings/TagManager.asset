@@ -47,6 +47,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3778884825
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -76,4 +79,7 @@ TagManager:
     locked: 0
   - name: Map overlay2
     uniqueID: 3630517849
+    locked: 0
+  - name: Overlay1
+    uniqueID: 3171566739
     locked: 0
