@@ -114,8 +114,6 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        ToggleBackground(backgroundBargainConversation);
-
         HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = () =>
         {
             GameEventMessage.SendEvent("GoToTables");
@@ -159,8 +157,6 @@ public class ControllerChapter2_2 : MonoBehaviour
             var right = family.transform.GetChild(i + 1).gameObject;
             m_familyTradeoffs.Add((left, right));
         }
-        ToggleBackground(backgroundTables);
-        ToggleBackground(backgroundTradeOff);
     }
 
 
