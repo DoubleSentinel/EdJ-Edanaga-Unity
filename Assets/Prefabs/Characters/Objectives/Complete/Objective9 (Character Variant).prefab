@@ -82,12 +82,24 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1282085148256693029, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 86cd79821351b411dbde3c7d0feccdbc,
+        type: 3}
     - target: {fileID: 1282085148428385288, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1282085148723374243, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 86cd79821351b411dbde3c7d0feccdbc,
+        type: 3}
+    - target: {fileID: 5202750344811054119, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
         type: 3}
       propertyPath: m_Sprite
       value: 

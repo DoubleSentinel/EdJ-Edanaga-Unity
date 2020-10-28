@@ -1461,7 +1461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7520723122892087265}
   m_Layer: 0
-  m_Name: Bg
+  m_Name: Tables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1663,7 +1663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8499651767640179436
 Transform:
   m_ObjectHideFlags: 0
@@ -2025,7 +2025,7 @@ GameObject:
   - component: {fileID: 6833367950332892350}
   - component: {fileID: 8830749200230962060}
   m_Layer: 0
-  m_Name: Color
+  m_Name: BackgroundColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -428,7 +428,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 6c7158b9-7022-412d-804e-537f630f3191
-  m_lastModified: 132477654498949530
+  m_lastModified: 132483673740473317
 --- !u!114 &312171904327899575
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -562,7 +562,7 @@ MonoBehaviour:
     m_id: 8eedb053-83c2-4cb2-9a74-a367de6c5072
     m_nodeId: d312cd8c-3543-4dfb-b1a2-de4a08cd372a
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"Test","ButtonName":"LoadChapter2.2-Tables","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Test","ButtonName":"LoadChapter2.2-Tables","GameEvent":"GoToTables","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0

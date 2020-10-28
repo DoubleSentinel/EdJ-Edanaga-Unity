@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2422768353184263083, guid: 1c4570f4aebc85248a746ae4b5a5810e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fce7782a8b33d42e18348e82b570b66f,
+        type: 3}
     - target: {fileID: 2422768353648715821, guid: 1c4570f4aebc85248a746ae4b5a5810e,
         type: 3}
       propertyPath: m_Sprite
@@ -83,5 +89,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective6 (Character Variant)
       objectReference: {fileID: 0}
+    - target: {fileID: 8675734444411110569, guid: 1c4570f4aebc85248a746ae4b5a5810e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fce7782a8b33d42e18348e82b570b66f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4570f4aebc85248a746ae4b5a5810e, type: 3}

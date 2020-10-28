@@ -13,6 +13,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 618928cc9bd7b48e499da41c78511cc0,
         type: 3}
+    - target: {fileID: 1456951165773920505, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 618928cc9bd7b48e499da41c78511cc0,
+        type: 3}
     - target: {fileID: 1456951166090244793, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102,
         type: 3}
       propertyPath: m_Name
@@ -133,5 +139,11 @@ PrefabInstance:
       propertyPath: contour.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5602795851927672827, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 618928cc9bd7b48e499da41c78511cc0,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102, type: 3}

@@ -18,6 +18,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2127760005758543607, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6163f892dc3b74bd0ab9d520706df1f5,
+        type: 3}
     - target: {fileID: 2127760006326227371, guid: d8701e82814f7ac46aa9b7f29b4506bc,
         type: 3}
       propertyPath: m_IsActive
@@ -128,5 +134,11 @@ PrefabInstance:
       propertyPath: contour.b
       value: 0.5176471
       objectReference: {fileID: 0}
+    - target: {fileID: 4935472446336698869, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6163f892dc3b74bd0ab9d520706df1f5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8701e82814f7ac46aa9b7f29b4506bc, type: 3}

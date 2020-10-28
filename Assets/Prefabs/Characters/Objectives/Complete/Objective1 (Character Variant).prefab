@@ -23,6 +23,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 978024336205313875, guid: b8d0849d771f15e44b3aa69829474447,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c436c22ff0dd348c68d3fd825d840277,
+        type: 3}
     - target: {fileID: 978024336451026192, guid: b8d0849d771f15e44b3aa69829474447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -163,5 +169,11 @@ PrefabInstance:
       propertyPath: accent.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6083135536691779665, guid: b8d0849d771f15e44b3aa69829474447,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c436c22ff0dd348c68d3fd825d840277,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8d0849d771f15e44b3aa69829474447, type: 3}

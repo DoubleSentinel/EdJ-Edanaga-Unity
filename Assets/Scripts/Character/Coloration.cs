@@ -12,7 +12,12 @@ public class Coloration : MonoBehaviour
 
     private void Awake()
     {
-        foreach (SpriteRenderer sprite in transform.GetComponentsInChildren<SpriteRenderer>())
+        UpdateColors();
+    }
+
+    public void UpdateColors()
+    {
+        foreach (SpriteRenderer sprite in transform.GetComponentsInChildren<SpriteRenderer>(true))
         {
             switch (sprite.gameObject.tag)
             {

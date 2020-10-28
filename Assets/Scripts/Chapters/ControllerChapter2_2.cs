@@ -1,30 +1,33 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Doozy.Engine;
-using Doozy.Engine.Extensions;
-using Doozy.Engine.Nody;
-using Doozy.Engine.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
-    // Scene references
+    [Header("2D Scene References")]
     [SerializeField] private GameObject sceneHost;
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
-    [SerializeField] private GameObject tradeOffFinalists;
+    
+    [Header("Backgrounds References")]
+    [SerializeField] private GameObject backgroundBargainConversation;
+    [SerializeField] private GameObject backgroundTradeOff;
+    [SerializeField] private GameObject backgroundTables;
+    
+    [Header("Bargain Conversation References")]
+    [SerializeField] private GameObject HostBargainConversationBubble;
 
+    [Header("Trade Off References")]
+    [SerializeField] private GameObject tradeOffFinalists;
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
-
-    [SerializeField] private GameObject HostBargainConversationBubble;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
+
 
     private GameObject leftRepresentationSlider;
     private GameObject leftCompromiseSlider;
@@ -82,6 +85,11 @@ public class ControllerChapter2_2 : MonoBehaviour
 
 
     // --------------------  UI Callables  --------------------------------
+    public void ToggleBackground(GameObject background)
+    {
+        background.SetActive(!background.activeSelf);
+    }
+    
     public void ClearCharacters()
     {
         foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
@@ -106,9 +114,16 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
+        ToggleBackground(backgroundBargainConversation);
+
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = () =>
+        {
+            GameEventMessage.SendEvent("GoToTables");
+        };
         HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(conversationIndex);
         HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
     }
+
 
     // View - 2.2.2/7 - Tables
     public void SetupBargainTables()
@@ -126,10 +141,13 @@ public class ControllerChapter2_2 : MonoBehaviour
                     tablePosition.y + passage * offset * (passage % 2 < 0.01 ? 1 : -1),
                     depth));
                 objective.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                objective.GetComponent<CharacterSpriteController>().MaximizeSymbol(true);
                 objective.gameObject.SetActive(true);
                 passage++;
             }
         }
+        
+        ToggleBackground(backgroundTables);
     }
 
     // ---------------------- TradeOff -----------------------------------------
@@ -143,6 +161,8 @@ public class ControllerChapter2_2 : MonoBehaviour
             var right = family.transform.GetChild(i + 1).gameObject;
             m_familyTradeoffs.Add((left, right));
         }
+        ToggleBackground(backgroundTables);
+        ToggleBackground(backgroundTradeOff);
     }
 
 
@@ -247,6 +267,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             else
             {
                 GameEventMessage.SendEvent("GoToTables");
+                ToggleBackground(backgroundTradeOff);
             }
         }
     }
@@ -298,6 +319,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     }
 
     // ---------------------------- Utility methods ----------------------------------------
+    
     private float CalculateUserInput(Slider slider, Objective loserData)
     {
         var step = (loserData.best - loserData.worst) / slider.maxValue;
@@ -311,6 +333,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             tradeOffUIPosition.transform.position.y,
             1.0f
         ));
+        objective.GetComponent<CharacterSpriteController>().MaximizeSymbol(false);
         objective.SetActive(true);
     }
 

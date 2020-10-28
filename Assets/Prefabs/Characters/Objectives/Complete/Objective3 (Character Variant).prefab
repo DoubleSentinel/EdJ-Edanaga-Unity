@@ -83,10 +83,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1452724186920202501, guid: cf7f9f6a512924b44a902cb6e0baa188,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1bd33d962aa4a444fab55583ae8842e5,
+        type: 3}
     - target: {fileID: 4394489838205324515, guid: cf7f9f6a512924b44a902cb6e0baa188,
         type: 3}
       propertyPath: contour.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5607012918225460743, guid: cf7f9f6a512924b44a902cb6e0baa188,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1bd33d962aa4a444fab55583ae8842e5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf7f9f6a512924b44a902cb6e0baa188, type: 3}
