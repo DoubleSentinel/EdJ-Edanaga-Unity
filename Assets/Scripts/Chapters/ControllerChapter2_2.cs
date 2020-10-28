@@ -141,13 +141,11 @@ public class ControllerChapter2_2 : MonoBehaviour
                     tablePosition.y + passage * offset * (passage % 2 < 0.01 ? 1 : -1),
                     depth));
                 objective.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-                objective.GetComponent<CharacterSpriteController>().MaximizeSymbol(true);
                 objective.gameObject.SetActive(true);
+                objective.GetComponent<CharacterSpriteController>().MaximizeSymbol(true);
                 passage++;
             }
         }
-        
-        ToggleBackground(backgroundTables);
     }
 
     // ---------------------- TradeOff -----------------------------------------
@@ -212,12 +210,6 @@ public class ControllerChapter2_2 : MonoBehaviour
                 }
                 lastClone.SetActive(false);
             }
-           // else
-           // {
-           //     var familyName = winner2DCharacter.transform.parent.name;
-           //     controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add();
-           // }
-
             tradeOffLoserUI = null;
         }
 
@@ -267,7 +259,6 @@ public class ControllerChapter2_2 : MonoBehaviour
             else
             {
                 GameEventMessage.SendEvent("GoToTables");
-                ToggleBackground(backgroundTradeOff);
             }
         }
     }

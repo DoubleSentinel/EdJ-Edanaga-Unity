@@ -23,6 +23,7 @@ public class CharacterSpriteController : MonoBehaviour
 
     public void MaximizeSymbol(bool isMaximized)
     {
+        print("maximized");
         symbolChest.SetActive(!isMaximized); 
         symbolComplete.SetActive(isMaximized);
         fullBody.SetActive(!isMaximized);
