@@ -21,6 +21,7 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
+    [SerializeField] private GameObject[] tradeOffButtons;
 
     // Environment
     private GameObject controllers;
@@ -113,17 +114,19 @@ public class TradeOff : MonoBehaviour
                 lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
                 lastClone.name = lastClone.name.Remove(10);
                 var map = new int[4][];
-                map[0] = new[]{ 0, 1};
-                map[1] = new[]{ 2, 3, 4};
-                map[2] = new[]{ 5, 6, 7};
-                map[3] = new[]{ 8, 9};
-                for (int i = 0;i<map.Length;i++)
+                map[0] = new[] {0, 1};
+                map[1] = new[] {2, 3, 4};
+                map[2] = new[] {5, 6, 7};
+                map[3] = new[] {8, 9};
+                for (int i = 0; i < map.Length; i++)
                 {
                     if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
                         lastClone.transform.SetSiblingIndex(i);
                 }
+
                 lastClone.SetActive(false);
             }
+
             tradeOffLoserUI = null;
         }
 
@@ -160,23 +163,31 @@ public class TradeOff : MonoBehaviour
         else
         {
             // If all tradeoffs have been done and these aren't the finals, go to the finals conversation else back to tables
-            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4 && !finals)
+            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4)
             {
-                GameEventMessage.SendEvent("GoToFinalsConversation");
-                GetComponent<ControllerChapter2_2>().conversationIndex = 1;
-                ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
-                finals = true;
-                GetComponent<ControllerChapter2_2>().conversationCallback = () => 
+                if (!finals)
                 {
-                    GameEventMessage.SendEvent("GoToFinals");
-                    PrepareTradeOffs(tradeOffFinalists);
-                    ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
-                };
+                    GameEventMessage.SendEvent("GoToFinalsConversation");
+                    GetComponent<ControllerChapter2_2>().conversationIndex = 1;
+                    ShowTradeOffBackground(backgroundTradeOff, true);
+                    finals = true;
+                    GetComponent<ControllerChapter2_2>().conversationCallback = () =>
+                    {
+                        GameEventMessage.SendEvent("GoToFinals");
+                        PrepareTradeOffs(tradeOffFinalists);
+                        ShowTradeOffBackground(backgroundTradeOff, false);
+                        ShowTradeOffBackground(backgroundTradeOffFinals, true);
+                    };
+                }
+                else
+                {
+                    GameEventMessage.SendEvent("GoToTradeOffResults");
+                }
             }
             else
             {
-                GameEventMessage.SendEvent("GoToTradeOffResults");
-                ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, false);
+                GameEventMessage.SendEvent("GoToTables");
+                ShowTradeOffBackground(backgroundTradeOff, false);
             }
         }
     }
@@ -455,6 +466,25 @@ public class TradeOff : MonoBehaviour
     }
 
     // -------------------- Utility UI callabales  -----------------------------
+    public void ResetTradeOffs()
+    {
+        GameEventMessage.SendEvent("GoToTables");
+        foreach (var button in tradeOffButtons)
+        {
+            button.GetComponent<Button>().interactable = true;
+            button.GetComponent<CanvasGroup>().alpha = 1;
+        }
+
+        foreach (Transform child in tradeOffFinalists.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        controllers.GetComponent<TestingEnvironment>().TradeOffResults.Clear();
+        finals = false;
+        ShowTradeOffBackground(backgroundTradeOffFinals, false);
+    }
+
     public void DeactivateButton(GameObject caller)
     {
         caller.GetComponent<Button>().interactable = false;

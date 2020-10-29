@@ -490,17 +490,23 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: 924
-  m_y: -288
+  m_y: -324
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 6c7158b9-7022-412d-804e-537f630f3191
   m_id: 4e08b15e-93e3-429a-a4e2-419592884ff7
   m_name: TradeOff - 2.2.6 Results
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: TradeOff
+    InstantAction: 0
+    Name: 2.2.6 Results
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: TradeOff
+    InstantAction: 0
+    Name: 2.2.6 Results
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +532,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 6c7158b9-7022-412d-804e-537f630f3191
-  m_lastModified: 132484584919365883
+  m_lastModified: 132484595587628503
 --- !u!114 &312171904327899575
 MonoBehaviour:
   m_ObjectHideFlags: 1
