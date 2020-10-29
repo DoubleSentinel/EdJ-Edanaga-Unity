@@ -114,6 +114,13 @@ MonoBehaviour:
       m_inputSocketId: 93eec28b-c60e-4d63-9ee3-55291014c196
       m_outputNodeId: fc92f37c-39b8-4d90-92ad-83fd73e830a5
       m_outputSocketId: ae06f1f4-c8fa-432f-a55f-cfd15fca94c2
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: da47709e-1e01-4b42-b677-8e747a33f4e0
+      m_inputNodeId: beff5d15-6882-4d22-9c0d-1ef92e076a7e
+      m_inputSocketId: 93eec28b-c60e-4d63-9ee3-55291014c196
+      m_outputNodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+      m_outputSocketId: 44683f4e-445e-4234-a91f-351ae7fff59c
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -404,6 +411,96 @@ MonoBehaviour:
   - Category: Swing
     InstantAction: 0
     Name: 2.2.8 Share Drinks
+--- !u!114 &-264071664518357895
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a439e06374673a9115ed02deb5a54, type: 3}
+  m_Name: UINode
+  m_EditorClassIdentifier: 
+  ErrorNodeNameIsEmpty: 0
+  ErrorDuplicateNameFoundInGraph: 0
+  m_inputSockets:
+  - m_connectionMode: 1
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 99b8eeaf-d6e7-4a43-8048-c8edadd16c92
+      m_inputNodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+      m_inputSocketId: e41f0262-e7f4-438d-b759-2142eb9efade
+      m_outputNodeId: a8429b6f-2059-4a16-8455-3088475c8b82
+      m_outputSocketId: 2aa7dd35-87dc-4f4d-a67e-64649fc515b5
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 0
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 38
+    m_id: e41f0262-e7f4-438d-b759-2142eb9efade
+    m_nodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+    m_socketName: InputSocket_0
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_outputSockets:
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: da47709e-1e01-4b42-b677-8e747a33f4e0
+      m_inputNodeId: beff5d15-6882-4d22-9c0d-1ef92e076a7e
+      m_inputSocketId: 93eec28b-c60e-4d63-9ee3-55291014c196
+      m_outputNodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+      m_outputSocketId: 44683f4e-445e-4234-a91f-351ae7fff59c
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 62
+    m_id: 44683f4e-445e-4234-a91f-351ae7fff59c
+    m_nodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+    m_socketName: OutputSocket_0
+    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"GoToTables","TimeDelay":3.0,"Trigger":3}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_nodeType: 4
+  m_allowDuplicateNodeName: 0
+  m_allowEmptyNodeName: 0
+  m_canBeDeleted: 1
+  m_debugMode: 0
+  m_useFixedUpdate: 0
+  m_useLateUpdate: 0
+  m_useUpdate: 0
+  m_height: 128
+  m_width: 216
+  m_x: 924
+  m_y: -288
+  m_minimumInputSocketsCount: 1
+  m_minimumOutputSocketsCount: 1
+  m_graphId: 6c7158b9-7022-412d-804e-537f630f3191
+  m_id: 4e08b15e-93e3-429a-a4e2-419592884ff7
+  m_name: TradeOff - 2.2.6 Results
+  m_notes: 
+  m_onEnterShowViews: []
+  m_onEnterHideViews: []
+  m_onExitShowViews: []
+  m_onExitHideViews: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,11 +521,12 @@ MonoBehaviour:
   - {fileID: 7577858422730177320}
   - {fileID: -3418554130093598435}
   - {fileID: -4408941180446937399}
+  - {fileID: -264071664518357895}
   m_isSubGraph: 0
   m_version: 1
   m_description: 
   m_id: 6c7158b9-7022-412d-804e-537f630f3191
-  m_lastModified: 132483673740473317
+  m_lastModified: 132484584919365883
 --- !u!114 &312171904327899575
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,6 +818,32 @@ MonoBehaviour:
     m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"GoToFinalsConversation","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 99b8eeaf-d6e7-4a43-8048-c8edadd16c92
+      m_inputNodeId: 4e08b15e-93e3-429a-a4e2-419592884ff7
+      m_inputSocketId: e41f0262-e7f4-438d-b759-2142eb9efade
+      m_outputNodeId: a8429b6f-2059-4a16-8455-3088475c8b82
+      m_outputSocketId: 2aa7dd35-87dc-4f4d-a67e-64649fc515b5
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 110
+    m_id: 2aa7dd35-87dc-4f4d-a67e-64649fc515b5
+    m_nodeId: a8429b6f-2059-4a16-8455-3088475c8b82
+    m_socketName: OutputSocket_2
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"GoToTradeOffResults","TimeDelay":3.0,"Trigger":3}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
   m_allowDuplicateNodeName: 0
   m_allowEmptyNodeName: 0
@@ -728,10 +852,10 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 176
   m_width: 216
-  m_x: 792
-  m_y: -96
+  m_x: 924
+  m_y: -144
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 6c7158b9-7022-412d-804e-537f630f3191

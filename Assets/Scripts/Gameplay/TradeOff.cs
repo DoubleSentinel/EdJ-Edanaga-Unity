@@ -42,6 +42,7 @@ public class TradeOff : MonoBehaviour
 
     // TradeOff calculations variables
     private List<(string, float)> tradeOffWeightMatrix;
+    private object[] tradeOffResult;
     private string winnerName;
     private string loserName;
 
@@ -62,6 +63,7 @@ public class TradeOff : MonoBehaviour
         rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
 
         tradeOffWeightMatrix = new List<(string, float)>();
+        tradeOffResult = new object[2];
         HideTradeOffUI();
     }
 
@@ -78,92 +80,193 @@ public class TradeOff : MonoBehaviour
     }
 
 
-    // Called by the Button moving onto the next Tradeoff Pair (Next)
-    // and by the TradeOff Battle view show event
     public void NextTradeOff()
     {
         // this condition exists only when a tradeoff winner has been selected
-        if (tradeOffLoserUI != null && tradeOffWinnerUI != null)
+        if (tradeOffLoserUI != null)
         {
-            // add the loser and winner's data to tradeOffResults list with their slider value
-            var loserSlider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
-            var winnerSlider = tradeOffWinnerUI.transform.GetChild(2).GetComponent<Slider>();
-            tradeOffWeightMatrix.Add((winnerName, winnerSlider.value));
-            tradeOffWeightMatrix.Add((loserName, loserSlider.value));
+            // setting selected winner result
+            var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
+            var winner2DCharacter = m_familyTradeoffs[currentTradeOffPair].Item1.name.ToLower() == winnerData.name
+                ? m_familyTradeoffs[currentTradeOffPair].Item1
+                : m_familyTradeoffs[currentTradeOffPair].Item2;
+            var slider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
+
+            tradeOffResult[0] = winnerName;
+            tradeOffResult[1] = ConvertSliderValue(slider, winnerData);
+
+            // TODO: Change this to take the higher weight when there are multiple battles in one family
+            if (!finals)
+            {
+                // Copying Finalist to Finalist group
+                var familyName = winner2DCharacter.transform.parent.name;
+                try
+                {
+                    controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
+                }
+                catch (ArgumentException)
+                {
+                    controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
+                    Destroy(lastClone);
+                }
+
+                lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
+                lastClone.name = lastClone.name.Remove(10);
+                var map = new int[4][];
+                map[0] = new[]{ 0, 1};
+                map[1] = new[]{ 2, 3, 4};
+                map[2] = new[]{ 5, 6, 7};
+                map[3] = new[]{ 8, 9};
+                for (int i = 0;i<map.Length;i++)
+                {
+                    if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
+                        lastClone.transform.SetSiblingIndex(i);
+                }
+                lastClone.SetActive(false);
+            }
+            tradeOffLoserUI = null;
         }
 
-        // while the current family still has tradeOffs to do
         if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
         {
             currentTradeOffPair++;
             GetComponent<ControllerChapter2_2>().ClearCharacters();
-            StartTradeOffPair();
+            ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
+
+            string leftObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item1.name;
+            string rightObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item2.name;
+            ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
+            ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item2, tradeoffRightBattlerUIPosition);
+            UpdateTradeOffSliders(leftObjectiveName, rightObjectiveName);
+            // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
+            // structure that handles these associations
+            string title = "";
+            if (finals)
+            {
+                title = $"2.2.5_FinalBattles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
+            }
+            else
+            {
+                title = $"2.2.3_Battles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
+            }
+
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+            TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
+
+            ToggleNextTradeOffButton();
         }
         else
         {
-            // 
-            {
-                // var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
-                // var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
-                //// var winner2DCharacter = m_familyTradeoffs[currentTradeOffPair].Item1.name.ToLower() == winnerData.name
-                ////     ? m_familyTradeoffs[currentTradeOffPair].Item1
-                ////     : m_familyTradeoffs[currentTradeOffPair].Item2;
-                // var loserSlider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
-                // var winnerSlider = tradeOffWinnerUI.transform.GetChild(2).GetComponent<Slider>();
-                // 
-
-                // // TODO: Change this to take the higher weight when there are multiple battles in one family
-                // if (!finals)
-                // {
-                //     // Copying Finalist to Finalist group
-                //     var familyName = winner2DCharacter.transform.parent.name;
-                //     try
-                //     {
-                //         controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
-                //     }
-                //     catch (ArgumentException)
-                //     {
-                //         controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
-                //         Destroy(lastClone);
-                //     }
-
-                //     lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
-                //     lastClone.name = lastClone.name.Remove(10);
-                //     var map = new int[4][];
-                //     map[0] = new[]{ 0, 1};
-                //     map[1] = new[]{ 2, 3, 4};
-                //     map[2] = new[]{ 5, 6, 7};
-                //     map[3] = new[]{ 8, 9};
-                //     for (int i = 0;i<map.Length;i++)
-                //     {
-                //         if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
-                //             lastClone.transform.SetSiblingIndex(i);
-                //     }
-                //     lastClone.SetActive(false);
-                // }
-                // tradeOffLoserUI = null;
-                // tradeOffWinnerUI = null;
-            }
             // If all tradeoffs have been done and these aren't the finals, go to the finals conversation else back to tables
             if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4 && !finals)
             {
                 GameEventMessage.SendEvent("GoToFinalsConversation");
                 GetComponent<ControllerChapter2_2>().conversationIndex = 1;
+                ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
                 finals = true;
-                GetComponent<ControllerChapter2_2>().HostBargainConversationBubble.GetComponent<ConversationHandler>()
-                    .callback = () =>
+                GetComponent<ControllerChapter2_2>().conversationCallback = () => 
                 {
                     GameEventMessage.SendEvent("GoToFinals");
                     PrepareTradeOffs(tradeOffFinalists);
+                    ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
                 };
             }
             else
             {
-                GameEventMessage.SendEvent("GoToTables");
+                GameEventMessage.SendEvent("GoToTradeOffResults");
                 ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, false);
             }
         }
     }
+    //    // Called by the Button moving onto the next Tradeoff Pair (Next)
+    //    // and by the TradeOff Battle view show event
+    //    public void NextTradeOff()
+    //    {
+    //        // this condition exists only when a tradeoff winner has been selected
+    //        if (tradeOffLoserUI != null && tradeOffWinnerUI != null)
+    //        {
+    //            // add the loser and winner's data to tradeOffResults list with their slider value
+    //            var loserSlider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
+    //            var winnerSlider = tradeOffWinnerUI.transform.GetChild(2).GetComponent<Slider>();
+    //            tradeOffWeightMatrix.Add((winnerName, winnerSlider.value));
+    //            tradeOffWeightMatrix.Add((loserName, loserSlider.value));
+    //        }
+
+    //        // while the current family still has tradeOffs to do
+    //        if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
+    //        {
+    //            currentTradeOffPair++;
+    //            GetComponent<ControllerChapter2_2>().ClearCharacters();
+    //            StartTradeOffPair();
+    //        }
+    //        else
+    //        {
+    //            // 
+    //            {
+    //                // var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
+    //                // var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
+    //                //// var winner2DCharacter = m_familyTradeoffs[currentTradeOffPair].Item1.name.ToLower() == winnerData.name
+    //                ////     ? m_familyTradeoffs[currentTradeOffPair].Item1
+    //                ////     : m_familyTradeoffs[currentTradeOffPair].Item2;
+    //                // var loserSlider = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
+    //                // var winnerSlider = tradeOffWinnerUI.transform.GetChild(2).GetComponent<Slider>();
+    //                // 
+
+    //                // // TODO: Change this to take the higher weight when there are multiple battles in one family
+    //                // if (!finals)
+    //                // {
+    //                //     // Copying Finalist to Finalist group
+    //                //     var familyName = winner2DCharacter.transform.parent.name;
+    //                //     try
+    //                //     {
+    //                //         controllers.GetComponent<TestingEnvironment>().TradeOffResults.Add(familyName, tradeOffResult);
+    //                //     }
+    //                //     catch (ArgumentException)
+    //                //     {
+    //                //         controllers.GetComponent<TestingEnvironment>().TradeOffResults[familyName] = tradeOffResult;
+    //                //         Destroy(lastClone);
+    //                //     }
+
+    //                //     lastClone = Instantiate(winner2DCharacter, tradeOffFinalists.transform);
+    //                //     lastClone.name = lastClone.name.Remove(10);
+    //                //     var map = new int[4][];
+    //                //     map[0] = new[]{ 0, 1};
+    //                //     map[1] = new[]{ 2, 3, 4};
+    //                //     map[2] = new[]{ 5, 6, 7};
+    //                //     map[3] = new[]{ 8, 9};
+    //                //     for (int i = 0;i<map.Length;i++)
+    //                //     {
+    //                //         if (map[i].Contains(int.Parse(lastClone.name.Last().ToString())))
+    //                //             lastClone.transform.SetSiblingIndex(i);
+    //                //     }
+    //                //     lastClone.SetActive(false);
+    //                // }
+    //                // tradeOffLoserUI = null;
+    //                // tradeOffWinnerUI = null;
+    //            }
+    //            // If all tradeoffs have been done and these aren't the finals, go to the finals conversation else back to tables
+    //            if (controllers.GetComponent<TestingEnvironment>().TradeOffResults.Count == 4 && !finals)
+    //            {
+    //                GameEventMessage.SendEvent("GoToFinalsConversation");
+    //                GetComponent<ControllerChapter2_2>().conversationIndex = 1;
+    //                finals = true;
+    //                GetComponent<ControllerChapter2_2>().HostBargainConversationBubble
+    //                    .GetComponent<ConversationHandler>()
+    //                    .callback = () =>
+    //                {
+    //                    GameEventMessage.SendEvent("GoToFinals");
+    //                    PrepareTradeOffs(tradeOffFinalists);
+    //                };
+    //            }
+    //            else
+    //            {
+    //                GameEventMessage.SendEvent("GoToTables");
+    //                ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, false);
+    //            }
+    //        }
+    //    }
 
     // Called by the Left/RightBattlerSelectButtons on the TradeOff Battle View
     public void SelectTradeOffWinner(GameObject caller)

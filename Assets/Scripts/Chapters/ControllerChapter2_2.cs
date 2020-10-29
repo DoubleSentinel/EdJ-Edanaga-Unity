@@ -9,21 +9,22 @@ using UnityEngine.UI;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
-    [Header("2D Scene References")]
-    [SerializeField] private GameObject sceneHost;
+    [Header("2D Scene References")] [SerializeField]
+    private GameObject sceneHost;
+
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
-    
-    
+
+
     [Header("Bargain Conversation References")]
     public GameObject HostBargainConversationBubble;
-    
+
     // Local variables
     private GameObject controllers;
-    
+
     // BargainConversation vars
-    [HideInInspector]
-    public int conversationIndex = 0;
+    [HideInInspector] public int conversationIndex = 0;
+    public ConversationHandler.ConversationEnd conversationCallback;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -37,6 +38,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             o.GetComponent<ConversationHandler>().FetchConversations();
         }
 
+        conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -44,7 +46,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     {
         background.SetActive(!background.activeSelf);
     }
-    
+
     public void ClearCharacters()
     {
         foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
@@ -69,10 +71,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = () =>
-        {
-            GameEventMessage.SendEvent("GoToTables");
-        };
+        HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = conversationCallback;
         HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(conversationIndex);
         HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
     }
@@ -100,5 +99,4 @@ public class ControllerChapter2_2 : MonoBehaviour
             }
         }
     }
-
 }
