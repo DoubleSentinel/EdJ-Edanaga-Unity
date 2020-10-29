@@ -369,7 +369,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 745463520}
+            m_MethodName: ToggleBackground
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 1588148256}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -389,18 +400,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 745463520}
-            m_MethodName: ToggleBackground
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 1588148256}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -666,17 +666,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 745463520}
-            m_MethodName: ToggleBackground
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 1588148256}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -703,6 +692,17 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 745463520}
+            m_MethodName: ToggleBackground
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 1588148256}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -1364,18 +1364,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 745463520}
-            m_MethodName: ToggleBackground
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 989421677}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -1661,7 +1650,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 745463520}
+          - m_Target: {fileID: 745463521}
             m_MethodName: NextTradeOff
             m_Mode: 1
             m_Arguments:
@@ -1698,17 +1687,6 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 745463520}
-            m_MethodName: ToggleBackground
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 989421677}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -2678,7 +2656,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 745463520}
+      - m_Target: {fileID: 745463521}
         m_MethodName: UpdateUserSelection
         m_Mode: 2
         m_Arguments:
@@ -2706,7 +2684,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 745463520}
+        - m_Target: {fileID: 745463521}
           m_MethodName: ToggleHandleLabel
           m_Mode: 2
           m_Arguments:
@@ -2721,7 +2699,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 745463520}
+        - m_Target: {fileID: 745463521}
           m_MethodName: ToggleHandleLabel
           m_Mode: 2
           m_Arguments:
@@ -3852,7 +3830,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 745463520}
+          - m_Target: {fileID: 745463521}
             m_MethodName: SelectTradeOffWinner
             m_Mode: 2
             m_Arguments:
@@ -5774,7 +5752,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -5794,7 +5772,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11647,7 +11625,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11667,7 +11645,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -12675,7 +12653,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -12695,7 +12673,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -13117,10 +13095,22 @@ MonoBehaviour:
   - {fileID: 1047567293}
   - {fileID: 1918301119}
   - {fileID: 670037945}
-  backgroundBargainConversation: {fileID: 801531602}
-  backgroundTradeOff: {fileID: 989421677}
-  backgroundTables: {fileID: 1588148256}
   HostBargainConversationBubble: {fileID: 1067376301}
+  conversationIndex: 0
+--- !u!114 &745463521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745463519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8928af7cb36bca4294962caa44db042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundTradeOff: {fileID: 989421677}
+  backgroundTradeOffFinals: {fileID: 1557098050}
   tradeOffFinalists: {fileID: 2062233294}
   tradeoffLeftBattlerUIPosition: {fileID: 92879806}
   tradeoffRightBattlerUIPosition: {fileID: 747268898}
@@ -15558,7 +15548,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 745463520}
+          - m_Target: {fileID: 745463521}
             m_MethodName: SelectTradeOffWinner
             m_Mode: 2
             m_Arguments:
@@ -24737,7 +24727,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 745463520}
+          - m_Target: {fileID: 745463521}
             m_MethodName: NextTradeOff
             m_Mode: 1
             m_Arguments:
@@ -26329,6 +26319,12 @@ PrefabInstance:
 --- !u!4 &1557098049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5162339754113888925, guid: cd10a065a3a9e4977a59619ecac072a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1557098048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1557098050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3758220784545820491, guid: cd10a065a3a9e4977a59619ecac072a2,
     type: 3}
   m_PrefabInstance: {fileID: 1557098048}
   m_PrefabAsset: {fileID: 0}
@@ -33297,7 +33293,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 745463520}
+      - m_Target: {fileID: 745463521}
         m_MethodName: UpdateUserSelection
         m_Mode: 2
         m_Arguments:
@@ -33325,7 +33321,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 745463520}
+        - m_Target: {fileID: 745463521}
           m_MethodName: ToggleHandleLabel
           m_Mode: 2
           m_Arguments:
@@ -33340,7 +33336,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 745463520}
+        - m_Target: {fileID: 745463521}
           m_MethodName: ToggleHandleLabel
           m_Mode: 2
           m_Arguments:
@@ -33852,7 +33848,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -33932,7 +33928,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 745463520}
+      objectReference: {fileID: 745463521}
     - target: {fileID: 6345437522833016515, guid: b54a4a01dc627d542884f3700c812a9e,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[2].m_Target
