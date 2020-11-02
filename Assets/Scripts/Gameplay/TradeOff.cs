@@ -468,7 +468,7 @@ public class TradeOff : MonoBehaviour
     // -------------------- Utility UI callabales  -----------------------------
     public void ResetTradeOffs()
     {
-        GameEventMessage.SendEvent("GoToTables");
+        GameEventMessage.SendEvent("GoToTitle");
         foreach (var button in tradeOffButtons)
         {
             button.GetComponent<Button>().interactable = true;
