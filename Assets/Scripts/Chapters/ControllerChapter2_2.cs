@@ -60,7 +60,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // View - 2.2.1/6/8 - Bargain conversation setup
     public void SetupBargainConversation()
     {
-        float height = Screen.height * 0.8f / 2f;
+        float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
             height));
