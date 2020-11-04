@@ -42,6 +42,7 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
     [SerializeField] private GameObject[] tradeOffButtons;
+    [SerializeField] private GameObject resultListItemPrefab;
 
     // Environment
     private GameObject controllers;
@@ -68,7 +69,7 @@ public class TradeOff : MonoBehaviour
     private string winnerName;
     private string loserName;
 
-    // Finals
+    // Flags
     private bool finals = false;
 
     private void Awake()
@@ -123,7 +124,7 @@ public class TradeOff : MonoBehaviour
             tradeOffLoserUI = null;
             tradeOffWinnerUI = null;
         }
-        
+
         // if there still are tradeOffs to do
         if (currentTradeOffPair < m_familyTradeoffs.Count - 1)
         {
@@ -164,6 +165,7 @@ public class TradeOff : MonoBehaviour
                     else
                         winner2D = familyTradeoff.Item2;
                 }
+
                 CloneForFinals(winner2D);
                 tradeOffWeightMatrix.Clear();
             }
@@ -172,6 +174,7 @@ public class TradeOff : MonoBehaviour
                 CalculateLocalWeights(globalWeights);
                 CalculateClassification();
             }
+
             TradeOffSceneForwarding();
         }
     }
@@ -191,9 +194,9 @@ public class TradeOff : MonoBehaviour
             if (map[i].Contains(int.Parse(clone.name.Last().ToString())))
                 clone.transform.SetSiblingIndex(i);
         }
+
         clone.SetActive(false);
     }
-
 
     // ---------------------------- Callback Functions on conversation Ends ------------
     private void EndTradeOffConversation()
@@ -256,6 +259,7 @@ public class TradeOff : MonoBehaviour
                 GameEventMessage.SendEvent("GoToFinalsConversation");
                 GetComponent<ControllerChapter2_2>().conversationIndex = 1;
                 ShowTradeOffBackground(backgroundTradeOff, true);
+                HideTradeOffUI();
                 finals = true;
                 // setting up callback after conversation to move onto finals
                 GetComponent<ControllerChapter2_2>().conversationCallback = () =>
@@ -269,11 +273,13 @@ public class TradeOff : MonoBehaviour
             else
             {
                 GameEventMessage.SendEvent("GoToTradeOffResults");
+                HideTradeOffUI();
             }
         }
         else
         {
             GameEventMessage.SendEvent("GoToTables");
+            HideTradeOffUI();
             ShowTradeOffBackground(backgroundTradeOff, false);
         }
     }
@@ -328,43 +334,44 @@ public class TradeOff : MonoBehaviour
 
     private void CalculateClassification()
     {
+        var classification = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
         // FamilyA
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+        classification.Add(
             objectiveWeightsFamilyA[0].Item1,
-            objectiveWeightsFamilyA[0].Item2*globalWeights[0].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyA[0].Item2 * globalWeights[0].Item2);
+        classification.Add(
             objectiveWeightsFamilyA[1].Item1,
-            objectiveWeightsFamilyA[1].Item2*globalWeights[0].Item2);
-        
+            objectiveWeightsFamilyA[1].Item2 * globalWeights[0].Item2);
+
         // FamilyB
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+        classification.Add(
             objectiveWeightsFamilyB[0].Item1,
-            objectiveWeightsFamilyB[0].Item2*globalWeights[1].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyB[0].Item2 * globalWeights[1].Item2);
+        classification.Add(
             objectiveWeightsFamilyB[1].Item1,
-            objectiveWeightsFamilyB[1].Item2*globalWeights[1].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyB[1].Item2 * globalWeights[1].Item2);
+        classification.Add(
             objectiveWeightsFamilyB[2].Item1,
-            objectiveWeightsFamilyB[2].Item2*globalWeights[1].Item2);
-        
+            objectiveWeightsFamilyB[2].Item2 * globalWeights[1].Item2);
+
         // FamilyC
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+        classification.Add(
             objectiveWeightsFamilyC[0].Item1,
-            objectiveWeightsFamilyC[0].Item2*globalWeights[2].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyC[0].Item2 * globalWeights[2].Item2);
+        classification.Add(
             objectiveWeightsFamilyC[1].Item1,
-            objectiveWeightsFamilyC[1].Item2*globalWeights[2].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyC[1].Item2 * globalWeights[2].Item2);
+        classification.Add(
             objectiveWeightsFamilyC[2].Item1,
-            objectiveWeightsFamilyC[2].Item2*globalWeights[2].Item2);
-        
+            objectiveWeightsFamilyC[2].Item2 * globalWeights[2].Item2);
+
         // FamilyD
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+        classification.Add(
             objectiveWeightsFamilyD[0].Item1,
-            objectiveWeightsFamilyD[0].Item2*globalWeights[3].Item2);
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Add(
+            objectiveWeightsFamilyD[0].Item2 * globalWeights[3].Item2);
+        classification.Add(
             objectiveWeightsFamilyD[1].Item1,
-            objectiveWeightsFamilyD[1].Item2*globalWeights[3].Item2);
+            objectiveWeightsFamilyD[1].Item2 * globalWeights[3].Item2);
     }
 
     private void ShowTradeOffBackground(GameObject background, bool isShown)
@@ -546,5 +553,20 @@ public class TradeOff : MonoBehaviour
     {
         var cg = handleLabel.GetComponent<CanvasGroup>();
         cg.DOFade(Math.Abs(cg.alpha) < 0.01 ? 1 : 0, 0.2f);
+    }
+
+    public void UpdateResultList(GameObject resultList)
+    {
+        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
+        foreach (KeyValuePair<string, float> result in results.OrderBy(x => x.Value))
+        {
+            var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
+            var resultData = objectives[result.Key];
+
+            resultItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = resultData.description;
+            var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
+            rt.localScale = new Vector3(result.Value, rt.localScale.y, rt.localScale.z);
+        }
     }
 }
