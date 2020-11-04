@@ -15,11 +15,6 @@ public class UITranslator : MonoBehaviour
     void Awake()
     {
         referenceMap = new Dictionary<string, GameObject>();
-        foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
-        {
-            referenceMap.Add(translatableObject.name, translatableObject);
-        }
-        
         if (controllers == null)
         {
             controllers = GameObject.Find("Controllers");
@@ -28,12 +23,22 @@ public class UITranslator : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().UiTranslator = this;
     }
 
+    private void UpdateUITranslationReferences()
+    {
+        referenceMap.Clear();
+        foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
+        {
+            referenceMap.Add(translatableObject.name, translatableObject);
+        }
+    }
+
     public void FetchTranslation(string language, string scene)
     {
-        Dictionary<string, object> filters = new Dictionary<string, object>();
-        filters.Add("language", language);
-        filters.Add("scene", scene);
-        m_api.ApiList("ui", TranslateUI, filters);
+        UpdateUITranslationReferences();
+        m_api.parameters.Clear();
+        m_api.parameters.Add("language", language);
+        m_api.parameters.Add("scene", scene);
+        m_api.ApiList("ui", TranslateUI, m_api.parameters);
     }
     
     private void TranslateUI(string json)
