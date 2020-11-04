@@ -407,11 +407,11 @@ public class TradeOff : MonoBehaviour
     {
         var slider = tradeOffLoserUI.transform.GetChild(2).gameObject;
         //    update best/worst labels
-        slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = winnerData.best.ToString();
-        slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = winnerData.worst.ToString();
+        slider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = $"{winnerData.best:0.0}";
+        slider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"{winnerData.worst:0.0}";
         //    update slider handle label
         slider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
-            winnerData.worst.ToString();
+            $"{winnerData.worst:0.0}";
     }
 
     private void UpdateTradeOffSliders(string leftObjectiveName, string rightObjectiveName)
@@ -423,14 +423,14 @@ public class TradeOff : MonoBehaviour
         // Representation sliders labels
         //    Best value
         leftRepresentationSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            leftObjective.best.ToString();
+            $"{leftObjective.best:0.0}";
         rightRepresentationSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            rightObjective.best.ToString();
+            $"{rightObjective.best:0.0}";
         //    worst value
         leftRepresentationSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            leftObjective.worst.ToString();
+            $"{leftObjective.worst:0.0}";
         rightRepresentationSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            rightObjective.worst.ToString();
+            $"{rightObjective.worst:0.0}";
         //    unit value
         leftRepresentationSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             leftObjective.unit;
@@ -440,21 +440,21 @@ public class TradeOff : MonoBehaviour
         // Compromise sliders
         //    Best value
         leftCompromiseSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            rightObjective.best.ToString();
+            $"{rightObjective.best:0.0}";
         leftCompromiseSlider.GetComponent<Slider>().maxValue = 20;
         rightCompromiseSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-            leftObjective.best.ToString();
+            $"{leftObjective.best:0.0}";
         rightCompromiseSlider.GetComponent<Slider>().maxValue = 20;
         //    worst value labels
         leftCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            rightObjective.worst.ToString();
+            $"{rightObjective.worst:0.0}";
         rightCompromiseSlider.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text =
-            leftObjective.worst.ToString();
+            $"{leftObjective.worst:0.0}";
         //    slider handle value labels
         leftCompromiseSlider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
-            rightObjective.worst.ToString();
+            $"{rightObjective.worst:0.0}";
         rightCompromiseSlider.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
-            leftObjective.worst.ToString();
+            $"{leftObjective.worst:0.0}";
         //    unit value
         leftCompromiseSlider.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text =
             rightObjective.unit;
@@ -552,8 +552,7 @@ public class TradeOff : MonoBehaviour
     {
         var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
         var slider = handleLabel.transform.parent.parent.parent.GetComponent<Slider>();
-        handleLabel.GetComponent<TextMeshProUGUI>().text =
-            String.Format("{0:000.0}", ConvertSliderValue(slider, winnerData).ToString());
+        handleLabel.GetComponent<TextMeshProUGUI>().text = $"{ConvertSliderValue(slider, winnerData):0.0}";
     }
 
     public void ToggleHandleLabel(GameObject handleLabel)
@@ -571,7 +570,7 @@ public class TradeOff : MonoBehaviour
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
             var resultData = objectives[result.Key];
 
-            resultItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = resultData.description;
+            resultItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{resultData.description} ({result.Value*100:0.0}%)";
             var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
             rt.localScale = new Vector3(result.Value, rt.localScale.y, rt.localScale.z);
         }
