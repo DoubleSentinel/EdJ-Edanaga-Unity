@@ -51,9 +51,8 @@ public class ControllerChapter2_2 : MonoBehaviour
     {
         foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
         {
-            character.transform.position = Vector3.forward;
+            character.transform.position = new Vector3(11, 0, 1);
             character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            character.SetActive(false);
         }
     }
 

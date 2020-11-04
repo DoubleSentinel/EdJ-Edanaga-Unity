@@ -11949,7 +11949,7 @@ GameObject:
   - component: {fileID: 597989563}
   - component: {fileID: 597989562}
   m_Layer: 0
-  m_Name: Panel - Title
+  m_Name: lbl_Chap3_name
   m_TagString: Translatable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12585,6 +12585,17 @@ MonoBehaviour:
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 250249329}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 745463520}
+            m_MethodName: ToggleBackground
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 801531602}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
@@ -18766,7 +18777,7 @@ GameObject:
   - component: {fileID: 1173002210}
   - component: {fileID: 1173002209}
   m_Layer: 0
-  m_Name: Panel - Instructions
+  m_Name: lbl_Chap3_text
   m_TagString: Translatable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class ConversationHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject talkingCharacterPointer;
     [SerializeField] private string[] conversationTitles;
     [SerializeField] private bool isVertical = false;
 
@@ -22,8 +23,9 @@ public class ConversationHandler : MonoBehaviour
     private string[] conversationToRead;
 
     public delegate void ConversationEnd();
+
     public ConversationEnd callback;
-    
+
     // parsing markers
     private const string ObjectiveLoser = "objectiveloser";
     private const string ObjectiveWinner = "objectivewinner";
@@ -91,6 +93,7 @@ public class ConversationHandler : MonoBehaviour
         // while there still are conversation snippets
         if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
         {
+            MoveAndRotateCharacterPointer();
             // as long as we're not at the end of all the pages, the button will show the next page
             if (currentConversationPage <= conversationBubble.textInfo.pageCount)
             {
@@ -132,23 +135,81 @@ public class ConversationHandler : MonoBehaviour
             // extracts the parameters in the parentheses
             string[] parameters = match.ToString().Split('(', ')')[1].Split(':');
             var replacementObjective = controllers.GetComponent<TestingEnvironment>().Objectives;
-            if (winnerLoserReplacement != null)
-            {
-                switch (parameters[0].ToLower())
-                {
-                    case ObjectiveWinner:
-                        return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1]);
-                    case ObjectiveLoser:
-                        return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1]);
-                }
-            }
 
-            return replacementObjective[parameters[0].ToLower()].GetValue(parameters[1]);
+            var conditional = ConditionalObjectiveValueReplacement(parameters, replacementObjective);
+            if (conditional != null)
+                return conditional;
+
+            return replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower());
         });
     }
 
     private void ToggleConversation(bool showConversation)
     {
         conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade(showConversation ? 1f : 0f, 0.2f);
+    }
+
+    private string ConditionalObjectiveValueReplacement(string[] parameters,
+        Dictionary<string, Objective> replacementObjective)
+    {
+        if (winnerLoserReplacement != null)
+        {
+            switch (parameters[0].ToLower())
+            {
+                case ObjectiveWinner:
+                    return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1].ToLower());
+                case ObjectiveLoser:
+                    return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1].ToLower());
+            }
+        }
+
+        return null;
+    }
+
+    private void MoveAndRotateCharacterPointer()
+    {
+        var tgtName = conversations[currentConversationTitle]["conversation_content"][currentConversationSnippet][
+            "target_character"];
+        GameObject tgtGameObject = null;
+
+        var replacement = ConditionalObjectiveValueReplacement(new string[] {tgtName, "name"},
+            controllers.GetComponent<TestingEnvironment>().Objectives);
+        tgtGameObject = replacement != null ? GameObject.Find(FirstLetterToUpper(replacement)) : GameObject.Find(tgtName);
+        
+        MoveCloserToTarget(talkingCharacterPointer, tgtGameObject, -420);
+        LookAt2D(talkingCharacterPointer, tgtGameObject, 180);
+    }
+
+    private void MoveCloserToTarget(GameObject source2D, GameObject worldTarget, float positionOffset)
+    {
+        var rt = source2D.GetComponent<RectTransform>();
+        var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position); 
+        //var parentWidth = source2D.transform.parent.GetComponent<RectTransform>().sizeDelta.x;
+       // var clampedX = 0f;
+       // if (tgt.x > parentWidth / 2)
+       //     clampedX = parentWidth / 2;
+       // else if (tgt.x < -parentWidth / 2)
+       //     clampedX = -parentWidth / 2;
+       // else
+       //     clampedX = tgt.x;
+        rt.localPosition = new Vector3(tgt.x + positionOffset, rt.localPosition.y, rt.localPosition.z);
+    }
+
+    private void LookAt2D(GameObject source2D, GameObject worldTarget, float angleOffset)
+    {
+        var diff = Camera.main.WorldToScreenPoint(worldTarget.transform.position) - source2D.transform.position;
+        float angle = Mathf.Atan2(diff.x, diff.y) * Mathf.Rad2Deg;
+        source2D.transform.rotation = Quaternion.Euler(0, 0, -angle + angleOffset);
+    }
+
+    private string FirstLetterToUpper(string str)
+    {
+        if (str == null)
+            return null;
+
+        if (str.Length > 1)
+            return char.ToUpper(str[0]) + str.Substring(1);
+
+        return str.ToUpper();
     }
 }
