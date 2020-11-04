@@ -49,9 +49,9 @@ public class TestingEnvironment : MonoBehaviour
 {
     private void Awake()
     {
-        TradeOffResults = new Dictionary<string, object[]>();
+        TradeOffClassification = new Dictionary<string, float>();
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }
-    public Dictionary<string, object[]> TradeOffResults { get; set; }
+    public Dictionary<string, float> TradeOffClassification { get; set; }
 }

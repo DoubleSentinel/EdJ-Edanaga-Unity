@@ -1241,7 +1241,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!1 &108432122
 GameObject:
   m_ObjectHideFlags: 0
@@ -14737,7 +14737,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!1001 &801531600
 PrefabInstance:
   m_ObjectHideFlags: 0
