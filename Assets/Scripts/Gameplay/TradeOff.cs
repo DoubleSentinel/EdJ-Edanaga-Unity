@@ -272,8 +272,15 @@ public class TradeOff : MonoBehaviour
             }
             else
             {
-                GameEventMessage.SendEvent("GoToTradeOffResults");
-                HideTradeOffUI();
+                GameEventMessage.SendEvent("GoToResultConversation");
+                GetComponent<ControllerChapter2_2>().conversationIndex = 2;
+                ShowTradeOffBackground(backgroundTradeOffFinals, false);
+                
+                // setting up callback after conversation to move onto results screen
+                GetComponent<ControllerChapter2_2>().conversationCallback = () =>
+                {
+                    GameEventMessage.SendEvent("GoToTradeOffResults");
+                };
             }
         }
         else
@@ -559,7 +566,7 @@ public class TradeOff : MonoBehaviour
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
-        foreach (KeyValuePair<string, float> result in results.OrderBy(x => x.Value))
+        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
             var resultData = objectives[result.Key];
