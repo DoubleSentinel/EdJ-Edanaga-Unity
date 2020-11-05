@@ -569,8 +569,15 @@ public class TradeOff : MonoBehaviour
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
             var resultData = objectives[result.Key];
+            var goRef = GameObject.Find(ConversationHandler.FirstLetterToUpper(result.Key));
 
-            resultItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{resultData.description} ({result.Value*100:0.0}%)";
+            resultItem.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{resultData.description} ({result.Value*100:0.0}%)";
+            
+            // background color
+            resultItem.GetComponent<Image>().color = goRef.GetComponent<Coloration>().fond;
+            // fill color
+            resultItem.transform.GetChild(0).GetComponent<Image>().color = goRef.GetComponent<Coloration>().contour;
+            
             var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
             rt.localScale = new Vector3(result.Value, rt.localScale.y, rt.localScale.z);
         }

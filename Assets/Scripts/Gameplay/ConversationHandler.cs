@@ -174,8 +174,10 @@ public class ConversationHandler : MonoBehaviour
 
         var replacement = ConditionalObjectiveValueReplacement(new string[] {tgtName, "name"},
             controllers.GetComponent<TestingEnvironment>().Objectives);
-        tgtGameObject = replacement != null ? GameObject.Find(FirstLetterToUpper(replacement)) : GameObject.Find(tgtName);
-        
+        tgtGameObject = replacement != null
+            ? GameObject.Find(FirstLetterToUpper(replacement))
+            : GameObject.Find(FirstLetterToUpper(tgtName));
+
         MoveCloserToTarget(talkingCharacterPointer, tgtGameObject, -420);
         LookAt2D(talkingCharacterPointer, tgtGameObject, 180);
     }
@@ -183,15 +185,15 @@ public class ConversationHandler : MonoBehaviour
     private void MoveCloserToTarget(GameObject source2D, GameObject worldTarget, float positionOffset)
     {
         var rt = source2D.GetComponent<RectTransform>();
-        var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position); 
+        var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position);
         //var parentWidth = source2D.transform.parent.GetComponent<RectTransform>().sizeDelta.x;
-       // var clampedX = 0f;
-       // if (tgt.x > parentWidth / 2)
-       //     clampedX = parentWidth / 2;
-       // else if (tgt.x < -parentWidth / 2)
-       //     clampedX = -parentWidth / 2;
-       // else
-       //     clampedX = tgt.x;
+        // var clampedX = 0f;
+        // if (tgt.x > parentWidth / 2)
+        //     clampedX = parentWidth / 2;
+        // else if (tgt.x < -parentWidth / 2)
+        //     clampedX = -parentWidth / 2;
+        // else
+        //     clampedX = tgt.x;
         rt.localPosition = new Vector3(tgt.x + positionOffset, rt.localPosition.y, rt.localPosition.z);
     }
 
@@ -202,7 +204,7 @@ public class ConversationHandler : MonoBehaviour
         source2D.transform.rotation = Quaternion.Euler(0, 0, -angle + angleOffset);
     }
 
-    private string FirstLetterToUpper(string str)
+    public static string FirstLetterToUpper(string str)
     {
         if (str == null)
             return null;

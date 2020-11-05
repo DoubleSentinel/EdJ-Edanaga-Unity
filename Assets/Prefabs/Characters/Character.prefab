@@ -1716,7 +1716,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914549490240313122}
-  - component: {fileID: 4914549490240313121}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -1742,44 +1741,6 @@ Transform:
   m_Father: {fileID: 4914549490351562014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4914549490240313121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914549490240313123}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f82646caed636945894d3f3937b3357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOffset: 1
-  offset: 0
-  autoOffset: 0
-  offsetAmount: 50
-  displayRotate: 1
-  rotate: 1
-  rotateZ: 0
-  sinRotSpeedZ: 2
-  sinRotAmpZ: 1
-  displayScale: 1
-  scale: 0
-  scaleLock: 0
-  scaleX: 1
-  sinSizeAmpX: -0.2
-  sinSizeSpeedX: 10
-  scaleY: 1
-  sinSizeAmpY: 0.5
-  sinSizeSpeedY: 10
-  displayMove: 1
-  move: 1
-  moveX: 0
-  sinXSpeed: 1
-  sinXAmp: 1
-  moveY: 1
-  sinYSpeed: 2
-  sinYAmp: 0.02
 --- !u!1 &4914549490243919951
 GameObject:
   m_ObjectHideFlags: 0
@@ -4720,7 +4681,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914549490938949753}
-  - component: {fileID: 4914549490938949754}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -4756,44 +4716,6 @@ Transform:
   m_Father: {fileID: 2537190712006455584}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4914549490938949754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914549490938949755}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f82646caed636945894d3f3937b3357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOffset: 1
-  offset: 1
-  autoOffset: 0
-  offsetAmount: 0
-  displayRotate: 1
-  rotate: 0
-  rotateZ: 0
-  sinRotSpeedZ: 5
-  sinRotAmpZ: 5
-  displayScale: 1
-  scale: 0
-  scaleLock: 0
-  scaleX: 1
-  sinSizeAmpX: -0.2
-  sinSizeSpeedX: 10
-  scaleY: 1
-  sinSizeAmpY: 0.5
-  sinSizeSpeedY: 10
-  displayMove: 1
-  move: 1
-  moveX: 0
-  sinXSpeed: 1
-  sinXAmp: 1
-  moveY: 1
-  sinYSpeed: 2
-  sinYAmp: 0.05
 --- !u!1 &4914549490958287438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6381,7 +6303,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914549491273722227}
-  - component: {fileID: 4914549491273722226}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -6406,44 +6327,6 @@ Transform:
   m_Father: {fileID: 4914549490351562014}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4914549491273722226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914549491273722228}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f82646caed636945894d3f3937b3357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOffset: 1
-  offset: 0
-  autoOffset: 0
-  offsetAmount: 50
-  displayRotate: 1
-  rotate: 1
-  rotateZ: 0
-  sinRotSpeedZ: 4
-  sinRotAmpZ: 4
-  displayScale: 1
-  scale: 0
-  scaleLock: 0
-  scaleX: 1
-  sinSizeAmpX: -0.2
-  sinSizeSpeedX: 10
-  scaleY: 1
-  sinSizeAmpY: 0.5
-  sinSizeSpeedY: 10
-  displayMove: 1
-  move: 0
-  moveX: 0
-  sinXSpeed: 1
-  sinXAmp: 1
-  moveY: 1
-  sinYSpeed: 2
-  sinYAmp: 0.03
 --- !u!1 &4914549491287644144
 GameObject:
   m_ObjectHideFlags: 0
@@ -8515,7 +8398,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4914549491855723089}
   - component: {fileID: 4914549491855723090}
-  - component: {fileID: 4914549491855723088}
   m_Layer: 0
   m_Name: Body
   m_TagString: Color:Contour
@@ -8590,44 +8472,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4914549491855723088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914549491855723091}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f82646caed636945894d3f3937b3357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOffset: 1
-  offset: 1
-  autoOffset: 0
-  offsetAmount: 50
-  displayRotate: 1
-  rotate: 0
-  rotateZ: 0
-  sinRotSpeedZ: 5
-  sinRotAmpZ: 5
-  displayScale: 1
-  scale: 0
-  scaleLock: 0
-  scaleX: 1
-  sinSizeAmpX: -0.2
-  sinSizeSpeedX: 10
-  scaleY: 1
-  sinSizeAmpY: 0.5
-  sinSizeSpeedY: 10
-  displayMove: 1
-  move: 1
-  moveX: 0
-  sinXSpeed: 1
-  sinXAmp: 1
-  moveY: 1
-  sinYSpeed: 2
-  sinYAmp: 0.03
 --- !u!1 &4914549491865585864
 GameObject:
   m_ObjectHideFlags: 0

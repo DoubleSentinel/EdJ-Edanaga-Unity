@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
 using TMPro;
@@ -52,9 +53,18 @@ public class UITranslator : MonoBehaviour
                 Transform label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
                 label.gameObject.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
+            catch (NullReferenceException)
+            {
+                referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+            }
             catch (UnityException)
             {
                 referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+            }
+            catch (KeyNotFoundException e)
+            {
+                print(e.Message);
+                print("The scene doesn't contain: " + element["gameobject_id"]);
             }
         }
     }

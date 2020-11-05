@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using SimpleJSON;
 using TMPro;
@@ -21,7 +20,6 @@ public class Authentication : MonoBehaviour
 
     private Button confirmButton;
     private Button loginButton;
-    private Button submitPasswordChangeButton;
 
     private bool isUsernameValid;
     private bool doesUserExist;
@@ -39,9 +37,12 @@ public class Authentication : MonoBehaviour
         m_api = controllers.GetComponent<BackendAPI>();
 
         confirmButton = GameObject.Find("btnConfirmCreate").GetComponent<Button>();
-        submitPasswordChangeButton = GameObject.Find("btnConfirmChange").GetComponent<Button>();
         loginButton = GameObject.Find("btnLogin").GetComponent<Button>();
         
+    }
+
+    private void Start()
+    {
         GetComponent<LanguageHandler>().translateUI();
     }
 
@@ -124,7 +125,6 @@ public class Authentication : MonoBehaviour
         passwordConfirmation = caller.GetComponent<TMP_InputField>().text;
         ChangeColor(caller, password == passwordConfirmation ? Color.green : Color.red);
         confirmButton.interactable = isUsernameValid && password == passwordConfirmation;
-        submitPasswordChangeButton.interactable = doesUserExist && password == passwordConfirmation;
     }
 
     // Checking usernames for availability on login
@@ -202,7 +202,7 @@ public class Authentication : MonoBehaviour
         });
     }
 
-
+    // Could be useful some other time, currently unused
     public void ChangePassword()
     {
         passwordConfirmation = "";

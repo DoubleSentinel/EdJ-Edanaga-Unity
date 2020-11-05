@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Coloration : MonoBehaviour
 {
-    [SerializeField] private Color contour;
-    [SerializeField] private Color fond;
-    [SerializeField] private Color accent;
-    private Color blanc = Color.white;
+    public Color contour;
+    public Color fond;
+    public Color accent;
+    public Color blanc = Color.white;
 
     private void Awake()
     {
