@@ -1950,7 +1950,7 @@ MonoBehaviour:
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
-  DisableGameObjectWhenHidden: 1
+  DisableGameObjectWhenHidden: 0
   DisableGraphicRaycasterWhenHidden: 1
   HideBehavior:
     Animation:
@@ -13286,7 +13286,9 @@ MonoBehaviour:
   - {fileID: 1047567293}
   - {fileID: 1918301119}
   - {fileID: 670037945}
-  HostBargainConversationBubble: {fileID: 1067376301}
+  ConversationBubbles:
+  - {fileID: 1067376301}
+  - {fileID: 1094737414}
   conversationIndex: 0
 --- !u!114 &745463521
 MonoBehaviour:

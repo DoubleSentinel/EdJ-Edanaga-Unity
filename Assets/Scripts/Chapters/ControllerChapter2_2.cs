@@ -16,8 +16,8 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject[] sceneFamilies;
 
 
-    [Header("Bargain Conversation References")]
-    public GameObject HostBargainConversationBubble;
+    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    
 
     // Local variables
     private GameObject controllers;
@@ -35,11 +35,11 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     private void Start()
     {
-        controllers.GetComponent<LanguageHandler>().translateUI();
-        foreach (GameObject o in GameObject.FindGameObjectsWithTag("DialogBubble"))
+        foreach (GameObject o in ConversationBubbles)
         {
             o.GetComponent<ConversationHandler>().FetchConversations();
         }
+        controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -71,9 +71,10 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().callback = conversationCallback;
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(conversationIndex);
-        HostBargainConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+        var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
     }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using SimpleJSON;
@@ -30,7 +31,7 @@ public class ConversationHandler : MonoBehaviour
     private const string ObjectiveLoser = "objectiveloser";
     private const string ObjectiveWinner = "objectivewinner";
 
-    public string[] winnerLoserReplacement = new string[2];
+    [HideInInspector] public string[] winnerLoserReplacement = new string[2];
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -52,12 +53,6 @@ public class ConversationHandler : MonoBehaviour
 
     public void FetchConversations()
     {
-        if(m_api.parameters == null)
-            m_api.parameters = new Dictionary<string, object>();
-        if (controllers == null)
-            controllers = GameObject.Find("Controllers");
-        if (conversations == null)
-            conversations = new Dictionary<string, JSONNode>();
         foreach (string title in conversationTitles)
         {
             m_api.parameters.Clear();
@@ -112,26 +107,38 @@ public class ConversationHandler : MonoBehaviour
                 currentConversationPage = 1;
                 currentConversationSnippet++;
 
-                // Try to queue the next conversation snippet
-                try
+                if(currentConversationSnippet>=conversationToRead.Length)
+                    EndConversation();
+                else
                 {
                     conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
                     NextConversationSnippet();
                 }
-                // on a fail, reset iterators, hide the conversation bubble, trigger conversation end callback
-                catch (IndexOutOfRangeException)
-                {
-                    currentConversationSnippet = 0;
-                    currentConversationPage = 1;
-                    conversationBubble.text = string.Empty;
-                    callback?.Invoke();
-                    ToggleConversation(false);
-                }
+               // // Try to queue the next conversation snippet
+               // try
+               // {
+               //     conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
+               //     NextConversationSnippet();
+               // }
+               // // on a fail, reset iterators, hide the conversation bubble, trigger conversation end callback
+               // catch (IndexOutOfRangeException)
+               // {
+               //     EndConversation();
+               // }
             }
         }
     }
 
     // Private utility functions
+    private void EndConversation()
+    {
+        currentConversationSnippet = 0;
+        currentConversationPage = 1;
+        conversationBubble.text = string.Empty;
+        callback?.Invoke();
+        ToggleConversation(false);
+    }
+
     private string ReplaceCustomMarkers(string text)
     {
         // this pattern recognizes value tags

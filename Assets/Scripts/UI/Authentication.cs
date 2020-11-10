@@ -38,7 +38,6 @@ public class Authentication : MonoBehaviour
 
         confirmButton = GameObject.Find("btnConfirmCreate").GetComponent<Button>();
         loginButton = GameObject.Find("btnLogin").GetComponent<Button>();
-        
     }
 
     private void Start()
