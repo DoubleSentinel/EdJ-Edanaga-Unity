@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11039,7 +11039,7 @@ PrefabInstance:
     - target: {fileID: 8041915280962898669, guid: 5fc31914bfb79d54da62f306dfba9843,
         type: 3}
       propertyPath: BASEAPIURL
-      value: 
+      value: localhost:5001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fc31914bfb79d54da62f306dfba9843, type: 3}
@@ -12052,7 +12052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1730558981
 RectTransform:
   m_ObjectHideFlags: 0

@@ -30,15 +30,16 @@ public class ControllerChapter2_2 : MonoBehaviour
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
+        conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+    }
 
+    private void Start()
+    {
         controllers.GetComponent<LanguageHandler>().translateUI();
-
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("DialogBubble"))
         {
             o.GetComponent<ConversationHandler>().FetchConversations();
         }
-
-        conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
 
     // --------------------  UI Callables  --------------------------------

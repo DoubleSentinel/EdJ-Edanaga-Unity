@@ -50,8 +50,12 @@ public class UITranslator : MonoBehaviour
             try
             {
                 // edge case where the label is a child of the element
-                Transform label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
-                label.gameObject.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                var label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
+                var labelTMP = label.gameObject.GetComponent<TextMeshProUGUI>();
+                if(labelTMP != null)
+                    labelTMP.SetText(element["text_value"]);
+                else
+                    referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
             catch (NullReferenceException)
             {

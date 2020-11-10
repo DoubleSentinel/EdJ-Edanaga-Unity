@@ -52,6 +52,12 @@ public class ConversationHandler : MonoBehaviour
 
     public void FetchConversations()
     {
+        if(m_api.parameters == null)
+            m_api.parameters = new Dictionary<string, object>();
+        if (controllers == null)
+            controllers = GameObject.Find("Controllers");
+        if (conversations == null)
+            conversations = new Dictionary<string, JSONNode>();
         foreach (string title in conversationTitles)
         {
             m_api.parameters.Clear();
