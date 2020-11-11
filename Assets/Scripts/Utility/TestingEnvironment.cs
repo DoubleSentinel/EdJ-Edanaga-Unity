@@ -23,7 +23,7 @@ public class Objective
         return $"name: {this.name}, description: {this.description}, unit: {this.unit}, worst: {this.worst}, best: {this.best}, global: {this.global_weight}";
     }
 
-    public string GetValue(string parameterName)
+    public object GetValue(string parameterName)
     {
         switch (parameterName)
         {
@@ -34,11 +34,11 @@ public class Objective
             case "unit":
                 return unit;
             case "worst":
-                return worst.ToString();
+                return worst;
             case "best":
-                return best.ToString();
+                return best;
             case "global_weight":
-                return global_weight.ToString();
+                return global_weight;
             default:
                 throw new Exception($"Parameter {parameterName} is not a valid parameter.");
         }

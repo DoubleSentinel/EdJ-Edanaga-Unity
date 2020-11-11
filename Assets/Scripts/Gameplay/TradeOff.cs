@@ -38,6 +38,8 @@ public class TradeOff : MonoBehaviour
     [Header("UI and 2D References")] [SerializeField]
     private GameObject tradeOffFinalists;
 
+    private List<GameObject> tradeOffFinalistsList = new List<GameObject>();
+
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
@@ -181,21 +183,20 @@ public class TradeOff : MonoBehaviour
 
     private void CloneForFinals(GameObject winner2D)
     {
-        GameObject clone = Instantiate(winner2D, tradeOffFinalists.transform);
-        // trimming the clone name
+        GameObject clone = Instantiate(winner2D, transform);
         clone.name = clone.name.Remove(10);
-        var map = new int[4][];
-        map[0] = new[] {0, 1};
-        map[1] = new[] {2, 3, 4};
-        map[2] = new[] {5, 6, 7};
-        map[3] = new[] {8, 9};
-        for (int i = 0; i < map.Length; i++)
-        {
-            if (map[i].Contains(int.Parse(clone.name.Last().ToString())))
-                clone.transform.SetSiblingIndex(i);
-        }
-
+        tradeOffFinalistsList.Add(clone);
         clone.SetActive(false);
+
+        // sorting children by name once all finalists have been chosen
+        if (tradeOffFinalistsList.Count == 4)
+        {
+            var orderedFinalists = tradeOffFinalistsList.OrderBy(x => int.Parse(x.name.Last().ToString()));
+            foreach (var go in orderedFinalists)
+            {
+                go.transform.SetParent(tradeOffFinalists.transform);
+            }
+        }
     }
 
     // ---------------------------- Callback Functions on conversation Ends ------------
@@ -223,7 +224,10 @@ public class TradeOff : MonoBehaviour
     private void StartTradeOffPair()
     {
         GetComponent<ControllerChapter2_2>().ClearCharacters();
-        ShowTradeOffBackground(finals ? backgroundTradeOffFinals : backgroundTradeOff, true);
+        if (finals)
+            ShowFinalsBackground(true);
+        else
+            ShowTradeOffBackground(true);
         string leftObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item1.name;
         string rightObjectiveName = m_familyTradeoffs[currentTradeOffPair].Item2.name;
         ShowTradeoffBattler(m_familyTradeoffs[currentTradeOffPair].Item1, tradeoffLeftBattlerUIPosition);
@@ -241,6 +245,7 @@ public class TradeOff : MonoBehaviour
             title = $"2.2.3_Battles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
         }
 
+        print(title);
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
@@ -257,8 +262,8 @@ public class TradeOff : MonoBehaviour
             if (!finals)
             {
                 GameEventMessage.SendEvent("GoToFinalsConversation");
-                GetComponent<ControllerChapter2_2>().conversationIndex = 1;
-                ShowTradeOffBackground(backgroundTradeOff, true);
+                GetComponent<ControllerChapter2_2>().bargainConversationIndex = 1;
+                ShowTradeOffBackground(true);
                 HideTradeOffUI();
                 finals = true;
                 // setting up callback after conversation to move onto finals
@@ -266,16 +271,16 @@ public class TradeOff : MonoBehaviour
                 {
                     GameEventMessage.SendEvent("GoToFinals");
                     PrepareTradeOffs(tradeOffFinalists);
-                    ShowTradeOffBackground(backgroundTradeOff, false);
-                    ShowTradeOffBackground(backgroundTradeOffFinals, true);
+                    ShowTradeOffBackground(false);
+                    ShowFinalsBackground(true);
                 };
             }
             else
             {
                 GameEventMessage.SendEvent("GoToResultConversation");
-                GetComponent<ControllerChapter2_2>().conversationIndex = 2;
-                ShowTradeOffBackground(backgroundTradeOffFinals, false);
-                
+                GetComponent<ControllerChapter2_2>().bargainConversationIndex = 2;
+                ShowFinalsBackground(false);
+
                 // setting up callback after conversation to move onto results screen
                 GetComponent<ControllerChapter2_2>().conversationCallback = () =>
                 {
@@ -287,7 +292,7 @@ public class TradeOff : MonoBehaviour
         {
             GameEventMessage.SendEvent("GoToTables");
             HideTradeOffUI();
-            ShowTradeOffBackground(backgroundTradeOff, false);
+            ShowTradeOffBackground(false);
         }
     }
 
@@ -381,9 +386,14 @@ public class TradeOff : MonoBehaviour
             objectiveWeightsFamilyD[1].Item2 * globalWeights[3].Item2);
     }
 
-    private void ShowTradeOffBackground(GameObject background, bool isShown)
+    private void ShowTradeOffBackground(bool isShown)
     {
-        background.SetActive(isShown);
+        backgroundTradeOff.SetActive(isShown);
+    }
+
+    private void ShowFinalsBackground(bool isShown)
+    {
+        backgroundTradeOffFinals.SetActive(isShown);
     }
 
     private float ConvertSliderValue(Slider slider, Objective loserData)
@@ -510,9 +520,15 @@ public class TradeOff : MonoBehaviour
         objectiveWeightsFamilyD.Clear();
 
         controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Clear();
-        finals = false;
+        tradeOffWeightMatrix.Clear();
 
-        ShowTradeOffBackground(backgroundTradeOffFinals, false);
+        GetComponent<ControllerChapter2_2>().bargainConversationIndex = 0;
+        GetComponent<ControllerChapter2_2>().conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+
+        finals = false;
+        currentTradeOffPair = -1;
+
+        ShowFinalsBackground(false);
     }
 
     // Called by the Left/RightBattlerSelectButtons on the TradeOff Battle View
@@ -565,19 +581,25 @@ public class TradeOff : MonoBehaviour
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
+        foreach (Transform child in resultList.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
             var resultData = objectives[result.Key];
             var goRef = GameObject.Find(ConversationHandler.FirstLetterToUpper(result.Key));
 
-            resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{resultData.description} ({result.Value*100:0.0}%)";
-            
+            resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"{resultData.description} ({result.Value * 100:0.0}%)";
+
             // background color
             resultItem.GetComponent<Image>().color = goRef.GetComponent<Coloration>().fond;
             // fill color
             resultItem.transform.GetChild(0).GetComponent<Image>().color = goRef.GetComponent<Coloration>().contour;
-            
+
             var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
             rt.localScale = new Vector3(result.Value, rt.localScale.y, rt.localScale.z);
         }

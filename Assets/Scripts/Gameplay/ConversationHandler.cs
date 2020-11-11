@@ -114,17 +114,6 @@ public class ConversationHandler : MonoBehaviour
                     conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
                     NextConversationSnippet();
                 }
-               // // Try to queue the next conversation snippet
-               // try
-               // {
-               //     conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
-               //     NextConversationSnippet();
-               // }
-               // // on a fail, reset iterators, hide the conversation bubble, trigger conversation end callback
-               // catch (IndexOutOfRangeException)
-               // {
-               //     EndConversation();
-               // }
             }
         }
     }
@@ -152,8 +141,7 @@ public class ConversationHandler : MonoBehaviour
             var conditional = ConditionalObjectiveValueReplacement(parameters, replacementObjective);
             if (conditional != null)
                 return conditional;
-
-            return replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower());
+            return $"{replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower()):0.0}";
         });
     }
 
@@ -170,9 +158,9 @@ public class ConversationHandler : MonoBehaviour
             switch (parameters[0].ToLower())
             {
                 case ObjectiveWinner:
-                    return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1].ToLower());
+                    return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1].ToLower()).ToString();
                 case ObjectiveLoser:
-                    return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1].ToLower());
+                    return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1].ToLower()).ToString();
             }
         }
 

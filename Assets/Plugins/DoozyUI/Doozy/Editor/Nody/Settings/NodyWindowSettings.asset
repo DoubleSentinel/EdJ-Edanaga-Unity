@@ -51,7 +51,7 @@ MonoBehaviour:
     SelectedNodes: []
     DeletedNodes: []
   CurrentView: 1
-  CurrentPanOffset: {x: 221.27362, y: 412.29984}
+  CurrentPanOffset: {x: 312.27362, y: 378.29984}
   DefaultPanOffset: {x: 0, y: 0}
   IsDirty: 0
   SaveCurrentGraphWithControlS: 1

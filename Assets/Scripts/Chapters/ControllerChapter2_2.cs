@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DG.Tweening;
-using Doozy.Engine;
-using TMPro;
+﻿using Doozy.Engine;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
@@ -23,7 +17,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     private GameObject controllers;
 
     // BargainConversation vars
-    [HideInInspector] public int conversationIndex = 0;
+    [HideInInspector] public int bargainConversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
@@ -43,9 +37,13 @@ public class ControllerChapter2_2 : MonoBehaviour
     }
 
     // --------------------  UI Callables  --------------------------------
-    public void ToggleBackground(GameObject background)
+    public void HideBackground(GameObject background)
     {
-        background.SetActive(!background.activeSelf);
+        background.SetActive(false);
+    }
+    public void ShowBackground(GameObject background)
+    {
+        background.SetActive(true);
     }
 
     public void ClearCharacters()
@@ -73,7 +71,7 @@ public class ControllerChapter2_2 : MonoBehaviour
 
         var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
         ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
+        ch.GenerateConversation(bargainConversationIndex);
         ch.NextConversationSnippet();
     }
 
