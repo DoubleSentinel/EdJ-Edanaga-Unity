@@ -118,8 +118,7 @@ public class ConversationHandler : MonoBehaviour
         }
     }
 
-    // Private utility functions
-    private void EndConversation()
+    public void EndConversation()
     {
         currentConversationSnippet = 0;
         currentConversationPage = 1;
@@ -127,7 +126,8 @@ public class ConversationHandler : MonoBehaviour
         callback?.Invoke();
         ToggleConversation(false);
     }
-
+    
+    // Private utility functions
     private string ReplaceCustomMarkers(string text)
     {
         // this pattern recognizes value tags

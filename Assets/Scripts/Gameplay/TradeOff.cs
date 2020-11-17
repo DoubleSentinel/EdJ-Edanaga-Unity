@@ -7,6 +7,7 @@ using Doozy.Engine;
 using Doozy.Engine.Utils.ColorModels;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public struct IntermediateTradeOffPair
@@ -43,7 +44,7 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
-    [SerializeField] private GameObject[] tradeOffButtons;
+    [SerializeField] private GameObject[] tradeOffStartUIElements;
     [SerializeField] private GameObject resultListItemPrefab;
 
     // Environment
@@ -196,6 +197,7 @@ public class TradeOff : MonoBehaviour
             {
                 go.transform.SetParent(tradeOffFinalists.transform);
             }
+            tradeOffFinalistsList.Clear();
         }
     }
 
@@ -261,13 +263,12 @@ public class TradeOff : MonoBehaviour
         {
             if (!finals)
             {
-                GameEventMessage.SendEvent("GoToFinalsConversation");
-                GetComponent<ControllerChapter2_2>().bargainConversationIndex = 1;
+                GameEventMessage.SendEvent("GoToFinalsIntroConversation");
                 ShowTradeOffBackground(true);
                 HideTradeOffUI();
                 finals = true;
-                // setting up callback after conversation to move onto finals
-                GetComponent<ControllerChapter2_2>().conversationCallback = () =>
+                // setting up callback after conversation to move onto final tradeoffs
+                GetComponent<ControllerChapter2_2>().groupedConversationCallback = () =>
                 {
                     GameEventMessage.SendEvent("GoToFinals");
                     PrepareTradeOffs(tradeOffFinalists);
@@ -278,11 +279,11 @@ public class TradeOff : MonoBehaviour
             else
             {
                 GameEventMessage.SendEvent("GoToResultConversation");
-                GetComponent<ControllerChapter2_2>().bargainConversationIndex = 2;
+                GetComponent<ControllerChapter2_2>().hostConversationIndex = 1;
                 ShowFinalsBackground(false);
 
                 // setting up callback after conversation to move onto results screen
-                GetComponent<ControllerChapter2_2>().conversationCallback = () =>
+                GetComponent<ControllerChapter2_2>().hostConversationCallback = () =>
                 {
                     GameEventMessage.SendEvent("GoToTradeOffResults");
                 };
@@ -291,7 +292,6 @@ public class TradeOff : MonoBehaviour
         else
         {
             GameEventMessage.SendEvent("GoToTables");
-            HideTradeOffUI();
             ShowTradeOffBackground(false);
         }
     }
@@ -503,10 +503,9 @@ public class TradeOff : MonoBehaviour
     public void ResetTradeOffs()
     {
         GameEventMessage.SendEvent("GoToTitle");
-        foreach (var button in tradeOffButtons)
+        foreach (var element in tradeOffStartUIElements)
         {
-            button.GetComponent<Button>().interactable = true;
-            button.GetComponent<CanvasGroup>().alpha = 1;
+            element.GetComponent<EventTrigger>().enabled = true;
         }
 
         foreach (Transform child in tradeOffFinalists.transform)
@@ -522,8 +521,9 @@ public class TradeOff : MonoBehaviour
         controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Clear();
         tradeOffWeightMatrix.Clear();
 
-        GetComponent<ControllerChapter2_2>().bargainConversationIndex = 0;
-        GetComponent<ControllerChapter2_2>().conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        GetComponent<ControllerChapter2_2>().IsTradeOff = true;
+        GetComponent<ControllerChapter2_2>().hostConversationIndex = 0;
+        GetComponent<ControllerChapter2_2>().hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
 
         finals = false;
         currentTradeOffPair = -1;
@@ -559,10 +559,6 @@ public class TradeOff : MonoBehaviour
         ToggleSelectionButtons();
     }
 
-    public void DeactivateButton(GameObject caller)
-    {
-        caller.GetComponent<Button>().interactable = false;
-    }
 
     public void UpdateUserSelection(GameObject handleLabel)
     {

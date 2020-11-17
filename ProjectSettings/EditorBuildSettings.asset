@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapters/TitleScreen.unity
     guid: 3020bf33b8344d04abd5a7692149cdef
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chapters/Chapter2.1.unity
     guid: 82be77473caa51e45820827931ad392e
   - enabled: 1

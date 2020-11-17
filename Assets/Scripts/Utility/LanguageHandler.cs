@@ -34,7 +34,7 @@ public class LanguageHandler : MonoBehaviour
             }
             try
             {
-                m_currentLanguageId = languages[getLanguage()];
+                m_currentLanguageId = languages[getLanguage().ToUpper()];
             }
             catch (EntryPointNotFoundException)
             {

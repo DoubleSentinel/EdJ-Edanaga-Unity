@@ -160,8 +160,6 @@ public class Authentication : MonoBehaviour
         m_api.parameters.Clear();
         m_api.parameters.Add("username", username);
         m_api.parameters.Add("userpass", password);
-        print(username);
-        print(password);
         m_api.ApiPost("login_user", m_api.parameters, response =>
         {
             JSONNode nodeResponse = JSON.Parse(response);

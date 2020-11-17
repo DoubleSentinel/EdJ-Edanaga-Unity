@@ -10976,6 +10976,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8041915280962898666, guid: 5fc31914bfb79d54da62f306dfba9843,
+        type: 3}
+      propertyPath: defaultLanguage
+      value: EN
+      objectReference: {fileID: 0}
     - target: {fileID: 8041915280962898667, guid: 5fc31914bfb79d54da62f306dfba9843,
         type: 3}
       propertyPath: m_Name
@@ -15870,7 +15875,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Chapter2.1
+              m_StringArgument: Chapter2.2
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []

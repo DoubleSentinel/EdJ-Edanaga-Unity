@@ -1,5 +1,6 @@
 ﻿using Doozy.Engine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
@@ -15,16 +16,22 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     // Local variables
     private GameObject controllers;
+    
+    // Flags
+    public bool IsTradeOff { get; set; }
 
     // BargainConversation vars
-    [HideInInspector] public int bargainConversationIndex = 0;
-    public ConversationHandler.ConversationEnd conversationCallback;
+    [HideInInspector] public int hostConversationIndex = 0;
+    [HideInInspector] public int groupedConversationIndex = 0;
+    public ConversationHandler.ConversationEnd hostConversationCallback;
+    public ConversationHandler.ConversationEnd groupedConversationCallback;
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
+        IsTradeOff = true;
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
 
     private void Start()
@@ -55,8 +62,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-    // View - 2.2.1/6/8 - Bargain conversation setup
-    public void SetupBargainConversation()
+    public void SetupHostConversation()
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
@@ -70,11 +76,29 @@ public class ControllerChapter2_2 : MonoBehaviour
         sceneHost.SetActive(true);
 
         var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(bargainConversationIndex);
+        ch.callback = hostConversationCallback;
+        ch.GenerateConversation(hostConversationIndex);
         ch.NextConversationSnippet();
     }
 
+    public void SetupGroupedConversation()
+    {
+        float height = Screen.height * 0.75f / 2f;
+        float depth = -1f;
+        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
+            height));
+        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
+            height));
+        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
+        sceneHost.transform.position = new Vector3(host.x, host.y, depth);
+        scenePlayer.SetActive(true);
+        sceneHost.SetActive(true);
+
+        var ch =  ConversationBubbles[2].GetComponent<ConversationHandler>();
+        ch.callback = groupedConversationCallback;
+        ch.GenerateConversation(groupedConversationIndex);
+        ch.NextConversationSnippet();
+    }
 
     // View - 2.2.2/7 - Tables
     public void SetupBargainTables()
@@ -97,5 +121,28 @@ public class ControllerChapter2_2 : MonoBehaviour
                 passage++;
             }
         }
+    }
+    
+    // View - TradeOff - 2.2.3/5 - Battle
+    public void StartActivityWithFamily(GameObject family)
+    {
+        if (IsTradeOff)
+        {
+            GameEventMessage.SendEvent("GoToTradeOffs");
+            GetComponent<TradeOff>().PrepareTradeOffs(family);
+        }
+        else
+        {
+            GameEventMessage.SendEvent("GoToSwing");
+        }
+    }
+
+
+    // View - TradeOff - 2.2.6 - Results
+    
+    // Utility UI methods
+    public void DeactivateFamilySelector(GameObject caller)
+    {
+        caller.GetComponent<EventTrigger>().enabled = false;
     }
 }
