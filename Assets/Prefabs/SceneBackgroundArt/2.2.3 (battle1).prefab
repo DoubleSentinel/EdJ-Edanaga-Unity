@@ -1480,7 +1480,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: -7689534660074413575, guid: aa17ee9eca6ef4251b88f005d5a0c31d,
+    - sprite: {fileID: -304611164750975503, guid: 91de22aab0769bf48b7901a63ed27ff1,
         type: 3}
     flipU: 0
     flipV: 0
@@ -4846,12 +4846,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5466189894728399850}
   m_Layer: 0
-  m_Name: 2.2.3 (battle)
+  m_Name: 2.2.3 (battle1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5466189894728399850
 Transform:
   m_ObjectHideFlags: 0

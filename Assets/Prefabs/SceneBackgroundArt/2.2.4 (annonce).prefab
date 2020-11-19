@@ -264,6 +264,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1098835114036675329}
     m_Modifications:
+    - target: {fileID: 4581490328993273716, guid: 17129ad410db44530b55c9c2a7ff49ba,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: -304611164750975503, guid: 91de22aab0769bf48b7901a63ed27ff1,
+        type: 3}
     - target: {fileID: 4581490328993273717, guid: 17129ad410db44530b55c9c2a7ff49ba,
         type: 3}
       propertyPath: m_LocalPosition.x
