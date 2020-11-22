@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7395,7 +7395,7 @@ MonoBehaviour:
   DebugMode: 0
   ControllerName: 
   DontDestroyControllerOnLoad: 0
-  m_graphModel: {fileID: 11400000, guid: d79ce15639d986e44a0be90043b7f86c, type: 2}
+  m_graphModel: {fileID: 11400000, guid: ca5aee6e2c9fe1b4e9742cc3f9aa1d26, type: 2}
 --- !u!4 &843097911
 Transform:
   m_ObjectHideFlags: 0
@@ -12097,7 +12097,7 @@ MonoBehaviour:
   StartAlpha: 1
   AllowMultipleClicks: 1
   ButtonCategory: Test
-  ButtonName: LoadChapter2.1
+  ButtonName: LoadChapter1
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -15875,7 +15875,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Chapter2.2
+              m_StringArgument: Chapter1
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
