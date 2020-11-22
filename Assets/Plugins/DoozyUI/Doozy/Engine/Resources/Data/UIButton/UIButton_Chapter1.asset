@@ -17,6 +17,9 @@ MonoBehaviour:
   Names:
   - ContinueToConv
   - ContinueToAlt
-  - ContinueToAltInfo
-  - ContinueToAltDnD
-  - BackToAlt
+  - ContinueToAltInfo0
+  - ContinueToAltInfo1
+  - ContinueToAltInfo2
+  - ContinueTpAltInfo3
+  - ContinueToAltinfo4
+  - ContinueToAltInfo5
