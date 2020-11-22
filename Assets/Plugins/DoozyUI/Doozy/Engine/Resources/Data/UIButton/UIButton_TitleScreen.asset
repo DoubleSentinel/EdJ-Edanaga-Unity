@@ -15,9 +15,8 @@ MonoBehaviour:
   CategoryName: TitleScreen
   DatabaseType: 0
   Names:
-  - Login
-  - CreateAccount
-  - SubmitCreation
   - ChangePassword
+  - CreateAccount
+  - Login
   - SubmitChangePassword
-  - 
+  - SubmitCreation

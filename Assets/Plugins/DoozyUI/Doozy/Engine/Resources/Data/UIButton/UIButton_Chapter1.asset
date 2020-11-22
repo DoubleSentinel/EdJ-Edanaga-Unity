@@ -15,11 +15,13 @@ MonoBehaviour:
   CategoryName: Chapter1
   DatabaseType: 0
   Names:
-  - ContinueToConv
+  - BackToAlt
   - ContinueToAlt
+  - ContinueToAltDnD
   - ContinueToAltInfo0
   - ContinueToAltInfo1
   - ContinueToAltInfo2
-  - ContinueTpAltInfo3
   - ContinueToAltinfo4
   - ContinueToAltInfo5
+  - ContinueToConv
+  - ContinueTpAltInfo3
