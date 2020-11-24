@@ -245,7 +245,6 @@ public class TradeOff : MonoBehaviour
             title = $"2.2.3_Battles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
         }
 
-        print(title);
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
@@ -290,6 +289,7 @@ public class TradeOff : MonoBehaviour
         else
         {
             GameEventMessage.SendEvent("GoToTables");
+            HideTradeOffUI();
             ShowTradeOffBackground(false);
         }
     }
@@ -500,7 +500,7 @@ public class TradeOff : MonoBehaviour
     // -------------------- Utility UI callabales  -----------------------------
     public void ResetTradeOffs()
     {
-        GameEventMessage.SendEvent("GoToTitle");
+        GameEventMessage.SendEvent("GoToTitleChapter3");
         foreach (var element in tradeOffStartUIElements)
         {
             element.GetComponent<EventTrigger>().enabled = true;
@@ -580,6 +580,7 @@ public class TradeOff : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        // creating the visual list with the given prefab
         foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);

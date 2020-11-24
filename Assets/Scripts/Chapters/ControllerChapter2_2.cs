@@ -1,4 +1,6 @@
-﻿using Doozy.Engine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Doozy.Engine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,9 +12,8 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
 
-
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
-    
+    public GameObject ConversationGroup;
 
     // Local variables
     private GameObject controllers;
@@ -36,10 +37,6 @@ public class ControllerChapter2_2 : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject o in ConversationBubbles)
-        {
-            o.GetComponent<ConversationHandler>().FetchConversations();
-        }
         controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
@@ -85,21 +82,53 @@ public class ControllerChapter2_2 : MonoBehaviour
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
-        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
-            height));
-        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
-            height));
-        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
+        float step = Screen.width / 8;
+        
+        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(2*step, height));
         sceneHost.transform.position = new Vector3(host.x, host.y, depth);
-        scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
+        
+        for (int i = 0; i < ConversationGroup.transform.childCount; i++)
+        {
+            var go = ConversationGroup.transform.GetChild(i).gameObject;
+            Vector3 uiPos = Camera.main.ScreenToWorldPoint(new Vector3((4 + i)*step, height));
+            go.transform.position = new Vector3(uiPos.x, uiPos.y, depth);
+            go.SetActive(true);
+        }
 
         var ch =  ConversationBubbles[2].GetComponent<ConversationHandler>();
         ch.callback = groupedConversationCallback;
         ch.GenerateConversation(groupedConversationIndex);
         ch.NextConversationSnippet();
     }
+    
+    public void PrepareResultsConversation()
+    {
+        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        int i = 0;
+        
+        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
+        {
+            if (i != 3){
+                Instantiate(GameObject.Find(ConversationHandler.FirstLetterToUpper(result.Key)), ConversationGroup.transform);
+                i++;
+            }
+            else
+            {
+                break;
+            }
+        }
 
+        groupedConversationCallback = () =>
+        {
+            GameEventMessage.SendEvent("GoToTitleChapter4");
+            foreach (Transform child in ConversationGroup.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        };
+    }
+    
     // View - 2.2.2/7 - Tables
     public void SetupBargainTables()
     {
