@@ -19,7 +19,8 @@ public class ControllerChapter2_2 : MonoBehaviour
     private GameObject controllers;
     
     // Flags
-    public bool IsTradeOff { get; set; }
+    [HideInInspector]
+    public bool isTradeOff = true;
 
     // BargainConversation vars
     [HideInInspector] public int hostConversationIndex = 0;
@@ -30,7 +31,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        IsTradeOff = true;
+        isTradeOff = true;
         controllers = GameObject.Find("Controllers");
         hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
@@ -105,27 +106,27 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void PrepareResultsConversation()
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
-        int i = 0;
+        var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
+        var winningFamily = GameObject.Find(ConversationHandler.FirstLetterToUpper(winningFamilyMember.Key)).transform.parent;
         
-        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
+        ClearCharacterConversationGroup();
+        
+        // Add Family members of the winning family
+        foreach (Transform objective in winningFamily)
         {
-            if (i != 3){
-                Instantiate(GameObject.Find(ConversationHandler.FirstLetterToUpper(result.Key)), ConversationGroup.transform);
-                i++;
-            }
-            else
-            {
-                break;
-            }
+            Instantiate(objective.gameObject, ConversationGroup.transform);
         }
 
         groupedConversationCallback = () =>
         {
             GameEventMessage.SendEvent("GoToTitleChapter4");
-            foreach (Transform child in ConversationGroup.transform)
+            ClearCharacterConversationGroup();
+            isTradeOff = false;
+            hostConversationIndex = 2;
+            hostConversationCallback = () =>
             {
-                Destroy(child.gameObject);
-            }
+                GameEventMessage.SendEvent("GoToTables");
+            };
         };
     }
     
@@ -155,7 +156,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // View - TradeOff - 2.2.3/5 - Battle
     public void StartActivityWithFamily(GameObject family)
     {
-        if (IsTradeOff)
+        if (isTradeOff)
         {
             GameEventMessage.SendEvent("GoToTradeOffs");
             GetComponent<TradeOff>().PrepareTradeOffs(family);
@@ -166,12 +167,17 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-
-    // View - TradeOff - 2.2.6 - Results
-    
     // Utility UI methods
     public void DeactivateFamilySelector(GameObject caller)
     {
         caller.GetComponent<EventTrigger>().enabled = false;
+    }
+
+    private void ClearCharacterConversationGroup()
+    {
+        foreach (Transform child in ConversationGroup.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

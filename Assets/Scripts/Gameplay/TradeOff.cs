@@ -519,7 +519,7 @@ public class TradeOff : MonoBehaviour
         controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Clear();
         tradeOffWeightMatrix.Clear();
 
-        GetComponent<ControllerChapter2_2>().IsTradeOff = true;
+        GetComponent<ControllerChapter2_2>().isTradeOff = true;
         GetComponent<ControllerChapter2_2>().hostConversationIndex = 0;
         GetComponent<ControllerChapter2_2>().hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
 
@@ -556,7 +556,6 @@ public class TradeOff : MonoBehaviour
             .Objectives[winnerName.ToLower()]);
         ToggleSelectionButtons();
     }
-
 
     public void UpdateUserSelection(GameObject handleLabel)
     {

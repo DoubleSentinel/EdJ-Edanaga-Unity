@@ -232,13 +232,13 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: Chapter2
     InstantAction: 0
-    Name: 2.2 Titles
+    Name: 2.2 Title Chapter 3
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: Chapter2
     InstantAction: 0
-    Name: 2.2 Titles
+    Name: 2.2 Title Chapter 3
 --- !u!114 &-3418554130093598435
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -900,13 +900,13 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: Chapter2
     InstantAction: 0
-    Name: 2.1 Town
+    Name: 2.2 Title Chapter 4
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: Chapter2
     InstantAction: 0
-    Name: 2.1 Town
+    Name: 2.2 Title Chapter 4
 --- !u!114 &7577858422730177320
 MonoBehaviour:
   m_ObjectHideFlags: 1
