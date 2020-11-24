@@ -64,9 +64,9 @@ public class ControllerChapter1 : MonoBehaviour
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
-        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
+        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
             height));
-        Vector3 journalist = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
+        Vector3 journalist = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
             height));
         Vector3 engineer = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 5 / 6,
            height));
