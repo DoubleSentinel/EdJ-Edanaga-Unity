@@ -169,6 +169,13 @@ MonoBehaviour:
       m_inputSocketId: e72db05c-bb68-433f-ab46-a8759f8b4a3d
       m_outputNodeId: 365c604d-bfc1-4e13-b08c-1cad255b14ef
       m_outputSocketId: a8859c2e-f8fe-44a1-905c-48ff997ba9f9
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 92ddf5c0-9a32-4850-a577-d4605b31b1c2
+      m_inputNodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
+      m_inputSocketId: e72db05c-bb68-433f-ab46-a8759f8b4a3d
+      m_outputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_outputSocketId: 0f84f2ce-7965-4e56-94a1-81c93e6ec1c1
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -776,6 +783,32 @@ MonoBehaviour:
     m_id: 92a76365-08ef-46d4-b772-2ad3ae80241b
     m_nodeId: 5a468793-8e1a-450c-900b-c73504c22cda
     m_socketName: OutputSocket_0
+    m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAlt","GameEvent":"ContinueToAlt","TimeDelay":3.0,"Trigger":3}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 92ddf5c0-9a32-4850-a577-d4605b31b1c2
+      m_inputNodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
+      m_inputSocketId: e72db05c-bb68-433f-ab46-a8759f8b4a3d
+      m_outputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_outputSocketId: 0f84f2ce-7965-4e56-94a1-81c93e6ec1c1
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 86
+    m_id: 0f84f2ce-7965-4e56-94a1-81c93e6ec1c1
+    m_nodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+    m_socketName: OutputSocket_1
     m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAlt","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -787,7 +820,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 128
+  m_height: 152
   m_width: 216
   m_x: -1152
   m_y: -228
@@ -836,7 +869,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132505181280826513
+  m_lastModified: 132506773880892699
 --- !u!114 &3894428176779684713
 MonoBehaviour:
   m_ObjectHideFlags: 1
