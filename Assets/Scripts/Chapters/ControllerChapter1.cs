@@ -20,15 +20,13 @@ public class ControllerChapter1 : MonoBehaviour
     public bool IsTradeOff { get; set; }
 
     // BargainConversation vars
-    [HideInInspector] public int hostConversationIndex = 0;
-    [HideInInspector] public int groupedConversationIndex = 0;
-    public ConversationHandler.ConversationEnd hostConversationCallback;
-    public ConversationHandler.ConversationEnd groupedConversationCallback;
+    [HideInInspector] public int conversationIndex = 0;
+    public ConversationHandler.ConversationEnd conversationCallback;
 
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        hostConversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
+        conversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
     }
 
     private void Start()
@@ -44,6 +42,11 @@ public class ControllerChapter1 : MonoBehaviour
     public void HideBackground(GameObject background)
     {
         background.SetActive(false);
+    }
+
+    public void SetConversationIndex(int index)
+    {
+        conversationIndex = index;
     }
     public void ShowBackground(GameObject background)
     {
@@ -81,8 +84,8 @@ public class ControllerChapter1 : MonoBehaviour
 
 
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = hostConversationCallback;
-        ch.GenerateConversation(hostConversationIndex);
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
     }
 }
