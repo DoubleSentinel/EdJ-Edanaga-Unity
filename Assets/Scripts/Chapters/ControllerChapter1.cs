@@ -12,12 +12,11 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
-
     // Local variables
     private GameObject controllers;
 
     // Flags
-    public bool IsTradeOff { get; set; }
+    //public bool IsTradeOff { get; set; }
 
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
@@ -39,18 +38,20 @@ public class ControllerChapter1 : MonoBehaviour
     }
 
     // --------------------  UI Callables  --------------------------------
+    /*
     public void HideBackground(GameObject background)
     {
         background.SetActive(false);
     }
 
-    public void SetConversationIndex(int index)
-    {
-        conversationIndex = index;
-    }
     public void ShowBackground(GameObject background)
     {
         background.SetActive(true);
+    }
+    */
+    public void SetConversationIndex(int index)
+    {
+        conversationIndex = index;
     }
 
     //Not used in the this chapter
@@ -81,7 +82,6 @@ public class ControllerChapter1 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
-
 
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
         ch.callback = conversationCallback;
