@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c04155d43740f46a3223a7eb386e0c, type: 3}
-  m_Name: _UIPopupDatabase
+  m_Script: {fileID: 11500000, guid: 17215f689fb19554ab6b81c2308113df, type: 3}
+  m_Name: UIPopupLink_Popup1
   m_EditorClassIdentifier: 
-  PopupNames:
-  - Popup1
-  Popups:
-  - {fileID: 11400000, guid: df75d981934100045b9d15b603df4d1f, type: 2}
+  PopupName: Popup1
+  Prefab: {fileID: 4398842793168094348, guid: fa82c8778d28ecc4189af393d5c09f46, type: 3}
