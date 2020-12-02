@@ -3016,7 +3016,7 @@ MonoBehaviour:
   AutoSelectButtonAfterShow: 1
   AutoSelectPreviouslySelectedButtonAfterHide: 1
   BlockBackButton: 1
-  CanvasName: UIView
+  CanvasName: MasterCanvas
   Container:
     Canvas: {fileID: 4398842791879788039}
     CanvasGroup: {fileID: 4398842791879788037}
@@ -3030,7 +3030,7 @@ MonoBehaviour:
     StartPosition: {x: 0, y: 0, z: 0}
     StartRotation: {x: -0, y: 0, z: 0}
     StartScale: {x: 1, y: 1, z: 1}
-  CustomCanvasName: 1
+  CustomCanvasName: 0
   Data:
     Buttons:
     - {fileID: 4398842792905822018}
@@ -3040,7 +3040,7 @@ MonoBehaviour:
     - {fileID: 4398842792661051236}
     - {fileID: 4398842792347044621}
   DestroyAfterHide: 1
-  DisplayTarget: 0
+  DisplayTarget: 1
   HideBehavior:
     Animation:
       AnimationType: 2

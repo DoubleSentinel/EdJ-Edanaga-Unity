@@ -6,7 +6,7 @@ public class PopupChapter1 : MonoBehaviour
 {
     [Header("Popup Values")]
     public string PopupName = "Popup1";
-    public GameObject TitleObject;
+    //public GameObject TitleObject;
     public string Title = "Title";
     public GameObject MessageObject;
     public string Message = "Popup message for player";
@@ -21,8 +21,8 @@ public class PopupChapter1 : MonoBehaviour
             return;
 
         //popup.Data.SetLabelsTexts(Title, Message);
-        Title = TitleObject.GetComponent<Text>().ToString();
-        Message = MessageObject.GetComponent<Text>().ToString();
+        //Title = TitleObject.GetComponent<Text>().ToString();
+        //Message = MessageObject.GetComponent<Text>().ToString();
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup

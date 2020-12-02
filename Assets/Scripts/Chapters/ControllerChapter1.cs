@@ -30,10 +30,6 @@ public class ControllerChapter1 : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject o in ConversationBubbles)
-        {
-            o.GetComponent<ConversationHandler>().FetchConversations();
-        }
         controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
