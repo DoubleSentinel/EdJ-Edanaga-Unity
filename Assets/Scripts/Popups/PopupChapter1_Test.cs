@@ -2,13 +2,11 @@ using Doozy.Engine.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupChapter1 : MonoBehaviour
+public class PopupChapter1_Test : MonoBehaviour
 {
     [Header("Popup Values")]
     public string PopupName = "Popup1";
-    public GameObject TitleObject;
     public string Title = "Title";
-    public GameObject MessageObject;
     public string Message = "Popup message for player";
 
     public void ShowPopup()
@@ -20,9 +18,6 @@ public class PopupChapter1 : MonoBehaviour
         if (popup == null)
             return;
 
-        //popup.Data.SetLabelsTexts(Title, Message);
-        Title = TitleObject.GetComponent<Text>().ToString();
-        Message = MessageObject.GetComponent<Text>().ToString();
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
