@@ -3030,7 +3030,7 @@ MonoBehaviour:
     StartPosition: {x: 0, y: 0, z: 0}
     StartRotation: {x: -0, y: 0, z: 0}
     StartScale: {x: 1, y: 1, z: 1}
-  CustomCanvasName: 0
+  CustomCanvasName: 1
   Data:
     Buttons:
     - {fileID: 4398842792905822018}
