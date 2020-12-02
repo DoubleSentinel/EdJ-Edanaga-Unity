@@ -23,6 +23,8 @@ public class PopupChapter1 : MonoBehaviour
         //popup.Data.SetLabelsTexts(Title, Message);
         //Title = TitleObject.GetComponent<Text>().ToString();
         //Message = MessageObject.GetComponent<Text>().ToString();
+        Title = "Consignes";
+        Message = "Cliquez sur l’alternative que vous préférez, maintenez le bouton de la souris pressé et déplacez l’image en haut du classement, avant de relâcher le bouton de la souris. De la même manière, glissez-déposez votre deuxième alternative préférée à la seconde place, et ainsi de suite jusqu’à obtenir le classement de votre choix !";
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
