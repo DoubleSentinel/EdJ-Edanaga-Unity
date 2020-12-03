@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
 using TMPro;
@@ -15,11 +16,6 @@ public class UITranslator : MonoBehaviour
     void Awake()
     {
         referenceMap = new Dictionary<string, GameObject>();
-        foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
-        {
-            referenceMap.Add(translatableObject.name, translatableObject);
-        }
-        
         if (controllers == null)
         {
             controllers = GameObject.Find("Controllers");
@@ -28,12 +24,22 @@ public class UITranslator : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().UiTranslator = this;
     }
 
+    private void UpdateUITranslationReferences()
+    {
+        referenceMap.Clear();
+        foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
+        {
+            referenceMap.Add(translatableObject.name, translatableObject);
+        }
+    }
+
     public void FetchTranslation(string language, string scene)
     {
-        Dictionary<string, object> filters = new Dictionary<string, object>();
-        filters.Add("language", language);
-        filters.Add("scene", scene);
-        m_api.ApiList("ui", TranslateUI, filters);
+        UpdateUITranslationReferences();
+        m_api.parameters.Clear();
+        m_api.parameters.Add("language", language);
+        m_api.parameters.Add("scene", scene);
+        m_api.ApiList("ui", TranslateUI, m_api.parameters);
     }
     
     private void TranslateUI(string json)
@@ -44,12 +50,25 @@ public class UITranslator : MonoBehaviour
             try
             {
                 // edge case where the label is a child of the element
-                Transform label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
-                label.gameObject.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                var label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
+                var labelTMP = label.gameObject.GetComponent<TextMeshProUGUI>();
+                if(labelTMP != null)
+                    labelTMP.SetText(element["text_value"]);
+                else
+                    referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+            }
+            catch (NullReferenceException)
+            {
+                referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
             }
             catch (UnityException)
             {
                 referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+            }
+            catch (KeyNotFoundException e)
+            {
+                print(e.Message);
+                print("The scene doesn't contain: " + element["gameobject_id"]);
             }
         }
     }

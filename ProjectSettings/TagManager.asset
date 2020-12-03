@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Translatable
+  - Character
+  - Table
+  - DialogBubble
   - ConversationGroup
   - Color:Contour
   - Color:Fond

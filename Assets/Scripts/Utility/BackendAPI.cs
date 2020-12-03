@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -15,6 +17,8 @@ public class BackendAPI : MonoBehaviour
 
     public string BASEAPIURL;
 
+    [HideInInspector] public Dictionary<string, object> parameters;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -22,6 +26,8 @@ public class BackendAPI : MonoBehaviour
         {
             BASEAPIURL = getAPIHost();
         }
+
+        parameters = new Dictionary<string, object>();
     }
 
     public void ApiFetch(string endpoint, string id, Action<string> callbackSuccess)
@@ -29,7 +35,7 @@ public class BackendAPI : MonoBehaviour
         string uri = BASEAPIURL + "/" + endpoint + "/" + id + "/";
         StartCoroutine(GetRequest(uri, callbackSuccess));
     }
-    
+
     public void ApiList(string endpoint, Action<string> callbackSuccess, Dictionary<string, object> filters = null)
     {
         string uri = BASEAPIURL + "/" + endpoint + "/?";
@@ -40,6 +46,7 @@ public class BackendAPI : MonoBehaviour
                 uri += filter.Key + "=" + filter.Value + "&";
             }
         }
+
         StartCoroutine(GetRequest(uri, callbackSuccess));
     }
 
@@ -54,17 +61,18 @@ public class BackendAPI : MonoBehaviour
         string url = BASEAPIURL + "/" + endpoint + "/";
         StartCoroutine(PutRequest(url, FlatDictToJSON(formFields), callbackSuccess));
     }
+
     private IEnumerator PostRequest(string url, string JSONbody, Action<string> callbackSuccess = null)
     {
         using (UnityWebRequest webRequest = new UnityWebRequest(url, "POST"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(JSONbody);
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            webRequest.downloadHandler = new DownloadHandlerBuffer(); 
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             webRequest.SetRequestHeader("Content-Type", "application/json");
-            
+
             yield return webRequest.SendWebRequest();
-            
+
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
                 // failed to access api error handling
@@ -77,18 +85,18 @@ public class BackendAPI : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator PutRequest(string url, string JSONbody, Action<string> callbackSuccess = null)
     {
         using (UnityWebRequest webRequest = new UnityWebRequest(url, "PUT"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(JSONbody);
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            webRequest.downloadHandler = new DownloadHandlerBuffer(); 
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             webRequest.SetRequestHeader("Content-Type", "application/json");
-            
+
             yield return webRequest.SendWebRequest();
-            
+
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
                 // failed to access api error handling
@@ -119,11 +127,19 @@ public class BackendAPI : MonoBehaviour
             }
         }
     }
-    
-    private string FlatDictToJSON(Dictionary<string,object> dict)
+
+    private string FlatDictToJSON(Dictionary<string, object> dict)
     {
         var entries = dict.Select(d =>
             string.Format("\"{0}\": \"{1}\"", d.Key, d.Value));
         return "{" + string.Join(",", entries) + "}";
+    }
+
+    public static string DecodeEncodedNonAsciiCharacters(string value)
+    {
+        return Regex.Replace(
+            value,
+            @"\\u(?<Value>[a-fA-F0-9]{4})",
+            m => { return ((char) int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString(); });
     }
 }
