@@ -1,4 +1,6 @@
-﻿using Doozy.Engine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Doozy.Engine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,15 +12,15 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
 
-
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
-    
+    public GameObject ConversationGroup;
 
     // Local variables
     private GameObject controllers;
     
     // Flags
-    public bool IsTradeOff { get; set; }
+    [HideInInspector]
+    public bool isTradeOff = true;
 
     // BargainConversation vars
     [HideInInspector] public int hostConversationIndex = 0;
@@ -29,17 +31,13 @@ public class ControllerChapter2_2 : MonoBehaviour
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        IsTradeOff = true;
+        isTradeOff = true;
         controllers = GameObject.Find("Controllers");
         hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
 
     private void Start()
     {
-        foreach (GameObject o in ConversationBubbles)
-        {
-            o.GetComponent<ConversationHandler>().FetchConversations();
-        }
         controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
@@ -85,21 +83,53 @@ public class ControllerChapter2_2 : MonoBehaviour
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
-        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
-            height));
-        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
-            height));
-        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
+        float step = Screen.width / 8;
+        
+        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(2*step, height));
         sceneHost.transform.position = new Vector3(host.x, host.y, depth);
-        scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
+        
+        for (int i = 0; i < ConversationGroup.transform.childCount; i++)
+        {
+            var go = ConversationGroup.transform.GetChild(i).gameObject;
+            Vector3 uiPos = Camera.main.ScreenToWorldPoint(new Vector3((4 + i)*step, height));
+            go.transform.position = new Vector3(uiPos.x, uiPos.y, depth);
+            go.SetActive(true);
+        }
 
         var ch =  ConversationBubbles[2].GetComponent<ConversationHandler>();
         ch.callback = groupedConversationCallback;
         ch.GenerateConversation(groupedConversationIndex);
         ch.NextConversationSnippet();
     }
+    
+    public void PrepareResultsConversation()
+    {
+        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
+        var winningFamily = GameObject.Find(ConversationHandler.FirstLetterToUpper(winningFamilyMember.Key)).transform.parent;
+        
+        ClearCharacterConversationGroup();
+        
+        // Add Family members of the winning family
+        foreach (Transform objective in winningFamily)
+        {
+            Instantiate(objective.gameObject, ConversationGroup.transform);
+        }
 
+        groupedConversationCallback = () =>
+        {
+            GameEventMessage.SendEvent("GoToTitleChapter4");
+            ClearCharacterConversationGroup();
+            isTradeOff = false;
+            hostConversationIndex = 2;
+            hostConversationCallback = () =>
+            {
+                GameEventMessage.SendEvent("GoToTables");
+            };
+        };
+    }
+    
     // View - 2.2.2/7 - Tables
     public void SetupBargainTables()
     {
@@ -126,7 +156,7 @@ public class ControllerChapter2_2 : MonoBehaviour
     // View - TradeOff - 2.2.3/5 - Battle
     public void StartActivityWithFamily(GameObject family)
     {
-        if (IsTradeOff)
+        if (isTradeOff)
         {
             GameEventMessage.SendEvent("GoToTradeOffs");
             GetComponent<TradeOff>().PrepareTradeOffs(family);
@@ -137,12 +167,17 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
     }
 
-
-    // View - TradeOff - 2.2.6 - Results
-    
     // Utility UI methods
     public void DeactivateFamilySelector(GameObject caller)
     {
         caller.GetComponent<EventTrigger>().enabled = false;
+    }
+
+    private void ClearCharacterConversationGroup()
+    {
+        foreach (Transform child in ConversationGroup.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

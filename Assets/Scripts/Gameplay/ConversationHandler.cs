@@ -51,6 +51,11 @@ public class ConversationHandler : MonoBehaviour
         currentConversationSnippet = 0;
     }
 
+    private void Start()
+    {
+        FetchConversations();
+    }
+
     public void FetchConversations()
     {
         foreach (string title in conversationTitles)

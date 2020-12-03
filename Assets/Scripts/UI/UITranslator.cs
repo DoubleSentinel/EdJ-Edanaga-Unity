@@ -10,12 +10,12 @@ public class UITranslator : MonoBehaviour
 
     private BackendAPI m_api;
 
-    private Dictionary<string, GameObject> referenceMap;
+    private Dictionary<string, List<GameObject>> referenceMap;
     
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        referenceMap = new Dictionary<string, GameObject>();
+        referenceMap = new Dictionary<string, List<GameObject>>();
         if (controllers == null)
         {
             controllers = GameObject.Find("Controllers");
@@ -29,7 +29,14 @@ public class UITranslator : MonoBehaviour
         referenceMap.Clear();
         foreach (GameObject translatableObject in GameObject.FindGameObjectsWithTag("Translatable"))
         {
-            referenceMap.Add(translatableObject.name, translatableObject);
+            if (referenceMap.ContainsKey(translatableObject.name))
+            {
+                referenceMap[translatableObject.name].Add(translatableObject);
+            }
+            else
+            {
+                referenceMap.Add(translatableObject.name, new List<GameObject> {translatableObject});
+            }
         }
     }
 
@@ -49,21 +56,27 @@ public class UITranslator : MonoBehaviour
         {
             try
             {
-                // edge case where the label is a child of the element
-                var label = referenceMap[element["gameobject_id"]].transform.GetChild(0);
-                var labelTMP = label.gameObject.GetComponent<TextMeshProUGUI>();
-                if(labelTMP != null)
-                    labelTMP.SetText(element["text_value"]);
-                else
-                    referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
-            }
-            catch (NullReferenceException)
-            {
-                referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
-            }
-            catch (UnityException)
-            {
-                referenceMap[element["gameobject_id"]].GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                foreach (GameObject go in referenceMap[element["gameobject_id"]])
+                {
+                    try
+                    {
+                        // edge case where the label is a child of the element
+                        var label = go.transform.GetChild(0);
+                        var labelTMP = label.gameObject.GetComponent<TextMeshProUGUI>();
+                        if (labelTMP != null)
+                            labelTMP.SetText(element["text_value"]);
+                        else
+                            go.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                    }
+                    catch (NullReferenceException)
+                    {
+                        go.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                    }
+                    catch (UnityException)
+                    {
+                        go.GetComponent<TextMeshProUGUI>().SetText(element["text_value"]);
+                    }
+                }
             }
             catch (KeyNotFoundException e)
             {
