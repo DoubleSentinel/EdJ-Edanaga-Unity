@@ -31,7 +31,7 @@ public class ConversationHandler : MonoBehaviour
     private const string ObjectiveLoser = "objectiveloser";
     private const string ObjectiveWinner = "objectivewinner";
 
-    [HideInInspector] public string[] winnerLoserReplacement = new string[2];
+    [HideInInspector] public string[] tradeOffWinnerLoserReplacement = new string[2];
 
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
@@ -158,14 +158,14 @@ public class ConversationHandler : MonoBehaviour
     private string ConditionalObjectiveValueReplacement(string[] parameters,
         Dictionary<string, Objective> replacementObjective)
     {
-        if (winnerLoserReplacement != null)
+        if (tradeOffWinnerLoserReplacement != null)
         {
             switch (parameters[0].ToLower())
             {
                 case ObjectiveWinner:
-                    return replacementObjective[winnerLoserReplacement[0].ToLower()].GetValue(parameters[1].ToLower()).ToString();
+                    return replacementObjective[tradeOffWinnerLoserReplacement[0].ToLower()].GetValue(parameters[1].ToLower()).ToString();
                 case ObjectiveLoser:
-                    return replacementObjective[winnerLoserReplacement[1].ToLower()].GetValue(parameters[1].ToLower()).ToString();
+                    return replacementObjective[tradeOffWinnerLoserReplacement[1].ToLower()].GetValue(parameters[1].ToLower()).ToString();
             }
         }
 

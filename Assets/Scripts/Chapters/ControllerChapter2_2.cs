@@ -12,14 +12,15 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
 
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    [Header("Conversation References")] 
+    public GameObject HostConversationBubble;
+    public GameObject GroupedConversationBubble;
     public GameObject ConversationGroup;
 
     // Local variables
     private GameObject controllers;
     
     // Flags
-    [HideInInspector]
     public bool isTradeOff = true;
 
     // BargainConversation vars
@@ -31,7 +32,6 @@ public class ControllerChapter2_2 : MonoBehaviour
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        isTradeOff = true;
         controllers = GameObject.Find("Controllers");
         hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
@@ -73,7 +73,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
+        var ch =  HostConversationBubble.GetComponent<ConversationHandler>();
         ch.callback = hostConversationCallback;
         ch.GenerateConversation(hostConversationIndex);
         ch.NextConversationSnippet();
@@ -97,7 +97,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             go.SetActive(true);
         }
 
-        var ch =  ConversationBubbles[2].GetComponent<ConversationHandler>();
+        var ch =  GroupedConversationBubble.GetComponent<ConversationHandler>();
         ch.callback = groupedConversationCallback;
         ch.GenerateConversation(groupedConversationIndex);
         ch.NextConversationSnippet();
@@ -117,6 +117,7 @@ public class ControllerChapter2_2 : MonoBehaviour
             Instantiate(objective.gameObject, ConversationGroup.transform);
         }
 
+        groupedConversationIndex = 1;
         groupedConversationCallback = () =>
         {
             GameEventMessage.SendEvent("GoToTitleChapter4");
@@ -163,6 +164,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
         else
         {
+            GetComponent<Swing>().PrepareSwingWith(family);
             GameEventMessage.SendEvent("GoToSwing");
         }
     }
@@ -171,6 +173,14 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void DeactivateFamilySelector(GameObject caller)
     {
         caller.GetComponent<EventTrigger>().enabled = false;
+    }
+
+    public void ReactivateFamilySelectors(GameObject DoozyUIView)
+    {
+        foreach (Transform familySelector in DoozyUIView.transform)
+        {
+            familySelector.GetChild(0).GetComponent<EventTrigger>().enabled = true;
+        }
     }
 
     private void ClearCharacterConversationGroup()

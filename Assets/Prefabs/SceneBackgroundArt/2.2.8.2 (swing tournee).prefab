@@ -435,6 +435,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gourde
       objectReference: {fileID: 0}
+    - target: {fileID: 5380664739619968749, guid: b55eb72b98b4445de970b3f318678c94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5380664740487896670, guid: b55eb72b98b4445de970b3f318678c94,
         type: 3}
       propertyPath: TriggerModule.collisionShape0
@@ -514,6 +519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Verre
+      objectReference: {fileID: 0}
+    - target: {fileID: 74117358538567151, guid: adcaf4c822b0f48fbbb8fd36cecf699d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adcaf4c822b0f48fbbb8fd36cecf699d, type: 3}
