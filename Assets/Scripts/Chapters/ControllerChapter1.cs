@@ -84,4 +84,19 @@ public class ControllerChapter1 : MonoBehaviour
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
     }
+
+    public void toogle(GameObject go)
+    {
+        var ddc = go.GetComponent<DDCanvas>();
+        ddc.enabled = !ddc.enabled;
+    }
+
+    public void showGo(GameObject go)
+    {
+       go.SetActive(true);
+    }
+    public void HideGo(GameObject go)
+    {
+        go.SetActive(false);
+    }
 }
