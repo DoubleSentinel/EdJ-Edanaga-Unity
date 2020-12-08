@@ -35586,7 +35586,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
@@ -132693,7 +132693,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
@@ -139325,6 +139325,14 @@ MonoBehaviour:
   sceneEngineer: {fileID: 4783305941575667341}
   ConversationBubbles:
   - {fileID: 910047588}
+  alternativesView: {fileID: 1112530073}
+  alt0: {fileID: 0}
+  alt1: {fileID: 0}
+  alt2: {fileID: 0}
+  alt3: {fileID: 0}
+  alt4: {fileID: 0}
+  alt5: {fileID: 0}
+  alt6: {fileID: 0}
   dragNdrop: []
   conversationIndex: 0
 --- !u!1 &2056326701

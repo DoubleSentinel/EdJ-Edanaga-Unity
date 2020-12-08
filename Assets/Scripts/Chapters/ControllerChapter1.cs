@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ControllerChapter1 : MonoBehaviour
 {
@@ -13,8 +14,13 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
+    [Header("Drag&Drop scene")]
+    public GameObject alternativesView;
+    public GameObject alt0, alt1, alt2, alt3, alt4, alt5, alt6, priorities, buttonToDnd;
+
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdrop;
+
     // Local variables
     private GameObject controllers;
 
@@ -34,7 +40,75 @@ public class ControllerChapter1 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
+
+        //Lock the drag&drop of the elements
+        /*
+        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
+
+        for (int i = 0; i < objectsettings.Length; i++)
+        {
+            objectsettings[i].LockObject = true;
+        }
+        */
+
         dragNdrop = new List<string>();
+
+        alt0 = GameObject.Find("Alternative0");
+        alt1 = GameObject.Find("Alternative1");
+        alt2 = GameObject.Find("Alternative2");
+        alt3 = GameObject.Find("Alternative3");
+        alt4 = GameObject.Find("Alternative4");
+        alt5 = GameObject.Find("Alternative5");
+
+        priorities = GameObject.Find("Priorities");
+        buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
+
+        //Default setup
+        buttonToDnd.GetComponent<Button>().interactable = false;
+        DisableDnD();
+
+    }
+
+    public void DisableDnD()
+    {
+        /*
+        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
+        for (int i = 0; i < objectsettings.Length; i++)
+        {
+            objectsettings[i].LockObject = false;
+        }
+        */
+
+        //Lock the drag&drop property of the elements
+        alt0.GetComponent<ObjectSettings>().LockObject = true;
+        alt1.GetComponent<ObjectSettings>().LockObject = true;
+        alt2.GetComponent<ObjectSettings>().LockObject = true;
+        alt3.GetComponent<ObjectSettings>().LockObject = true;
+        alt4.GetComponent<ObjectSettings>().LockObject = true;
+        alt5.GetComponent<ObjectSettings>().LockObject = true;
+
+        priorities.SetActive(false);
+    }
+
+    public void EnableDnD()
+    {
+        /*
+        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
+        for (int i = 0; i < objectsettings.Length; i++)
+        {
+            objectsettings[i].LockObject = false;
+        }
+        */
+
+        //Unlock the drag&drop property of the elements
+        alt0.GetComponent<ObjectSettings>().LockObject = false;
+        alt1.GetComponent<ObjectSettings>().LockObject = false;
+        alt2.GetComponent<ObjectSettings>().LockObject = false;
+        alt3.GetComponent<ObjectSettings>().LockObject = false;
+        alt4.GetComponent<ObjectSettings>().LockObject = false;
+        alt5.GetComponent<ObjectSettings>().LockObject = false;
+
+        priorities.SetActive(true);
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -49,6 +123,7 @@ public class ControllerChapter1 : MonoBehaviour
         background.SetActive(true);
     }
     */
+    
     public void SetConversationIndex(int index)
     {
         conversationIndex = index;
