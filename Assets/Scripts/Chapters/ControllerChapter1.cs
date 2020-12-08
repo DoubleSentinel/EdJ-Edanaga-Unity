@@ -1,4 +1,5 @@
 ﻿using Doozy.Engine;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,8 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
+    [Header("Drag&Drop result")]
+    [SerializeField] private List<string> dragNdrop;
     // Local variables
     private GameObject controllers;
 
@@ -31,6 +34,7 @@ public class ControllerChapter1 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
+        dragNdrop = new List<string>();
     }
 
     // --------------------  UI Callables  --------------------------------

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -876
-  m_y: -828
+  m_y: -336
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -193,8 +193,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 152
   m_width: 216
-  m_x: -876
-  m_y: -684
+  m_x: -864
+  m_y: -432
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -266,14 +266,7 @@ MonoBehaviour:
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
-    m_connections:
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: a8a1c340-6802-4409-850a-c6fdd3d7299d
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 57d00078-17ec-41f0-ae98-d44d630ccd1d
-      m_outputSocketId: 836f003e-93a1-4f30-b9d3-9db637ddbea6
+    m_connections: []
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -708,14 +701,7 @@ MonoBehaviour:
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
-    m_connections:
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: f23a4d68-336f-42b9-a064-68b34dd753d1
-      m_inputNodeId: 09fa6476-1cda-4ea7-8dff-a2a6f5612757
-      m_inputSocketId: f4292d68-b4db-4507-b478-38a46d9a406c
-      m_outputNodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
-      m_outputSocketId: ce1ec2f9-9ed2-43f8-ad56-ffd31375e3f7
+    m_connections: []
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -1075,27 +1061,6 @@ MonoBehaviour:
       m_outputSocketId: 6cfd7c12-0374-4522-938e-5462d05d6a5d
     - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: ee1f0988-3146-454f-b03f-ab25b64304df
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 09fa6476-1cda-4ea7-8dff-a2a6f5612757
-      m_outputSocketId: 40e7ba98-94f8-4441-84b1-78c58e0bf53a
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: a8a1c340-6802-4409-850a-c6fdd3d7299d
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 57d00078-17ec-41f0-ae98-d44d630ccd1d
-      m_outputSocketId: 836f003e-93a1-4f30-b9d3-9db637ddbea6
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: f8c7fc42-3a14-44e7-acf6-ab49c25d7512
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 4e04c090-ee1c-4a42-873f-33825a969393
-      m_outputSocketId: 4d96ba36-a92c-4f59-bcdd-44deee13c2a6
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
       m_id: fc4b2dc8-53f2-408c-89ce-cb37876b99c2
       m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
       m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
@@ -1213,8 +1178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   m_nodes:
-  - {fileID: -6550828234108967251}
-  - {fileID: -6288242631504312449}
   - {fileID: -1302860080322652825}
   - {fileID: 3894428176779684713}
   - {fileID: -4631897710495957773}
@@ -1224,14 +1187,13 @@ MonoBehaviour:
   - {fileID: 5124638713346172641}
   - {fileID: -1151570296865051683}
   - {fileID: -4709839307589888660}
-  - {fileID: 9004464784866381810}
   - {fileID: -3160893347095124776}
   - {fileID: -7250402460427944273}
   m_isSubGraph: 0
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132514786301544480
+  m_lastModified: 132518995656018058
 --- !u!114 &3894428176779684713
 MonoBehaviour:
   m_ObjectHideFlags: 1
