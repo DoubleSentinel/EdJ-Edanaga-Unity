@@ -132,4 +132,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # DoozyUI
-Assets/Plugins/DoozyUI/Doozy/Editor/Nody/Settings/NodyWindowSettings.asset
+/Assets/Plugins/DoozyUI/Doozy/Editor/Nody/Settings/NodyWindowSettings.asset
