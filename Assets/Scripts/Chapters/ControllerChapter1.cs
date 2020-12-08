@@ -16,10 +16,13 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Drag&Drop scene")]
     public GameObject alternativesView;
-    public GameObject alt0, alt1, alt2, alt3, alt4, alt5, alt6, priorities, buttonToDnd;
+    public GameObject alt0, alt1, alt2, alt3, alt4, alt5, prio1, prio2, prio3, prio4, prio5, prio6;
+    public GameObject priorities, buttonToDnd, buttonToConv;
+
+    public string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
 
     [Header("Drag&Drop result")]
-    [SerializeField] private List<string> dragNdrop;
+    [SerializeField] private List<string> dragNdropRes;
 
     // Local variables
     private GameObject controllers;
@@ -51,7 +54,7 @@ public class ControllerChapter1 : MonoBehaviour
         }
         */
 
-        dragNdrop = new List<string>();
+        dragNdropRes = new List<string>();
 
         alt0 = GameObject.Find("Alternative0");
         alt1 = GameObject.Find("Alternative1");
@@ -60,13 +63,28 @@ public class ControllerChapter1 : MonoBehaviour
         alt4 = GameObject.Find("Alternative4");
         alt5 = GameObject.Find("Alternative5");
 
+        prio1 = GameObject.Find("Priority1");
+        prio2 = GameObject.Find("Priority2");
+        prio3 = GameObject.Find("Priority3");
+        prio4 = GameObject.Find("Priority4");
+        prio5 = GameObject.Find("Priority5");
+        prio6 = GameObject.Find("Priority6");
+
+        prioId1 = prio1.GetComponent<PanelSettings>().Id;
+        prioId2 = prio2.GetComponent<PanelSettings>().Id;
+        prioId3 = prio3.GetComponent<PanelSettings>().Id;
+        prioId4 = prio4.GetComponent<PanelSettings>().Id;
+        prioId5 = prio5.GetComponent<PanelSettings>().Id;
+        prioId6 = prio6.GetComponent<PanelSettings>().Id;
+
         priorities = GameObject.Find("Priorities");
         buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
+        buttonToConv = GameObject.Find("Button - ContinueToConv"); 
 
         //Default setup
         buttonToDnd.GetComponent<Button>().interactable = false;
+        HideGo(buttonToConv);
         DisableDnD();
-
     }
 
     public void DisableDnD()
@@ -111,6 +129,31 @@ public class ControllerChapter1 : MonoBehaviour
         priorities.SetActive(true);
     }
 
+    public void CheckPriorities()
+    {
+        //First DnD
+        if (dragNdropRes == null)
+            ShowGo(buttonToConv);
+
+        //Reset the list
+        dragNdropRes.Clear();
+
+        string PrioAlt = DragDropManager.GetPanelObject(prioId1);
+        //Debug.Log("Priorité 1 :" + PrioObject.ToString());
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId2);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId3);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId4);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId5);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId6);
+        dragNdropRes.Add(PrioAlt);
+    }
+
+
     // --------------------  UI Callables  --------------------------------
     /*
     public void HideBackground(GameObject background)
@@ -123,7 +166,7 @@ public class ControllerChapter1 : MonoBehaviour
         background.SetActive(true);
     }
     */
-    
+
     public void SetConversationIndex(int index)
     {
         conversationIndex = index;
@@ -170,7 +213,7 @@ public class ControllerChapter1 : MonoBehaviour
         ddc.enabled = !ddc.enabled;
     }
 
-    public void showGo(GameObject go)
+    public void ShowGo(GameObject go)
     {
        go.SetActive(true);
     }
