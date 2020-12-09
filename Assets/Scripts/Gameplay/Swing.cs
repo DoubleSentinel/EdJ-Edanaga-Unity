@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
+using Doozy.Engine;
 using Doozy.Engine.UI;
 using Shapes2D;
 using UnityEngine;
@@ -12,6 +14,9 @@ public class Swing : MonoBehaviour
 {
     [SerializeField] private GameObject SwingUIPrefab;
     [SerializeField] private GameObject SwingConversationBubble;
+    [SerializeField] private GameObject CurrentSwingUI;
+    [SerializeField] private GameObject SwingFinalists;
+    public GameObject ValidateSwingButton;
 
     // flags
     private bool finals = false;
@@ -19,14 +24,20 @@ public class Swing : MonoBehaviour
 
     // local variables
     private GameObject currentSwingFamily;
-    private GameObject swingWinner;
+    private Dictionary<GameObject, Dictionary<GameObject, float>> userInputValues;
+    
 
     // linking ui to characters
     private Dictionary<GameObject, GameObject> characterToUIMap;
+    
+    private GameObject controllers;
 
     private void Awake()
     {
         characterToUIMap = new Dictionary<GameObject, GameObject>();
+        userInputValues = new Dictionary<GameObject, Dictionary<GameObject, float>>();
+        controllers = GameObject.Find("Controllers");
+        ToggleValidationButton();
     }
 
     public void PrepareSwingWith(GameObject family)
@@ -61,8 +72,8 @@ public class Swing : MonoBehaviour
         foreach (KeyValuePair<GameObject, GameObject> keyValuePair in characterToUIMap)
         {
             var isActive = keyValuePair.Value.transform.GetChild(0).gameObject.activeSelf;
-            keyValuePair.Value.transform.GetChild(isActive?1:0).gameObject.SetActive(isActive);
-            keyValuePair.Value.transform.GetChild(isActive?0:1).gameObject.SetActive(!isActive);
+            keyValuePair.Value.transform.GetChild(0).gameObject.SetActive(!isActive);
+            keyValuePair.Value.transform.GetChild(1).gameObject.SetActive(isActive);
         }
     }
 
@@ -90,14 +101,19 @@ public class Swing : MonoBehaviour
 
     private void PrepareUI(GameObject character, Vector3 screenPosition)
     {
-        var ui = Instantiate(SwingUIPrefab, SwingConversationBubble.transform.parent);
+        var ui = Instantiate(SwingUIPrefab, CurrentSwingUI.transform);
         ui.transform.position = screenPosition;
         ui.SetActive(false);
-        ui.transform.GetChild(1).gameObject.GetComponent<UIButton>().OnClick.OnTrigger.Action = delegate(GameObject o)
+        ui.transform.GetChild(1).gameObject.GetComponent<UIButton>().OnClick.OnTrigger.Action = delegate(GameObject swingSelect)
         {
-            var swingUI = o.transform.parent.gameObject;
-            swingWinner = characterToUIMap.FirstOrDefault(x => x.Value == swingUI).Key;
+            var swingUI = swingSelect.transform.parent.gameObject;
             swingUI.transform.GetChild(0).GetComponent<Slider>().value = 20;
+            swingUI.transform.GetChild(0).GetComponent<Slider>().interactable = false;
+            
+            var winner = Instantiate(characterToUIMap.FirstOrDefault(x => x.Value == swingUI).Key, SwingFinalists.transform);
+            winner.name = winner.name.Remove(10);
+            winner.SetActive(false);
+            
             ToggleSwingUI(false);
             SwingConversationBubble.GetComponent<ConversationHandler>()
                 .GenerateConversation(isPlural
@@ -106,10 +122,80 @@ public class Swing : MonoBehaviour
             SwingConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
             SwingConversationBubble.GetComponent<ConversationHandler>().callback = () =>
             {
+                ToggleValidationButton();
+                if (userInputValues.Count == 3)
+                {
+                    ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
+                    ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents
+                        .Add("GoToGroupedConversation");
+                }
+
+                ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.Action =
+                    delegate(GameObject validateButton)
+                    {
+                        CalculateLocalWeights();
+                        // once all swings have been made set up for final swing
+                        if (userInputValues.Count == 4)
+                        {
+                            foreach (Transform child in SwingFinalists.transform)
+                            {
+                                Instantiate(child.gameObject,
+                                    GetComponent<ControllerChapter2_2>().ConversationGroup.transform);
+                            }
+                            GetComponent<ControllerChapter2_2>().groupedConversationIndex = 2;
+                            GetComponent<ControllerChapter2_2>().groupedConversationCallback = () =>
+                            {
+                                GameEventMessage.SendEvent("GoToSwingFinals");
+                                foreach (Transform child in GetComponent<ControllerChapter2_2>().ConversationGroup.transform)
+                                {
+                                    Destroy(child.gameObject);
+                                }
+                                currentSwingFamily = SwingFinalists;
+                                finals = true;
+                            };
+                        }
+
+                        if (finals)
+                        {
+                            // TODO: Load next scene on button press
+                        }
+
+                        ToggleValidationButton();
+                        foreach (Transform child in CurrentSwingUI.transform)
+                        {
+                            Destroy(child.gameObject);
+                        }
+                        characterToUIMap.Clear();
+                    };
                 ToggleSwingUI(true);
                 AlternateSwingUI();
             };
         };
         characterToUIMap.Add(character, ui);
+    }
+
+    private void CalculateLocalWeights()
+    {
+        var objectiveValues = new Dictionary<GameObject, float>();
+        foreach (Transform child in CurrentSwingUI.transform)
+        {
+            var objective = characterToUIMap.FirstOrDefault(x => x.Value == child.gameObject).Key;
+            var objVal = child.GetChild(0).GetComponent<Slider>().value;
+            objectiveValues.Add(objective, objVal);
+        }
+        userInputValues.Add(currentSwingFamily, objectiveValues);
+    }
+    private void CalculateFinalWeights()
+    {
+        //controllers.GetComponent<TestingEnvironment>().SwingClassification.Add(objName, sliderVal);
+    }
+
+    private void ToggleValidationButton()
+    {
+        var button = ValidateSwingButton.GetComponent<Button>();
+        var canvasGroup = ValidateSwingButton.GetComponent<CanvasGroup>();
+        
+        button.interactable = !button.interactable;
+        canvasGroup.DOFade(Math.Abs(canvasGroup.alpha) < 0.01? 1f: 0f, 0.2f);
     }
 }
