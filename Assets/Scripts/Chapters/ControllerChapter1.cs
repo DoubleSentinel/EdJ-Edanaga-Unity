@@ -19,6 +19,7 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Drag&Drop scene")]
 
+    [SerializeField] private GameObject[] alternative;
     [SerializeField] private GameObject alt0;
     [SerializeField] private GameObject alt1;
     [SerializeField] private GameObject alt2;
@@ -33,7 +34,9 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject prio5;
     [SerializeField] private GameObject prio6;
 
-    [SerializeField] private GameObject priorities, buttonToDnd, buttonToConv;
+    [SerializeField] private GameObject priorities;
+    [SerializeField] private GameObject buttonToDnd;
+    [SerializeField] private GameObject buttonToConv;
 
     private string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
     private GameObject Panel1, Panel2, Panel3, Panel4, Panel5, Panel6;
@@ -41,6 +44,13 @@ public class ControllerChapter1 : MonoBehaviour
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdropRes;
 
+    [Header("Popup Values")]
+    private string PopupName = "Popup1";
+    //[SerializeField] private GameObject TitleObject;
+    [SerializeField] private string Title = "Title";
+    [SerializeField] private GameObject MessageObject;
+    [SerializeField] private string Message = "Popup message for player";
+    
     // Local variables
     private GameObject controllers;
     //public SpriteRenderer rendIn, rendOut; //FadeInand FadeOut
@@ -68,11 +78,13 @@ public class ControllerChapter1 : MonoBehaviour
         prio4 = GameObject.Find("Priority4");
         prio5 = GameObject.Find("Priority5");
         prio6 = GameObject.Find("Priority6");
-        */
+        
         priorities = GameObject.Find("Priorities");
 
         buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
         buttonToConv = GameObject.Find("Button - ContinueToConv");
+        */
+ 
     }
 
     private void Start()
@@ -191,8 +203,8 @@ public class ControllerChapter1 : MonoBehaviour
         SetOrderAlternatives(7);
 
         //Disable buttons
-        buttonToDnd.GetComponent<Button>().interactable = true; buttonToDnd.GetComponent<Button>().interactable = true;
-
+        buttonToDnd.GetComponent<Button>().interactable = true;
+        
         //Enable DnD
         EnableDnD();
     }
@@ -318,7 +330,7 @@ public class ControllerChapter1 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD
-        if (dragNdropRes == null)
+        if (dragNdropRes.Count == 0)
             ShowGo(buttonToConv);
 
         //Reset the list
@@ -371,7 +383,28 @@ public class ControllerChapter1 : MonoBehaviour
         alt5.GetComponent<ObjectSettings>().LockObject = false;
 
         priorities.SetActive(true);
+
+        ShowPopup();
     }
 
+    public void ShowPopup()
+    {
+        //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
+        UIPopup popup = UIPopup.GetPopup(PopupName);
+
+        //make sure that a popup clone was actually created
+        if (popup == null)
+            return;
+
+        //popup.Data.SetLabelsTexts(Title, Message);
+        //Title = TitleObject.GetComponent<Text>().ToString();
+        //Message = MessageObject.GetComponent<Text>().ToString();
+        Title = "Consignes";
+        //Message = "Cliquez sur l’alternative que vous préférez, maintenez le bouton de la souris pressé et déplacez l’image en haut du classement, avant de relâcher le bouton de la souris. De la même manière, glissez-déposez votre deuxième alternative préférée à la seconde place, et ainsi de suite jusqu’à obtenir le classement de votre choix !";
+        Message = MessageObject.GetComponent<Text>().ToString();
+        popup.Data.SetLabelsTexts(Title, Message);
+
+        popup.Show(); //show the popup
+    }
 
 }
