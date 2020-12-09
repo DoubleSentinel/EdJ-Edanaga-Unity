@@ -1,4 +1,5 @@
-﻿using Doozy.Engine;
+﻿using DG.Tweening;
+using Doozy.Engine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,25 @@ public class ControllerChapter1 : MonoBehaviour
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
     [Header("Drag&Drop scene")]
-    public GameObject alternativesView;
-    public GameObject alt0, alt1, alt2, alt3, alt4, alt5, prio1, prio2, prio3, prio4, prio5, prio6;
-    public GameObject priorities, buttonToDnd, buttonToConv;
 
-    public string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
+    [SerializeField] private GameObject alt0;
+    [SerializeField] private GameObject alt1;
+    [SerializeField] private GameObject alt2;
+    [SerializeField] private GameObject alt3;
+    [SerializeField] private GameObject alt4;
+    [SerializeField] private GameObject alt5;
+
+    [SerializeField] private GameObject prio1;
+    [SerializeField] private GameObject prio2;
+    [SerializeField] private GameObject prio3;
+    [SerializeField] private GameObject prio4;
+    [SerializeField] private GameObject prio5;
+    [SerializeField] private GameObject prio6;
+
+    [SerializeField] private GameObject priorities, buttonToDnd, buttonToConv;
+
+    private string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
+    private GameObject Panel1, Panel2, Panel3, Panel4, Panel5, Panel6;
 
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdropRes;
@@ -28,10 +43,7 @@ public class ControllerChapter1 : MonoBehaviour
     // Local variables
     private GameObject controllers;
     //public SpriteRenderer rendIn, rendOut; //FadeInand FadeOut
-    public Image rendIn, rendOut; //FadeInand FadeOut
-
-    // Flags
-    //public bool IsTradeOff { get; set; }
+    //public Image rendIn, rendOut; //FadeInand FadeOut
 
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
@@ -41,25 +53,8 @@ public class ControllerChapter1 : MonoBehaviour
     {
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
-    }
-
-    private void Start()
-    {
-        controllers.GetComponent<LanguageHandler>().translateUI();
-
-        //Lock the drag&drop of the elements
         /*
-        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
-
-        for (int i = 0; i < objectsettings.Length; i++)
-        {
-            objectsettings[i].LockObject = true;
-        }
-        */
-
-        dragNdropRes = new List<string>();
-
-        alt0 = GameObject.Find("Alternative0"); //Mettre dans Awake();
+        alt0 = GameObject.Find("Alternative0");
         alt1 = GameObject.Find("Alternative1");
         alt2 = GameObject.Find("Alternative2");
         alt3 = GameObject.Find("Alternative3");
@@ -72,7 +67,20 @@ public class ControllerChapter1 : MonoBehaviour
         prio4 = GameObject.Find("Priority4");
         prio5 = GameObject.Find("Priority5");
         prio6 = GameObject.Find("Priority6");
+        */
+        priorities = GameObject.Find("Priorities");
 
+        buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
+        buttonToConv = GameObject.Find("Button - ContinueToConv");
+    }
+
+    private void Start()
+    {
+        controllers.GetComponent<LanguageHandler>().translateUI();
+
+        dragNdropRes = new List<string>();
+
+        //Get Priority Id
         prioId1 = prio1.GetComponent<PanelSettings>().Id;
         prioId2 = prio2.GetComponent<PanelSettings>().Id;
         prioId3 = prio3.GetComponent<PanelSettings>().Id;
@@ -80,82 +88,74 @@ public class ControllerChapter1 : MonoBehaviour
         prioId5 = prio5.GetComponent<PanelSettings>().Id;
         prioId6 = prio6.GetComponent<PanelSettings>().Id;
 
-        priorities = GameObject.Find("Priorities");
-        buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
-        buttonToConv = GameObject.Find("Button - ContinueToConv"); 
+        //Get Panels
+        Panel1 = alt0.gameObject.transform.GetChild(2).gameObject;
+        Panel2 = alt1.gameObject.transform.GetChild(2).gameObject;
+        Panel3 = alt2.gameObject.transform.GetChild(2).gameObject;
+        Panel4 = alt3.gameObject.transform.GetChild(2).gameObject;
+        Panel5 = alt4.gameObject.transform.GetChild(2).gameObject;
+        Panel6 = alt5.gameObject.transform.GetChild(2).gameObject;
 
-        //Default setup
+        //Default Setup
+        SetOrderAlternatives(0);
+
         buttonToDnd.GetComponent<Button>().interactable = false;
         HideGo(buttonToConv);
         DisableDnD();
     }
 
-    public void DisableDnD()
+    public void ShowAlternative(GameObject o)
     {
-        /*
-        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
-        for (int i = 0; i < objectsettings.Length; i++)
+        o.GetComponent<Image>().DOColor(new Color(0.58f, 0.58f, 0.58f, 0), 0.5f);
+    }
+
+    public void HideAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(new Color(0.58f, 0.58f, 0.58f, 0.8f), 0.5f);
+    }
+
+    public void SetOrderAlternatives(int alternativeN)
+    {
+        switch (alternativeN)
         {
-            objectsettings[i].LockObject = false;
+            case 1:
+                HideAlternative(Panel1);
+                ShowAlternative(Panel2);
+                break;
+            case 2:
+                HideAlternative(Panel2);
+                ShowAlternative(Panel3);
+                break;
+            case 3:
+                HideAlternative(Panel3);
+                ShowAlternative(Panel4);
+                break;
+            case 4:
+                HideAlternative(Panel4);
+                ShowAlternative(Panel5);
+                break;
+            case 5:
+                HideAlternative(Panel5);
+                ShowAlternative(Panel6);
+                break;
+            case 6:
+                HideAlternative(Panel6);
+                
+                //Shoe Button - Go to Dnd
+                buttonToDnd.GetComponent<Button>().interactable = true;
+                break;
+
+            default:
+                ShowAlternative(Panel1);
+                HideAlternative(Panel2);
+                HideAlternative(Panel3);
+                HideAlternative(Panel4);
+                HideAlternative(Panel5);
+                break;
         }
-        */
-
-        //Lock the drag&drop property of the elements
-        alt0.GetComponent<ObjectSettings>().LockObject = true;
-        alt1.GetComponent<ObjectSettings>().LockObject = true;
-        alt2.GetComponent<ObjectSettings>().LockObject = true;
-        alt3.GetComponent<ObjectSettings>().LockObject = true;
-        alt4.GetComponent<ObjectSettings>().LockObject = true;
-        alt5.GetComponent<ObjectSettings>().LockObject = true;
-
-        priorities.SetActive(false);
     }
 
-    public void EnableDnD()
-    {
-        /*
-        ObjectSettings[] objectsettings = alternativesView.gameObject.GetComponents<ObjectSettings>();
-        for (int i = 0; i < objectsettings.Length; i++)
-        {
-            objectsettings[i].LockObject = false;
-        }
-        */
-
-        //Unlock the drag&drop property of the elements
-        alt0.GetComponent<ObjectSettings>().LockObject = false;
-        alt1.GetComponent<ObjectSettings>().LockObject = false;
-        alt2.GetComponent<ObjectSettings>().LockObject = false;
-        alt3.GetComponent<ObjectSettings>().LockObject = false;
-        alt4.GetComponent<ObjectSettings>().LockObject = false;
-        alt5.GetComponent<ObjectSettings>().LockObject = false;
-
-        priorities.SetActive(true);
-    }
-
-    public void CheckPriorities()
-    {
-        //First DnD
-        if (dragNdropRes == null)
-            ShowGo(buttonToConv);
-
-        //Reset the list
-        dragNdropRes.Clear();
-
-        string PrioAlt = DragDropManager.GetPanelObject(prioId1);
-        //Debug.Log("Priorité 1 :" + PrioObject.ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId2);
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId3);
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId4);
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId5);
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId6);
-        dragNdropRes.Add(PrioAlt);
-    }
-
+/*
     public void FageInOut(int sourceN)
     {
         switch (sourceN)
@@ -168,8 +168,8 @@ public class ControllerChapter1 : MonoBehaviour
                 rendIn.material.color = c;
                 //rendOut = alt0.GetComponentInChildren<SpriteRenderer>();
                 rendOut = alt0.gameObject.transform.GetChild(1).GetComponent<Image>();
-                startFadeIn();
-                startFadeOut();
+                //startFadeIn();
+                //startFadeOut();
                 break;
 
             case 2:
@@ -215,22 +215,9 @@ public class ControllerChapter1 : MonoBehaviour
     {
         StartCoroutine("FadeOut");
     }
-
-
+*/
 
     // --------------------  UI Callables  --------------------------------
-    /*
-    public void HideBackground(GameObject background)
-    {
-        background.SetActive(false);
-    }
-
-    public void ShowBackground(GameObject background)
-    {
-        background.SetActive(true);
-    }
-    */
-
     public void SetConversationIndex(int index)
     {
         conversationIndex = index;
@@ -285,4 +272,56 @@ public class ControllerChapter1 : MonoBehaviour
     {
         go.SetActive(false);
     }
+
+    public void CheckPriorities()
+    {
+        //First DnD
+        if (dragNdropRes == null)
+            ShowGo(buttonToConv);
+
+        //Reset the list
+        dragNdropRes.Clear();
+
+        //Add result of the Drag&Drop into the list
+        string PrioAlt = DragDropManager.GetPanelObject(prioId1);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId2);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId3);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId4);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId5);
+        dragNdropRes.Add(PrioAlt);
+        PrioAlt = DragDropManager.GetPanelObject(prioId6);
+        dragNdropRes.Add(PrioAlt);
+    }
+
+    public void DisableDnD()
+    {
+        //Lock the drag&drop property of the elements
+        alt0.GetComponent<ObjectSettings>().LockObject = true;
+        alt1.GetComponent<ObjectSettings>().LockObject = true;
+        alt2.GetComponent<ObjectSettings>().LockObject = true;
+        alt3.GetComponent<ObjectSettings>().LockObject = true;
+        alt4.GetComponent<ObjectSettings>().LockObject = true;
+        alt5.GetComponent<ObjectSettings>().LockObject = true;
+
+        priorities.SetActive(false);
+    }
+
+    public void EnableDnD()
+    {
+        //Unlock the drag&drop property of the elements
+        alt0.GetComponent<ObjectSettings>().LockObject = false;
+        alt1.GetComponent<ObjectSettings>().LockObject = false;
+        alt2.GetComponent<ObjectSettings>().LockObject = false;
+        alt3.GetComponent<ObjectSettings>().LockObject = false;
+        alt4.GetComponent<ObjectSettings>().LockObject = false;
+        alt5.GetComponent<ObjectSettings>().LockObject = false;
+
+        priorities.SetActive(true);
+    }
+
+
 }
