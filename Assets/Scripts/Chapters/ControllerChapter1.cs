@@ -1,4 +1,5 @@
 ﻿using Doozy.Engine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,6 +27,8 @@ public class ControllerChapter1 : MonoBehaviour
 
     // Local variables
     private GameObject controllers;
+    //public SpriteRenderer rendIn, rendOut; //FadeInand FadeOut
+    public Image rendIn, rendOut; //FadeInand FadeOut
 
     // Flags
     //public bool IsTradeOff { get; set; }
@@ -56,7 +59,7 @@ public class ControllerChapter1 : MonoBehaviour
 
         dragNdropRes = new List<string>();
 
-        alt0 = GameObject.Find("Alternative0");
+        alt0 = GameObject.Find("Alternative0"); //Mettre dans Awake();
         alt1 = GameObject.Find("Alternative1");
         alt2 = GameObject.Find("Alternative2");
         alt3 = GameObject.Find("Alternative3");
@@ -152,6 +155,67 @@ public class ControllerChapter1 : MonoBehaviour
         PrioAlt = DragDropManager.GetPanelObject(prioId6);
         dragNdropRes.Add(PrioAlt);
     }
+
+    public void FageInOut(int sourceN)
+    {
+        switch (sourceN)
+        {
+            case 1:
+                //rendIn = alt1.GetComponentInChildren<SpriteRenderer>();
+                rendIn = alt1.gameObject.transform.GetChild(1).GetComponent<Image>();
+                Color c = rendIn.material.color;
+                c.a = 0f;
+                rendIn.material.color = c;
+                //rendOut = alt0.GetComponentInChildren<SpriteRenderer>();
+                rendOut = alt0.gameObject.transform.GetChild(1).GetComponent<Image>();
+                startFadeIn();
+                startFadeOut();
+                break;
+
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+
+        }
+    }
+
+    IEnumerator FadeIn()
+    {
+        for (float f = 0.05f; f <= 1; f += 0.05f)
+        {
+            Color c = rendIn.material.color;
+            c.a = f;
+            rendIn.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public void startFadeIn()
+    {
+        StartCoroutine("FadeIn");
+    }
+
+    IEnumerator FadeOut()
+    {
+        for (float f = 1f; f >= -0.05f; f -= 0.05f)
+        {
+            Color c = rendOut.material.color;
+            c.a = f;
+            rendOut.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public void startFadeOut()
+    {
+        StartCoroutine("FadeOut");
+    }
+
 
 
     // --------------------  UI Callables  --------------------------------
