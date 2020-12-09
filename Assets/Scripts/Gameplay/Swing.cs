@@ -106,72 +106,84 @@ public class Swing : MonoBehaviour
         ui.SetActive(false);
         ui.transform.GetChild(1).gameObject.GetComponent<UIButton>().OnClick.OnTrigger.Action = delegate(GameObject swingSelect)
         {
-            var swingUI = swingSelect.transform.parent.gameObject;
-            swingUI.transform.GetChild(0).GetComponent<Slider>().value = 20;
-            swingUI.transform.GetChild(0).GetComponent<Slider>().interactable = false;
-            
-            var winner = Instantiate(characterToUIMap.FirstOrDefault(x => x.Value == swingUI).Key, SwingFinalists.transform);
-            winner.name = winner.name.Remove(10);
-            winner.SetActive(false);
-            
-            ToggleSwingUI(false);
-            SwingConversationBubble.GetComponent<ConversationHandler>()
-                .GenerateConversation(isPlural
-                    ? "2.2.8.2_Swing_Explanation_Plural"
-                    : "2.2.8.2_Swing_Explanation_Singular");
-            SwingConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
-            SwingConversationBubble.GetComponent<ConversationHandler>().callback = () =>
-            {
-                ToggleValidationButton();
-                if (userInputValues.Count == 3)
-                {
-                    ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
-                    ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents
-                        .Add("GoToGroupedConversation");
-                }
-
-                ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.Action =
-                    delegate(GameObject validateButton)
-                    {
-                        CalculateLocalWeights();
-                        // once all swings have been made set up for final swing
-                        if (userInputValues.Count == 4)
-                        {
-                            foreach (Transform child in SwingFinalists.transform)
-                            {
-                                Instantiate(child.gameObject,
-                                    GetComponent<ControllerChapter2_2>().ConversationGroup.transform);
-                            }
-                            GetComponent<ControllerChapter2_2>().groupedConversationIndex = 2;
-                            GetComponent<ControllerChapter2_2>().groupedConversationCallback = () =>
-                            {
-                                GameEventMessage.SendEvent("GoToSwingFinals");
-                                foreach (Transform child in GetComponent<ControllerChapter2_2>().ConversationGroup.transform)
-                                {
-                                    Destroy(child.gameObject);
-                                }
-                                currentSwingFamily = SwingFinalists;
-                                finals = true;
-                            };
-                        }
-
-                        if (finals)
-                        {
-                            // TODO: Load next scene on button press
-                        }
-
-                        ToggleValidationButton();
-                        foreach (Transform child in CurrentSwingUI.transform)
-                        {
-                            Destroy(child.gameObject);
-                        }
-                        characterToUIMap.Clear();
-                    };
-                ToggleSwingUI(true);
-                AlternateSwingUI();
-            };
+            SetSwingUIButtonTrigger(swingSelect);
         };
         characterToUIMap.Add(character, ui);
+    }
+
+    private void SetSwingUIButtonTrigger(GameObject swingSelect)
+    {
+        var swingUI = swingSelect.transform.parent.gameObject;
+        swingUI.transform.GetChild(0).GetComponent<Slider>().value = 20;
+        swingUI.transform.GetChild(0).GetComponent<Slider>().interactable = false;
+        
+        var winner = Instantiate(characterToUIMap.FirstOrDefault(x => x.Value == swingUI).Key, SwingFinalists.transform);
+        winner.name = winner.name.Remove(10);
+        winner.SetActive(false);
+        
+        ToggleSwingUI(false);
+        SwingConversationBubble.GetComponent<ConversationHandler>()
+            .GenerateConversation(isPlural
+                ? "2.2.8.2_Swing_Explanation_Plural"
+                : "2.2.8.2_Swing_Explanation_Singular");
+        SwingConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
+        SwingConversationBubble.GetComponent<ConversationHandler>().callback = SetSwingConversationCallback;
+    }
+
+    private void SetSwingConversationCallback()
+    {
+        ToggleValidationButton();
+        if (userInputValues.Count == 3)
+        {
+            ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
+            ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents
+                .Add("GoToGroupedConversation");
+        }
+
+        ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.Action =
+            delegate(GameObject validateButton)
+            {
+                SetSwingValidateButtonTrigger();
+            };
+        ToggleSwingUI(true);
+        AlternateSwingUI();
+    }
+
+    private void SetSwingValidateButtonTrigger()
+    {
+        CalculateLocalWeights();
+        // once all swings have been made set up for final swing
+        if (userInputValues.Count == 4)
+        {
+            foreach (Transform child in SwingFinalists.transform)
+            {
+                Instantiate(child.gameObject,
+                    GetComponent<ControllerChapter2_2>().ConversationGroup.transform);
+            }
+            GetComponent<ControllerChapter2_2>().groupedConversationIndex = 2;
+            GetComponent<ControllerChapter2_2>().groupedConversationCallback = () =>
+            {
+                GameEventMessage.SendEvent("GoToSwingFinals");
+                foreach (Transform child in GetComponent<ControllerChapter2_2>().ConversationGroup.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                currentSwingFamily = SwingFinalists;
+                finals = true;
+            };
+        }
+
+        if (finals)
+        {
+            // TODO: Load next scene on button press
+        }
+
+        ToggleValidationButton();
+        foreach (Transform child in CurrentSwingUI.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        characterToUIMap.Clear();
     }
 
     private void CalculateLocalWeights()
