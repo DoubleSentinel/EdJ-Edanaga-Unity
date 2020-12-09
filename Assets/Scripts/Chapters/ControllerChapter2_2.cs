@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Doozy.Engine;
+using Doozy.Engine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -103,7 +104,35 @@ public class ControllerChapter2_2 : MonoBehaviour
         ch.NextConversationSnippet();
     }
     
-    public void PrepareResultsConversation()
+    public void PrepareTradeOffResultsConversation()
+    {
+        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
+        var winningFamily = GameObject.Find(ConversationHandler.FirstLetterToUpper(winningFamilyMember.Key)).transform.parent;
+        
+        ClearCharacterConversationGroup();
+        
+        // Add Family members of the winning family
+        foreach (Transform objective in winningFamily)
+        {
+            Instantiate(objective.gameObject, ConversationGroup.transform);
+        }
+
+        groupedConversationIndex = 1;
+        groupedConversationCallback = () =>
+        {
+            GameEventMessage.SendEvent("GoToTitleChapter4");
+            ClearCharacterConversationGroup();
+            isTradeOff = false;
+            hostConversationIndex = 2;
+            hostConversationCallback = () =>
+            {
+                GameEventMessage.SendEvent("GoToTables");
+            };
+        };
+    }
+    
+    public void PrepareSwingResultsConversation()
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
         var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
@@ -153,7 +182,23 @@ public class ControllerChapter2_2 : MonoBehaviour
             }
         }
     }
-    
+
+    public void SetupChapter3()
+    {
+        hostConversationIndex = 0;
+        isTradeOff = true;
+    }
+
+    public void SetupChapter4()
+    {
+        isTradeOff = false;
+        hostConversationIndex = 2;
+        HostConversationBubble.GetComponent<ConversationHandler>().callback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        
+        GetComponent<Swing>().ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
+        GetComponent<Swing>().ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Add("GoToTables");
+    }
+
     // View - TradeOff - 2.2.3/5 - Battle
     public void StartActivityWithFamily(GameObject family)
     {
