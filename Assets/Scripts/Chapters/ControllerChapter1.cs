@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
+using Doozy.Engine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -106,12 +107,12 @@ public class ControllerChapter1 : MonoBehaviour
 
     public void ShowAlternative(GameObject o)
     {
-        o.GetComponent<Image>().DOColor(new Color(0.58f, 0.58f, 0.58f, 0), 0.5f);
+        o.GetComponent<Image>().DOColor(new Color(0.37f, 0.58f, 0.82f, 0), 1f);
     }
 
     public void HideAlternative(GameObject o)
     {
-        o.GetComponent<Image>().DOColor(new Color(0.58f, 0.58f, 0.58f, 0.8f), 0.5f);
+        o.GetComponent<Image>().DOColor(new Color(0.37f, 0.58f, 0.82f, 0.7f), 1f);
     }
 
     public void SetOrderAlternatives(int alternativeN)
@@ -121,28 +122,49 @@ public class ControllerChapter1 : MonoBehaviour
             case 1:
                 HideAlternative(Panel1);
                 ShowAlternative(Panel2);
+                alt0.GetComponent<UIButton>().Interactable = false;
+                alt1.GetComponent<UIButton>().Interactable = true;
                 break;
             case 2:
                 HideAlternative(Panel2);
                 ShowAlternative(Panel3);
+                alt1.GetComponent<UIButton>().Interactable = false;
+                alt2.GetComponent<UIButton>().Interactable = true;
+
                 break;
             case 3:
                 HideAlternative(Panel3);
                 ShowAlternative(Panel4);
+                alt2.GetComponent<UIButton>().Interactable = false;
+                alt3.GetComponent<UIButton>().Interactable = true;
                 break;
             case 4:
                 HideAlternative(Panel4);
                 ShowAlternative(Panel5);
+                alt3.GetComponent<UIButton>().Interactable = false;
+                alt4.GetComponent<UIButton>().Interactable = true;
                 break;
             case 5:
                 HideAlternative(Panel5);
                 ShowAlternative(Panel6);
+                alt4.GetComponent<UIButton>().Interactable = false;
+                alt5.GetComponent<UIButton>().Interactable = true;
                 break;
             case 6:
                 HideAlternative(Panel6);
-                
                 //Shoe Button - Go to Dnd
+                alt5.GetComponent<UIButton>().Interactable = false;
                 buttonToDnd.GetComponent<Button>().interactable = true;
+                break;
+
+            case 7:
+                ShowAlternative(Panel1);
+                ShowAlternative(Panel2);
+                ShowAlternative(Panel3);
+                ShowAlternative(Panel4);
+                ShowAlternative(Panel5);
+                ShowAlternative(Panel6);
+
                 break;
 
             default:
@@ -151,8 +173,28 @@ public class ControllerChapter1 : MonoBehaviour
                 HideAlternative(Panel3);
                 HideAlternative(Panel4);
                 HideAlternative(Panel5);
+                HideAlternative(Panel6);
+                //Disable button
+                alt0.GetComponent<UIButton>().Interactable = true;
+                alt1.GetComponent<UIButton>().Interactable = false;
+                alt2.GetComponent<UIButton>().Interactable = false;
+                alt3.GetComponent<UIButton>().Interactable = false;
+                alt4.GetComponent<UIButton>().Interactable = false;
+                alt5.GetComponent<UIButton>().Interactable = false;
                 break;
         }
+    }
+
+    public void StartDnD()
+    {
+        //Show alternatives
+        SetOrderAlternatives(7);
+
+        //Disable buttons
+        buttonToDnd.GetComponent<Button>().interactable = true; buttonToDnd.GetComponent<Button>().interactable = true;
+
+        //Enable DnD
+        EnableDnD();
     }
 
 /*
@@ -312,6 +354,14 @@ public class ControllerChapter1 : MonoBehaviour
 
     public void EnableDnD()
     {
+        //Disable button (to be sure!)
+        alt0.GetComponent<UIButton>().Interactable = false;
+        alt1.GetComponent<UIButton>().Interactable = false;
+        alt2.GetComponent<UIButton>().Interactable = false;
+        alt3.GetComponent<UIButton>().Interactable = false;
+        alt4.GetComponent<UIButton>().Interactable = false;
+        alt5.GetComponent<UIButton>().Interactable = false;
+
         //Unlock the drag&drop property of the elements
         alt0.GetComponent<ObjectSettings>().LockObject = false;
         alt1.GetComponent<ObjectSettings>().LockObject = false;
