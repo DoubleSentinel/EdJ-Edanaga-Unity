@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Doozy.Engine;
 using Doozy.Engine.UI;
-using Shapes2D;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Swing : MonoBehaviour
@@ -79,7 +77,7 @@ public class Swing : MonoBehaviour
 
     private void PrepareCharacters(GameObject family)
     {
-        float height = Screen.height * 1f / 2f;
+        float height = Screen.height * 0.9f / 2f;
         float depth = -1f;
         float step = Screen.width / family.transform.childCount;
         float offset = step / 2;
@@ -108,6 +106,14 @@ public class Swing : MonoBehaviour
         {
             SetSwingUIButtonTrigger(swingSelect);
         };
+        
+        // Setting slider labels
+        Objective objective = controllers.GetComponent<TestingEnvironment>().Objectives[character.name.ToLower()];
+        var labelGroup = ui.transform.GetChild(0).GetChild(3);
+        labelGroup.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{objective.best:0.0}";
+        labelGroup.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{objective.worst:0.0}";
+        labelGroup.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{objective.unit}";
+        
         characterToUIMap.Add(character, ui);
     }
 
@@ -133,6 +139,8 @@ public class Swing : MonoBehaviour
     private void SetSwingConversationCallback()
     {
         ToggleValidationButton();
+        // if this is the before last swing event, change the way the validate button works to
+        // chain to a grouped conversation instead of back to tables which is it's default behavior
         if (userInputValues.Count == 3)
         {
             ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
