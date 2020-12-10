@@ -19,22 +19,24 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Drag&Drop scene")]
 
-    [SerializeField] private GameObject[] alternative;
+    [SerializeField] private GameObject[] alternatives;
+    [SerializeField] private GameObject[] priorities;
+    /*
     [SerializeField] private GameObject alt0;
     [SerializeField] private GameObject alt1;
     [SerializeField] private GameObject alt2;
     [SerializeField] private GameObject alt3;
     [SerializeField] private GameObject alt4;
     [SerializeField] private GameObject alt5;
-
+    
     [SerializeField] private GameObject prio1;
     [SerializeField] private GameObject prio2;
     [SerializeField] private GameObject prio3;
     [SerializeField] private GameObject prio4;
     [SerializeField] private GameObject prio5;
     [SerializeField] private GameObject prio6;
-
-    [SerializeField] private GameObject priorities;
+    */
+    [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
 
@@ -79,7 +81,7 @@ public class ControllerChapter1 : MonoBehaviour
         prio5 = GameObject.Find("Priority5");
         prio6 = GameObject.Find("Priority6");
         
-        priorities = GameObject.Find("Priorities");
+        prioritiesIcon = GameObject.Find("Priorities");
 
         buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
         buttonToConv = GameObject.Find("Button - ContinueToConv");
@@ -94,20 +96,20 @@ public class ControllerChapter1 : MonoBehaviour
         dragNdropRes = new List<string>();
 
         //Get Priority Id
-        prioId1 = prio1.GetComponent<PanelSettings>().Id;
-        prioId2 = prio2.GetComponent<PanelSettings>().Id;
-        prioId3 = prio3.GetComponent<PanelSettings>().Id;
-        prioId4 = prio4.GetComponent<PanelSettings>().Id;
-        prioId5 = prio5.GetComponent<PanelSettings>().Id;
-        prioId6 = prio6.GetComponent<PanelSettings>().Id;
+        prioId1 = priorities[0].GetComponent<PanelSettings>().Id;
+        prioId2 = priorities[1].GetComponent<PanelSettings>().Id;
+        prioId3 = priorities[2].GetComponent<PanelSettings>().Id;
+        prioId4 = priorities[3].GetComponent<PanelSettings>().Id;
+        prioId5 = priorities[4].GetComponent<PanelSettings>().Id;
+        prioId6 = priorities[5].GetComponent<PanelSettings>().Id;
 
         //Get Panels
-        Panel1 = alt0.gameObject.transform.GetChild(2).gameObject;
-        Panel2 = alt1.gameObject.transform.GetChild(2).gameObject;
-        Panel3 = alt2.gameObject.transform.GetChild(2).gameObject;
-        Panel4 = alt3.gameObject.transform.GetChild(2).gameObject;
-        Panel5 = alt4.gameObject.transform.GetChild(2).gameObject;
-        Panel6 = alt5.gameObject.transform.GetChild(2).gameObject;
+        Panel1 = alternatives[0].gameObject.transform.GetChild(2).gameObject;
+        Panel2 = alternatives[1].gameObject.transform.GetChild(2).gameObject;
+        Panel3 = alternatives[2].gameObject.transform.GetChild(2).gameObject;
+        Panel4 = alternatives[3].gameObject.transform.GetChild(2).gameObject;
+        Panel5 = alternatives[4].gameObject.transform.GetChild(2).gameObject;
+        Panel6 = alternatives[5].gameObject.transform.GetChild(2).gameObject;
 
         //Default Setup
         SetOrderAlternatives(0);
@@ -134,38 +136,38 @@ public class ControllerChapter1 : MonoBehaviour
             case 1:
                 HideAlternative(Panel1);
                 ShowAlternative(Panel2);
-                alt0.GetComponent<UIButton>().Interactable = false;
-                alt1.GetComponent<UIButton>().Interactable = true;
+                alternatives[0].GetComponent<UIButton>().Interactable = false;
+                alternatives[1].GetComponent<UIButton>().Interactable = true;
                 break;
             case 2:
                 HideAlternative(Panel2);
                 ShowAlternative(Panel3);
-                alt1.GetComponent<UIButton>().Interactable = false;
-                alt2.GetComponent<UIButton>().Interactable = true;
+                alternatives[1].GetComponent<UIButton>().Interactable = false;
+                alternatives[2].GetComponent<UIButton>().Interactable = true;
 
                 break;
             case 3:
                 HideAlternative(Panel3);
                 ShowAlternative(Panel4);
-                alt2.GetComponent<UIButton>().Interactable = false;
-                alt3.GetComponent<UIButton>().Interactable = true;
+                alternatives[2].GetComponent<UIButton>().Interactable = false;
+                alternatives[3].GetComponent<UIButton>().Interactable = true;
                 break;
             case 4:
                 HideAlternative(Panel4);
                 ShowAlternative(Panel5);
-                alt3.GetComponent<UIButton>().Interactable = false;
-                alt4.GetComponent<UIButton>().Interactable = true;
+                alternatives[3].GetComponent<UIButton>().Interactable = false;
+                alternatives[4].GetComponent<UIButton>().Interactable = true;
                 break;
             case 5:
                 HideAlternative(Panel5);
                 ShowAlternative(Panel6);
-                alt4.GetComponent<UIButton>().Interactable = false;
-                alt5.GetComponent<UIButton>().Interactable = true;
+                alternatives[4].GetComponent<UIButton>().Interactable = false;
+                alternatives[5].GetComponent<UIButton>().Interactable = true;
                 break;
             case 6:
                 HideAlternative(Panel6);
                 //Shoe Button - Go to Dnd
-                alt5.GetComponent<UIButton>().Interactable = false;
+                alternatives[5].GetComponent<UIButton>().Interactable = false;
                 buttonToDnd.GetComponent<Button>().interactable = true;
                 break;
 
@@ -187,12 +189,12 @@ public class ControllerChapter1 : MonoBehaviour
                 HideAlternative(Panel5);
                 HideAlternative(Panel6);
                 //Disable button
-                alt0.GetComponent<UIButton>().Interactable = true;
-                alt1.GetComponent<UIButton>().Interactable = false;
-                alt2.GetComponent<UIButton>().Interactable = false;
-                alt3.GetComponent<UIButton>().Interactable = false;
-                alt4.GetComponent<UIButton>().Interactable = false;
-                alt5.GetComponent<UIButton>().Interactable = false;
+                alternatives[0].GetComponent<UIButton>().Interactable = true;
+                alternatives[1].GetComponent<UIButton>().Interactable = false;
+                alternatives[2].GetComponent<UIButton>().Interactable = false;
+                alternatives[3].GetComponent<UIButton>().Interactable = false;
+                alternatives[4].GetComponent<UIButton>().Interactable = false;
+                alternatives[5].GetComponent<UIButton>().Interactable = false;
                 break;
         }
     }
@@ -354,35 +356,35 @@ public class ControllerChapter1 : MonoBehaviour
     public void DisableDnD()
     {
         //Lock the drag&drop property of the elements
-        alt0.GetComponent<ObjectSettings>().LockObject = true;
-        alt1.GetComponent<ObjectSettings>().LockObject = true;
-        alt2.GetComponent<ObjectSettings>().LockObject = true;
-        alt3.GetComponent<ObjectSettings>().LockObject = true;
-        alt4.GetComponent<ObjectSettings>().LockObject = true;
-        alt5.GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[0].GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[1].GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[2].GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[3].GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[4].GetComponent<ObjectSettings>().LockObject = true;
+        alternatives[5].GetComponent<ObjectSettings>().LockObject = true;
 
-        priorities.SetActive(false);
+        prioritiesIcon.SetActive(false);
     }
 
     public void EnableDnD()
     {
         //Disable button (to be sure!)
-        alt0.GetComponent<UIButton>().Interactable = false;
-        alt1.GetComponent<UIButton>().Interactable = false;
-        alt2.GetComponent<UIButton>().Interactable = false;
-        alt3.GetComponent<UIButton>().Interactable = false;
-        alt4.GetComponent<UIButton>().Interactable = false;
-        alt5.GetComponent<UIButton>().Interactable = false;
+        alternatives[0].GetComponent<UIButton>().Interactable = false;
+        alternatives[1].GetComponent<UIButton>().Interactable = false;
+        alternatives[2].GetComponent<UIButton>().Interactable = false;
+        alternatives[3].GetComponent<UIButton>().Interactable = false;
+        alternatives[4].GetComponent<UIButton>().Interactable = false;
+        alternatives[5].GetComponent<UIButton>().Interactable = false;
 
         //Unlock the drag&drop property of the elements
-        alt0.GetComponent<ObjectSettings>().LockObject = false;
-        alt1.GetComponent<ObjectSettings>().LockObject = false;
-        alt2.GetComponent<ObjectSettings>().LockObject = false;
-        alt3.GetComponent<ObjectSettings>().LockObject = false;
-        alt4.GetComponent<ObjectSettings>().LockObject = false;
-        alt5.GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[0].GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[1].GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[2].GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[3].GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[4].GetComponent<ObjectSettings>().LockObject = false;
+        alternatives[5].GetComponent<ObjectSettings>().LockObject = false;
 
-        priorities.SetActive(true);
+        prioritiesIcon.SetActive(true);
 
         ShowPopup();
     }

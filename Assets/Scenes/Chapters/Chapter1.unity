@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -19211,7 +19211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.504717, b: 0.7521233, a: 0.12156863}
+  m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -32455,6 +32455,7 @@ GameObject:
   - component: {fileID: 431063031}
   - component: {fileID: 431063030}
   - component: {fileID: 431063029}
+  - component: {fileID: 431063033}
   m_Layer: 0
   m_Name: Button - ContinueToConv
   m_TagString: Untagged
@@ -34865,6 +34866,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431063027}
   m_CullTransparentMesh: 0
+--- !u!223 &431063033
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431063027}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 4
+  m_TargetDisplay: 0
 --- !u!1 &432605171
 GameObject:
   m_ObjectHideFlags: 0
@@ -49766,6 +49788,7 @@ GameObject:
   - component: {fileID: 831151400}
   - component: {fileID: 831151399}
   - component: {fileID: 831151398}
+  - component: {fileID: 831151402}
   m_Layer: 0
   m_Name: Button - ContinueToAltDnD
   m_TagString: Untagged
@@ -52187,6 +52210,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831151396}
   m_CullTransparentMesh: 0
+--- !u!223 &831151402
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831151396}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 4
+  m_TargetDisplay: 0
 --- !u!1 &833626651
 GameObject:
   m_ObjectHideFlags: 0
@@ -78163,8 +78207,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -130899,26 +130943,21 @@ MonoBehaviour:
   sceneEngineer: {fileID: 4783305941575667341}
   ConversationBubbles:
   - {fileID: 910047588}
-  alternative:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  alt0: {fileID: 1468929189}
-  alt1: {fileID: 57228261}
-  alt2: {fileID: 1096507157}
-  alt3: {fileID: 1274434710}
-  alt4: {fileID: 1180688856}
-  alt5: {fileID: 1820973299}
-  prio1: {fileID: 1733215721}
-  prio2: {fileID: 1140388007}
-  prio3: {fileID: 339472883}
-  prio4: {fileID: 788110041}
-  prio5: {fileID: 377307748}
-  prio6: {fileID: 1963769039}
-  priorities: {fileID: 1938242576}
+  alternatives:
+  - {fileID: 1468929189}
+  - {fileID: 57228261}
+  - {fileID: 1096507157}
+  - {fileID: 1274434710}
+  - {fileID: 1180688856}
+  - {fileID: 1820973299}
+  priorities:
+  - {fileID: 1733215721}
+  - {fileID: 1140388007}
+  - {fileID: 339472883}
+  - {fileID: 788110041}
+  - {fileID: 377307748}
+  - {fileID: 1963769039}
+  prioritiesIcon: {fileID: 1938242576}
   buttonToDnd: {fileID: 831151396}
   buttonToConv: {fileID: 431063027}
   dragNdropRes: []
