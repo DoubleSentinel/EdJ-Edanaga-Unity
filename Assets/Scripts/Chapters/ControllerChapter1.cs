@@ -47,7 +47,7 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private List<string> dragNdropRes;
 
     [Header("Popup Values")]
-    private string PopupName = "Popup1";
+    public string PopupName = "Popup1";
     //[SerializeField] private GameObject TitleObject;
     [SerializeField] private string Title = "Title";
     [SerializeField] private GameObject MessageObject;
@@ -403,7 +403,9 @@ public class ControllerChapter1 : MonoBehaviour
         //Message = MessageObject.GetComponent<Text>().ToString();
         Title = "Consignes";
         //Message = "Cliquez sur l’alternative que vous préférez, maintenez le bouton de la souris pressé et déplacez l’image en haut du classement, avant de relâcher le bouton de la souris. De la même manière, glissez-déposez votre deuxième alternative préférée à la seconde place, et ainsi de suite jusqu’à obtenir le classement de votre choix !";
-        Message = MessageObject.GetComponent<Text>().ToString();
+        //Message = MessageObject.GetComponent<Text>().ToString();
+        Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        //Message = MessageObject.GetComponent<TMPro.TextMeshProUGUI>().text;
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
