@@ -377,7 +377,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -432
-  m_y: -132
+  m_y: -144
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -512,25 +512,6 @@ MonoBehaviour:
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 1
-    m_canBeReordered: 1
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 86
-    m_id: dcf17175-2ab3-41ac-8bd8-88c967acd3eb
-    m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
-    m_socketName: OutputSocket_1
-    m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAltDnD","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - m_connectionMode: 0
     m_connections:
     - m_inputConnectionPoint: {x: -2, y: 4}
       m_outputConnectionPoint: {x: 202, y: 4}
@@ -549,7 +530,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 110
+    m_y: 86
     m_id: 4abc8bbe-53e0-4dcc-af46-6f68a86b26f1
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_2
@@ -575,7 +556,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 134
+    m_y: 110
     m_id: 3bb1b1ae-9a65-4aa9-9548-95c2918c6e22
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_3
@@ -601,7 +582,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 158
+    m_y: 134
     m_id: ea8f6ee7-2d55-4f60-b3da-06ad2e892b44
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_4
@@ -627,7 +608,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 182
+    m_y: 158
     m_id: eb849b2d-4a9e-47e2-9148-bc4aa02ec2c0
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_5
@@ -653,7 +634,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 206
+    m_y: 182
     m_id: 853729d2-e56f-4aad-9d8b-7d90b050e260
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_6
@@ -679,30 +660,11 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 230
+    m_y: 206
     m_id: 86eb43f6-a345-4f74-9208-7b26bbd02b31
     m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
     m_socketName: OutputSocket_7
     m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAltInfo5","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 1
-    m_canBeReordered: 1
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 254
-    m_id: ce1ec2f9-9ed2-43f8-ad56-ffd31375e3f7
-    m_nodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
-    m_socketName: OutputSocket_8
-    m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAltDnD2","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -713,10 +675,10 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 320
+  m_height: 272
   m_width: 216
-  m_x: -876
-  m_y: -204
+  m_x: -852
+  m_y: -252
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -908,7 +870,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -432
-  m_y: -396
+  m_y: -432
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -1004,7 +966,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -432
-  m_y: 264
+  m_y: 276
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -1174,12 +1136,11 @@ MonoBehaviour:
   - {fileID: -1151570296865051683}
   - {fileID: -4709839307589888660}
   - {fileID: -3160893347095124776}
-  - {fileID: -7250402460427944273}
   m_isSubGraph: 0
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132519168821333477
+  m_lastModified: 132522687658195426
 --- !u!114 &3894428176779684713
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1355,7 +1316,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -432
-  m_y: -264
+  m_y: -288
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe

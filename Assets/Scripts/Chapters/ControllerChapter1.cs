@@ -333,11 +333,13 @@ public class ControllerChapter1 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
+    /*
     public void toogle(GameObject go)
     {
-        var ddc = go.GetComponent<DDCanvas>();
+        var ddc = go.GetComponent<Text>();
         ddc.enabled = !ddc.enabled;
     }
+    */
 
     public void ShowGo(GameObject go)
     {
