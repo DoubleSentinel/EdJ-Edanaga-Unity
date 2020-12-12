@@ -42,7 +42,17 @@ public class ControllerChapter1 : MonoBehaviour
 
     private string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
     private GameObject Panel1, Panel2, Panel3, Panel4, Panel5, Panel6;
-
+    //TO DO
+    
+    public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
+    public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
+    public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
+    /*
+    for (i=0; i<alts.Lenght; i++)
+    {
+        var p = alts[i].hetChild[2].go;    
+    }
+    */
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdropRes;
 
@@ -86,7 +96,6 @@ public class ControllerChapter1 : MonoBehaviour
         buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
         buttonToConv = GameObject.Find("Button - ContinueToConv");
         */
- 
     }
 
     private void Start()
@@ -114,19 +123,26 @@ public class ControllerChapter1 : MonoBehaviour
         //Default Setup
         SetOrderAlternatives(0);
 
-        buttonToDnd.GetComponent<Button>().interactable = false;
+        //buttonToDnd.GetComponent<Button>().interactable = false;
+        HideGo(buttonToDnd); //No button
+
         HideGo(buttonToConv);
         DisableDnD();
     }
 
     public void ShowAlternative(GameObject o)
     {
-        o.GetComponent<Image>().DOColor(new Color(0.37f, 0.58f, 0.82f, 0), 1f);
+        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
+    }
+
+    public void NextAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
     }
 
     public void HideAlternative(GameObject o)
     {
-        o.GetComponent<Image>().DOColor(new Color(0.37f, 0.58f, 0.82f, 0.7f), 1f);
+        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
     }
 
     public void SetOrderAlternatives(int alternativeN)
@@ -134,55 +150,58 @@ public class ControllerChapter1 : MonoBehaviour
         switch (alternativeN)
         {
             case 1:
-                HideAlternative(Panel1);
-                ShowAlternative(Panel2);
-                alternatives[0].GetComponent<UIButton>().Interactable = false;
+                ShowAlternative(Panel1);
+                NextAlternative(Panel2);
+                //alternatives[0].GetComponent<UIButton>().Interactable = false;
                 alternatives[1].GetComponent<UIButton>().Interactable = true;
                 break;
             case 2:
-                HideAlternative(Panel2);
-                ShowAlternative(Panel3);
-                alternatives[1].GetComponent<UIButton>().Interactable = false;
+                ShowAlternative(Panel2);
+                NextAlternative(Panel3);
+                //alternatives[1].GetComponent<UIButton>().Interactable = false;
                 alternatives[2].GetComponent<UIButton>().Interactable = true;
 
                 break;
             case 3:
-                HideAlternative(Panel3);
-                ShowAlternative(Panel4);
-                alternatives[2].GetComponent<UIButton>().Interactable = false;
+                ShowAlternative(Panel3);
+                NextAlternative(Panel4);
+                //alternatives[2].GetComponent<UIButton>().Interactable = false;
                 alternatives[3].GetComponent<UIButton>().Interactable = true;
                 break;
             case 4:
-                HideAlternative(Panel4);
-                ShowAlternative(Panel5);
-                alternatives[3].GetComponent<UIButton>().Interactable = false;
+                ShowAlternative(Panel4);
+                NextAlternative(Panel5);
+                //alternatives[3].GetComponent<UIButton>().Interactable = false;
                 alternatives[4].GetComponent<UIButton>().Interactable = true;
                 break;
             case 5:
-                HideAlternative(Panel5);
-                ShowAlternative(Panel6);
-                alternatives[4].GetComponent<UIButton>().Interactable = false;
+                ShowAlternative(Panel5);
+                NextAlternative(Panel6);
+                //alternatives[4].GetComponent<UIButton>().Interactable = false;
                 alternatives[5].GetComponent<UIButton>().Interactable = true;
                 break;
             case 6:
-                HideAlternative(Panel6);
+                ShowAlternative(Panel6);
                 //Shoe Button - Go to Dnd
                 alternatives[5].GetComponent<UIButton>().Interactable = false;
+                ShowGo(buttonToDnd);
+                //buttonToDnd.GetComponent<Button>().enabled = true;
                 buttonToDnd.GetComponent<Button>().interactable = true;
                 break;
 
             case 7:
+                /*
                 ShowAlternative(Panel1);
                 ShowAlternative(Panel2);
                 ShowAlternative(Panel3);
                 ShowAlternative(Panel4);
                 ShowAlternative(Panel5);
                 ShowAlternative(Panel6);
-
+                */
                 break;
 
             default:
-                ShowAlternative(Panel1);
+                NextAlternative(Panel1);
                 HideAlternative(Panel2);
                 HideAlternative(Panel3);
                 HideAlternative(Panel4);
@@ -351,6 +370,7 @@ public class ControllerChapter1 : MonoBehaviour
         dragNdropRes.Add(PrioAlt);
         PrioAlt = DragDropManager.GetPanelObject(prioId6);
         dragNdropRes.Add(PrioAlt);
+
     }
 
     public void DisableDnD()
@@ -385,7 +405,7 @@ public class ControllerChapter1 : MonoBehaviour
         alternatives[5].GetComponent<ObjectSettings>().LockObject = false;
 
         prioritiesIcon.SetActive(true);
-
+        
         ShowPopup();
     }
 
@@ -409,6 +429,22 @@ public class ControllerChapter1 : MonoBehaviour
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
+
+        //BUG!!!!
+        /*
+        alternatives[0].GetComponent<Image>().enabled = false;
+        alternatives[1].GetComponent<Image>().enabled = false;
+        alternatives[2].GetComponent<Image>().enabled = false;
+        alternatives[3].GetComponent<Image>().enabled = false;
+        alternatives[4].GetComponent<Image>().enabled = false;
+        alternatives[5].GetComponent<Image>().enabled = false;
+        alternatives[0].GetComponent<Image>().enabled = true;
+        alternatives[1].GetComponent<Image>().enabled = true;
+        alternatives[2].GetComponent<Image>().enabled = true;
+        alternatives[3].GetComponent<Image>().enabled = true;
+        alternatives[4].GetComponent<Image>().enabled = true;
+        alternatives[5].GetComponent<Image>().enabled = true;
+        */
     }
 
 }
