@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e021c5c27274514469ad2992883d55db, type: 3}
-  m_Name: TitleScreen1
+  m_Name: TitleScreen2
   m_EditorClassIdentifier: 
   DebugMode: 0
   m_nodes:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 50613d1f-734c-4e14-b25c-6978e9e0d2ac
-  m_lastModified: 132523165989453037
+  m_lastModified: 132523166633127386
 --- !u!114 &1905106907574740632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,7 +424,7 @@ MonoBehaviour:
   AllowSceneActivation: 1
   SceneActivationDelay: 0.2
   SceneBuildIndex: 0
-  SceneName: Chapter1
+  SceneName: Chapter2.1
 --- !u!114 &7027682683133159683
 MonoBehaviour:
   m_ObjectHideFlags: 1

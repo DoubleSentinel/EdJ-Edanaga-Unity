@@ -21,14 +21,16 @@ public class ControllerChapter1 : MonoBehaviour
 
     [SerializeField] private GameObject[] alternatives;
     [SerializeField] private GameObject[] priorities;
-    
+    private string newPrioIds;
+
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
 
-    private string[] prioIds;
-    private List<GameObject> Panels = new List<GameObject>();
-    
+    private List<string> prioIds;
+    public List<GameObject> Panels; // = new List<GameObject>();
+    private GameObject NewPanels;
+
     public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
     public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
     public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
@@ -49,6 +51,7 @@ public class ControllerChapter1 : MonoBehaviour
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
+    
 
     void Awake()
     {
@@ -61,16 +64,21 @@ public class ControllerChapter1 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         dragNdropRes = new List<string>();
-        
+        prioIds = new List<string>();
+
         for (int i=0; i< alternatives.Length; i++)
         {
             //Set Panels
-            Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+            NewPanels = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+            Panels.Add(NewPanels);
         }
-        for (int i = 0; i < priorities.Length; i++)
+
+        //for (int i=0; i < priorities.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
             //Set Priority Id
-            prioIds[i] = priorities[i].GetComponent<PanelSettings>().Id;
+            newPrioIds = priorities[i].GetComponent<PanelSettings>().Id;
+            prioIds[i] = newPrioIds;
         }
         
         /*
@@ -224,18 +232,20 @@ public class ControllerChapter1 : MonoBehaviour
         dragNdropRes.Clear();
 
         //Add result of the Drag&Drop into the list
-        string PrioAlt = DragDropManager.GetPanelObject(prioIds[0]);
+        /*
+        string PrioAlt = DragDropManager.GetPanelObject(prioIds[0].ToString());
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[1]);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[1].ToString());
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[2]);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[2].ToString());
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[3]);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[3].ToString());
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[4]);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[4].ToString());
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[5]);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[5].ToString());
         dragNdropRes.Add(PrioAlt);
+        */
     }
 
     public void DisableDnD()

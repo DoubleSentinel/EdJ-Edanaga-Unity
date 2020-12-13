@@ -18323,7 +18323,7 @@ RectTransform:
   m_Children:
   - {fileID: 431063028}
   m_Father: {fileID: 1112530074}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -34942,8 +34942,8 @@ RectTransform:
   m_Children:
   - {fileID: 464888517}
   - {fileID: 1967558804}
-  - {fileID: 4000012419427975}
   - {fileID: 663097440}
+  - {fileID: 4000012419427975}
   - {fileID: 610299349}
   - {fileID: 121209907}
   m_Father: {fileID: 407104524}
@@ -58561,6 +58561,13 @@ MonoBehaviour:
   prioritiesIcon: {fileID: 1938242576}
   buttonToDnd: {fileID: 831151396}
   buttonToConv: {fileID: 431063027}
+  Panels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HiddenAltColor: {r: 0.36862746, g: 0.5803922, b: 0.81960785, a: 0.7}
   VisibleAltColor: {r: 0.37, g: 0.58, b: 0.82, a: 0}
   VisibleAltColor25: {r: 0.37, g: 0.58, b: 0.82, a: 0.2}
