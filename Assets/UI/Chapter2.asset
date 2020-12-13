@@ -84,7 +84,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: df281185-b101-4298-8364-8f01bbda41d6
-  m_name: 1.4.0 Alt Info 2
+  m_name: 2.4.0 Alt Info 2
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
-  m_name: 1.3 Alternatives
+  m_name: 2.3 Alternatives
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: ad87c4be-3152-4c0b-8f6f-7bdf10758c1f
-  m_name: 1.4.0 Alt Info 3
+  m_name: 2.4.0 Alt Info 3
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 8ecca83d-3b91-4c70-895b-48ccccfa9587
-  m_name: 1.4.0 Alt Info 0
+  m_name: 2.4.0 Alt Info 0
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 365c604d-bfc1-4e13-b08c-1cad255b14ef
-  m_name: 1.4.0 Alt Info 5
+  m_name: 2.4.0 Alt Info 5
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 5a468793-8e1a-450c-900b-c73504c22cda
-  m_name: 1.2 Conversation
+  m_name: 2.2 Conversation
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e021c5c27274514469ad2992883d55db, type: 3}
-  m_Name: Chapter1
+  m_Name: Chapter2
   m_EditorClassIdentifier: 
   DebugMode: 0
   m_nodes:
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132523172387954787
+  m_lastModified: 132523172821197965
 --- !u!114 &3894428176779684713
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 53a75538-8c64-42b3-9c58-7cebf0d700fa
-  m_name: 1.4.0 Alt Info 4
+  m_name: 2.4.0 Alt Info 4
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 01cefbdc-92b1-42b9-957b-766639f114dc
-  m_name: 1.4.0 Alt Info 1
+  m_name: 2.4.0 Alt Info 1
   m_notes: 
   m_onEnterShowViews:
   - Category: Chapter1
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
   m_id: 73685264-47cc-44d6-9633-73978da9361d
-  m_name: 1.1 Title
+  m_name: 2.1 Title
   m_notes: Instructions
   m_onEnterShowViews:
   - Category: Chapter1
