@@ -21,38 +21,18 @@ public class ControllerChapter1 : MonoBehaviour
 
     [SerializeField] private GameObject[] alternatives;
     [SerializeField] private GameObject[] priorities;
-    /*
-    [SerializeField] private GameObject alt0;
-    [SerializeField] private GameObject alt1;
-    [SerializeField] private GameObject alt2;
-    [SerializeField] private GameObject alt3;
-    [SerializeField] private GameObject alt4;
-    [SerializeField] private GameObject alt5;
     
-    [SerializeField] private GameObject prio1;
-    [SerializeField] private GameObject prio2;
-    [SerializeField] private GameObject prio3;
-    [SerializeField] private GameObject prio4;
-    [SerializeField] private GameObject prio5;
-    [SerializeField] private GameObject prio6;
-    */
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
 
-    private string prioId1, prioId2, prioId3, prioId4, prioId5, prioId6;
-    private GameObject Panel1, Panel2, Panel3, Panel4, Panel5, Panel6;
-    //TO DO
+    private string[] prioIds;
+    private List<GameObject> Panels = new List<GameObject>();
     
     public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
     public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
     public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
-    /*
-    for (i=0; i<alts.Lenght; i++)
-    {
-        var p = alts[i].hetChild[2].go;    
-    }
-    */
+    
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdropRes;
 
@@ -65,8 +45,6 @@ public class ControllerChapter1 : MonoBehaviour
     
     // Local variables
     private GameObject controllers;
-    //public SpriteRenderer rendIn, rendOut; //FadeInand FadeOut
-    //public Image rendIn, rendOut; //FadeInand FadeOut
 
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
@@ -76,26 +54,6 @@ public class ControllerChapter1 : MonoBehaviour
     {
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
-        /*
-        alt0 = GameObject.Find("Alternative0");
-        alt1 = GameObject.Find("Alternative1");
-        alt2 = GameObject.Find("Alternative2");
-        alt3 = GameObject.Find("Alternative3");
-        alt4 = GameObject.Find("Alternative4");
-        alt5 = GameObject.Find("Alternative5");
-
-        prio1 = GameObject.Find("Priority1");
-        prio2 = GameObject.Find("Priority2");
-        prio3 = GameObject.Find("Priority3");
-        prio4 = GameObject.Find("Priority4");
-        prio5 = GameObject.Find("Priority5");
-        prio6 = GameObject.Find("Priority6");
-        
-        prioritiesIcon = GameObject.Find("Priorities");
-
-        buttonToDnd = GameObject.Find("Button - ContinueToAltDnD");
-        buttonToConv = GameObject.Find("Button - ContinueToConv");
-        */
     }
 
     private void Start()
@@ -103,195 +61,33 @@ public class ControllerChapter1 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         dragNdropRes = new List<string>();
-
-        //Get Priority Id
-        prioId1 = priorities[0].GetComponent<PanelSettings>().Id;
+        
+        for (int i=0; i< alternatives.Length; i++)
+        {
+            //Set Panels
+            Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+        }
+        for (int i = 0; i < priorities.Length; i++)
+        {
+            //Set Priority Id
+            prioIds[i] = priorities[i].GetComponent<PanelSettings>().Id;
+        }
+        
+        /*
         prioId2 = priorities[1].GetComponent<PanelSettings>().Id;
-        prioId3 = priorities[2].GetComponent<PanelSettings>().Id;
-        prioId4 = priorities[3].GetComponent<PanelSettings>().Id;
-        prioId5 = priorities[4].GetComponent<PanelSettings>().Id;
-        prioId6 = priorities[5].GetComponent<PanelSettings>().Id;
-
+        
         //Get Panels
+        
         Panel1 = alternatives[0].gameObject.transform.GetChild(2).gameObject;
-        Panel2 = alternatives[1].gameObject.transform.GetChild(2).gameObject;
-        Panel3 = alternatives[2].gameObject.transform.GetChild(2).gameObject;
-        Panel4 = alternatives[3].gameObject.transform.GetChild(2).gameObject;
-        Panel5 = alternatives[4].gameObject.transform.GetChild(2).gameObject;
-        Panel6 = alternatives[5].gameObject.transform.GetChild(2).gameObject;
-
+        */
+        
         //Default Setup
         SetOrderAlternatives(0);
-
-        //buttonToDnd.GetComponent<Button>().interactable = false;
-        HideGo(buttonToDnd); //No button
-
+        HideGo(buttonToDnd);
         HideGo(buttonToConv);
         DisableDnD();
     }
-
-    public void ShowAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
-    }
-
-    public void NextAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
-    }
-
-    public void HideAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
-    }
-
-    public void SetOrderAlternatives(int alternativeN)
-    {
-        switch (alternativeN)
-        {
-            case 1:
-                ShowAlternative(Panel1);
-                NextAlternative(Panel2);
-                //alternatives[0].GetComponent<UIButton>().Interactable = false;
-                alternatives[1].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 2:
-                ShowAlternative(Panel2);
-                NextAlternative(Panel3);
-                //alternatives[1].GetComponent<UIButton>().Interactable = false;
-                alternatives[2].GetComponent<UIButton>().Interactable = true;
-
-                break;
-            case 3:
-                ShowAlternative(Panel3);
-                NextAlternative(Panel4);
-                //alternatives[2].GetComponent<UIButton>().Interactable = false;
-                alternatives[3].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 4:
-                ShowAlternative(Panel4);
-                NextAlternative(Panel5);
-                //alternatives[3].GetComponent<UIButton>().Interactable = false;
-                alternatives[4].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 5:
-                ShowAlternative(Panel5);
-                NextAlternative(Panel6);
-                //alternatives[4].GetComponent<UIButton>().Interactable = false;
-                alternatives[5].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 6:
-                ShowAlternative(Panel6);
-                //Shoe Button - Go to Dnd
-                alternatives[5].GetComponent<UIButton>().Interactable = false;
-                ShowGo(buttonToDnd);
-                //buttonToDnd.GetComponent<Button>().enabled = true;
-                buttonToDnd.GetComponent<Button>().interactable = true;
-                break;
-
-            case 7:
-                /*
-                ShowAlternative(Panel1);
-                ShowAlternative(Panel2);
-                ShowAlternative(Panel3);
-                ShowAlternative(Panel4);
-                ShowAlternative(Panel5);
-                ShowAlternative(Panel6);
-                */
-                break;
-
-            default:
-                NextAlternative(Panel1);
-                HideAlternative(Panel2);
-                HideAlternative(Panel3);
-                HideAlternative(Panel4);
-                HideAlternative(Panel5);
-                HideAlternative(Panel6);
-                //Disable button
-                alternatives[0].GetComponent<UIButton>().Interactable = true;
-                alternatives[1].GetComponent<UIButton>().Interactable = false;
-                alternatives[2].GetComponent<UIButton>().Interactable = false;
-                alternatives[3].GetComponent<UIButton>().Interactable = false;
-                alternatives[4].GetComponent<UIButton>().Interactable = false;
-                alternatives[5].GetComponent<UIButton>().Interactable = false;
-                break;
-        }
-    }
-
-    public void StartDnD()
-    {
-        //Show alternatives
-        SetOrderAlternatives(7);
-
-        //Disable buttons
-        buttonToDnd.GetComponent<Button>().interactable = true;
-        
-        //Enable DnD
-        EnableDnD();
-    }
-
-/*
-    public void FageInOut(int sourceN)
-    {
-        switch (sourceN)
-        {
-            case 1:
-                //rendIn = alt1.GetComponentInChildren<SpriteRenderer>();
-                rendIn = alt1.gameObject.transform.GetChild(1).GetComponent<Image>();
-                Color c = rendIn.material.color;
-                c.a = 0f;
-                rendIn.material.color = c;
-                //rendOut = alt0.GetComponentInChildren<SpriteRenderer>();
-                rendOut = alt0.gameObject.transform.GetChild(1).GetComponent<Image>();
-                //startFadeIn();
-                //startFadeOut();
-                break;
-
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-
-        }
-    }
-
-    IEnumerator FadeIn()
-    {
-        for (float f = 0.05f; f <= 1; f += 0.05f)
-        {
-            Color c = rendIn.material.color;
-            c.a = f;
-            rendIn.material.color = c;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
-    public void startFadeIn()
-    {
-        StartCoroutine("FadeIn");
-    }
-
-    IEnumerator FadeOut()
-    {
-        for (float f = 1f; f >= -0.05f; f -= 0.05f)
-        {
-            Color c = rendOut.material.color;
-            c.a = f;
-            rendOut.material.color = c;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
-    public void startFadeOut()
-    {
-        StartCoroutine("FadeOut");
-    }
-*/
-
+    
     // --------------------  UI Callables  --------------------------------
     public void SetConversationIndex(int index)
     {
@@ -333,46 +129,113 @@ public class ControllerChapter1 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
-    /*
-    public void toogle(GameObject go)
+    public void SetOrderAlternatives(int alternativeN)
     {
-        var ddc = go.GetComponent<Text>();
-        ddc.enabled = !ddc.enabled;
-    }
-    */
+        switch (alternativeN)
+        {
+            case 1:
+                ShowAlternative(Panels[0]);
+                NextAlternative(Panels[1]);
+                alternatives[1].GetComponent<UIButton>().Interactable = true;
+                break;
+            case 2:
+                ShowAlternative(Panels[1]);
+                NextAlternative(Panels[2]);
+                alternatives[2].GetComponent<UIButton>().Interactable = true;
 
-    public void ShowGo(GameObject go)
-    {
-       go.SetActive(true);
+                break;
+            case 3:
+                ShowAlternative(Panels[2]);
+                NextAlternative(Panels[3]);
+                alternatives[3].GetComponent<UIButton>().Interactable = true;
+                break;
+            case 4:
+                ShowAlternative(Panels[3]);
+                NextAlternative(Panels[4]);
+                alternatives[4].GetComponent<UIButton>().Interactable = true;
+                break;
+            case 5:
+                ShowAlternative(Panels[4]);
+                NextAlternative(Panels[5]);
+                alternatives[5].GetComponent<UIButton>().Interactable = true;
+                break;
+            case 6:
+                ShowAlternative(Panels[5]);
+                alternatives[5].GetComponent<UIButton>().Interactable = false;
+                //Show Button - Go to Dnd
+                ShowGo(buttonToDnd);
+                buttonToDnd.GetComponent<Button>().interactable = true;
+                break;
+
+            default:
+                //Just the first alternative is interractable, the others not
+                NextAlternative(Panels[0]);
+                HideAlternative(Panels[1]);
+                HideAlternative(Panels[2]);
+                HideAlternative(Panels[3]);
+                HideAlternative(Panels[4]);
+                HideAlternative(Panels[5]);
+                alternatives[0].GetComponent<UIButton>().Interactable = true;
+                alternatives[1].GetComponent<UIButton>().Interactable = false;
+                alternatives[2].GetComponent<UIButton>().Interactable = false;
+                alternatives[3].GetComponent<UIButton>().Interactable = false;
+                alternatives[4].GetComponent<UIButton>().Interactable = false;
+                alternatives[5].GetComponent<UIButton>().Interactable = false;
+                break;
+        }
     }
-    public void HideGo(GameObject go)
+
+    public void StartDnD()
     {
-        go.SetActive(false);
+        //Show alternatives
+        //SetOrderAlternatives(7);
+
+        //Enable DnD buttons
+        buttonToDnd.GetComponent<Button>().interactable = true;
+        //Enable DnD
+        EnableDnD();
+    }
+
+    //Show specific alternative
+    public void ShowAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
+    }
+
+    //Shaded alternative to 25%
+    public void NextAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
+    }
+
+    //Shaded alternative
+    public void HideAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
     }
 
     public void CheckPriorities()
     {
-        //First DnD
+        //First DnD action
         if (dragNdropRes.Count == 0)
             ShowGo(buttonToConv);
 
-        //Reset the list
+        //Reset the list of the Drag&Drops result
         dragNdropRes.Clear();
 
         //Add result of the Drag&Drop into the list
-        string PrioAlt = DragDropManager.GetPanelObject(prioId1);
+        string PrioAlt = DragDropManager.GetPanelObject(prioIds[0]);
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId2);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[1]);
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId3);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[2]);
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId4);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[3]);
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId5);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[4]);
         dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioId6);
+        PrioAlt = DragDropManager.GetPanelObject(prioIds[5]);
         dragNdropRes.Add(PrioAlt);
-
     }
 
     public void DisableDnD()
@@ -390,7 +253,7 @@ public class ControllerChapter1 : MonoBehaviour
 
     public void EnableDnD()
     {
-        //Disable button (to be sure!)
+        //Disable the alternatives buttons
         alternatives[0].GetComponent<UIButton>().Interactable = false;
         alternatives[1].GetComponent<UIButton>().Interactable = false;
         alternatives[2].GetComponent<UIButton>().Interactable = false;
@@ -406,8 +269,8 @@ public class ControllerChapter1 : MonoBehaviour
         alternatives[4].GetComponent<ObjectSettings>().LockObject = false;
         alternatives[5].GetComponent<ObjectSettings>().LockObject = false;
 
-        prioritiesIcon.SetActive(true);
-        
+        prioritiesIcon.SetActive(true); //Show the icons representing the priorities weight 
+
         ShowPopup();
     }
 
@@ -420,33 +283,26 @@ public class ControllerChapter1 : MonoBehaviour
         if (popup == null)
             return;
 
-        //popup.Data.SetLabelsTexts(Title, Message);
-        //Title = TitleObject.GetComponent<Text>().ToString();
-        //Message = MessageObject.GetComponent<Text>().ToString();
         Title = "Consignes";
-        //Message = "Cliquez sur l’alternative que vous préférez, maintenez le bouton de la souris pressé et déplacez l’image en haut du classement, avant de relâcher le bouton de la souris. De la même manière, glissez-déposez votre deuxième alternative préférée à la seconde place, et ainsi de suite jusqu’à obtenir le classement de votre choix !";
-        //Message = MessageObject.GetComponent<Text>().ToString();
         Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
-        //Message = MessageObject.GetComponent<TMPro.TextMeshProUGUI>().text;
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
-
-        //BUG!!!!
-        /*
-        alternatives[0].GetComponent<Image>().enabled = false;
-        alternatives[1].GetComponent<Image>().enabled = false;
-        alternatives[2].GetComponent<Image>().enabled = false;
-        alternatives[3].GetComponent<Image>().enabled = false;
-        alternatives[4].GetComponent<Image>().enabled = false;
-        alternatives[5].GetComponent<Image>().enabled = false;
-        alternatives[0].GetComponent<Image>().enabled = true;
-        alternatives[1].GetComponent<Image>().enabled = true;
-        alternatives[2].GetComponent<Image>().enabled = true;
-        alternatives[3].GetComponent<Image>().enabled = true;
-        alternatives[4].GetComponent<Image>().enabled = true;
-        alternatives[5].GetComponent<Image>().enabled = true;
-        */
+    }
+    public void ShowGo(GameObject go)
+    {
+       go.SetActive(true);
     }
 
+    public void HideGo(GameObject go)
+    {
+        go.SetActive(false);
+    }
+    /*
+    public void toogle(GameObject go)
+    {
+        var ddc = go.GetComponent<Text>();
+        ddc.enabled = !ddc.enabled;
+    }
+    */
 }
