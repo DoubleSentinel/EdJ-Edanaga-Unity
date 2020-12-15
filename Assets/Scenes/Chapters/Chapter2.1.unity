@@ -7968,6 +7968,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1756059564}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1756059566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7154362194136089075, guid: eea14522fa3bc074ba15faf17054b357,
+    type: 3}
+  m_PrefabInstance: {fileID: 1756059564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1756059567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756059566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d896fe3d2e0fa7f499944cf92a47d39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenePlayer: {fileID: 0}
+  sceneSpeaker1: {fileID: 0}
+  sceneSpeaker2: {fileID: 0}
+  sceneSpeaker3: {fileID: 0}
+  sceneSpeaker4: {fileID: 0}
+  sceneSpeaker5: {fileID: 0}
+  sceneSpeaker6: {fileID: 0}
+  sceneSpeaker7: {fileID: 0}
+  sceneSpeaker8: {fileID: 0}
+  sceneSpeaker9: {fileID: 0}
+  sceneSpeaker10: {fileID: 0}
+  ConversationBubbles: []
+  conversationIndex: 0
 --- !u!1 &1772022827
 GameObject:
   m_ObjectHideFlags: 0
