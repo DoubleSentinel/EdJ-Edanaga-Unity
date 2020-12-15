@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c04155d43740f46a3223a7eb386e0c, type: 3}
   m_Name: _UIPopupDatabase
   m_EditorClassIdentifier: 
-  PopupNames: []
-  Popups: []
+  PopupNames:
+  - Popup1
+  Popups:
+  - {fileID: 11400000, guid: df75d981934100045b9d15b603df4d1f, type: 2}
