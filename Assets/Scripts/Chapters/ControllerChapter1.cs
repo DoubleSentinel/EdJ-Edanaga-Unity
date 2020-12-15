@@ -243,5 +243,4 @@ public class ControllerChapter1 : MonoBehaviour
     {
         go.SetActive(false);
     }
-
 }
