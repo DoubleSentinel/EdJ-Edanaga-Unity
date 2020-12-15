@@ -1,4 +1,5 @@
-﻿using Doozy.Engine;
+﻿using DG.Tweening;
+using Doozy.Engine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
-    //[SerializeField] private GameObject[] hosts;
-    private int currentCallPair;
+    [SerializeField] private Button btnContinue;
 
+    private int notifications;
+    public Color newColor = new Color(0f, 0f, 0f, 1f); // Set to opaque black;
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
     // Local variables
@@ -32,7 +34,10 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     void Awake()
     {
-        currentCallPair = -1;
+        if (btnContinue == null)
+        {
+            btnContinue = GameObject.Find("btnContinue").GetComponent<Button>();
+        }
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => { GameEventMessage.SendEvent("ContinueToTown"); };
     }
@@ -41,14 +46,11 @@ public class ControllerChapter2_1 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
         sceneObjectives = new GameObject[10];
-        //hosts = new GameObject[10];
-        //PrepareCall();
     }
 
     public void SetConversationIndex(int index)
     {
         conversationIndex = index;
-       
     }
 
     public void ClearCharacters()
@@ -79,16 +81,44 @@ public class ControllerChapter2_1 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
-    private void StartCall()
+    private void PrepareCall(int conversationIndex)
     {
         ClearCharacters();
 
-        sceneObjective = sceneObjectives[conversationIndex];
-        
         string title = "";
         title = $"2.1.2_Dialogue_objective{conversationIndex}";
 
         GetComponent<ConversationHandler>().GenerateConversation(title);
         GetComponent<ConversationHandler>().NextConversationSnippet();
+    }
+
+    //Button continue appears when all the objectivves have been read 
+    public void UpdateObjectiveButton(GameObject caller)
+    {
+        //caller.transform.GetChild(1).gameObject.SetActive(false); //Petite puce
+        caller.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        notifications = 0;
+        foreach (Transform objective in sceneObjective.gameObject.transform)
+        {
+            //GameObject notification = objective.GetChild(1).gameObject;
+            //if (!notification.activeSelf) //Si désactiver
+            if(objective.GetChild(0).GetComponent<SpriteRenderer>().color == new Color(1, 0, 0, 1))
+            {
+                notifications += 1;
+                if (notifications == 10)
+                {
+                    btnContinue.gameObject.SetActive(true);
+                    btnContinue.interactable = true;
+                }
+            }
+        }
+    }
+
+    public void StartCall(GameObject objective)
+    {
+        GameEventMessage.SendEvent("GoToPhoneCall");
+        string objectiveName = objective.name;
+        SetConversationIndex(objectiveName.Last());
+        PrepareCall(conversationIndex);
     }
 }
