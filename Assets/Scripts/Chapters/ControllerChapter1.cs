@@ -9,17 +9,17 @@ using UnityEngine.UI;
 
 public class ControllerChapter1 : MonoBehaviour
 {
-    [Header("2D Scene References")]
+    [Header("2D Scene References")] [SerializeField]
+    private GameObject scenePlayer;
 
-    [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject sceneJournalist;
     [SerializeField] private GameObject sceneEngineer;
 
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
-    [Header("Drag&Drop scene")]
+    [Header("Drag&Drop scene")] [SerializeField]
+    private GameObject[] alternatives;
 
-    [SerializeField] private GameObject[] alternatives;
     [SerializeField] private GameObject[] priorities;
     private string newPrioIds;
 
@@ -27,31 +27,31 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
 
-    private List<string> prioIds;
-    public List<GameObject> Panels; // = new List<GameObject>();
+    private string[] prioIds;
+    public GameObject[] Panels;
     private GameObject NewPanels;
 
     public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
     public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
     public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
-    
-    [Header("Drag&Drop result")]
-    [SerializeField] private List<string> dragNdropRes;
 
-    [Header("Popup Values")]
-    public string PopupName = "Popup1";
+    [Header("Drag&Drop result")] [SerializeField]
+    private List<string> dragNdropRes;
+
+    [Header("Popup Values")] public string PopupName = "Popup1";
+
     //[SerializeField] private GameObject TitleObject;
     [SerializeField] private string Title = "Title";
     [SerializeField] private GameObject MessageObject;
     [SerializeField] private string Message = "Popup message for player";
-    
+
     // Local variables
     private GameObject controllers;
 
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
-    
+
 
     void Awake()
     {
@@ -64,13 +64,22 @@ public class ControllerChapter1 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         dragNdropRes = new List<string>();
-        prioIds = new List<string>();
+        prioIds = new string[6];
+        Panels = new GameObject[6];
 
-        for (int i=0; i< alternatives.Length; i++)
+        for (int i = 0; i < alternatives.Length; i++)
         {
-            //Set Panels
-            NewPanels = alternatives[i].gameObject.transform.GetChild(2).gameObject;
-            Panels.Add(NewPanels);
+            Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+            if (i == 0)
+            {
+                NextAlternative(Panels[i]);
+                alternatives[i].GetComponent<UIButton>().Interactable = true;
+            }
+            else
+            {
+                HideAlternative(Panels[i]);
+                alternatives[i].GetComponent<UIButton>().Interactable = false;
+            }
         }
 
         //for (int i=0; i < priorities.Length; i++)
@@ -80,22 +89,13 @@ public class ControllerChapter1 : MonoBehaviour
             newPrioIds = priorities[i].GetComponent<PanelSettings>().Id;
             prioIds[i] = newPrioIds;
         }
-        
-        /*
-        prioId2 = priorities[1].GetComponent<PanelSettings>().Id;
-        
-        //Get Panels
-        
-        Panel1 = alternatives[0].gameObject.transform.GetChild(2).gameObject;
-        */
-        
+
         //Default Setup
-        SetOrderAlternatives(0);
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
         DisableDnD();
     }
-    
+
     // --------------------  UI Callables  --------------------------------
     public void SetConversationIndex(int index)
     {
@@ -121,7 +121,7 @@ public class ControllerChapter1 : MonoBehaviour
         Vector3 journalist = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
             height));
         Vector3 engineer = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 5 / 6,
-           height));
+            height));
 
         scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
         sceneJournalist.transform.position = new Vector3(journalist.x, journalist.y, depth);
@@ -139,65 +139,22 @@ public class ControllerChapter1 : MonoBehaviour
 
     public void SetOrderAlternatives(int alternativeN)
     {
-        switch (alternativeN)
+        ShowAlternative(Panels[alternativeN]);
+
+        if (alternativeN == alternatives.Length - 1)
         {
-            case 1:
-                ShowAlternative(Panels[0]);
-                NextAlternative(Panels[1]);
-                alternatives[1].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 2:
-                ShowAlternative(Panels[1]);
-                NextAlternative(Panels[2]);
-                alternatives[2].GetComponent<UIButton>().Interactable = true;
-
-                break;
-            case 3:
-                ShowAlternative(Panels[2]);
-                NextAlternative(Panels[3]);
-                alternatives[3].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 4:
-                ShowAlternative(Panels[3]);
-                NextAlternative(Panels[4]);
-                alternatives[4].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 5:
-                ShowAlternative(Panels[4]);
-                NextAlternative(Panels[5]);
-                alternatives[5].GetComponent<UIButton>().Interactable = true;
-                break;
-            case 6:
-                ShowAlternative(Panels[5]);
-                alternatives[5].GetComponent<UIButton>().Interactable = false;
-                //Show Button - Go to Dnd
-                ShowGo(buttonToDnd);
-                buttonToDnd.GetComponent<Button>().interactable = true;
-                break;
-
-            default:
-                //Just the first alternative is interractable, the others not
-                NextAlternative(Panels[0]);
-                HideAlternative(Panels[1]);
-                HideAlternative(Panels[2]);
-                HideAlternative(Panels[3]);
-                HideAlternative(Panels[4]);
-                HideAlternative(Panels[5]);
-                alternatives[0].GetComponent<UIButton>().Interactable = true;
-                alternatives[1].GetComponent<UIButton>().Interactable = false;
-                alternatives[2].GetComponent<UIButton>().Interactable = false;
-                alternatives[3].GetComponent<UIButton>().Interactable = false;
-                alternatives[4].GetComponent<UIButton>().Interactable = false;
-                alternatives[5].GetComponent<UIButton>().Interactable = false;
-                break;
+            ShowGo(buttonToDnd);
+            buttonToDnd.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            NextAlternative(Panels[alternativeN+1]);
+            alternatives[alternativeN+1].GetComponent<UIButton>().Interactable = true;
         }
     }
 
     public void StartDnD()
     {
-        //Show alternatives
-        //SetOrderAlternatives(7);
-
         //Enable DnD buttons
         buttonToDnd.GetComponent<Button>().interactable = true;
         //Enable DnD
@@ -230,33 +187,15 @@ public class ControllerChapter1 : MonoBehaviour
 
         //Reset the list of the Drag&Drops result
         dragNdropRes.Clear();
-
-        //Add result of the Drag&Drop into the list
-        /*
-        string PrioAlt = DragDropManager.GetPanelObject(prioIds[0].ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[1].ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[2].ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[3].ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[4].ToString());
-        dragNdropRes.Add(PrioAlt);
-        PrioAlt = DragDropManager.GetPanelObject(prioIds[5].ToString());
-        dragNdropRes.Add(PrioAlt);
-        */
     }
 
     public void DisableDnD()
     {
         //Lock the drag&drop property of the elements
-        alternatives[0].GetComponent<ObjectSettings>().LockObject = true;
-        alternatives[1].GetComponent<ObjectSettings>().LockObject = true;
-        alternatives[2].GetComponent<ObjectSettings>().LockObject = true;
-        alternatives[3].GetComponent<ObjectSettings>().LockObject = true;
-        alternatives[4].GetComponent<ObjectSettings>().LockObject = true;
-        alternatives[5].GetComponent<ObjectSettings>().LockObject = true;
+        for (int i = 0; i < 6; i++)
+        {
+            alternatives[i].GetComponent<ObjectSettings>().LockObject = true;
+        }
 
         prioritiesIcon.SetActive(false);
     }
@@ -264,20 +203,16 @@ public class ControllerChapter1 : MonoBehaviour
     public void EnableDnD()
     {
         //Disable the alternatives buttons
-        alternatives[0].GetComponent<UIButton>().Interactable = false;
-        alternatives[1].GetComponent<UIButton>().Interactable = false;
-        alternatives[2].GetComponent<UIButton>().Interactable = false;
-        alternatives[3].GetComponent<UIButton>().Interactable = false;
-        alternatives[4].GetComponent<UIButton>().Interactable = false;
-        alternatives[5].GetComponent<UIButton>().Interactable = false;
+        for (int i = 0; i < 6; i++)
+        {
+            alternatives[i].GetComponent<UIButton>().Interactable = false;
+        }
 
         //Unlock the drag&drop property of the elements
-        alternatives[0].GetComponent<ObjectSettings>().LockObject = false;
-        alternatives[1].GetComponent<ObjectSettings>().LockObject = false;
-        alternatives[2].GetComponent<ObjectSettings>().LockObject = false;
-        alternatives[3].GetComponent<ObjectSettings>().LockObject = false;
-        alternatives[4].GetComponent<ObjectSettings>().LockObject = false;
-        alternatives[5].GetComponent<ObjectSettings>().LockObject = false;
+        for (int i = 0; i < 6; i++)
+        {
+            alternatives[i].GetComponent<ObjectSettings>().LockObject = false;
+        }
 
         prioritiesIcon.SetActive(true); //Show the icons representing the priorities weight 
 
@@ -299,20 +234,15 @@ public class ControllerChapter1 : MonoBehaviour
 
         popup.Show(); //show the popup
     }
+
     public void ShowGo(GameObject go)
     {
-       go.SetActive(true);
+        go.SetActive(true);
     }
 
     public void HideGo(GameObject go)
     {
         go.SetActive(false);
     }
-    /*
-    public void toogle(GameObject go)
-    {
-        var ddc = go.GetComponent<Text>();
-        ddc.enabled = !ddc.enabled;
-    }
-    */
+
 }
