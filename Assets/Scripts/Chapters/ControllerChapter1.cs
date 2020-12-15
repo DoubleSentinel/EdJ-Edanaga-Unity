@@ -66,7 +66,7 @@ public class ControllerChapter1 : MonoBehaviour
         dragNdropRes = new List<string>();
         prioIds = new List<string>();
 
-        for (int i=0; i< alternatives.Length; i++)
+        for (int i=0; i < alternatives.Length; i++)
         {
             //Set Panels
             NewPanels = alternatives[i].gameObject.transform.GetChild(2).gameObject;
@@ -74,11 +74,12 @@ public class ControllerChapter1 : MonoBehaviour
         }
 
         //for (int i=0; i < priorities.Length; i++)
-        for (int i = 0; i < 6; i++)
+        for (int i=0; i < priorities.Length; i++)
         {
             //Set Priority Id
-            newPrioIds = priorities[i].GetComponent<PanelSettings>().Id;
-            prioIds[i] = newPrioIds;
+            newPrioIds = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
+            //prioIds[i] = newPrioIds;
+            prioIds.Add(newPrioIds);
         }
         
         /*
@@ -177,12 +178,12 @@ public class ControllerChapter1 : MonoBehaviour
 
             default:
                 //Just the first alternative is interractable, the others not
-                NextAlternative(Panels[0]);
-                HideAlternative(Panels[1]);
-                HideAlternative(Panels[2]);
-                HideAlternative(Panels[3]);
-                HideAlternative(Panels[4]);
-                HideAlternative(Panels[5]);
+                NextAlternative(Panels[0].gameObject);
+                HideAlternative(Panels[1].gameObject);
+                HideAlternative(Panels[2].gameObject);
+                HideAlternative(Panels[3].gameObject);
+                HideAlternative(Panels[4].gameObject);
+                HideAlternative(Panels[5].gameObject);
                 alternatives[0].GetComponent<UIButton>().Interactable = true;
                 alternatives[1].GetComponent<UIButton>().Interactable = false;
                 alternatives[2].GetComponent<UIButton>().Interactable = false;

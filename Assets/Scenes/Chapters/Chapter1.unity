@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4299,7 +4299,7 @@ GameObject:
   - component: {fileID: 117440608}
   - component: {fileID: 117440607}
   m_Layer: 0
-  m_Name: lbl_Alternative1_Pros_List
+  m_Name: lbl_Alternative1_Pros_Text
   m_TagString: Translatable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58544,13 +58544,7 @@ MonoBehaviour:
   sceneEngineer: {fileID: 4783305941575667341}
   ConversationBubbles:
   - {fileID: 910047588}
-  alternatives:
-  - {fileID: 1468929189}
-  - {fileID: 57228261}
-  - {fileID: 1096507157}
-  - {fileID: 1274434710}
-  - {fileID: 1180688856}
-  - {fileID: 1820973299}
+  alternatives: []
   priorities:
   - {fileID: 1733215721}
   - {fileID: 1140388007}
