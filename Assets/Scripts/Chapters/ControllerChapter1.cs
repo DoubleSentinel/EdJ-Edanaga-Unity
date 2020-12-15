@@ -67,6 +67,7 @@ public class ControllerChapter1 : MonoBehaviour
         prioIds = new string[6];
         Panels = new GameObject[6];
 
+        // Setting alternatives gameobjects and panels for locking mechanism
         for (int i = 0; i < alternatives.Length; i++)
         {
             Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
@@ -82,12 +83,10 @@ public class ControllerChapter1 : MonoBehaviour
             }
         }
 
-        //for (int i=0; i < priorities.Length; i++)
-        for (int i = 0; i < 6; i++)
+        //Set Priority Id
+        for (int i=0; i < priorities.Length; i++)
         {
-            //Set Priority Id
-            newPrioIds = priorities[i].GetComponent<PanelSettings>().Id;
-            prioIds[i] = newPrioIds;
+            prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
         }
 
         //Default Setup
