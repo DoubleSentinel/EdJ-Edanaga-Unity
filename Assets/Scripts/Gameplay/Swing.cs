@@ -102,10 +102,7 @@ public class Swing : MonoBehaviour
         var ui = Instantiate(SwingUIPrefab, CurrentSwingUI.transform);
         ui.transform.position = screenPosition;
         ui.SetActive(false);
-        ui.transform.GetChild(1).gameObject.GetComponent<UIButton>().OnClick.OnTrigger.Action = delegate(GameObject swingSelect)
-        {
-            SetSwingUIButtonTrigger(swingSelect);
-        };
+        ui.transform.GetChild(1).gameObject.GetComponent<UIButton>().OnClick.OnTrigger.Action = SetSwingUIButtonTrigger;
         
         // Setting slider labels
         Objective objective = controllers.GetComponent<TestingEnvironment>().Objectives[character.name.ToLower()];
@@ -183,7 +180,8 @@ public class Swing : MonoBehaviour
 
         if (finals)
         {
-            // TODO: Load next scene on button press
+            CalculateFinalWeights();
+            
         }
 
         ToggleValidationButton();
@@ -196,18 +194,48 @@ public class Swing : MonoBehaviour
 
     private void CalculateLocalWeights()
     {
-        var objectiveValues = new Dictionary<GameObject, float>();
+        var objectiveWeights = new Dictionary<GameObject, float>();
         foreach (Transform child in CurrentSwingUI.transform)
         {
             var objective = characterToUIMap.FirstOrDefault(x => x.Value == child.gameObject).Key;
             var objVal = child.GetChild(0).GetComponent<Slider>().value;
-            objectiveValues.Add(objective, objVal);
+            objectiveWeights.Add(objective, objVal);
         }
-        userInputValues.Add(currentSwingFamily, objectiveValues);
+        var sum = objectiveWeights.Sum(x => x.Value);
+        Dictionary<GameObject, float> weighted;
+        if (currentSwingFamily == SwingFinalists)
+        {
+            weighted = objectiveWeights.ToDictionary(k => k.Key.transform.parent.gameObject, v => v.Value / sum);
+        }
+        else
+        {
+            weighted = objectiveWeights.ToDictionary(k => k.Key, v => v.Value / sum);
+        }
+        userInputValues.Add(currentSwingFamily, weighted);
+        foreach (var userInputValue in userInputValues)
+        {
+            print($"{userInputValue.Key}");
+        }
     }
     private void CalculateFinalWeights()
     {
-        //controllers.GetComponent<TestingEnvironment>().SwingClassification.Add(objName, sliderVal);
+        var familyWeights = userInputValues[SwingFinalists];
+        foreach (var family in userInputValues)
+        {
+            if (family.Key != SwingFinalists)
+            {
+                var currentFamilyWeight = familyWeights[family.Key];
+                foreach (var objective in family.Value)
+                {
+                    controllers.GetComponent<TestingEnvironment>().SwingClassification.Add(objective.Key.name.ToLower(), currentFamilyWeight*objective.Value);
+                }
+            }
+        }
+
+        foreach (var result in controllers.GetComponent<TestingEnvironment>().SwingClassification)
+        {
+            print($"{result.Key}: {result.Value}");
+        }
     }
 
     private void ToggleValidationButton()

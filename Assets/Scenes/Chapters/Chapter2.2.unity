@@ -13034,7 +13034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   ControllerName: Chapter2.2
-  DontDestroyControllerOnLoad: 1
+  DontDestroyControllerOnLoad: 0
   m_graphModel: {fileID: 11400000, guid: f1342921ee5dd674388a190cf0a30a58, type: 2}
 --- !u!4 &632933999
 Transform:
