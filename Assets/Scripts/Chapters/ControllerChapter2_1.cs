@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,7 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     // BargainConversation vars
     [HideInInspector] public int hostConversationIndex = 0;
-    [HideInInspector] public int groupedConversationIndex = 0;
     public ConversationHandler.ConversationEnd hostConversationCallback;
-    public ConversationHandler.ConversationEnd groupedConversationCallback;
 
     void Awake()
     {
@@ -45,64 +44,39 @@ public class ControllerChapter2_1 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
-        sceneObjectives = new GameObject[10];
+        //sceneObjectives = new GameObject[10];
     }
 
-    public void SetConversationIndex(int index)
-    {
-        conversationIndex = index;
-    }
-
-    public void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-    }
-
-    public void SetupHostConversation()
-    {
-        float height = Screen.height * 0.75f / 2f;
-        float depth = -1f;
-        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
-            height));
-        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
-            height));
-        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
-        sceneObjective.transform.position = new Vector3(host.x, host.y, depth);
-        scenePlayer.SetActive(true);
-        sceneObjective.SetActive(true);
-
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = hostConversationCallback;
-        ch.GenerateConversation(hostConversationIndex);
-        ch.NextConversationSnippet();
-    }
-
-    private void PrepareCall(int conversationIndex)
+    private void Call(int conversationIndex)
     {
         ClearCharacters();
 
         string title = "";
         title = $"2.1.2_Dialogue_objective{conversationIndex}";
 
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = hostConversationCallback;
+        ch.GenerateConversation(title);
+        ch.NextConversationSnippet();
+        /*
         GetComponent<ConversationHandler>().GenerateConversation(title);
         GetComponent<ConversationHandler>().NextConversationSnippet();
+        */
     }
 
     //Button continue appears when all the objectivves have been read 
     public void UpdateObjectiveButton(GameObject caller)
     {
-        //caller.transform.GetChild(1).gameObject.SetActive(false); //Petite puce
-        caller.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        //caller.transform.GetChild(1).gameObject.SetActive(false);
+        //caller.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        caller.transform.GetComponent<UnityEngine.UI.Image>().color = Color.red;
         notifications = 0;
         foreach (Transform objective in sceneObjective.gameObject.transform)
         {
             //GameObject notification = objective.GetChild(1).gameObject;
             //if (!notification.activeSelf) //Si désactiver
-            if(objective.GetChild(0).GetComponent<SpriteRenderer>().color == new Color(1, 0, 0, 1))
+            //if(objective.GetChild(0).GetComponent<SpriteRenderer>().color == new Color(1, 0, 0, 1))
+            if(caller.transform.GetComponent<UnityEngine.UI.Image>().color == Color.red)
             {
                 notifications += 1;
                 if (notifications == 10)
@@ -114,11 +88,45 @@ public class ControllerChapter2_1 : MonoBehaviour
         }
     }
 
+    public void ClearCharacters()
+    {
+        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
+        {
+            character.transform.position = new Vector3(11, 0, 1);
+            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+    }
+
+    public void SetupCallConversation()
+    {
+        float height = Screen.height * 0.75f / 2f;
+        float depth = -1f;
+        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
+            height));
+        Vector3 host = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4,
+            height));
+        scenePlayer.transform.position = new Vector3(player.x, player.y, depth);
+        sceneObjective.transform.position = new Vector3(host.x, host.y, depth);
+        scenePlayer.SetActive(true);
+        sceneObjective.SetActive(true);
+        /*
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = hostConversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
+        */
+    }
+
     public void StartCall(GameObject objective)
     {
+        //UpdateObjectiveButton(objective);
         GameEventMessage.SendEvent("GoToPhoneCall");
         string objectiveName = objective.name;
-        SetConversationIndex(objectiveName.Last());
-        PrepareCall(conversationIndex);
+        int objectiveNumber = (int) Char.GetNumericValue(objectiveName.Last());
+        conversationIndex = objectiveNumber;
+        Debug.Log("objectiveNumber :" + objectiveNumber);
+        sceneObjective = sceneObjectives[objectiveNumber];
+        SetupCallConversation();
+        Call(conversationIndex);
     }
 }
