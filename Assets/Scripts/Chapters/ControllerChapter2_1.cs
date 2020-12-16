@@ -9,15 +9,16 @@ using UnityEngine.UI;
 
 public class ControllerChapter2_1 : MonoBehaviour
 {
-    public Camera cam;
-
     [Header("2D Scene References")]
-    private GameObject sceneObjective;
+    public Camera cam;
+    Animator animator;
+    int state;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
     [SerializeField] private GameObject[] sceneBats;
     [SerializeField] private GameObject[] sceneButtons;
+    [SerializeField] private GameObject sceneObjective;
     [SerializeField] private Button btnContinue;
 
     private int notifications;
@@ -44,7 +45,6 @@ public class ControllerChapter2_1 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
-        //sceneObjectives = new GameObject[10];
     }
 
     private void Call(int conversationIndex)
@@ -57,19 +57,20 @@ public class ControllerChapter2_1 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
-    //Button continue appears when all the objectivves have been read 
-    public void UpdateObjectiveButton(GameObject caller)
+    //Button continue appears when all the objectives have been read
+    public void UpdateObjectiveButton(int objectiveNumber)
     {
-        //caller.transform.GetChild(1).gameObject.SetActive(false);
-        //caller.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
-        caller.transform.GetComponent<UnityEngine.UI.Image>().color = Color.red;
+        //RuntimeAnimatorController ac = sceneBats[objectiveNumber].GetComponent<RuntimeAnimatorController>();
+        //sceneBats[objectiveNumber].GetComponent<RuntimeAnimatorController>();
+        
+        //Change state of animator
+
+        sceneBats[objectiveNumber].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
         notifications = 0;
-        foreach (GameObject objective in sceneObjectives)
+        
+        for (int i = 0; i < sceneBats.Length; i++)
         {
-            //GameObject notification = objective.GetChild(1).gameObject;
-            //if (!notification.activeSelf) //Si désactiver
-            //if(objective.GetChild(0).GetComponent<SpriteRenderer>().color == new Color(1, 0, 0, 1))
-            if(caller.transform.GetComponent<UnityEngine.UI.Image>().color == Color.red)
+            if(sceneBats[i].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.red)
             {
                 notifications += 1;
                 if (notifications == 10)
@@ -78,7 +79,7 @@ public class ControllerChapter2_1 : MonoBehaviour
                     btnContinue.interactable = true;
                 }
             }
-        }
+        }   
     }
 
     public void ClearCharacters()
@@ -108,15 +109,16 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     public void StartCall(GameObject objective)
     {
-        //UpdateObjectiveButton(objective);
         GameEventMessage.SendEvent("GoToPhoneCall");
         string objectiveName = objective.name;
         int objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
         sceneObjective = sceneObjectives[objectiveNumber];
+        UpdateObjectiveButton(objectiveNumber);
         SetupCallConversation();
         Call(objectiveNumber);
     }
 
+    //Started when the scene is shown
     public void SetupButtons()
     {
         //Set buttons position to the batiments postion
@@ -125,5 +127,76 @@ public class ControllerChapter2_1 : MonoBehaviour
             sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
 
         }
+    }
+
+    public void setAnimatorState(int stateButton)
+    {
+        state = stateButton;
+    }
+
+    public void setAnimatorParameter(GameObject obj)
+    {
+        animator = obj.gameObject.GetComponent<Animator>();
+        animator.runtimeAnimatorController = Resources.Load("Assets/Animation/Map/Map") as RuntimeAnimatorController;
+
+        //BatIdle
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("BatIdle"))
+
+        if (state == 0)
+        {
+            //animator.Play("BatIdle");
+            animator.SetBool("IsHover", false);
+            animator.SetBool("IsVisited", false);
+            animator.SetBool("IsActivited", false);
+        }
+
+        //BatIdle -> BatHover
+        if (state == 1)
+        {
+            if (animator != null)
+            {
+                animator.Play("BatIdle");
+            }
+            print("IS OVER!!!");
+            //animator.SetTrigger("BatIdle");
+            animator.SetBool("IsHover", true);
+            //animator.SetBool("IsVisited", false);
+            //animator.SetBool("IsActivited", false);
+        }
+        //BatHover -> BatIdle
+        if (state == 2)
+        {
+            //animator.SetTrigger("BatIdle");
+            animator.SetBool("IsHover", false);
+            //animator.SetBool("IsVisited", false);
+            //animator.SetBool("IsActivited", false);
+        }
+        //BatHover -> BatVisted
+        if (state == 3)
+        {
+            //animator.SetTrigger("BatIdle");
+            //animator.SetBool("IsHover", false);
+            animator.SetBool("IsVisited", true);
+            //animator.SetBool("IsActivited", false);
+        }
+        //BatHover -> BatAcivited
+        if (state == 4)
+        {
+            //animator.SetTrigger("BatActiveted");
+            //animator.SetBool("IsHover", false);
+            //animator.SetBool("IsVisited", true);
+            animator.SetBool("IsActivited", true);
+        }
+        //BatAcivited -> BatVisted
+        if (state == 5)
+        {
+            //animator.SetTrigger("BatVisited");
+            //animator.SetBool("IsHover", false);
+            animator.SetBool("IsVisited", true);
+            //animator.SetBool("IsActivited", true);
+            //animator.SetTrigger("BatVisited");
+        }
+
+
     }
 }
