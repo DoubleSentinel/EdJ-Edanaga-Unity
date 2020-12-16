@@ -9,11 +9,15 @@ using UnityEngine.UI;
 
 public class ControllerChapter2_1 : MonoBehaviour
 {
+    public Camera cam;
+
     [Header("2D Scene References")]
     private GameObject sceneObjective;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
+    [SerializeField] private GameObject[] sceneBats;
+    [SerializeField] private GameObject[] sceneButtons;
     [SerializeField] private Button btnContinue;
 
     private int notifications;
@@ -26,10 +30,6 @@ public class ControllerChapter2_1 : MonoBehaviour
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
-
-    // BargainConversation vars
-    [HideInInspector] public int hostConversationIndex = 0;
-    public ConversationHandler.ConversationEnd hostConversationCallback;
 
     void Awake()
     {
@@ -49,19 +49,12 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     private void Call(int conversationIndex)
     {
-        ClearCharacters();
-
         string title = "";
         title = $"2.1.2_Dialogue_objective{conversationIndex}";
-
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = hostConversationCallback;
-        ch.GenerateConversation(title);
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
-        /*
-        GetComponent<ConversationHandler>().GenerateConversation(title);
-        GetComponent<ConversationHandler>().NextConversationSnippet();
-        */
     }
 
     //Button continue appears when all the objectivves have been read 
@@ -71,7 +64,7 @@ public class ControllerChapter2_1 : MonoBehaviour
         //caller.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
         caller.transform.GetComponent<UnityEngine.UI.Image>().color = Color.red;
         notifications = 0;
-        foreach (Transform objective in sceneObjective.gameObject.transform)
+        foreach (GameObject objective in sceneObjectives)
         {
             //GameObject notification = objective.GetChild(1).gameObject;
             //if (!notification.activeSelf) //Si désactiver
@@ -99,6 +92,8 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     public void SetupCallConversation()
     {
+        ClearCharacters();
+
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2 / 3,
@@ -109,12 +104,6 @@ public class ControllerChapter2_1 : MonoBehaviour
         sceneObjective.transform.position = new Vector3(host.x, host.y, depth);
         scenePlayer.SetActive(true);
         sceneObjective.SetActive(true);
-        /*
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = hostConversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
-        */
     }
 
     public void StartCall(GameObject objective)
@@ -122,11 +111,19 @@ public class ControllerChapter2_1 : MonoBehaviour
         //UpdateObjectiveButton(objective);
         GameEventMessage.SendEvent("GoToPhoneCall");
         string objectiveName = objective.name;
-        int objectiveNumber = (int) Char.GetNumericValue(objectiveName.Last());
-        conversationIndex = objectiveNumber;
-        Debug.Log("objectiveNumber :" + objectiveNumber);
+        int objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
         sceneObjective = sceneObjectives[objectiveNumber];
         SetupCallConversation();
-        Call(conversationIndex);
+        Call(objectiveNumber);
+    }
+
+    public void SetupButtons()
+    {
+        //Set buttons position to the batiments postion
+        for (int i = 0; i < sceneBats.Length; i++)
+        {
+            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
+
+        }
     }
 }
