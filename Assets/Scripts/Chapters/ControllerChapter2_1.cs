@@ -129,15 +129,15 @@ public class ControllerChapter2_1 : MonoBehaviour
         }
     }
 
-    public void setAnimatorState(int stateButton)
+    public void SetAnimatorState(int stateButton)
     {
         state = stateButton;
     }
 
-    public void setAnimatorParameter(GameObject obj)
+    public void SetAnimatorParameter(GameObject obj)
     {
         animator = obj.gameObject.GetComponent<Animator>();
-        animator.runtimeAnimatorController = Resources.Load("Assets/Animation/Map/Map") as RuntimeAnimatorController;
+        ///animator.runtimeAnimatorController = Resources.Load("Assets/Animation/Map/Map") as RuntimeAnimatorController;
 
         //BatIdle
         //if (animator.GetCurrentAnimatorStateInfo(0).IsName("BatIdle"))
@@ -145,9 +145,9 @@ public class ControllerChapter2_1 : MonoBehaviour
         if (state == 0)
         {
             //animator.Play("BatIdle");
-            animator.SetBool("IsHover", false);
-            animator.SetBool("IsVisited", false);
-            animator.SetBool("IsActivited", false);
+            animator.SetBool("isHover", false);
+            animator.SetBool("isVisited", false);
+            animator.SetBool("isActivited", false);
         }
 
         //BatIdle -> BatHover
@@ -159,41 +159,41 @@ public class ControllerChapter2_1 : MonoBehaviour
             }
             print("IS OVER!!!");
             //animator.SetTrigger("BatIdle");
-            animator.SetBool("IsHover", true);
-            //animator.SetBool("IsVisited", false);
-            //animator.SetBool("IsActivited", false);
+            animator.SetBool("isHover", true);
+            //animator.SetBool("isVisited", false);
+            //animator.SetBool("isActivited", false);
         }
         //BatHover -> BatIdle
         if (state == 2)
         {
             //animator.SetTrigger("BatIdle");
-            animator.SetBool("IsHover", false);
-            //animator.SetBool("IsVisited", false);
-            //animator.SetBool("IsActivited", false);
+            animator.SetBool("isHover", false);
+            //animator.SetBool("isVisited", false);
+            //animator.SetBool("isActivited", false);
         }
         //BatHover -> BatVisted
         if (state == 3)
         {
             //animator.SetTrigger("BatIdle");
-            //animator.SetBool("IsHover", false);
-            animator.SetBool("IsVisited", true);
-            //animator.SetBool("IsActivited", false);
+            //animator.SetBool("isHover", false);
+            animator.SetBool("isVisited", true);
+            //animator.SetBool("isActivited", false);
         }
         //BatHover -> BatAcivited
         if (state == 4)
         {
             //animator.SetTrigger("BatActiveted");
-            //animator.SetBool("IsHover", false);
-            //animator.SetBool("IsVisited", true);
-            animator.SetBool("IsActivited", true);
+            //animator.SetBool("isHover", false);
+            //animator.SetBool("isVisited", true);
+            animator.SetBool("isActivited", true);
         }
         //BatAcivited -> BatVisted
         if (state == 5)
         {
             //animator.SetTrigger("BatVisited");
-            //animator.SetBool("IsHover", false);
-            animator.SetBool("IsVisited", true);
-            //animator.SetBool("IsActivited", true);
+            //animator.SetBool("isHover", false);
+            animator.SetBool("isVisited", true);
+            //animator.SetBool("isActivited", true);
             //animator.SetTrigger("BatVisited");
         }
 
