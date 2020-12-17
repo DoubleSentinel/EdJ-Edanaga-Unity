@@ -54,6 +54,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Map
+    uniqueID: 3372297835
+    locked: 0
   - name: Feets
     uniqueID: 3178601803
     locked: 0
@@ -71,9 +74,6 @@ TagManager:
     locked: 0
   - name: Head
     uniqueID: 3563210727
-    locked: 0
-  - name: Map
-    uniqueID: 3372297835
     locked: 0
   - name: Map overlay
     uniqueID: 3943116469
