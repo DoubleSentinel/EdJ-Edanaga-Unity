@@ -112,10 +112,16 @@ MonoBehaviour:
   m_id: 724156fc-f454-49ca-b361-2ec898502715
   m_name: User Results
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.3 User Results
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.3 User Results
 --- !u!114 &-8128453502011134659
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,10 +533,16 @@ MonoBehaviour:
   m_id: 9d0175e5-b27d-4316-9928-6254ac2ec4bb
   m_name: Custom Ordering
   m_notes: 
-  m_onEnterShowViews: []
+  m_onEnterShowViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.3 Custom Ordering
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.3 Custom Ordering
 --- !u!114 &8876597866353397149
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,7 +632,10 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: Chapter2
     InstantAction: 0
-    Name: 2.1 Town
+    Name: 2.3 Inner Loop Select
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: Chapter2
+    InstantAction: 0
+    Name: 2.3 Inner Loop Select
