@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
+using Doozy.Engine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class ControllerChapter2_1 : MonoBehaviour
     public Camera cam;
     Animator animator;
     int state;
+    bool batHover = false;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
@@ -22,7 +24,7 @@ public class ControllerChapter2_1 : MonoBehaviour
     [SerializeField] private Button btnContinue;
 
     private int notifications;
-    public Color newColor = new Color(0f, 0f, 0f, 1f); // Set to opaque black;
+    private int objectiveNumber = 0;
     [Header("Conversation References")] public GameObject[] ConversationBubbles;
 
     // Local variables
@@ -39,7 +41,14 @@ public class ControllerChapter2_1 : MonoBehaviour
             btnContinue = GameObject.Find("btnContinue").GetComponent<Button>();
         }
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => { GameEventMessage.SendEvent("ContinueToTown"); };
+        conversationCallback = () => {
+            //Change state of animator
+            animator.SetBool("isVisited", true);
+            GameEventMessage.SendEvent("ContinueToTown");
+            StartCoroutine(UpdateObjectiveButton());
+            //Block the others buttons action
+            ControlButtons(true);
+        };
     }
 
     private void Start()
@@ -58,19 +67,16 @@ public class ControllerChapter2_1 : MonoBehaviour
     }
 
     //Button continue appears when all the objectives have been read
-    public void UpdateObjectiveButton(int objectiveNumber)
+    IEnumerator UpdateObjectiveButton()
     {
-        //RuntimeAnimatorController ac = sceneBats[objectiveNumber].GetComponent<RuntimeAnimatorController>();
-        //sceneBats[objectiveNumber].GetComponent<RuntimeAnimatorController>();
-        
-        //Change state of animator
+         notifications = 0;
 
-        sceneBats[objectiveNumber].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
-        notifications = 0;
-        
+        yield return new WaitForSeconds(2); //Wait 2s
+
         for (int i = 0; i < sceneBats.Length; i++)
         {
-            if(sceneBats[i].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color == Color.red)
+            //Check state of animator
+            if (sceneBats[i].gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BatVisited"))
             {
                 notifications += 1;
                 if (notifications == 10)
@@ -79,7 +85,10 @@ public class ControllerChapter2_1 : MonoBehaviour
                     btnContinue.interactable = true;
                 }
             }
-        }   
+        }
+
+        //Allow the others buttons action
+
     }
 
     public void ClearCharacters()
@@ -111,9 +120,8 @@ public class ControllerChapter2_1 : MonoBehaviour
     {
         GameEventMessage.SendEvent("GoToPhoneCall");
         string objectiveName = objective.name;
-        int objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
+        objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
         sceneObjective = sceneObjectives[objectiveNumber];
-        UpdateObjectiveButton(objectiveNumber);
         SetupCallConversation();
         Call(objectiveNumber);
     }
@@ -125,7 +133,24 @@ public class ControllerChapter2_1 : MonoBehaviour
         for (int i = 0; i < sceneBats.Length; i++)
         {
             sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
+        }
+    }
 
+    public void ControlButtons(bool actionEnable)
+    {
+        //Set buttons position to the batiments postion
+        for (int i = 0; i < sceneBats.Length; i++)
+        {
+            if (actionEnable)
+            {
+                if (sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable == false)
+                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = true;
+            }
+            else
+            {
+                if (i != objectiveNumber)
+                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
+            }
         }
     }
 
@@ -137,66 +162,45 @@ public class ControllerChapter2_1 : MonoBehaviour
     public void SetAnimatorParameter(GameObject obj)
     {
         animator = obj.gameObject.GetComponent<Animator>();
-        ///animator.runtimeAnimatorController = Resources.Load("Assets/Animation/Map/Map") as RuntimeAnimatorController;
 
-        //BatIdle
-        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("BatIdle"))
-
+        //Default state
         if (state == 0)
         {
-            //animator.Play("BatIdle");
             animator.SetBool("isHover", false);
             animator.SetBool("isVisited", false);
-            animator.SetBool("isActivited", false);
+            animator.SetBool("isActivated", false);
         }
 
-        //BatIdle -> BatHover
+        //State: BatIdle -> BatHover
         if (state == 1)
         {
-            if (animator != null)
-            {
-                animator.Play("BatIdle");
-            }
-            print("IS OVER!!!");
-            //animator.SetTrigger("BatIdle");
             animator.SetBool("isHover", true);
-            //animator.SetBool("isVisited", false);
-            //animator.SetBool("isActivited", false);
         }
-        //BatHover -> BatIdle
+
+        //State: BatHover -> BatIdle
         if (state == 2)
         {
-            //animator.SetTrigger("BatIdle");
             animator.SetBool("isHover", false);
-            //animator.SetBool("isVisited", false);
-            //animator.SetBool("isActivited", false);
         }
-        //BatHover -> BatVisted
+
+        //State:  BatHover -> BatVisted : Not used yet
         if (state == 3)
         {
-            //animator.SetTrigger("BatIdle");
-            //animator.SetBool("isHover", false);
-            animator.SetBool("isVisited", true);
-            //animator.SetBool("isActivited", false);
+            //Add action if necessary 
         }
-        //BatHover -> BatAcivited
+
+        //State:  BatHover -> BatAcivited
         if (state == 4)
         {
-            //animator.SetTrigger("BatActiveted");
-            //animator.SetBool("isHover", false);
-            //animator.SetBool("isVisited", true);
-            animator.SetBool("isActivited", true);
+            //Block the others buttons action
+            ControlButtons(false);
+            animator.Play("BatActivated");
         }
-        //BatAcivited -> BatVisted
+
+        //State: BatAcivited -> BatVisted
         if (state == 5)
         {
-            //animator.SetTrigger("BatVisited");
-            //animator.SetBool("isHover", false);
-            animator.SetBool("isVisited", true);
-            //animator.SetBool("isActivited", true);
-            //animator.SetTrigger("BatVisited");
+            animator.Play("BatVisited");
         }
-
-
     }
 }
