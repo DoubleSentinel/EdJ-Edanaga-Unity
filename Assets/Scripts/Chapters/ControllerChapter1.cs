@@ -52,7 +52,6 @@ public class ControllerChapter1 : MonoBehaviour
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
-
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
