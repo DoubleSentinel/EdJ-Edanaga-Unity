@@ -56,7 +56,16 @@ public class ControllerChapter1 : MonoBehaviour
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
+        conversationCallback = () => {
+            if (conversationIndex == 0)
+            {
+                GameEventMessage.SendEvent("ContinueToAlt");
+            }
+            else
+            {
+                GameEventMessage.SendEvent("ContinueToChapter2.1");
+            }
+        };
     }
 
     private void Start()
