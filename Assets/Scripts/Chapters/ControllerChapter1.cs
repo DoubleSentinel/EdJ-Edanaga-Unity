@@ -27,6 +27,7 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
     [SerializeField] private GameObject altDnDMessage;
+    [SerializeField] private GameObject altDiscoveryMessage;
 
     private string[] prioIds;
     public GameObject[] Panels;
@@ -63,6 +64,7 @@ public class ControllerChapter1 : MonoBehaviour
             if (conversationIndex == 0)
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
+                ShowGo(altDiscoveryMessage);
             }
             else
             {
@@ -106,6 +108,7 @@ public class ControllerChapter1 : MonoBehaviour
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
         HideGo(altDnDMessage);
+        HideGo(altDiscoveryMessage);
         DisableDnD();
     }
 
