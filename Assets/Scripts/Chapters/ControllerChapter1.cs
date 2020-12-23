@@ -37,6 +37,7 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Drag&Drop result")] [SerializeField]
     private List<string> dragNdropRes;
+    private string panelObjectValue;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
 
@@ -79,6 +80,7 @@ public class ControllerChapter1 : MonoBehaviour
         for (int i = 0; i < alternatives.Length; i++)
         {
             Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+
             if (i == 0)
             {
                 NextAlternative(Panels[i]);
@@ -91,7 +93,7 @@ public class ControllerChapter1 : MonoBehaviour
             }
         }
 
-        //Set Priority Id
+        //Get Priority Id name
         for (int i=0; i < priorities.Length; i++)
         {
             prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
@@ -194,6 +196,13 @@ public class ControllerChapter1 : MonoBehaviour
 
         //Reset the list of the Drag&Drops result
         dragNdropRes.Clear();
+
+        //Update Drag & Drop results
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
+            dragNdropRes.Add(panelObjectValue);
+        }
     }
 
     public void DisableDnD()

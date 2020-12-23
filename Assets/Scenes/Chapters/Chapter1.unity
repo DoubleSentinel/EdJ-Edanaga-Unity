@@ -4092,6 +4092,16 @@ PrefabInstance:
       propertyPath: Id
       value: alt2
       objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPriorities
+      objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: m_Name
@@ -47696,6 +47706,16 @@ PrefabInstance:
       propertyPath: Id
       value: alt3
       objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPriorities
+      objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: m_Name
@@ -48102,6 +48122,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Id
       value: alt1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPriorities
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -49269,6 +49299,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Id
       value: alt4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPriorities
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -55891,6 +55931,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Id
       value: alt5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnDroppedSuccessfully.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPriorities
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
