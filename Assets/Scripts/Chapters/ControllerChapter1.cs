@@ -26,6 +26,7 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
+    [SerializeField] private GameObject altDnDMessage;
 
     private string[] prioIds;
     public GameObject[] Panels;
@@ -53,6 +54,8 @@ public class ControllerChapter1 : MonoBehaviour
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
+    public List<string> DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
+
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
@@ -72,7 +75,7 @@ public class ControllerChapter1 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        dragNdropRes = new List<string>();
+        DragNdropRes = new List<string>();
         prioIds = new string[6];
         Panels = new GameObject[6];
 
@@ -102,6 +105,7 @@ public class ControllerChapter1 : MonoBehaviour
         //Default Setup
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
+        HideGo(altDnDMessage);
         DisableDnD();
     }
 
@@ -152,6 +156,7 @@ public class ControllerChapter1 : MonoBehaviour
 
         if (alternativeN == alternatives.Length - 1)
         {
+            ShowGo(altDnDMessage);
             ShowGo(buttonToDnd);
             buttonToDnd.GetComponent<Button>().interactable = true;
         }
@@ -191,17 +196,17 @@ public class ControllerChapter1 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD action
-        if (dragNdropRes.Count == 0)
+        if (DragNdropRes.Count == 0)
             ShowGo(buttonToConv);
 
         //Reset the list of the Drag&Drops result
-        dragNdropRes.Clear();
+        DragNdropRes.Clear();
 
         //Update Drag & Drop results
         for (int i = 0; i < alternatives.Length; i++)
         {
             panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
-            dragNdropRes.Add(panelObjectValue);
+            DragNdropRes.Add(panelObjectValue);
         }
     }
 
