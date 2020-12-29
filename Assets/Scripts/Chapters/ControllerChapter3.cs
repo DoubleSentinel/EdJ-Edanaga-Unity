@@ -9,21 +9,18 @@ using UnityEngine.UI;
 
 public class ControllerChapter3 : MonoBehaviour
 {
-    [Header("2D Scene References")] [SerializeField]
-    private GameObject scenePlayer;
-
+    [Header("2D Scene References")]
+    [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject sceneJournalist;
     [SerializeField] private GameObject sceneEngineer;
 
     [Header("Conversation References")]
     public GameObject[] ConversationBubbles;
 
-    [Header("Drag&Drop scene")] [SerializeField]
-    private GameObject[] alternatives;
-
+    [Header("Drag&Drop scene")]
+    [SerializeField] private GameObject[] alternatives;
     [SerializeField] private GameObject[] priorities;
     private string newPrioIds;
-
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
@@ -31,16 +28,14 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDiscoveryMessage;
 
     private string[] prioIds;
+    private string[] alternativeIds;
     public GameObject[] Panels;
     private GameObject NewPanels;
 
     [Header("Drag&Drop result")] [SerializeField]
-    private List<string> dragNdropRes;
     private string panelObjectValue;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
-
-    //[SerializeField] private GameObject TitleObject;
     [SerializeField] private string Title = "Title";
     [SerializeField] private GameObject MessageObject;
     [SerializeField] private string Message = "Popup message for player";
@@ -52,21 +47,13 @@ public class ControllerChapter3 : MonoBehaviour
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
-    public List<string> DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
-
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => {
-            if (conversationIndex == 0)
-            {
-                GameEventMessage.SendEvent("ContinueToAlt");
-                ShowGo(altDiscoveryMessage);
-            }
-            else
-            {
-                GameEventMessage.SendEvent("ContinueToChapter2.1");
-            }
+            GameEventMessage.SendEvent("ContinueToAlt");
+            ShowGo(altDiscoveryMessage);
+            ShowGo(buttonToDnd);
         };
     }
 
@@ -74,14 +61,15 @@ public class ControllerChapter3 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        DragNdropRes = new List<string>();
         prioIds = new string[6];
+        alternativeIds = new string[6];
         Panels = new GameObject[6];
 
-        //Get Priority Id name
-        for (int i=0; i < priorities.Length; i++)
+        //Get Priority Id and name
+        for (int i = 0; i < priorities.Length; i++)
         {
             prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
+            alternativeIds[i] = alternatives[i].gameObject.GetComponent<ObjectSettings>().Id;
         }
 
         //Default Setup
@@ -89,10 +77,9 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(buttonToConv);
         HideGo(altDnDMessage);
         HideGo(altDiscoveryMessage);
-        DisableDnD();
     }
 
-    private void Call(int conversationIndex)
+    private void Conv(int conversationIndex)
     {
         string title = "";
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
@@ -106,7 +93,7 @@ public class ControllerChapter3 : MonoBehaviour
     {
         GameEventMessage.SendEvent("GoToConversation");
         SetupConversation();
-        Call(conversationIndex);
+        Conv(conversationIndex);
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -143,66 +130,22 @@ public class ControllerChapter3 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
-
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
     }
 
-    public void StartDnD()
+    public void DnD_Result()
     {
-        //Enable DnD buttons
-        buttonToDnd.GetComponent<Button>().interactable = true;
-        //Enable DnD
-        EnableDnD();
-    }
+        string ObjectId = "";
+        string PanelId = "";
 
-    public void CheckPriorities()
-    {
-        //First DnD action
-        if (DragNdropRes.Count == 0)
-            ShowGo(buttonToConv);
+        IList<string> dragNdropRes = new List<string> { "alt0", "alt1", "alt2", "alt3", "alt4", "alt5" };
 
-        //Reset the list of the Drag&Drops result
-        DragNdropRes.Clear();
-
-        //Update Drag & Drop results
-        for (int i = 0; i < alternatives.Length; i++)
+        //Recover Priority Id
+        for (int i = 0; i < priorities.Length; i++)
         {
-            panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
-            DragNdropRes.Add(panelObjectValue);
-        }
-    }
-
-    public void DisableDnD()
-    {
-        //Lock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<ObjectSettings>().LockObject = true;
-        }
-
-        prioritiesIcon.SetActive(false);
-    }
-
-    public void EnableDnD()
-    {
-        //Disable the alternatives buttons
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<UIButton>().Interactable = false;
-        }
-
-        //Unlock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<ObjectSettings>().LockObject = false;
-        }
-
-        prioritiesIcon.SetActive(true); //Show the icons representing the priorities weight 
-
-        ShowPopup();
+            ObjectId = prioIds[i].ToString();
+            PanelId = dragNdropRes[i].ToString();
+            AIManager.AIDragDrop(ObjectId, PanelId);
+        }        
     }
 
     public void ShowPopup()

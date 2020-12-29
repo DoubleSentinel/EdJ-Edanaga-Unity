@@ -11479,7 +11479,7 @@ MonoBehaviour:
   StartScale: {x: 1, y: 1, z: 1}
   StartAlpha: 1
   AllowMultipleClicks: 1
-  ButtonCategory: Chapter1
+  ButtonCategory: Chapter3
   ButtonName: ContinueToConv
   ClickMode: 0
   DeselectButtonAfterClick: 0
@@ -12341,7 +12341,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
+          - m_Target: {fileID: 2056255396}
             m_MethodName: SetConversationIndex
             m_Mode: 3
             m_Arguments:
@@ -16173,8 +16173,8 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: SetupHostConversation
+          - m_Target: {fileID: 2056255396}
+            m_MethodName: StartConversation
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -19634,7 +19634,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continue to DnD
+  m_Text: Continue to your choice
 --- !u!222 &687599252
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20704,8 +20704,8 @@ MonoBehaviour:
   StartScale: {x: 1, y: 1, z: 1}
   StartAlpha: 1
   AllowMultipleClicks: 1
-  ButtonCategory: Chapter1
-  ButtonName: ContinueToAltDnD
+  ButtonCategory: General
+  ButtonName: Unnamed
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -21566,31 +21566,9 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: StartDnD
+          - m_Target: {fileID: 2056255396}
+            m_MethodName: DnD_Result
             m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 831151396}
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 94459104}
-            m_MethodName: SetActive
-            m_Mode: 6
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -23009,8 +22987,8 @@ MonoBehaviour:
     LoadSelectedPresetAtRuntime: 0
     PresetCategory: 
     PresetName: 
-  TargetLabel: 1
-  TextLabel: {fileID: 687599251}
+  TargetLabel: 0
+  TextLabel: {fileID: 0}
 --- !u!114 &831151399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28886,7 +28864,7 @@ PrefabInstance:
     - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: conversationTitles.Array.data[5]
-      value: 3.3.1_Informed_ranking_Chap6
+      value: 3.4.1_Multiple_choices_rankings_Chap6
       objectReference: {fileID: 0}
     - target: {fileID: 2721753240777413108, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
@@ -60256,10 +60234,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  HiddenAltColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
-  VisibleAltColor: {r: 0.37, g: 0.58, b: 0.82, a: 0}
-  VisibleAltColor25: {r: 0.37, g: 0.58, b: 0.82, a: 0.5}
-  dragNdropRes: []
+  panelObjectValue: 
   PopupName: Popup1
   Title: Title
   MessageObject: {fileID: 216478154}
