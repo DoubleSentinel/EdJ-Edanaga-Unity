@@ -10,15 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42f06ff6cc543ea942180e019f0fc8d, type: 3}
-  m_Name: UIButton_Test
+  m_Name: UIView_Chapter3
   m_EditorClassIdentifier: 
-  CategoryName: Test
-  DatabaseType: 0
+  CategoryName: Chapter3
+  DatabaseType: 2
   Names:
-  - LoadChapter2.1
-  - LoadChapter2.2
-  - LoadSwing
-  - LoadTradeOff
-  - LoadChapter2.2-Tables
-  - LoadChapter1
-  - LoadChapter3
+  - 3.1 Title
+  - 3.2 Conversation
+  - 3.3 Alternatives
