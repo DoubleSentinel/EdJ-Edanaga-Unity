@@ -15,7 +15,9 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject sceneJournalist;
     [SerializeField] private GameObject sceneEngineer;
 
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    [Header("Conversation References")]
+    public GameObject[] ConversationBubbles;
+    //public ConversationHandler conversationHandler;
 
     [Header("Drag&Drop scene")] [SerializeField]
     private GameObject[] alternatives;
@@ -32,10 +34,6 @@ public class ControllerChapter3 : MonoBehaviour
     private string[] prioIds;
     public GameObject[] Panels;
     private GameObject NewPanels;
-
-    public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
-    public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
-    public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
 
     [Header("Drag&Drop result")] [SerializeField]
     private List<string> dragNdropRes;
@@ -115,47 +113,19 @@ public class ControllerChapter3 : MonoBehaviour
     private void Call(int conversationIndex)
     {
         string title = "";
-        if(conversationIndex == 0)
-        {
-            title = $"3.1_Intro_journalist_Chap6";
-
-        }
-        if (conversationIndex == 1)
-        {
-            title = $"3.2_Consistent_check_Chap6";
-        }
-        if (conversationIndex == 2)
-        {
-            title = $"3.2_Inconsistent_check_Chap6";
-        }
-        if (conversationIndex == 3)
-        {
-            title = $"3.2_Inconsistent_check_Chap6";
-        }
-        if (conversationIndex == 4)
-        {
-            title = $"3.3.1_Informed_ranking_Chap6";
-        }
-        if (conversationIndex == 5)
-        {
-            title = $"3.3.1_Informed_ranking_Chap6";
-        }
-
-
+        title = ConversationHandler.GetConversationTitle(conversationIndex);
+        
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
         ch.callback = conversationCallback;
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
     }
 
-    public void StartCall(GameObject objective)
+    public void StartConversation()
     {
-        GameEventMessage.SendEvent("GoToPhoneCall");
-        string objectiveName = objective.name;
-        objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
-        sceneObjective = sceneObjectives[objectiveNumber];
-        SetupCallConversation();
-        Call(objectiveNumber);
+        GameEventMessage.SendEvent("GoToConversation");
+        SetupConversation();
+        Call(conversationIndex);
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -174,7 +144,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void SetupHostConversation()
+    public void SetupConversation()
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
@@ -222,24 +192,6 @@ public class ControllerChapter3 : MonoBehaviour
         buttonToDnd.GetComponent<Button>().interactable = true;
         //Enable DnD
         EnableDnD();
-    }
-
-    //Show specific alternative
-    public void ShowAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
-    }
-
-    //Shaded alternative to 25%
-    public void NextAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
-    }
-
-    //Shaded alternative
-    public void HideAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
     }
 
     public void CheckPriorities()
