@@ -17,6 +17,7 @@ MonoBehaviour:
   - Custom
   - Chapter1
   - Chapter2
+  - Chapter3
   - General
   - LanguageSelection
   - Test
@@ -24,6 +25,7 @@ MonoBehaviour:
   Categories:
   - {fileID: 11400000, guid: f17b782152fbb9a4f8540211ae6d63cc, type: 2}
   - {fileID: 11400000, guid: 5f5c8219ee484ea4b866f60849f2ed47, type: 2}
+  - {fileID: 11400000, guid: 8df6a9c57dba7ce458d8212b8b71100f, type: 2}
   - {fileID: 11400000, guid: ef6ba734724a64624b2eb63f0f99dfe2, type: 2}
   - {fileID: 11400000, guid: 6d719ff9f66e1374aa1e5dde6ef42fd9, type: 2}
   - {fileID: 11400000, guid: a099ec28499c41c4da99ac12d864b84e, type: 2}
