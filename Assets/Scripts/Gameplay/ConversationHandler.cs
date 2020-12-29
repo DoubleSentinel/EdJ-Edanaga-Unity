@@ -220,4 +220,9 @@ public class ConversationHandler : MonoBehaviour
 
         return str.ToUpper();
     }
+
+    public string GetConversationTitle(int index)
+    {
+        return conversationTitles[index].ToString();
+    }
 }
