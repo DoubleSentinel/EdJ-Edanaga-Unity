@@ -1,5 +1,92 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6807326380169100611
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea82279f292f4f6ebe47212017fa5f89, type: 3}
+  m_Name: LoadSceneNode
+  m_EditorClassIdentifier: 
+  ErrorNodeNameIsEmpty: 0
+  ErrorDuplicateNameFoundInGraph: 0
+  m_inputSockets:
+  - m_connectionMode: 1
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 3bf1554f-6774-4eb9-aee6-923a79e33051
+      m_inputNodeId: ef48e3ed-d938-4f4c-9bfc-b65bb8ad1600
+      m_inputSocketId: 1596fced-f414-4694-82b5-257e4a070d9a
+      m_outputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_outputSocketId: ef18a002-b07e-40d5-81c9-8d4dac4916b7
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 0
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 38
+    m_id: 1596fced-f414-4694-82b5-257e4a070d9a
+    m_nodeId: ef48e3ed-d938-4f4c-9bfc-b65bb8ad1600
+    m_socketName: InputSocket_0
+    m_value: '{}'
+    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
+      Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_outputSockets:
+  - m_connectionMode: 0
+    m_connections: []
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 62
+    m_id: 23d5766d-860e-4ee5-8788-a7f1ab4632cc
+    m_nodeId: ef48e3ed-d938-4f4c-9bfc-b65bb8ad1600
+    m_socketName: OutputSocket_0
+    m_value: '{}'
+    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
+      Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_nodeType: 4
+  m_allowDuplicateNodeName: 0
+  m_allowEmptyNodeName: 0
+  m_canBeDeleted: 1
+  m_debugMode: 0
+  m_useFixedUpdate: 0
+  m_useLateUpdate: 0
+  m_useUpdate: 0
+  m_height: 192
+  m_width: 216
+  m_x: -1152
+  m_y: 12
+  m_minimumInputSocketsCount: 1
+  m_minimumOutputSocketsCount: 1
+  m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
+  m_id: ef48e3ed-d938-4f4c-9bfc-b65bb8ad1600
+  m_name: Load Chapter2.1
+  m_notes: 
+  ErrorNoSceneName: 0
+  ErrorBadBuildIndex: 0
+  GetSceneBy: 0
+  LoadSceneMode: 0
+  AllowSceneActivation: 1
+  SceneActivationDelay: 0.2
+  SceneBuildIndex: 0
+  SceneName: Chapter2.1
 --- !u!114 &-4724593861668997323
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,6 +873,32 @@ MonoBehaviour:
     m_value: '{"ButtonCategory":"Chapter1","ButtonName":"ContinueToAlt","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 3bf1554f-6774-4eb9-aee6-923a79e33051
+      m_inputNodeId: ef48e3ed-d938-4f4c-9bfc-b65bb8ad1600
+      m_inputSocketId: 1596fced-f414-4694-82b5-257e4a070d9a
+      m_outputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_outputSocketId: ef18a002-b07e-40d5-81c9-8d4dac4916b7
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 110
+    m_id: ef18a002-b07e-40d5-81c9-8d4dac4916b7
+    m_nodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+    m_socketName: OutputSocket_2
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"ContinueToChapter2.1","TimeDelay":3.0,"Trigger":3}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
   m_allowDuplicateNodeName: 0
   m_allowEmptyNodeName: 0
@@ -794,7 +907,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 176
   m_width: 216
   m_x: -1152
   m_y: -228
@@ -838,11 +951,12 @@ MonoBehaviour:
   - {fileID: -1151570296865051683}
   - {fileID: -4709839307589888660}
   - {fileID: -3160893347095124776}
+  - {fileID: -6807326380169100611}
   m_isSubGraph: 0
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132523172387954787
+  m_lastModified: 132532064409855524
 --- !u!114 &3894428176779684713
 MonoBehaviour:
   m_ObjectHideFlags: 1

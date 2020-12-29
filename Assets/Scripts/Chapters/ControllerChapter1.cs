@@ -26,6 +26,8 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
+    [SerializeField] private GameObject altDnDMessage;
+    [SerializeField] private GameObject altDiscoveryMessage;
 
     private string[] prioIds;
     public GameObject[] Panels;
@@ -37,6 +39,7 @@ public class ControllerChapter1 : MonoBehaviour
 
     [Header("Drag&Drop result")] [SerializeField]
     private List<string> dragNdropRes;
+    private string panelObjectValue;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
 
@@ -52,18 +55,29 @@ public class ControllerChapter1 : MonoBehaviour
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
+    public List<string> DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
 
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => { GameEventMessage.SendEvent("ContinueToAlt"); };
+        conversationCallback = () => {
+            if (conversationIndex == 0)
+            {
+                GameEventMessage.SendEvent("ContinueToAlt");
+                ShowGo(altDiscoveryMessage);
+            }
+            else
+            {
+                GameEventMessage.SendEvent("ContinueToChapter2.1");
+            }
+        };
     }
 
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        dragNdropRes = new List<string>();
+        DragNdropRes = new List<string>();
         prioIds = new string[6];
         Panels = new GameObject[6];
 
@@ -71,6 +85,7 @@ public class ControllerChapter1 : MonoBehaviour
         for (int i = 0; i < alternatives.Length; i++)
         {
             Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+
             if (i == 0)
             {
                 NextAlternative(Panels[i]);
@@ -83,7 +98,7 @@ public class ControllerChapter1 : MonoBehaviour
             }
         }
 
-        //Set Priority Id
+        //Get Priority Id name
         for (int i=0; i < priorities.Length; i++)
         {
             prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
@@ -92,6 +107,8 @@ public class ControllerChapter1 : MonoBehaviour
         //Default Setup
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
+        HideGo(altDnDMessage);
+        HideGo(altDiscoveryMessage);
         DisableDnD();
     }
 
@@ -142,6 +159,7 @@ public class ControllerChapter1 : MonoBehaviour
 
         if (alternativeN == alternatives.Length - 1)
         {
+            ShowGo(altDnDMessage);
             ShowGo(buttonToDnd);
             buttonToDnd.GetComponent<Button>().interactable = true;
         }
@@ -181,11 +199,18 @@ public class ControllerChapter1 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD action
-        if (dragNdropRes.Count == 0)
+        if (DragNdropRes.Count == 0)
             ShowGo(buttonToConv);
 
         //Reset the list of the Drag&Drops result
-        dragNdropRes.Clear();
+        DragNdropRes.Clear();
+
+        //Update Drag & Drop results
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
+            DragNdropRes.Add(panelObjectValue);
+        }
     }
 
     public void DisableDnD()
@@ -243,5 +268,4 @@ public class ControllerChapter1 : MonoBehaviour
     {
         go.SetActive(false);
     }
-
 }
