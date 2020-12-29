@@ -17,7 +17,6 @@ public class ControllerChapter3 : MonoBehaviour
 
     [Header("Conversation References")]
     public GameObject[] ConversationBubbles;
-    //public ConversationHandler conversationHandler;
 
     [Header("Drag&Drop scene")] [SerializeField]
     private GameObject[] alternatives;
@@ -79,23 +78,6 @@ public class ControllerChapter3 : MonoBehaviour
         prioIds = new string[6];
         Panels = new GameObject[6];
 
-        // Setting alternatives gameobjects and panels for locking mechanism
-        for (int i = 0; i < alternatives.Length; i++)
-        {
-            Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
-
-            if (i == 0)
-            {
-                NextAlternative(Panels[i]);
-                alternatives[i].GetComponent<UIButton>().Interactable = true;
-            }
-            else
-            {
-                HideAlternative(Panels[i]);
-                alternatives[i].GetComponent<UIButton>().Interactable = false;
-            }
-        }
-
         //Get Priority Id name
         for (int i=0; i < priorities.Length; i++)
         {
@@ -113,9 +95,8 @@ public class ControllerChapter3 : MonoBehaviour
     private void Call(int conversationIndex)
     {
         string title = "";
-        title = ConversationHandler.GetConversationTitle(conversationIndex);
-        
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        title = ch.GetConversationTitle(conversationIndex);
         ch.callback = conversationCallback;
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
@@ -167,23 +148,6 @@ public class ControllerChapter3 : MonoBehaviour
         ch.callback = conversationCallback;
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
-    }
-
-    public void SetOrderAlternatives(int alternativeN)
-    {
-        ShowAlternative(Panels[alternativeN]);
-
-        if (alternativeN == alternatives.Length - 1)
-        {
-            ShowGo(altDnDMessage);
-            ShowGo(buttonToDnd);
-            buttonToDnd.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            NextAlternative(Panels[alternativeN+1]);
-            alternatives[alternativeN+1].GetComponent<UIButton>().Interactable = true;
-        }
     }
 
     public void StartDnD()
