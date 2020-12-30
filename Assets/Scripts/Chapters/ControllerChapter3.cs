@@ -51,9 +51,18 @@ public class ControllerChapter3 : MonoBehaviour
     {
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => {
-            GameEventMessage.SendEvent("ContinueToAlt");
-            ShowGo(altDiscoveryMessage);
-            ShowGo(buttonToDnd);
+            if (conversationIndex == 0)
+            {
+                GameEventMessage.SendEvent("ContinueToAlt");
+                ShowGo(altDiscoveryMessage);
+                ShowGo(buttonToDnd);
+            }
+            /*
+            if (conversationIndex == 1)
+            {
+                GameEventMessage.SendEvent("ContinueToMatrix");
+            }
+            */
         };
     }
 
@@ -100,16 +109,6 @@ public class ControllerChapter3 : MonoBehaviour
     public void SetConversationIndex(int index)
     {
         conversationIndex = index;
-    }
-
-    //Not used in the this chapter
-    public void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
     }
 
     public void SetupConversation()
