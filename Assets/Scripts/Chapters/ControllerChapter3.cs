@@ -1,8 +1,10 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
 using Doozy.Engine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,8 +29,9 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
-    [Header("Drag&Drop result")] [SerializeField]
-    private string panelObjectValue;
+    [Header("Drag&Drop result")]
+    [SerializeField]
+    private GameObject temp;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
     [SerializeField] private string Title = "Title";
@@ -49,7 +52,7 @@ public class ControllerChapter3 : MonoBehaviour
             if (conversationIndex == 0)
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
-                ShowGo(altDiscoveryMessage);
+                //ShowGo(altDiscoveryMessage);
                 ShowGo(buttonToConv);
                 ShowGo(buttonToDnd);
             }
@@ -118,13 +121,22 @@ public class ControllerChapter3 : MonoBehaviour
    
     public void DnD_Result()
     {
-        List<string> dragNdropRes = new List<string> { "Alternative0", "Alternative1", "Alternative2", "Alternative3", "Alternative4", "Alternative5" };
-       
-        
-        //Get Priority Id name
+        List<string> dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0"};
+        string alternativeName;
+        int alternativeNumber = 0;
+
+        //Set player choice
         for (int i = 0; i < panels.Length; i++)
         {
-            Vector3 position = panels[i].gameObject.transform.position;
+            /*
+            temp = alternatives.Where(obj => obj.name == dragNdropRes[i].ToString()).SingleOrDefault().GetComponent<GameObject>();
+            temp = GameObject.Find(dragNdropRes[i].ToString()).GetComponent<GameObject>();
+            temp = GameObject.Find("Alterantive0");
+            */
+            alternativeName = dragNdropRes[i].ToString();
+            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
+            print(alternativeNumber);
+            alternatives[alternativeNumber].gameObject.transform.position = panels[i].gameObject.transform.position;
         }
 
     }
