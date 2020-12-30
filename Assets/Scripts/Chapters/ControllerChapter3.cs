@@ -128,11 +128,6 @@ public class ControllerChapter3 : MonoBehaviour
         //Set player choice
         for (int i = 0; i < panels.Length; i++)
         {
-            /*
-            temp = alternatives.Where(obj => obj.name == dragNdropRes[i].ToString()).SingleOrDefault().GetComponent<GameObject>();
-            temp = GameObject.Find(dragNdropRes[i].ToString()).GetComponent<GameObject>();
-            temp = GameObject.Find("Alterantive0");
-            */
             alternativeName = dragNdropRes[i].ToString();
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
             print(alternativeNumber);
