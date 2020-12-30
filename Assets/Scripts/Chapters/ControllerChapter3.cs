@@ -17,20 +17,15 @@ public class ControllerChapter3 : MonoBehaviour
     [Header("Conversation References")]
     public GameObject[] ConversationBubbles;
 
-    [Header("Drag&Drop scene")]
+    [Header("Drag&Drop Alt scene")]
     [SerializeField] private GameObject[] alternatives;
-    [SerializeField] private GameObject[] priorities;
-    private string newPrioIds;
+    [SerializeField] private GameObject[] panels;
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
-    [SerializeField] private GameObject altDnDMessage;
     [SerializeField] private GameObject altDiscoveryMessage;
-
-    private string[] prioIds;
-    private string[] alternativeIds;
-    public GameObject[] Panels;
-    private GameObject NewPanels;
+    [SerializeField] private GameObject altDnDMessage1;
+    [SerializeField] private GameObject altDnDMessage2;
 
     [Header("Drag&Drop result")] [SerializeField]
     private string panelObjectValue;
@@ -55,14 +50,14 @@ public class ControllerChapter3 : MonoBehaviour
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
                 ShowGo(altDiscoveryMessage);
+                ShowGo(buttonToConv);
                 ShowGo(buttonToDnd);
             }
-            /*
             if (conversationIndex == 1)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
-            }
-            */
+                print("ContinueToMatrix");
+            } 
         };
     }
 
@@ -70,29 +65,19 @@ public class ControllerChapter3 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        prioIds = new string[6];
-        alternativeIds = new string[6];
-        Panels = new GameObject[6];
-
-        //Get Priority Id and name
-        for (int i = 0; i < priorities.Length; i++)
-        {
-            prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
-            alternativeIds[i] = alternatives[i].gameObject.GetComponent<ObjectSettings>().Id;
-        }
-
         //Default Setup
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
-        HideGo(altDnDMessage);
         HideGo(altDiscoveryMessage);
+        HideGo(altDnDMessage1);
+        HideGo(altDnDMessage2);
+
+        DnD_Result(); //Return player choice 
     }
 
     private void Conv(int conversationIndex)
     {
-        string title = "";
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        title = ch.GetConversationTitle(conversationIndex);
         ch.callback = conversationCallback;
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
@@ -130,23 +115,20 @@ public class ControllerChapter3 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
     }
-
+   
     public void DnD_Result()
     {
-        string ObjectId = "";
-        string PanelId = "";
-
-        IList<string> dragNdropRes = new List<string> { "alt0", "alt1", "alt2", "alt3", "alt4", "alt5" };
-
-        //Recover Priority Id
-        for (int i = 0; i < priorities.Length; i++)
+        List<string> dragNdropRes = new List<string> { "Alternative0", "Alternative1", "Alternative2", "Alternative3", "Alternative4", "Alternative5" };
+       
+        
+        //Get Priority Id name
+        for (int i = 0; i < panels.Length; i++)
         {
-            ObjectId = prioIds[i].ToString();
-            PanelId = dragNdropRes[i].ToString();
-            AIManager.AIDragDrop(ObjectId, PanelId);
-        }        
-    }
+            Vector3 position = panels[i].gameObject.transform.position;
+        }
 
+    }
+    
     public void ShowPopup()
     {
         //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
