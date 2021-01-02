@@ -63,25 +63,24 @@ public class ControllerChapter3 : MonoBehaviour
             if (conversationIndex == 0)
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
-                //ShowGo(altDiscoveryMessage);
                 ShowGo(buttonToConv);
-                //ShowGo(buttonToDnd);
-                DnD_Result();
             }
             if (conversationIndex == 1)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
+                ShowGo(altDnDMessage1);
+                HideGo(altDnDMessage2);
                 ShowGo(buttonToConv1);
                 HideGo(buttonToConv2);
                 DisableDnD();
-                DnD_Result();
                 print("ContinueToMatrix - DnD not allowed");
             }
             if (conversationIndex == 2)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
+                HideGo(altDnDMessage1);
+                ShowGo(altDnDMessage2);
                 HideGo(buttonToConv1);
-                ShowGo(buttonToConv2);
                 EnableDnD();
                 print("ContinueToMatrix - DnD allowed");
         
@@ -91,12 +90,6 @@ public class ControllerChapter3 : MonoBehaviour
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
             }
-            /*
-            if (conversationIndex == 4)
-            {
-                GameEventMessage.SendEvent("ContinueToList");
-            }
-            */
         };
     }
 
@@ -110,7 +103,7 @@ public class ControllerChapter3 : MonoBehaviour
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
         {
-            panelIds[i] = panels[i].gameObject.GetComponent<PanelSettings>().Id;
+            panelIds[i] = panelsDnD[i].gameObject.GetComponent<PanelSettings>().Id;
         }
 
         //Default Setup
@@ -122,6 +115,7 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(altDnDMessage1);
         HideGo(altDnDMessage2);
 
+        DnD_Result();
         DisableDnD();
     }
 
@@ -183,14 +177,13 @@ public class ControllerChapter3 : MonoBehaviour
             //Set DnD default values (player choice)
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
         }
-
     }
 
     public void CheckPriorities()
     {
         //First DnD action
         if (NewDragNdropRes.Count == 0)
-            ShowGo(buttonToConv);
+            ShowGo(buttonToConv2);
 
         //Reset the list of the Drag&Drops result
         NewDragNdropRes.Clear();
@@ -202,7 +195,6 @@ public class ControllerChapter3 : MonoBehaviour
             NewDragNdropRes.Add(panelObjectValue);
         }
     }
-
 
     public void DisableDnD()
     {
