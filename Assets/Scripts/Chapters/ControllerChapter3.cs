@@ -62,11 +62,13 @@ public class ControllerChapter3 : MonoBehaviour
     {
         controllers = GameObject.Find("Controllers");
         conversationCallback = () => {
+            //3.1_Intro_journalist_Chap6
             if (conversationIndex == 0)
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
                 ShowGo(buttonToConv);
             }
+            //3.1.3_Intro_engineer_Chap6
             if (conversationIndex == 1)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
@@ -78,6 +80,7 @@ public class ControllerChapter3 : MonoBehaviour
                 DisableEnableDnD();
                 print("ContinueToMatrix - DnD not allowed");
             }
+            //3.2_Consistent_check_Chap6
             if (conversationIndex == 2)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
@@ -87,12 +90,36 @@ public class ControllerChapter3 : MonoBehaviour
                 EnableFlag = true;
                 DisableEnableDnD();
                 print("ContinueToMatrix - DnD allowed");
-        
             }
+            //3.2_Inconsistent_check_Chap6
             if (conversationIndex == 3)
             {
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
+            }
+            //3.3.1_Informed_ranking_Chap6
+            if (conversationIndex == 4)
+            {
+            }
+            //3.4.1_Multiple_choices_rankings_Chap6
+            if (conversationIndex == 5)
+            {
+            }
+            //3.5.1_Consistent_choice_Chap6
+            if (conversationIndex == 6)
+            {
+            }
+            //3.6_Inconsistent_but_ok_Chap6
+            if (conversationIndex == 7)
+            {
+                SetConversationIndex(8);
+                GameEventMessage.SendEvent("ContinueToConv");
+            }
+            //3.7_Outro_Chap6
+            if (conversationIndex == 8)
+            {
+                GameEventMessage.SendEvent("ContinueToChapter4");
+                print("ContinueToChapter4");
             }
         };
     }
