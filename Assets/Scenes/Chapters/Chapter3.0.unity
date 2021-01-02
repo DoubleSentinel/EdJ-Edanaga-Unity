@@ -466,13 +466,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121209906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 216478155}
-  m_Father: {fileID: 1112530074}
-  m_RootOrder: 16
+  m_Father: {fileID: 2005385966}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16763,7 +16763,6 @@ RectTransform:
   - {fileID: 557264001}
   - {fileID: 431063028}
   - {fileID: 831151397}
-  - {fileID: 121209907}
   m_Father: {fileID: 407104524}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20403,7 +20402,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1) TS R\xE9habilitation de la STEP du village"
+  m_text: "Cliquez sur l\u2019alternative que vous pr\xE9f\xE9rez, maintenez le bouton
+    de la souris press\xE9 et d\xE9placez la ligne en haut du classement, avant de
+    rel\xE2cher le bouton de la souris. De la m\xEAme mani\xE8re, glissez-d\xE9posez
+    votre deuxi\xE8me alternative pr\xE9f\xE9r\xE9e \xE0 la seconde place, et ainsi
+    de suite jusqu\u2019\xE0 obtenir le classement de votre choix !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -21658,7 +21661,7 @@ PrefabInstance:
     - target: {fileID: 5300878704867065544, guid: 68605e69b00148942843e15174faca77,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5300878704867065544, guid: 68605e69b00148942843e15174faca77,
         type: 3}
@@ -31706,6 +31709,7 @@ RectTransform:
   - {fileID: 1942074348}
   - {fileID: 1713827900}
   - {fileID: 506244660}
+  - {fileID: 121209907}
   - {fileID: 1412002745}
   m_Father: {fileID: 407104524}
   m_RootOrder: 3
