@@ -123,7 +123,14 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_outputSockets:
   - m_connectionMode: 0
-    m_connections: []
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: c94a144b-1e52-4d1c-b07a-13b9016ef639
+      m_inputNodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
+      m_inputSocketId: 69e9eb50-7b55-40e8-b350-f8b165ef2ab2
+      m_outputNodeId: 84903dd0-52d5-4f16-a44a-023eefdbee61
+      m_outputSocketId: 9736d045-5c1c-4c28-8aab-22388ca3ee1e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -138,7 +145,7 @@ MonoBehaviour:
     m_id: 9736d045-5c1c-4c28-8aab-22388ca3ee1e
     m_nodeId: 84903dd0-52d5-4f16-a44a-023eefdbee61
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToLoopback","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -212,7 +219,14 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_outputSockets:
   - m_connectionMode: 0
-    m_connections: []
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: e97e7453-cbf5-441c-acae-f16cd7fdf868
+      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
+      m_outputNodeId: 0a3d0a8e-4ba3-4ada-93f6-479ed85c5f57
+      m_outputSocketId: 5cef6bd6-34ee-483b-951c-e71e1efb1398
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -227,7 +241,7 @@ MonoBehaviour:
     m_id: 5cef6bd6-34ee-483b-951c-e71e1efb1398
     m_nodeId: 0a3d0a8e-4ba3-4ada-93f6-479ed85c5f57
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToConv","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -241,7 +255,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -852
-  m_y: -60
+  m_y: -84
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
@@ -385,6 +399,13 @@ MonoBehaviour:
       m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
       m_outputNodeId: c682f39d-4ff2-4014-8a2d-7c6c475d09f4
       m_outputSocketId: 5ce989c9-bfe5-4fbf-89aa-0b51cf532211
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: e97e7453-cbf5-441c-acae-f16cd7fdf868
+      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
+      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
+      m_outputNodeId: 0a3d0a8e-4ba3-4ada-93f6-479ed85c5f57
+      m_outputSocketId: 5cef6bd6-34ee-483b-951c-e71e1efb1398
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -535,7 +556,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132537848542315375
+  m_lastModified: 132540497638079268
 --- !u!114 &1163251933334834503
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,7 +573,14 @@ MonoBehaviour:
   ErrorDuplicateNameFoundInGraph: 0
   m_inputSockets:
   - m_connectionMode: 1
-    m_connections: []
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: c94a144b-1e52-4d1c-b07a-13b9016ef639
+      m_inputNodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
+      m_inputSocketId: 69e9eb50-7b55-40e8-b350-f8b165ef2ab2
+      m_outputNodeId: 84903dd0-52d5-4f16-a44a-023eefdbee61
+      m_outputSocketId: 9736d045-5c1c-4c28-8aab-22388ca3ee1e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}

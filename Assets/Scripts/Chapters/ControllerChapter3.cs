@@ -19,7 +19,7 @@ public class ControllerChapter3 : MonoBehaviour
     [Header("Conversation References")]
     public GameObject[] ConversationBubbles;
 
-    [Header("Drag&Drop Alt scene")]
+    [Header("Alternatives scene")]
     [SerializeField] private GameObject[] alternatives;
     [SerializeField] private GameObject[] panels;
     [SerializeField] private GameObject prioritiesIcon;
@@ -29,9 +29,17 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
+    [Header("Alternatives Drag&Drop scene")]
+    [SerializeField] private GameObject[] alternativesDnD;
+    [SerializeField] private GameObject[] panelsDnD;
+
+    private string[] panelIds;
+
     [Header("Drag&Drop result")]
-    [SerializeField]
-    private GameObject temp;
+    [SerializeField] private List<string> dragNdropRes;
+    [SerializeField] private List<string> newDragNdropRes;
+    [SerializeField] private GameObject buttonToConv1;
+    [SerializeField] private GameObject buttonToConv2;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
     [SerializeField] private string Title = "Title";
@@ -54,13 +62,38 @@ public class ControllerChapter3 : MonoBehaviour
                 GameEventMessage.SendEvent("ContinueToAlt");
                 //ShowGo(altDiscoveryMessage);
                 ShowGo(buttonToConv);
-                ShowGo(buttonToDnd);
+                //ShowGo(buttonToDnd);
+                DnD_Result();
             }
             if (conversationIndex == 1)
             {
                 GameEventMessage.SendEvent("ContinueToMatrix");
-                print("ContinueToMatrix");
-            } 
+                ShowGo(buttonToConv1);
+                HideGo(buttonToConv2);
+                DisableDnD();
+                DnD_Result();
+                print("ContinueToMatrix - DnD not allowed");
+            }
+            if (conversationIndex == 2)
+            {
+                GameEventMessage.SendEvent("ContinueToMatrix");
+                HideGo(buttonToConv1);
+                ShowGo(buttonToConv2);
+                EnableDnD();
+                print("ContinueToMatrix - DnD allowed");
+        
+            }
+            if (conversationIndex == 3)
+            {
+                GameEventMessage.SendEvent("ContinueToList");
+                print("ContinueToList");
+            }
+            /*
+            if (conversationIndex == 4)
+            {
+                GameEventMessage.SendEvent("ContinueToList");
+            }
+            */
         };
     }
 
@@ -68,14 +101,25 @@ public class ControllerChapter3 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
+        panelIds = new string[6];
+
+        //Get panel Id name
+        for (int i = 0; i < panelsDnD.Length; i++)
+        {
+            panelIds[i] = panels[i].gameObject.GetComponent<PanelSettings>().Id;
+        }
+
         //Default Setup
         HideGo(buttonToDnd);
         HideGo(buttonToConv);
+        HideGo(buttonToConv1);
+        HideGo(buttonToConv2);
         HideGo(altDiscoveryMessage);
         HideGo(altDnDMessage1);
         HideGo(altDnDMessage2);
 
-        DnD_Result(); //Return player choice 
+        //DnD_Result(); //Return player choice
+        DisableDnD();
     }
 
     private void Conv(int conversationIndex)
@@ -121,7 +165,7 @@ public class ControllerChapter3 : MonoBehaviour
    
     public void DnD_Result()
     {
-        List<string> dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0"};
+        dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0"};
         string alternativeName;
         int alternativeNumber = 0;
 
@@ -131,11 +175,32 @@ public class ControllerChapter3 : MonoBehaviour
             alternativeName = dragNdropRes[i].ToString();
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
             print(alternativeNumber);
+            //Fix player choice
             alternatives[alternativeNumber].gameObject.transform.position = panels[i].gameObject.transform.position;
+            //Set DnD default values (player choice)
+            alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
         }
 
     }
-    
+
+    public void DisableDnD()
+    {
+        //Lock the drag&drop property of the elements
+        for (int i = 0; i < 6; i++)
+        {
+            alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = true;
+        }
+    }
+
+    public void EnableDnD()
+    {
+        //Unlock the drag&drop property of the elements
+        for (int i = 0; i < 6; i++)
+        {
+            alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = false;
+        }
+    }
+
     public void ShowPopup()
     {
         //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
@@ -161,4 +226,13 @@ public class ControllerChapter3 : MonoBehaviour
     {
         go.SetActive(false);
     }
+
+    //Get objectives texts from TestingEnvironment 
+    public void GetObjectives(int i)
+    {
+        //Get Objectives values to set the Matrix labels
+        var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
+        //results[i].GetValue("Description");
+    }
+
 }
