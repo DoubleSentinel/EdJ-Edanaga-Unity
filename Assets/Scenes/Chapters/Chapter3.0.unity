@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &94459105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -153,13 +153,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 735251922}
-  m_Father: {fileID: 1112530074}
-  m_RootOrder: 14
+  m_Father: {fileID: 2005385966}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.00002, y: 21.039036}
-  m_SizeDelta: {x: 814.51575, y: 315}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -21}
+  m_SizeDelta: {x: 900, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94459106
 MonoBehaviour:
@@ -188,10 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
-    m_Right: 20
-    m_Top: 20
-    m_Bottom: 20
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -472,7 +472,7 @@ RectTransform:
   m_Children:
   - {fileID: 216478155}
   m_Father: {fileID: 1112530074}
-  m_RootOrder: 18
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1264,7 +1264,7 @@ RectTransform:
   m_Children:
   - {fileID: 432605172}
   m_Father: {fileID: 1112530074}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3765,7 +3765,7 @@ RectTransform:
   m_Children:
   - {fileID: 1288024640}
   m_Father: {fileID: 2005385966}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -6174,7 +6174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &557264001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6190,10 +6190,10 @@ RectTransform:
   m_Father: {fileID: 1112530074}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.00002, y: 21.039036}
-  m_SizeDelta: {x: 814.51575, y: 108.02}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 600, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557264002
 MonoBehaviour:
@@ -10025,10 +10025,10 @@ RectTransform:
   m_Father: {fileID: 94459105}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 407.25787, y: -157.5}
-  m_SizeDelta: {x: 774.51575, y: 275}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735251923
 MonoBehaviour:
@@ -10049,12 +10049,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vous venez de d\xE9couvrir plusieurs possibilit\xE9s pour remplacer le
-    syst\xE8me actuel de traitement des eaux us\xE9es. Maintenant, vous allez classer
-    ces alternatives, de votre pr\xE9f\xE9r\xE9e \xE0 celle que vous souhaitez le
-    moins impl\xE9menter. Rappelons-nous du cadre sp\xE9cifique dans lequel nous
-    sommes, soit celui d\u2019un village d\u2019environ 2'000 habitant\xB7e\xB7s.
-    Il n\u2019y a pas de bonne ou mauvaise r\xE9ponse, seule votre opinion nous importe."
+  m_text: "<b>Classement des alternatives selon vos pr\xE9f\xE9rences d\u2019objectifs
+    : </b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -10082,14 +10078,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -10209,7 +10205,7 @@ RectTransform:
   m_Children:
   - {fileID: 687599250}
   m_Father: {fileID: 1112530074}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16765,8 +16761,6 @@ RectTransform:
   - {fileID: 1944757394}
   - {fileID: 1938242577}
   - {fileID: 557264001}
-  - {fileID: 94459105}
-  - {fileID: 1942074348}
   - {fileID: 431063028}
   - {fileID: 831151397}
   - {fileID: 121209907}
@@ -20522,8 +20516,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 407.25787, y: -157.5}
-  m_SizeDelta: {x: 774.51575, y: 275}
+  m_AnchoredPosition: {x: 449.99997, y: -24.525}
+  m_SizeDelta: {x: 879.99994, y: 29.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207017269
 MonoBehaviour:
@@ -20544,12 +20538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vous venez de d\xE9couvrir plusieurs possibilit\xE9s pour remplacer le
-    syst\xE8me actuel de traitement des eaux us\xE9es. Maintenant, vous allez classer
-    ces alternatives, de votre pr\xE9f\xE9r\xE9e \xE0 celle que vous souhaitez le
-    moins impl\xE9menter. Rappelons-nous du cadre sp\xE9cifique dans lequel nous
-    sommes, soit celui d\u2019un village d\u2019environ 2'000 habitant\xB7e\xB7s.
-    Il n\u2019y a pas de bonne ou mauvaise r\xE9ponse, seule votre opinion nous importe."
+  m_text: <b>Classement des alternatives modifiable :</b>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -20577,14 +20566,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -21669,7 +21658,7 @@ PrefabInstance:
     - target: {fileID: 5300878704867065544, guid: 68605e69b00148942843e15174faca77,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5300878704867065544, guid: 68605e69b00148942843e15174faca77,
         type: 3}
@@ -25527,7 +25516,7 @@ RectTransform:
   m_Children:
   - {fileID: 2111609209}
   m_Father: {fileID: 2005385966}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -31092,10 +31081,10 @@ RectTransform:
   m_Father: {fileID: 557264001}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 407.25787, y: -54.01}
-  m_SizeDelta: {x: 774.51575, y: 68.02}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913064219
 MonoBehaviour:
@@ -31116,8 +31105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dans l\u2019ordre donn\xE9, cliquez sur chaque alternative pour la d\xE9couvrir
-    plus en d\xE9tails\_!"
+  m_text: '<b>Classement initial des alternatives : </b>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -31145,8 +31133,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -31268,13 +31256,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1207017268}
-  m_Father: {fileID: 1112530074}
-  m_RootOrder: 15
+  m_Father: {fileID: 2005385966}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.00002, y: 21.039036}
-  m_SizeDelta: {x: 814.51575, y: 315}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -21}
+  m_SizeDelta: {x: 900, y: 49.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942074349
 MonoBehaviour:
@@ -31303,10 +31291,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
-    m_Right: 20
-    m_Top: 20
-    m_Bottom: 20
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -31714,6 +31702,8 @@ RectTransform:
   - {fileID: 689229884}
   - {fileID: 1261710979}
   - {fileID: 1817652338}
+  - {fileID: 94459105}
+  - {fileID: 1942074348}
   - {fileID: 1713827900}
   - {fileID: 506244660}
   - {fileID: 1412002745}
