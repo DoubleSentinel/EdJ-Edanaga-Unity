@@ -37,6 +37,7 @@ public class ControllerChapter3 : MonoBehaviour
     private string panelObjectValue;
 
     [Header("Drag&Drop result")]
+    [SerializeField] private bool enableFlag;
     [SerializeField] private List<string> dragNdropRes;
     [SerializeField] private List<string> newDragNdropRes;
     [SerializeField] private GameObject buttonToConv1;
@@ -55,6 +56,7 @@ public class ControllerChapter3 : MonoBehaviour
     public ConversationHandler.ConversationEnd conversationCallback;
 
     public List<string> NewDragNdropRes { get => newDragNdropRes; set => newDragNdropRes = value; }
+    public bool EnableFlag { get => enableFlag; set => enableFlag = value; }
 
     void Awake()
     {
@@ -72,7 +74,8 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(altDnDMessage2);
                 ShowGo(buttonToConv1);
                 HideGo(buttonToConv2);
-                DisableDnD();
+                EnableFlag = false;
+                DisableEnableDnD();
                 print("ContinueToMatrix - DnD not allowed");
             }
             if (conversationIndex == 2)
@@ -81,7 +84,8 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(altDnDMessage1);
                 ShowGo(altDnDMessage2);
                 HideGo(buttonToConv1);
-                EnableDnD();
+                EnableFlag = true;
+                DisableEnableDnD();
                 print("ContinueToMatrix - DnD allowed");
         
             }
@@ -116,7 +120,8 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(altDnDMessage2);
 
         DnD_Result();
-        DisableDnD();
+        EnableFlag = false;
+        DisableEnableDnD();
     }
 
     private void Conv(int conversationIndex)
@@ -196,26 +201,28 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void DisableDnD()
+    public void DisableEnableDnD()
     {
-        //Lock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
+        if(!enableFlag)
+        { 
+            //Lock the drag&drop property of the elements
+            for (int i = 0; i < 6; i++)
+            {
+                alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = true;
+            }
+        }
+        else
         {
-            alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = true;
+            //Unlock the drag&drop property of the elements
+            for (int i = 0; i < 6; i++)
+            {
+                alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = false;
+            }
+
+            ShowPopup();
         }
     }
-
-    public void EnableDnD()
-    {
-        //Unlock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
-        {
-            alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = false;
-        }
-
-        ShowPopup();
-    }
-
+    
     public void ShowPopup()
     {
         //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
