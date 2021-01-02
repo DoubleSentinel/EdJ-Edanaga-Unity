@@ -212,6 +212,8 @@ public class ControllerChapter3 : MonoBehaviour
         {
             alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = false;
         }
+
+        ShowPopup();
     }
 
     public void ShowPopup()
