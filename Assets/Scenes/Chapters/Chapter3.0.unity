@@ -1067,7 +1067,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &388457513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6363,7 +6374,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &585148931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13191,7 +13213,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &967123859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20804,7 +20837,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1219618999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21441,7 +21485,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1346942591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28077,7 +28132,18 @@ MonoBehaviour:
       m_Calls: []
   OnDroppedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056255396}
+        m_MethodName: CheckPriorities
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1722706706
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject[] panelsDnD;
 
     private string[] panelIds;
+    private string panelObjectValue;
 
     [Header("Drag&Drop result")]
     [SerializeField] private List<string> dragNdropRes;
@@ -52,6 +53,8 @@ public class ControllerChapter3 : MonoBehaviour
     // BargainConversation vars
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
+
+    public List<string> NewDragNdropRes { get => newDragNdropRes; set => newDragNdropRes = value; }
 
     void Awake()
     {
@@ -102,6 +105,7 @@ public class ControllerChapter3 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         panelIds = new string[6];
+        NewDragNdropRes = new List<string>();
 
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
@@ -118,7 +122,6 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(altDnDMessage1);
         HideGo(altDnDMessage2);
 
-        //DnD_Result(); //Return player choice
         DisableDnD();
     }
 
@@ -182,6 +185,24 @@ public class ControllerChapter3 : MonoBehaviour
         }
 
     }
+
+    public void CheckPriorities()
+    {
+        //First DnD action
+        if (NewDragNdropRes.Count == 0)
+            ShowGo(buttonToConv);
+
+        //Reset the list of the Drag&Drops result
+        NewDragNdropRes.Clear();
+
+        //Update Drag & Drop results
+        for (int i = 0; i < alternativesDnD.Length; i++)
+        {
+            panelObjectValue = DragDropManager.GetPanelObject(panelIds[i]);
+            NewDragNdropRes.Add(panelObjectValue);
+        }
+    }
+
 
     public void DisableDnD()
     {
