@@ -29,7 +29,13 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
-    [Header("Alternatives Drag&Drop scene")]
+    [Header("List scene")]
+    [SerializeField] private GameObject[] alternativesInitial;
+    [SerializeField] private GameObject[] alternativesInformed;
+    [SerializeField] private GameObject[] panelsInitial;
+    [SerializeField] private GameObject[] panelsInformed;
+
+    [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
     [SerializeField] private GameObject[] panelsDnD;
 
@@ -212,6 +218,32 @@ public class ControllerChapter3 : MonoBehaviour
             alternatives[alternativeNumber].gameObject.transform.position = panels[i].gameObject.transform.position;
             //Set DnD default values (player choice)
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
+        }
+    }
+
+    public void DnD_ResultList()
+    {
+        dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
+        string alternativeName;
+        int alternativeNumber = 0;
+
+        //Set player choice
+        for (int i = 0; i < panelsInitial.Length; i++)
+        {
+            alternativeName = dragNdropRes[i].ToString();
+            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
+            print(alternativeNumber);
+            //Fix player choice
+            alternativesInitial[alternativeNumber].gameObject.transform.position = panelsInitial[i].gameObject.transform.position;
+        }
+        //Set player choice
+        for (int i = 0; i < panelsInformed.Length; i++)
+        {
+            alternativeName = newDragNdropRes[i].ToString();
+            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
+            print(alternativeNumber);
+            //Fix player choice
+            alternativesInformed[alternativeNumber].gameObject.transform.position = panelsInformed[i].gameObject.transform.position;
         }
     }
 
