@@ -49,6 +49,9 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject buttonToConv1;
     [SerializeField] private GameObject buttonToConv2;
 
+    [Header("Ojectives description")]
+    [SerializeField] private List<string> texts;
+
     [Header("Popup Values")] public string PopupName = "Popup1";
     [SerializeField] private string Title = "Title";
     [SerializeField] private GameObject MessageObject;
@@ -313,11 +316,19 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     //Get objectives texts from TestingEnvironment 
-    public void GetObjectives(int i)
+    public void GetObjectives()
     {
         //Get Objectives values to set the Matrix labels
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
-        //results[i].GetValue("Description");
-    }
 
+        // Reset the list of the texts
+        texts.Clear();
+
+        //Get texts of the objectives description
+        for (int i = 0; i < 10; i++)
+        {
+            texts.Add(objectives.ElementAt(i).Value.description);
+        }
+        print("objectives description : " + texts);
+    }
 }
