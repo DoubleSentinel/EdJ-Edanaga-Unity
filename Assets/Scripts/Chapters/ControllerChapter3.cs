@@ -162,6 +162,8 @@ public class ControllerChapter3 : MonoBehaviour
         DnD_Result();
         EnableFlag = false;
         DisableEnableDnD();
+
+        //DnD_ResultList();
     }
 
     private void Conv(int conversationIndex)
@@ -204,10 +206,12 @@ public class ControllerChapter3 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
     }
-   
+
+    
     public void DnD_Result()
     {
         dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0"};
+
         string alternativeName;
         int alternativeNumber = 0;
 
@@ -223,10 +227,13 @@ public class ControllerChapter3 : MonoBehaviour
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
         }
     }
+    
 
     public void DnD_ResultList()
     {
         dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
+        newDragNdropRes = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
+
         string alternativeName;
         int alternativeNumber = 0;
 
