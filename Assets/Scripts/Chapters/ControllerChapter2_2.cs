@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Doozy.Engine;
+using Doozy.Engine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
@@ -12,14 +15,15 @@ public class ControllerChapter2_2 : MonoBehaviour
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneFamilies;
 
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    [Header("Conversation References")] 
+    public GameObject HostConversationBubble;
+    public GameObject GroupedConversationBubble;
     public GameObject ConversationGroup;
 
     // Local variables
     private GameObject controllers;
     
     // Flags
-    [HideInInspector]
     public bool isTradeOff = true;
 
     // BargainConversation vars
@@ -31,7 +35,6 @@ public class ControllerChapter2_2 : MonoBehaviour
     // Unity calls Awake after all active GameObjects in the Scene are initialized
     void Awake()
     {
-        isTradeOff = true;
         controllers = GameObject.Find("Controllers");
         hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
     }
@@ -39,6 +42,19 @@ public class ControllerChapter2_2 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
+    }
+
+    private int frames = 0;
+
+    private void Update()
+    {
+        if (frames != 30)
+        {
+            GameEventMessage.SendEvent(controllers.GetComponent<TestingEnvironment>().SkipTradeOff
+                ? "StartChapter4"
+                : "StartChapter3");
+            frames++;
+        }
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -73,7 +89,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
+        var ch =  HostConversationBubble.GetComponent<ConversationHandler>();
         ch.callback = hostConversationCallback;
         ch.GenerateConversation(hostConversationIndex);
         ch.NextConversationSnippet();
@@ -97,13 +113,13 @@ public class ControllerChapter2_2 : MonoBehaviour
             go.SetActive(true);
         }
 
-        var ch =  ConversationBubbles[2].GetComponent<ConversationHandler>();
+        var ch =  GroupedConversationBubble.GetComponent<ConversationHandler>();
         ch.callback = groupedConversationCallback;
         ch.GenerateConversation(groupedConversationIndex);
         ch.NextConversationSnippet();
     }
     
-    public void PrepareResultsConversation()
+    public void PrepareTradeOffResultsConversation()
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
         var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
@@ -117,6 +133,45 @@ public class ControllerChapter2_2 : MonoBehaviour
             Instantiate(objective.gameObject, ConversationGroup.transform);
         }
 
+        groupedConversationIndex = 1;
+        groupedConversationCallback = () =>
+        {
+            ClearCharacterConversationGroup();
+            isTradeOff = false;
+            hostConversationIndex = 2;
+            hostConversationCallback = () =>
+            {
+                GameEventMessage.SendEvent("GoToTables");
+            };
+            if(!controllers.GetComponent<TestingEnvironment>().SkipSwing)
+                GameEventMessage.SendEvent("GoToTitleChapter4");
+            else
+            {
+                EndScene();
+            }
+        };
+    }
+
+    public void EndScene()
+    {
+        SceneManager.LoadScene(controllers.GetComponent<TestingEnvironment>().SceneCallback);
+    }
+
+    public void PrepareSwingResultsConversation()
+    {
+        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        var winningFamilyMember = results.OrderByDescending(x => x.Value).First();
+        var winningFamily = GameObject.Find(ConversationHandler.FirstLetterToUpper(winningFamilyMember.Key)).transform.parent;
+        
+        ClearCharacterConversationGroup();
+        
+        // Add Family members of the winning family
+        foreach (Transform objective in winningFamily)
+        {
+            Instantiate(objective.gameObject, ConversationGroup.transform);
+        }
+
+        groupedConversationIndex = 1;
         groupedConversationCallback = () =>
         {
             GameEventMessage.SendEvent("GoToTitleChapter4");
@@ -152,7 +207,23 @@ public class ControllerChapter2_2 : MonoBehaviour
             }
         }
     }
-    
+
+    public void SetupChapter3()
+    {
+        hostConversationIndex = 0;
+        isTradeOff = true;
+    }
+
+    public void SetupChapter4()
+    {
+        isTradeOff = false;
+        hostConversationIndex = 2;
+        HostConversationBubble.GetComponent<ConversationHandler>().callback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        
+        GetComponent<Swing>().ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Clear();
+        GetComponent<Swing>().ValidateSwingButton.GetComponent<UIButton>().OnClick.OnTrigger.GameEvents.Add("GoToTables");
+    }
+
     // View - TradeOff - 2.2.3/5 - Battle
     public void StartActivityWithFamily(GameObject family)
     {
@@ -163,6 +234,7 @@ public class ControllerChapter2_2 : MonoBehaviour
         }
         else
         {
+            GetComponent<Swing>().PrepareSwingWith(family);
             GameEventMessage.SendEvent("GoToSwing");
         }
     }
@@ -171,6 +243,14 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void DeactivateFamilySelector(GameObject caller)
     {
         caller.GetComponent<EventTrigger>().enabled = false;
+    }
+
+    public void ReactivateFamilySelectors(GameObject DoozyUIView)
+    {
+        foreach (Transform familySelector in DoozyUIView.transform)
+        {
+            familySelector.GetChild(0).GetComponent<EventTrigger>().enabled = true;
+        }
     }
 
     private void ClearCharacterConversationGroup()

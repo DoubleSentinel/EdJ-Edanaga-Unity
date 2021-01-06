@@ -245,7 +245,7 @@ public class TradeOff : MonoBehaviour
             title = $"2.2.3_Battles_obj{leftObjectiveName.Last()}_vs_obj{rightObjectiveName.Last()}";
         }
 
-        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement = null;
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().tradeOffWinnerLoserReplacement = null;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = ToggleSelectionButtons;
@@ -262,12 +262,11 @@ public class TradeOff : MonoBehaviour
             {
                 GameEventMessage.SendEvent("GoToFinalsIntroConversation");
                 ShowTradeOffBackground(true);
-                HideTradeOffUI();
                 finals = true;
                 // setting up callback after conversation to move onto final tradeoffs
                 GetComponent<ControllerChapter2_2>().groupedConversationCallback = () =>
                 {
-                    GameEventMessage.SendEvent("GoToFinals");
+                    GameEventMessage.SendEvent("GoToTradeOffFinals");
                     PrepareTradeOffs(tradeOffFinalists);
                     ShowTradeOffBackground(false);
                     ShowFinalsBackground(true);
@@ -289,9 +288,9 @@ public class TradeOff : MonoBehaviour
         else
         {
             GameEventMessage.SendEvent("GoToTables");
-            HideTradeOffUI();
             ShowTradeOffBackground(false);
         }
+        HideTradeOffUI();
     }
 
     private void CalculateLocalWeights(List<(string, float)> family)
@@ -545,7 +544,7 @@ public class TradeOff : MonoBehaviour
             ? tradeoffRightBattlerUIPosition
             : tradeoffLeftBattlerUIPosition;
 
-        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().winnerLoserReplacement =
+        TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().tradeOffWinnerLoserReplacement =
             new[] {winnerName, loserName};
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().callback = EndTradeOffConversation;
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>()
