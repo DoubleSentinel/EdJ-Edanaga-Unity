@@ -184,7 +184,22 @@ public class ControllerChapter3 : MonoBehaviour
     // --------------------  UI Callables  --------------------------------
     public void SetConversationIndex(int index)
     {
-        conversationIndex = index;
+        if(index == 2)
+        {
+            //Test if result is coherent
+            if (TestCoherent())
+            {
+                conversationIndex = index;
+            }
+            else
+            {
+                conversationIndex = 3;
+            }
+        }
+        else
+        {
+            conversationIndex = index;
+        }
     }
 
     public void SetupConversation()
@@ -320,6 +335,17 @@ public class ControllerChapter3 : MonoBehaviour
     public void HideGo(GameObject go)
     {
         go.SetActive(false);
+    }
+
+    public bool TestCoherent()
+    {
+        //If the 4th element of the two lists are the same
+        for (int i = 0; i < 4; i++)
+        {
+            if (dragNdropRes[i] != newDragNdropRes[i])
+                return false;
+        }
+        return true;
     }
 
     //Get objectives texts from TestingEnvironment 
