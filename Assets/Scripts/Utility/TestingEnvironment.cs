@@ -49,14 +49,13 @@ public class TestingEnvironment : MonoBehaviour
     private void Awake()
     {
         TradeOffClassification = new Dictionary<string, float>();
-        SwingClassification = new Dictionary<string, float>();
+        AlternativesUninformed = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
+        AlternativesMCDA = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }
     public Dictionary<string, float> TradeOffClassification { get; set; }
-    public Dictionary<string, float> SwingClassification { get; set; }
-
-    public bool SkipSwing = false;
-    public bool SkipTradeOff = false;
-    public string SceneCallback = "Chapter3";
+    public List<string> AlternativesUninformed { get; set; }
+    public List<string> AlternativesMCDA { get; set; }
+    public List<string> AlternativesInformed { get; set; }
 }
