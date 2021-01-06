@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Doozy.Engine;
 using Doozy.Engine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ControllerChapter2_2 : MonoBehaviour
 {
@@ -40,6 +42,19 @@ public class ControllerChapter2_2 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
+    }
+
+    private int frames = 0;
+
+    private void Update()
+    {
+        if (frames != 30)
+        {
+            GameEventMessage.SendEvent(controllers.GetComponent<TestingEnvironment>().SkipTradeOff
+                ? "StartChapter4"
+                : "StartChapter3");
+            frames++;
+        }
     }
 
     // --------------------  UI Callables  --------------------------------
@@ -121,7 +136,6 @@ public class ControllerChapter2_2 : MonoBehaviour
         groupedConversationIndex = 1;
         groupedConversationCallback = () =>
         {
-            GameEventMessage.SendEvent("GoToTitleChapter4");
             ClearCharacterConversationGroup();
             isTradeOff = false;
             hostConversationIndex = 2;
@@ -129,9 +143,20 @@ public class ControllerChapter2_2 : MonoBehaviour
             {
                 GameEventMessage.SendEvent("GoToTables");
             };
+            if(!controllers.GetComponent<TestingEnvironment>().SkipSwing)
+                GameEventMessage.SendEvent("GoToTitleChapter4");
+            else
+            {
+                EndScene();
+            }
         };
     }
-    
+
+    public void EndScene()
+    {
+        SceneManager.LoadScene(controllers.GetComponent<TestingEnvironment>().SceneCallback);
+    }
+
     public void PrepareSwingResultsConversation()
     {
         var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;

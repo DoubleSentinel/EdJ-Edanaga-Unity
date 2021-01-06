@@ -181,7 +181,7 @@ public class Swing : MonoBehaviour
         if (finals)
         {
             CalculateFinalWeights();
-            
+            GetComponent<ControllerChapter2_2>().EndScene();
         }
 
         ToggleValidationButton();
