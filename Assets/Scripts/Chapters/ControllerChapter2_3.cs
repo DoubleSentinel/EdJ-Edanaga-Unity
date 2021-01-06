@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Doozy.Engine;
 using UnityEngine;
 
 public class ControllerChapter2_3 : MonoBehaviour
@@ -13,6 +12,18 @@ public class ControllerChapter2_3 : MonoBehaviour
     [HideInInspector] public int hostConversationIndex = 0;
     public GameObject[] ConversationBubbles;
     public ConversationHandler.ConversationEnd hostConversationCallback;
+
+    private GameObject controllers;
+    
+    void Awake()
+    {
+        controllers = GameObject.Find("Controllers");
+        hostConversationCallback = () => { GameEventMessage.SendEvent("GoToResults"); };
+    }
+    private void Start()
+    {
+        controllers.GetComponent<LanguageHandler>().translateUI();
+    }
     
     public void SetupHostConversation()
     {

@@ -19,5 +19,5 @@ MonoBehaviour:
   - ContinueTo2.2
   - ContinueToSwing
   - ContinueToTradeOff
-  - ContinueToCall1
   - ContinueToTown
+  - ContinueToConversation
