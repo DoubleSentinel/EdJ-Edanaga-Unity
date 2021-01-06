@@ -17,6 +17,7 @@ MonoBehaviour:
   Names:
   - CallObjective
   - ContinueTo2.2
-  - ContinueToTradeOff
   - ContinueToSwing
-  - 
+  - ContinueToTradeOff
+  - ContinueToCall1
+  - ContinueToTown
