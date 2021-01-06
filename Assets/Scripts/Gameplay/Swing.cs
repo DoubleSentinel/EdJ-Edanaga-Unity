@@ -205,17 +205,13 @@ public class Swing : MonoBehaviour
         Dictionary<GameObject, float> weighted;
         if (currentSwingFamily == SwingFinalists)
         {
-            weighted = objectiveWeights.ToDictionary(k => k.Key.transform.parent.gameObject, v => v.Value / sum);
+            weighted = objectiveWeights.ToDictionary(k => FamilyFromObjective(k.Key), v => v.Value / sum);
         }
         else
         {
             weighted = objectiveWeights.ToDictionary(k => k.Key, v => v.Value / sum);
         }
         userInputValues.Add(currentSwingFamily, weighted);
-        foreach (var userInputValue in userInputValues)
-        {
-            print($"{userInputValue.Key}");
-        }
     }
     private void CalculateFinalWeights()
     {
@@ -231,11 +227,35 @@ public class Swing : MonoBehaviour
                 }
             }
         }
+    }
 
-        foreach (var result in controllers.GetComponent<TestingEnvironment>().SwingClassification)
+    private GameObject FamilyFromObjective(GameObject objective)
+    {
+        int objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
+        switch (objectiveNumber)
         {
-            print($"{result.Key}: {result.Value}");
+            case 0:
+                return GameObject.Find("FamilyA");
+            case 1:
+                return GameObject.Find("FamilyA");
+            case 2:
+                return GameObject.Find("FamilyB");
+            case 3:
+                return GameObject.Find("FamilyB");
+            case 4:
+                return GameObject.Find("FamilyB");
+            case 5:
+                return GameObject.Find("FamilyC");
+            case 6:
+                return GameObject.Find("FamilyC");
+            case 7:
+                return GameObject.Find("FamilyC");
+            case 8:
+                return GameObject.Find("FamilyD");
+            case 9:
+                return GameObject.Find("FamilyD");
         }
+        return null;
     }
 
     private void ToggleValidationButton()
