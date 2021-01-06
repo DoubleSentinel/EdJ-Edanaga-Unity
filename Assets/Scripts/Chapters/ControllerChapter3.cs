@@ -144,6 +144,16 @@ public class ControllerChapter3 : MonoBehaviour
         panelIds = new string[6];
         NewDragNdropRes = new List<string>();
 
+        //Get Alternative values to TestingEnvironment
+        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
+        dragNdropRes.Clear();
+        alt.ForEach((item) => { dragNdropRes.Add((string)item.Clone()); });
+
+        //Get obbjectives result from TestingEnvironment
+        var altObj = controllers.GetComponent<TestingEnvironment>().AlternativesMCDA;
+        newDragNdropRes.Clear();
+        altObj.ForEach((item) => { newDragNdropRes.Add((string)item.Clone()); });
+
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
         {
@@ -162,8 +172,8 @@ public class ControllerChapter3 : MonoBehaviour
         DnD_Result();
         EnableFlag = false;
         DisableEnableDnD();
-
-        //DnD_ResultList();
+        DnD_ResultList();
+        GetObjectives();
     }
 
     private void Conv(int conversationIndex)
@@ -184,17 +194,9 @@ public class ControllerChapter3 : MonoBehaviour
     // --------------------  UI Callables  --------------------------------
     public void SetConversationIndex(int index)
     {
-        if(index == 2)
+        if (index == 2 && !TestCoherent())
         {
-            //Test if result is coherent
-            if (TestCoherent())
-            {
-                conversationIndex = index;
-            }
-            else
-            {
-                conversationIndex = 3;
-            }
+            conversationIndex = index + 1;
         }
         else
         {
@@ -225,8 +227,6 @@ public class ControllerChapter3 : MonoBehaviour
     
     public void DnD_Result()
     {
-        dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0"};
-
         string alternativeName;
         int alternativeNumber = 0;
 
@@ -235,7 +235,6 @@ public class ControllerChapter3 : MonoBehaviour
         {
             alternativeName = dragNdropRes[i].ToString();
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            print(alternativeNumber);
             //Fix player choice
             alternatives[alternativeNumber].gameObject.transform.position = panels[i].gameObject.transform.position;
             //Set DnD default values (player choice)
@@ -246,9 +245,6 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void DnD_ResultList()
     {
-        dragNdropRes = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
-        newDragNdropRes = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
-
         string alternativeName;
         int alternativeNumber = 0;
 
@@ -257,7 +253,6 @@ public class ControllerChapter3 : MonoBehaviour
         {
             alternativeName = dragNdropRes[i].ToString();
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            print(alternativeNumber);
             //Fix player choice
             alternativesInitial[alternativeNumber].gameObject.transform.position = panelsInitial[i].gameObject.transform.position;
         }
@@ -266,7 +261,6 @@ public class ControllerChapter3 : MonoBehaviour
         {
             alternativeName = newDragNdropRes[i].ToString();
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            print(alternativeNumber);
             //Fix player choice
             alternativesInformed[alternativeNumber].gameObject.transform.position = panelsInformed[i].gameObject.transform.position;
         }
@@ -275,7 +269,7 @@ public class ControllerChapter3 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD action
-        if (NewDragNdropRes.Count == 0)
+        //if (NewDragNdropRes.Count == 0)
             ShowGo(buttonToConv2);
 
         //Reset the list of the Drag&Drops result
@@ -287,6 +281,10 @@ public class ControllerChapter3 : MonoBehaviour
             panelObjectValue = DragDropManager.GetPanelObject(panelIds[i]);
             NewDragNdropRes.Add(panelObjectValue);
         }
+
+        //Send new alternatives values to TestingEnvironment
+        var alt2 = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
+        alt2 = NewDragNdropRes;
     }
 
     public void DisableEnableDnD()
@@ -342,9 +340,13 @@ public class ControllerChapter3 : MonoBehaviour
         //If the 4th element of the two lists are the same
         for (int i = 0; i < 4; i++)
         {
-            if (dragNdropRes[i] != newDragNdropRes[i])
+            if (dragNdropRes[i].ToLower() != newDragNdropRes[i].ToLower())
+            {
+                print("Not the same!!!!!!!!!!!!!"); print("Not the same!!!!!!!!!!!!!");
                 return false;
+            }
         }
+        print("The same!!!!!!!!!!!!!");
         return true;
     }
 
@@ -362,6 +364,5 @@ public class ControllerChapter3 : MonoBehaviour
         {
             texts.Add(objectives.ElementAt(i).Value.description);
         }
-        print("objectives description : " + texts);
     }
 }

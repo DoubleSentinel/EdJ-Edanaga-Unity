@@ -211,6 +211,11 @@ public class ControllerChapter1 : MonoBehaviour
             panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
             DragNdropRes.Add(panelObjectValue);
         }
+
+        //Set Alternative values to TestingEnvironment
+        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
+        alt.Clear();
+        DragNdropRes.ForEach((item) => { alt.Add((string)item.Clone()); });
     }
 
     public void DisableDnD()
