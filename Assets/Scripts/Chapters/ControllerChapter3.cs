@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControllerChapter3 : MonoBehaviour
@@ -379,6 +380,19 @@ public class ControllerChapter3 : MonoBehaviour
     public void AdaptUI()
     {
 
+    }
+
+    public void RedoAll()
+    {
+        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
+        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = false;
+        SceneManager.LoadScene("Chapter2.2");
+    }
+    public void RedoSwing()
+    {
+        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
+        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = true;
+        SceneManager.LoadScene("Chapter2.2");
     }
 
     //Get objectives texts from TestingEnvironment 
