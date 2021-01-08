@@ -50,14 +50,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d79ce15639d986e44a0be90043b7f86c, type: 2}
   CopiedNodes: []
   DeletedNodes: []
-  SelectedNodes:
-  - {fileID: -6777561899220184353, guid: b13d6387d7629ba42b16b4d67b2c301a, type: 2}
+  SelectedNodes: []
   GraphTabs:
   - IsRootTab: 1
     Graph: {fileID: 11400000, guid: b13d6387d7629ba42b16b4d67b2c301a, type: 2}
     SubGraphNode: {fileID: 0}
     Zoom: 0.6
-    PanOffset: {x: 1398, y: 322.59998}
+    PanOffset: {x: 1189, y: 321.6}
     SelectedNodes: []
     DeletedNodes: []
   CurrentView: 1

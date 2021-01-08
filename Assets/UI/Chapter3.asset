@@ -267,7 +267,7 @@ MonoBehaviour:
     m_id: f6150454-3680-4806-9e20-161e2215ce2e
     m_nodeId: 84903dd0-52d5-4f16-a44a-023eefdbee61
     m_socketName: OutputSocket_1
-    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"ContinueToConv","TimeDelay":3.0,"Trigger":3}'
+    m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToConv","GameEvent":"ContinueToConv","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -550,13 +550,6 @@ MonoBehaviour:
       m_outputNodeId: 84903dd0-52d5-4f16-a44a-023eefdbee61
       m_outputSocketId: f6150454-3680-4806-9e20-161e2215ce2e
     - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: 4fa3e427-83b4-4f6d-92da-e5af809cbc6a
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
-      m_outputSocketId: 3d7bb3d5-2bbf-4da0-9c77-f19330376650
-    - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: 202, y: 4}
       m_id: e93eb9ea-cd29-4b3b-a293-b5175323787f
       m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
@@ -759,7 +752,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132545037098297817
+  m_lastModified: 132545710392385735
 --- !u!114 &1163251933334834503
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -829,25 +822,6 @@ MonoBehaviour:
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 1
-    m_canBeReordered: 1
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 86
-    m_id: c3c139be-ec0c-4494-89fc-d39f979c41cb
-    m_nodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
-    m_socketName: OutputSocket_2
-    m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToConv","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - m_connectionMode: 0
     m_connections:
     - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: -2, y: 4}
@@ -866,36 +840,10 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 110
+    m_y: 86
     m_id: 20639aed-bb90-4d1c-b747-4cea600096f9
     m_nodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
     m_socketName: OutputSocket_3
-    m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToConv","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
-    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - m_connectionMode: 0
-    m_connections:
-    - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: 4fa3e427-83b4-4f6d-92da-e5af809cbc6a
-      m_inputNodeId: 5a468793-8e1a-450c-900b-c73504c22cda
-      m_inputSocketId: 0203eb65-ee18-4b4b-aa31-2fffc924d22f
-      m_outputNodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
-      m_outputSocketId: 3d7bb3d5-2bbf-4da0-9c77-f19330376650
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 1
-    m_canBeReordered: 1
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 134
-    m_id: 3d7bb3d5-2bbf-4da0-9c77-f19330376650
-    m_nodeId: 1fa9036b-cb43-43ae-8f10-21271020ceae
-    m_socketName: OutputSocket_4
     m_value: '{"ButtonCategory":"Chapter3","ButtonName":"ContinueToConv","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -907,7 +855,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 200
+  m_height: 152
   m_width: 216
   m_x: -768
   m_y: 180

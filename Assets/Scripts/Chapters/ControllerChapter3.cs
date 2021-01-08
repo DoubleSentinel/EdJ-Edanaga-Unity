@@ -110,25 +110,31 @@ public class ControllerChapter3 : MonoBehaviour
                 EnableFlag = false;
                 DisableEnableDnD();
             }
-
-            //3.2_Consistent_check_Chap6 (if consistant!)
+            //3.2_Consistent_check_Chap6
             if (conversationIndex == 2)
             {
                 print("ConversationConsistent");
                 //Go to the next conversation
                 SetConversationIndex(6);
-                GameEventMessage.SendEvent("ContinueToConv");
+                GameEventMessage.SendEvent("ContinueToNextConv");
             }
-
-            //3.2_Inconsistent_check_Chap6 (if not consistant!)
+            //3.2_Inconsistent_check_Chap6
             if (conversationIndex == 3)
             {
                 print("ConversationInconsistent");
-                //Go to the next convversation
-                SetConversationIndex(4);
-                GameEventMessage.SendEvent("ContinueToNextConv");
+                if(!EnableFlag) //1st DnD or coming back from 3.4
+                {
+                    //Go to the next convversation
+                    SetConversationIndex(4);
+                    GameEventMessage.SendEvent("ContinueToNextConv");
+                }
+                else
+                {
+                    //Go to the next convversation
+                    SetConversationIndex(5);
+                    GameEventMessage.SendEvent("ContinueToNextConv");
+                }    
             }
-
             //3.3.1_Informed_ranking_Chap6
             if (conversationIndex == 4)
             {
@@ -139,19 +145,16 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(buttonToConv1);
                 EnableFlag = true;
                 DisableEnableDnD();
-
             }
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
             {
                 fromState = 2; //3.4.2
                 AdaptListUI(fromState);
-
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
             }
-
-            //3.5.1_Consistent_choice_Chap6 (if consistant!)
+            //3.5.1_Consistent_choice_Chap6
             if (conversationIndex == 6)
             {
                 print("ContinueToList");
@@ -165,9 +168,8 @@ public class ControllerChapter3 : MonoBehaviour
                 print("ContinueToEnd");
                 //Go to the next convversation
                 SetConversationIndex(8);
-                GameEventMessage.SendEvent("ContinueToConv");
+                GameEventMessage.SendEvent("ContinueToNextConv");
             }
-
             //3.7_Outro_Chap6
             if (conversationIndex == 8)
             {
@@ -234,8 +236,7 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     public void StartConversation()
-    {
-        //GameEventMessage.SendEvent("GoToConversation");
+    { 
         SetupConversation();
         Conv(conversationIndex);
     }
