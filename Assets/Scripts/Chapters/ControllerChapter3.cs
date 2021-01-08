@@ -101,6 +101,7 @@ public class ControllerChapter3 : MonoBehaviour
             //3.1.3_Intro_engineer_Chap6
             if (conversationIndex == 1)
             {
+                print("ContinueToMatrix - DnD not allowed");
                 GameEventMessage.SendEvent("ContinueToMatrix");
                 ShowGo(altDnDMessage1);
                 HideGo(altDnDMessage2);
@@ -108,41 +109,44 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(buttonToConv2);
                 EnableFlag = false;
                 DisableEnableDnD();
-                print("ContinueToMatrix - DnD not allowed");
             }
 
             //3.2_Consistent_check_Chap6 (if consistant!)
             if (conversationIndex == 2)
             {
-                SetConversationIndex(6);
                 print("ConversationConsistent");
+                //Go to the next conversation
+                SetConversationIndex(6);
                 GameEventMessage.SendEvent("ContinueToConv");
             }
 
             //3.2_Inconsistent_check_Chap6 (if not consistant!)
             if (conversationIndex == 3)
             {
+                print("ConversationInconsistent");
+                //Go to the next convversation
+                SetConversationIndex(4);
+                GameEventMessage.SendEvent("ContinueToNextConv");
+            }
 
-
-
+            //3.3.1_Informed_ranking_Chap6
+            if (conversationIndex == 4)
+            {
+                print("ContinueToMatrix - DnD allowed");
                 GameEventMessage.SendEvent("ContinueToMatrix");
                 HideGo(altDnDMessage1);
                 ShowGo(altDnDMessage2);
                 HideGo(buttonToConv1);
                 EnableFlag = true;
                 DisableEnableDnD();
-                print("ContinueToMatrix - DnD allowed");
-            }
 
-            //3.3.1_Informed_ranking_Chap6
-            if (conversationIndex == 4)
-            {
-                GameEventMessage.SendEvent("ContinueToList");
-                print("ContinueToList");
             }
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
             {
+                fromState = 2; //3.4.2
+                AdaptListUI(fromState);
+
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
             }
@@ -150,18 +154,16 @@ public class ControllerChapter3 : MonoBehaviour
             //3.5.1_Consistent_choice_Chap6 (if consistant!)
             if (conversationIndex == 6)
             {
+                print("ContinueToList");
                 fromState = 0; //3.5.2
                 AdaptListUI(fromState);
-
                 GameEventMessage.SendEvent("ContinueToList");
-                print("ContinueToList");
             }
             //3.6_Inconsistent_but_ok_Chap6 (if not consistant!)
             if (conversationIndex == 7)
             {
-                fromState = 2; //3.4.2
-                AdaptListUI(fromState);
-
+                print("ContinueToEnd");
+                //Go to the next convversation
                 SetConversationIndex(8);
                 GameEventMessage.SendEvent("ContinueToConv");
             }
@@ -177,7 +179,6 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void NextConv()
     {
-
         GameEventMessage.SendEvent("ContinueToConv");
     }
 
@@ -404,82 +405,38 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void AdaptListUI(int fromState)
     {
-        //Consistant
+        label_Inconsistent_ranking.gameObject.SetActive(false); //0
+        label_Consistent1_ranking.gameObject.SetActive(false); //1
+        label_Consistent2_ranking.gameObject.SetActive(false); //2 Used
+        ButtonInconsistent_informed.gameObject.SetActive(false); //3
+        Button1st_initial.gameObject.SetActive(false); //4
+        Button1st_pick_ranking.gameObject.SetActive(false); //5 Not used
+        Button2orMore_informed.gameObject.SetActive(false); //6 Used
+        ButtonInconsistent_MCDA.gameObject.SetActive(false); //7
+        Button1st_MCDA.gameObject.SetActive(false); //8
+        Button2orMore_MCDA.gameObject.SetActive(false); //9 Used
+        ButtonNone.gameObject.SetActive(false); //10
+        //.transform.localScale = new Vector3(0, 0, 0);
+        //.gameObject.GetComponent<Renderer>().enabled = false;
+
         if (fromState == 0) //3.5.2
         {
-            label_Inconsistent_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-            label_Consistent1_ranking.transform.localScale = new Vector3(1, 1, 1); ;
-            label_Consistent2_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-
-            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = true;
-            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
-            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
-            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = false;
-            //.transform.localScale = new Vector3(0, 0, 0);
-            //.gameObject.GetComponent<Renderer>().enabled = false;
-            ButtonInconsistent_informed.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_initial.transform.localScale = new Vector3(1, 1, 1);
-            Button1st_pick_ranking.transform.localScale = new Vector3(0, 0, 0);
-            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
-            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_MCDA.transform.localScale = new Vector3(1, 1, 1);
-            Button2orMore_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            ButtonNone.gameObject.transform.localScale = new Vector3(0, 0, 0);
-
+            label_Consistent1_ranking.gameObject.SetActive(true); //1
+            Button1st_initial.gameObject.SetActive(true); //4
+            Button1st_MCDA.gameObject.SetActive(true); //8
         }
         if (fromState == 1) //3.5.3
         {
-            label_Inconsistent_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-            label_Consistent1_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-            label_Consistent2_ranking.transform.localScale = new Vector3(1, 1, 1); ;
-
-            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = true;
-            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
-            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
-            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = false;
-            //.transform.localScale = new Vector3(0, 0, 0);
-            //.gameObject.GetComponent<Renderer>().enabled = false;
-            ButtonInconsistent_informed.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_initial.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_pick_ranking.transform.localScale = new Vector3(1, 1, 1);
-            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
-            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            Button2orMore_MCDA.transform.localScale = new Vector3(1, 1, 1);
-            ButtonNone.gameObject.transform.localScale = new Vector3(0, 0, 0);
+            label_Consistent2_ranking.gameObject.SetActive(true); //2
+            Button2orMore_informed.gameObject.SetActive(true); //5
+            Button2orMore_MCDA.gameObject.SetActive(true); //8
         }
         if (fromState == 2) //3.4.2
         {
-            label_Inconsistent_ranking.transform.localScale = new Vector3(1, 1, 1); ;
-            label_Consistent1_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-            label_Consistent2_ranking.transform.localScale = new Vector3(0, 0, 0); ;
-
-            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = true;
-            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
-            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
-            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
-            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = true;
-            //.transform.localScale = new Vector3(0, 0, 0);
-            //.gameObject.GetComponent<Renderer>().enabled = false;
-            ButtonInconsistent_informed.transform.localScale = new Vector3(1, 1, 1);
-            Button1st_initial.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_pick_ranking.transform.localScale = new Vector3(0, 0, 0);
-            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
-            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            Button1st_MCDA.transform.localScale = new Vector3(1, 1, 1);
-            Button2orMore_MCDA.transform.localScale = new Vector3(0, 0, 0);
-            ButtonNone.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            label_Inconsistent_ranking.gameObject.SetActive(true); //0
+            ButtonInconsistent_informed.gameObject.SetActive(true); //3
+            ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
+            ButtonNone.gameObject.SetActive(true); //10
         }
     }
     public void RedoAll()
@@ -511,3 +468,4 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 }
+ 
