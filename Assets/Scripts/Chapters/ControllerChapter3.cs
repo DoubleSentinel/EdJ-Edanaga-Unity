@@ -52,6 +52,20 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject buttonToConv1;
     [SerializeField] private GameObject buttonToConv2;
 
+    [Header("List elemts")]
+    [SerializeField] private GameObject label_Inconsistent_ranking;
+    [SerializeField] private GameObject label_Consistent1_ranking;
+    [SerializeField] private GameObject label_Consistent2_ranking;
+    
+    [SerializeField] private GameObject ButtonInconsistent_informed;
+    [SerializeField] private GameObject Button1st_initial;
+    [SerializeField] private GameObject Button1st_pick_ranking;
+    [SerializeField] private GameObject Button2orMore_informed;
+    [SerializeField] private GameObject ButtonInconsistent_MCDA;
+    [SerializeField] private GameObject Button1st_MCDA;
+    [SerializeField] private GameObject Button2orMore_MCDA;
+    [SerializeField] private GameObject ButtonNone;
+
     [Header("Ojectives description")]
     [SerializeField] private List<string> texts;
 
@@ -72,7 +86,7 @@ public class ControllerChapter3 : MonoBehaviour
     public bool EnableFlag { get => enableFlag; set => enableFlag = value; }
     public List<string> DragNdropResInformed { get => dragNdropResInformed; set => dragNdropResInformed = value; }
 
-    public string fromState = "Consistant0";
+    public int fromState = 0;
 
     void Awake()
     {
@@ -100,17 +114,17 @@ public class ControllerChapter3 : MonoBehaviour
             //3.2_Consistent_check_Chap6 (if consistant!)
             if (conversationIndex == 2)
             {
-                fromState = "Consistant0";
-                //AdaptUI(fromState);
                 SetConversationIndex(6);
-                print("Conversation2");
+                print("ConversationConsistent");
                 GameEventMessage.SendEvent("ContinueToConv");
-                GameEventMessage.SendEvent("ContinueToConv");
-                //StartConversation();
             }
+
             //3.2_Inconsistent_check_Chap6 (if not consistant!)
             if (conversationIndex == 3)
             {
+
+
+
                 GameEventMessage.SendEvent("ContinueToMatrix");
                 HideGo(altDnDMessage1);
                 ShowGo(altDnDMessage2);
@@ -136,13 +150,18 @@ public class ControllerChapter3 : MonoBehaviour
             //3.5.1_Consistent_choice_Chap6 (if consistant!)
             if (conversationIndex == 6)
             {
-                print("Conversation6");
+                fromState = 0; //3.5.2
+                AdaptListUI(fromState);
+
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
             }
             //3.6_Inconsistent_but_ok_Chap6 (if not consistant!)
             if (conversationIndex == 7)
             {
+                fromState = 2; //3.4.2
+                AdaptListUI(fromState);
+
                 SetConversationIndex(8);
                 GameEventMessage.SendEvent("ContinueToConv");
             }
@@ -154,6 +173,12 @@ public class ControllerChapter3 : MonoBehaviour
                 print("ContinueToChapter4");
             }
         };
+    }
+
+    public void NextConv()
+    {
+
+        GameEventMessage.SendEvent("ContinueToConv");
     }
 
     private void Start()
@@ -377,11 +402,86 @@ public class ControllerChapter3 : MonoBehaviour
         return true;
     }
 
-    public void AdaptUI()
+    public void AdaptListUI(int fromState)
     {
+        //Consistant
+        if (fromState == 0) //3.5.2
+        {
+            label_Inconsistent_ranking.transform.localScale = new Vector3(0, 0, 0); ;
+            label_Consistent1_ranking.transform.localScale = new Vector3(1, 1, 1); ;
+            label_Consistent2_ranking.transform.localScale = new Vector3(0, 0, 0); ;
 
+            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = true;
+            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
+            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
+            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = false;
+            //.transform.localScale = new Vector3(0, 0, 0);
+            //.gameObject.GetComponent<Renderer>().enabled = false;
+            ButtonInconsistent_informed.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_initial.transform.localScale = new Vector3(1, 1, 1);
+            Button1st_pick_ranking.transform.localScale = new Vector3(0, 0, 0);
+            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
+            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_MCDA.transform.localScale = new Vector3(1, 1, 1);
+            Button2orMore_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            ButtonNone.gameObject.transform.localScale = new Vector3(0, 0, 0);
+
+        }
+        if (fromState == 1) //3.5.3
+        {
+            label_Inconsistent_ranking.transform.localScale = new Vector3(0, 0, 0); ;
+            label_Consistent1_ranking.transform.localScale = new Vector3(0, 0, 0); ;
+            label_Consistent2_ranking.transform.localScale = new Vector3(1, 1, 1); ;
+
+            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = true;
+            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
+            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
+            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = false;
+            //.transform.localScale = new Vector3(0, 0, 0);
+            //.gameObject.GetComponent<Renderer>().enabled = false;
+            ButtonInconsistent_informed.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_initial.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_pick_ranking.transform.localScale = new Vector3(1, 1, 1);
+            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
+            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            Button2orMore_MCDA.transform.localScale = new Vector3(1, 1, 1);
+            ButtonNone.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        }
+        if (fromState == 2) //3.4.2
+        {
+            label_Inconsistent_ranking.transform.localScale = new Vector3(1, 1, 1); ;
+            label_Consistent1_ranking.transform.localScale = new Vector3(0, 0, 0); ;
+            label_Consistent2_ranking.transform.localScale = new Vector3(0, 0, 0); ;
+
+            ButtonInconsistent_informed.gameObject.GetComponent<UIButton>().Interactable = true;
+            Button1st_initial.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_pick_ranking.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button2orMore_informed.gameObject.GetComponent<UIButton>().Interactable = false;
+            ButtonInconsistent_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            Button1st_MCDA.gameObject.GetComponent<UIButton>().Interactable = true;
+            Button2orMore_MCDA.gameObject.GetComponent<UIButton>().Interactable = false;
+            ButtonNone.gameObject.GetComponent<UIButton>().Interactable = true;
+            //.transform.localScale = new Vector3(0, 0, 0);
+            //.gameObject.GetComponent<Renderer>().enabled = false;
+            ButtonInconsistent_informed.transform.localScale = new Vector3(1, 1, 1);
+            Button1st_initial.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_pick_ranking.transform.localScale = new Vector3(0, 0, 0);
+            Button2orMore_informed.transform.localScale = new Vector3(0, 0, 0);
+            ButtonInconsistent_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            Button1st_MCDA.transform.localScale = new Vector3(1, 1, 1);
+            Button2orMore_MCDA.transform.localScale = new Vector3(0, 0, 0);
+            ButtonNone.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
-
     public void RedoAll()
     {
         controllers.GetComponent<TestingEnvironment>().SkipSwing = false;

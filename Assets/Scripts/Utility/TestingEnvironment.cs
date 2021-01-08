@@ -50,9 +50,9 @@ public class TestingEnvironment : MonoBehaviour
     {
         TradeOffClassification = new Dictionary<string, float>();
         SwingClassification = new Dictionary<string, float>();
-        AlternativesUninformed = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
-        AlternativesMCDA = new List<string> { "Alternative5", "Alternative1", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
-        AlternativesInformed = new List<string> { "Alternative1", "Alternative5", "Alternative3", "Alternative2", "Alternative4", "Alternative0" };
+        AlternativesUninformed = new List<string> { "Alternative0", "Alternative1", "Alternative2", "Alternative3", "Alternative4", "Alternative5" };
+        AlternativesMCDA = new List<string> { "Alternative1", "Alternative0", "Alternative2", "Alternative3", "Alternative4", "Alternative5" };
+        AlternativesInformed = new List<string> { "Alternative1", "Alternative0", "Alternative2", "Alternative3", "Alternative4", "Alternative5" };
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }
