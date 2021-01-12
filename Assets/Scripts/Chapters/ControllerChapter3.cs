@@ -151,7 +151,7 @@ public class ControllerChapter3 : MonoBehaviour
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
             {
-                fromState = 2; //3.4.2
+                fromState = 1; //3.4.2
                 AdaptListUI(fromState);
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
@@ -160,7 +160,7 @@ public class ControllerChapter3 : MonoBehaviour
             if (conversationIndex == 6)
             {
                 print("ContinueToList");
-                //fromState = 0; //3.5.2
+                fromState = 0; //3.5.2 or 3.5.3
                 AdaptListUI(fromState);
                 GameEventMessage.SendEvent("ContinueToList");
             }
@@ -247,12 +247,14 @@ public class ControllerChapter3 : MonoBehaviour
     {
         if (index == 2 && !TestCoherent())
         {
+            controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
             conversationIndex = index + 1;
         }
         else
         {
             if (TestAreTheSame())
             {
+                SetPreferedUser(0); //Consistent 100%
                 conversationIndex = 8;
             }
             else
@@ -409,19 +411,24 @@ public class ControllerChapter3 : MonoBehaviour
         //.transform.localScale = new Vector3(0, 0, 0);
         //.gameObject.GetComponent<Renderer>().enabled = false;
 
-        if (fromState == 0) //3.5.2 - 1st
+        if (fromState == 0) //3.5.2 - 1st or 3.5.3 - 2nd or more
         {
-            label_Consistent1_ranking.gameObject.SetActive(true); //1
-            Button1st_initial.gameObject.SetActive(true); //4
-            Button1st_MCDA.gameObject.SetActive(true); //8
+            if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
+            { 
+                label_Consistent1_ranking.gameObject.SetActive(true); //1
+                Button1st_initial.gameObject.SetActive(true); //4
+                Button1st_MCDA.gameObject.SetActive(true); //8
+                controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
+            }
+            else
+            {
+                label_Consistent2_ranking.gameObject.SetActive(true); //2
+                Button2orMore_informed.gameObject.SetActive(true); //5
+                Button2orMore_MCDA.gameObject.SetActive(true); //8
+            }
+
         }
-        if (fromState == 1) //3.5.3 - 2nd or more
-        {
-            label_Consistent2_ranking.gameObject.SetActive(true); //2
-            Button2orMore_informed.gameObject.SetActive(true); //5
-            Button2orMore_MCDA.gameObject.SetActive(true); //8
-        }
-        if (fromState == 2) //3.4.2
+        if (fromState == 1) //3.4.2
         {
             label_Inconsistent_ranking.gameObject.SetActive(true); //0
             ButtonInconsistent_informed.gameObject.SetActive(true); //3
@@ -439,15 +446,18 @@ public class ControllerChapter3 : MonoBehaviour
         switch (caseState)
         {
             case 0:
-                //alternativeNames1 = dragNdropResUninformed.ToList();
-                alternativeNames1 = dragNdropResUninformed;
-                alternativeNames2 = dragNdropResMCDA;
+                if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
+                {
+                    alternativeNames1 = dragNdropResUninformed;
+                    alternativeNames2 = dragNdropResMCDA;
+                }
+                else
+                { 
+                    alternativeNames1 = dragNdropResInformed;
+                    alternativeNames2 = dragNdropResMCDA;
+                }
                 break;
             case 1:
-                alternativeNames1 = dragNdropResInformed;
-                alternativeNames2 = dragNdropResMCDA;
-                break;
-            case 2:
                 alternativeNames1 = dragNdropResInformed.ToList();
                 alternativeNames2 = dragNdropResMCDA;
                 break;
@@ -486,6 +496,33 @@ public class ControllerChapter3 : MonoBehaviour
         SceneManager.LoadScene("Chapter2.2");
     }
 
+    public void SetPreferedUser(int choice)
+    {
+        switch (choice)
+        {
+            case 0:
+                if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
+                {
+                    controllers.GetComponent<TestingEnvironment>().PreferedUser = "Consistant1st";
+                }
+                else
+                {
+                    controllers.GetComponent<TestingEnvironment>().PreferedUser = "Consistant2ndOrMore";
+                }
+                break;
+            case 1:
+                controllers.GetComponent<TestingEnvironment>().PreferedUser = "Uninformed";
+                break;
+            case 2:
+                controllers.GetComponent<TestingEnvironment>().PreferedUser = "MCDA";
+                break;
+            case 3:
+                controllers.GetComponent<TestingEnvironment>().PreferedUser = "Informed";
+                break;
+            default:
+                break;
+        }
+    }
     //Get objectives texts from TestingEnvironment 
     public void GetObjectives()
     {

@@ -61,10 +61,11 @@ public class TestingEnvironment : MonoBehaviour
     public List<string> AlternativesUninformed { get; set; }
     public List<string> AlternativesMCDA { get; set; }
     public List<string> AlternativesInformed { get; set; }
-    
+
     public bool SkipSwing = false;
     public bool SkipTradeOff = false;
     public string SceneCallback = "Chapter3";
 
-    public bool ConsistantFirst = true;
+    public bool ConsistentFirst = true;
+    public string PreferedUser = "";
 }
