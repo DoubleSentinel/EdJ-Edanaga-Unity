@@ -425,12 +425,16 @@ public class ControllerChapter3 : MonoBehaviour
             label_Consistent1_ranking.gameObject.SetActive(true); //1
             Button1st_initial.gameObject.SetActive(true); //4
             Button1st_MCDA.gameObject.SetActive(true); //8
+
+            DnD_ResultMCDA();
         }
         if (fromState == 1) //3.5.3
         {
             label_Consistent2_ranking.gameObject.SetActive(true); //2
             Button2orMore_informed.gameObject.SetActive(true); //5
             Button2orMore_MCDA.gameObject.SetActive(true); //8
+
+            DnD_ResultMCDA();
         }
         if (fromState == 2) //3.4.2
         {
@@ -438,6 +442,8 @@ public class ControllerChapter3 : MonoBehaviour
             ButtonInconsistent_informed.gameObject.SetActive(true); //3
             ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
             ButtonNone.gameObject.SetActive(true); //10
+
+            DnD_ResultMCDA();
         }
     }
     public void RedoAll()
