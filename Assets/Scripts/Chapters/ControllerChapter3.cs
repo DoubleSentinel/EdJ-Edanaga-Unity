@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+﻿using DG.Tweening; 
 using Doozy.Engine;
 using Doozy.Engine.UI;
 using System;
@@ -31,10 +31,10 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage2;
 
     [Header("List scene")]
-    [SerializeField] private GameObject[] alternativesInitial;
-    [SerializeField] private GameObject[] alternativesInformed;
-    [SerializeField] private GameObject[] panelsInitial;
-    [SerializeField] private GameObject[] panelsInformed;
+    [SerializeField] private GameObject[] alternatives1;
+    [SerializeField] private GameObject[] alternatives2;
+    [SerializeField] private GameObject[] panels1;
+    [SerializeField] private GameObject[] panels2;
 
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
@@ -56,7 +56,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject label_Inconsistent_ranking;
     [SerializeField] private GameObject label_Consistent1_ranking;
     [SerializeField] private GameObject label_Consistent2_ranking;
-    
+
     [SerializeField] private GameObject ButtonInconsistent_informed;
     [SerializeField] private GameObject Button1st_initial;
     [SerializeField] private GameObject Button1st_pick_ranking;
@@ -87,6 +87,8 @@ public class ControllerChapter3 : MonoBehaviour
     public List<string> DragNdropResInformed { get => dragNdropResInformed; set => dragNdropResInformed = value; }
 
     public int fromState = 0;
+    private List<string> alternativeNames1;
+    private List<string> alternativeNames2;
 
     void Awake()
     {
@@ -122,7 +124,7 @@ public class ControllerChapter3 : MonoBehaviour
             if (conversationIndex == 3)
             {
                 print("ConversationInconsistent");
-                if(!EnableFlag) //1st DnD or coming back from 3.4
+                if (!EnableFlag) //1st DnD or coming back from 3.4
                 {
                     //Go to the next convversation
                     SetConversationIndex(4);
@@ -133,7 +135,7 @@ public class ControllerChapter3 : MonoBehaviour
                     //Go to the next convversation
                     SetConversationIndex(5);
                     GameEventMessage.SendEvent("ContinueToNextConv");
-                }    
+                }
             }
             //3.3.1_Informed_ranking_Chap6
             if (conversationIndex == 4)
@@ -219,8 +221,7 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(altDnDMessage1);
         HideGo(altDnDMessage2);
 
-        DnD_ResultUninformed();
-        DnD_ResultMCDA();
+        DnD_ResultInitial();
 
         EnableFlag = false;
         DisableEnableDnD();
@@ -236,7 +237,7 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     public void StartConversation()
-    { 
+    {
         SetupConversation();
         Conv(conversationIndex);
     }
@@ -250,7 +251,14 @@ public class ControllerChapter3 : MonoBehaviour
         }
         else
         {
-            conversationIndex = index;
+            if (TestAreTheSame())
+            {
+                conversationIndex = 8;
+            }
+            else
+            {
+                conversationIndex = index;
+            }
         }
     }
 
@@ -274,8 +282,8 @@ public class ControllerChapter3 : MonoBehaviour
         sceneEngineer.SetActive(true);
     }
 
-    
-    public void DnD_ResultUninformed()
+
+    public void DnD_ResultInitial()
     {
         string alternativeName;
         int alternativeNumber = 0;
@@ -295,30 +303,6 @@ public class ControllerChapter3 : MonoBehaviour
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
             //Set DnD default values (player choice MCDA)
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
-        }
-    }
-    
-
-    public void DnD_ResultMCDA()
-    {
-        string alternativeName;
-        int alternativeNumber = 0;
-
-        //Set player choice
-        for (int i = 0; i < panelsInitial.Length; i++)
-        {
-            alternativeName = dragNdropResUninformed[i].ToString();
-            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            //Fix player choice
-            alternativesInitial[alternativeNumber].gameObject.transform.position = panelsInitial[i].gameObject.transform.position;
-        }
-        //Set player choice
-        for (int i = 0; i < panelsInformed.Length; i++)
-        {
-            alternativeName = dragNdropResMCDA[i].ToString();
-            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            //Fix player choice
-            alternativesInformed[alternativeNumber].gameObject.transform.position = panelsInformed[i].gameObject.transform.position;
         }
     }
 
@@ -344,8 +328,8 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void DisableEnableDnD()
     {
-        if(!enableFlag)
-        { 
+        if (!enableFlag)
+        {
             //Lock the drag&drop property of the elements
             for (int i = 0; i < 6; i++)
             {
@@ -363,7 +347,7 @@ public class ControllerChapter3 : MonoBehaviour
             ShowPopup();
         }
     }
-    
+
     public void ShowPopup()
     {
         //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
@@ -404,6 +388,11 @@ public class ControllerChapter3 : MonoBehaviour
         return true;
     }
 
+    public bool TestAreTheSame()
+    { 
+        return dragNdropResUninformed.SequenceEqual(dragNdropResInformed);
+    }
+
     public void AdaptListUI(int fromState)
     {
         label_Inconsistent_ranking.gameObject.SetActive(false); //0
@@ -425,16 +414,12 @@ public class ControllerChapter3 : MonoBehaviour
             label_Consistent1_ranking.gameObject.SetActive(true); //1
             Button1st_initial.gameObject.SetActive(true); //4
             Button1st_MCDA.gameObject.SetActive(true); //8
-
-            DnD_ResultMCDA();
         }
         if (fromState == 1) //3.5.3
         {
             label_Consistent2_ranking.gameObject.SetActive(true); //2
             Button2orMore_informed.gameObject.SetActive(true); //5
             Button2orMore_MCDA.gameObject.SetActive(true); //8
-
-            DnD_ResultMCDA();
         }
         if (fromState == 2) //3.4.2
         {
@@ -442,8 +427,49 @@ public class ControllerChapter3 : MonoBehaviour
             ButtonInconsistent_informed.gameObject.SetActive(true); //3
             ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
             ButtonNone.gameObject.SetActive(true); //10
+        }
+        DnD_ResultAdapt(fromState);
+    }
 
-            DnD_ResultMCDA();
+    public void DnD_ResultAdapt(int caseState)
+    {
+        string alternativeName;
+        int alternativeNumber = 0;
+
+        switch (caseState)
+        {
+            case 0:
+                alternativeNames1 = dragNdropResUninformed.ToList();
+                alternativeNames2 = dragNdropResMCDA.ToList();
+                break;
+            case 1:
+                alternativeNames1 = dragNdropResInformed.ToList();
+                alternativeNames2 = dragNdropResMCDA.ToList();
+                break;
+            case 2:
+                alternativeNames1 = dragNdropResInformed.ToList();
+                alternativeNames2 = dragNdropResMCDA.ToList();
+                break;
+            default:
+                break;
+        }
+
+        //Set player choice
+        for (int i = 0; i < panels1.Length; i++)
+        {
+            alternativeName = alternativeNames1[i];
+            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
+            //Fix player choice
+            alternatives1[alternativeNumber].gameObject.transform.position = panels1[i].gameObject.transform.position;
+        }
+
+        //Set player choice
+        for (int i = 0; i < panels2.Length; i++)
+        {
+            alternativeName = alternativeNames2[i];
+            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
+            //Fix player choice
+            alternatives2[alternativeNumber].gameObject.transform.position = panels2[i].gameObject.transform.position;
         }
     }
     public void RedoAll()
