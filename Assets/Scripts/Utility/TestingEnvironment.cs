@@ -65,4 +65,6 @@ public class TestingEnvironment : MonoBehaviour
     public bool SkipSwing = false;
     public bool SkipTradeOff = false;
     public string SceneCallback = "Chapter3";
+
+    public bool ConsistantFirst = true;
 }

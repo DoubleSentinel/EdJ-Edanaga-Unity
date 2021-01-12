@@ -160,7 +160,7 @@ public class ControllerChapter3 : MonoBehaviour
             if (conversationIndex == 6)
             {
                 print("ContinueToList");
-                fromState = 0; //3.5.2
+                //fromState = 0; //3.5.2
                 AdaptListUI(fromState);
                 GameEventMessage.SendEvent("ContinueToList");
             }
@@ -409,13 +409,13 @@ public class ControllerChapter3 : MonoBehaviour
         //.transform.localScale = new Vector3(0, 0, 0);
         //.gameObject.GetComponent<Renderer>().enabled = false;
 
-        if (fromState == 0) //3.5.2
+        if (fromState == 0) //3.5.2 - 1st
         {
             label_Consistent1_ranking.gameObject.SetActive(true); //1
             Button1st_initial.gameObject.SetActive(true); //4
             Button1st_MCDA.gameObject.SetActive(true); //8
         }
-        if (fromState == 1) //3.5.3
+        if (fromState == 1) //3.5.3 - 2nd or more
         {
             label_Consistent2_ranking.gameObject.SetActive(true); //2
             Button2orMore_informed.gameObject.SetActive(true); //5
@@ -439,16 +439,17 @@ public class ControllerChapter3 : MonoBehaviour
         switch (caseState)
         {
             case 0:
-                alternativeNames1 = dragNdropResUninformed.ToList();
-                alternativeNames2 = dragNdropResMCDA.ToList();
+                //alternativeNames1 = dragNdropResUninformed.ToList();
+                alternativeNames1 = dragNdropResUninformed;
+                alternativeNames2 = dragNdropResMCDA;
                 break;
             case 1:
-                alternativeNames1 = dragNdropResInformed.ToList();
-                alternativeNames2 = dragNdropResMCDA.ToList();
+                alternativeNames1 = dragNdropResInformed;
+                alternativeNames2 = dragNdropResMCDA;
                 break;
             case 2:
                 alternativeNames1 = dragNdropResInformed.ToList();
-                alternativeNames2 = dragNdropResMCDA.ToList();
+                alternativeNames2 = dragNdropResMCDA;
                 break;
             default:
                 break;
