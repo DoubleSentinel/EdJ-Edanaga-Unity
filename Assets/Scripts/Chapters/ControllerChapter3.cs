@@ -163,18 +163,18 @@ public class ControllerChapter3 : MonoBehaviour
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
             {
-                fromState = 1; //3.4.2
-                AdaptListUI(fromState);
                 GameEventMessage.SendEvent("ContinueToList");
                 print("ContinueToList");
+                fromState = 1; //3.4.2
+                AdaptListUI(fromState);
             }
             //3.5.1_Consistent_choice_Chap6
             if (conversationIndex == 6)
             {
                 print("ContinueToList");
+                GameEventMessage.SendEvent("ContinueToList");
                 fromState = 0; //3.5.2 or 3.5.3
                 AdaptListUI(fromState);
-                GameEventMessage.SendEvent("ContinueToList");
             }
             //3.6_Inconsistent_but_ok_Chap6 (if not consistant!)
             if (conversationIndex == 7)
@@ -327,19 +327,19 @@ public class ControllerChapter3 : MonoBehaviour
         //Save alternatives description
 
         // Getting alternatives gameobjects text
-        /*
         for (int i = 0; i < alternatives.Length; i++)
         {
-            //string text = alternatives[i].gameObject.transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
-            alternativesDescription.Add("text");
+            string text = alternatives[i].gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
+            print("Texte : " + text);
+            alternativesDescription.Add(text);
         }
-        */
+        
         foreach (GameObject alternative in alternatives)
         {
             //alternativesDescription.Add(alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text);
             //string message = alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
             //print(message);
-            alternativesDescription.Add("Text");
+            //alternativesDescription.Add("Text");
         }
         /*
         foreach (string a in alternativesDescription) //DEBUG
@@ -501,6 +501,7 @@ public class ControllerChapter3 : MonoBehaviour
             ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
             ButtonNone.gameObject.SetActive(true); //10
         }
+        DnD_ResultInitial();
         DnD_ResultAdapt(fromState);
     }
 
@@ -608,6 +609,7 @@ public class ControllerChapter3 : MonoBehaviour
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
 
             string alternativeDescription = ConvertAlternativeNToDescription(alternativeNumber);
+
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{alternativeDescription}";
 
@@ -624,9 +626,9 @@ public class ControllerChapter3 : MonoBehaviour
     public string ConvertAlternativeNToDescription(string number)
     {
         int alternativeIndex = Convert.ToInt32($"{number.Last()}");
-        print("index number = " + alternativeIndex); //.elemetat(0)
-        string output = alternativesDescription.ElementAt(alternativeIndex);
+        string output = alternativesDescription[alternativeIndex];
         //return alternativesDescription[alternativeIndex].ToString();
+        print("Texte2: " + output);
         return output;
     }
 }
