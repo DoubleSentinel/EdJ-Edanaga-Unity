@@ -67,5 +67,5 @@ public class TestingEnvironment : MonoBehaviour
     public string SceneCallback = "Chapter3";
 
     public bool ConsistentFirst = true;
-    public string PreferedUser = "";
+    public string UserPreference = "";
 }

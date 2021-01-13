@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,13 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage2;
 
     [Header("List scene")]
+
+    public Color BackgroundColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
+    public Color FillColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
+    [SerializeField] private GameObject resultListItemPrefab;
+    [SerializeField] private GameObject resultList1;
+    [SerializeField] private GameObject resultList2;
+
     [SerializeField] private GameObject[] alternatives1;
     [SerializeField] private GameObject[] alternatives2;
     [SerializeField] private GameObject[] panels1;
@@ -89,6 +97,7 @@ public class ControllerChapter3 : MonoBehaviour
     public int fromState = 0;
     private List<string> alternativeNames1;
     private List<string> alternativeNames2;
+    public List<string> alternativesDescription = new List<string>();
 
     void Awake()
     {
@@ -193,7 +202,7 @@ public class ControllerChapter3 : MonoBehaviour
         panelIds = new string[6];
         DragNdropResMCDA = new List<string>();
         DragNdropResInformed = new List<string>();
-
+        
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
         dragNdropResUninformed.Clear();
@@ -225,6 +234,8 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false;
         DisableEnableDnD();
+
+        resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
         //GetObjectives();
     }
 
@@ -290,6 +301,8 @@ public class ControllerChapter3 : MonoBehaviour
         string alternativeName;
         int alternativeNumber = 0;
 
+        alternativesDescription = new List<string>();
+
         //Set player choice
         for (int i = 0; i < panels.Length; i++)
         {
@@ -305,6 +318,47 @@ public class ControllerChapter3 : MonoBehaviour
             alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
             //Set DnD default values (player choice MCDA)
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
+        }
+
+        alternativesDescription.Clear();
+        //Save alternatives description
+
+        // Getting alternatives gameobjects text
+        /*
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            //string text = alternatives[i].gameObject.transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
+            alternativesDescription.Add("text");
+        }
+        */
+        foreach (GameObject alternative in alternatives)
+        {
+            //alternativesDescription.Add(alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text);
+            //string message = alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+            //print(message);
+            alternativesDescription.Add("Text");
+        }
+        /*
+        foreach (string a in alternativesDescription) //DEBUG
+        {
+            Console.WriteLine(a);
+        }
+        */
+    }
+
+    //Get objectives texts from TestingEnvironment 
+    public void GetObjectives()
+    {
+        //Get Objectives values to set the Matrix labels
+        var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
+
+        // Reset the list of the texts
+        texts.Clear();
+
+        //Get texts of the objectives description
+        for (int i = 0; i < 10; i++)
+        {
+            texts.Add(objectives.ElementAt(i).Value.description);
         }
     }
 
@@ -440,8 +494,8 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void DnD_ResultAdapt(int caseState)
     {
-        string alternativeName;
-        int alternativeNumber = 0;
+        //string alternativeName;
+        //int alternativeNumber = 0;
 
         switch (caseState)
         {
@@ -465,7 +519,11 @@ public class ControllerChapter3 : MonoBehaviour
                 break;
         }
 
+        UpdateResultList(resultList1, alternativeNames1);
+        UpdateResultList(resultList2, alternativeNames2);
+
         //Set player choice
+        /*
         for (int i = 0; i < panels1.Length; i++)
         {
             alternativeName = alternativeNames1[i];
@@ -482,6 +540,7 @@ public class ControllerChapter3 : MonoBehaviour
             //Fix player choice
             alternatives2[alternativeNumber].gameObject.transform.position = panels2[i].gameObject.transform.position;
         }
+        */
     }
     public void RedoAll()
     {
@@ -503,40 +562,60 @@ public class ControllerChapter3 : MonoBehaviour
             case 0:
                 if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
                 {
-                    controllers.GetComponent<TestingEnvironment>().PreferedUser = "Consistant1st";
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistant1st";
                 }
                 else
                 {
-                    controllers.GetComponent<TestingEnvironment>().PreferedUser = "Consistant2ndOrMore";
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistant2ndOrMore";
                 }
                 break;
             case 1:
-                controllers.GetComponent<TestingEnvironment>().PreferedUser = "Uninformed";
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "Uninformed";
                 break;
             case 2:
-                controllers.GetComponent<TestingEnvironment>().PreferedUser = "MCDA";
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
                 break;
             case 3:
-                controllers.GetComponent<TestingEnvironment>().PreferedUser = "Informed";
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "Informed";
                 break;
             default:
                 break;
         }
     }
-    //Get objectives texts from TestingEnvironment 
-    public void GetObjectives()
+
+    public void UpdateResultList(GameObject resultList, List<string> alternativeNames)
     {
-        //Get Objectives values to set the Matrix labels
-        var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
-
-        // Reset the list of the texts
-        texts.Clear();
-
-        //Get texts of the objectives description
-        for (int i = 0; i < 10; i++)
+        foreach (Transform child in resultList.transform)
         {
-            texts.Add(objectives.ElementAt(i).Value.description);
+            Destroy(child.gameObject);
         }
+
+        // creating the visual list with the given prefab
+        foreach (string alternativeNumber in alternativeNames)
+        {
+            var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
+
+            string alternativeDescription = ConvertAlternativeNToDescription(alternativeNumber);
+            resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"{alternativeDescription}";
+
+            // background color
+            resultItem.GetComponent<Image>().color = BackgroundColor;
+            // fill color
+            resultItem.transform.GetChild(0).GetComponent<Image>().color = FillColor;
+
+            var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
+            rt.localScale = new Vector3(1, rt.localScale.y, rt.localScale.z);
+        }
+    }
+
+    public string ConvertAlternativeNToDescription(string number)
+    {
+        int alternativeIndex = Convert.ToInt32($"{number.Last()}");
+        print("index number = " + alternativeIndex); //.elemetat(0)
+        string output = alternativesDescription.ElementAt(alternativeIndex);
+        //return alternativesDescription[alternativeIndex].ToString();
+        return output;
     }
 }
  
