@@ -1,13 +1,10 @@
-﻿using DG.Tweening; 
-using Doozy.Engine;
+﻿using Doozy.Engine;
 using Doozy.Engine.UI;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -45,7 +42,6 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject[] panels2;
 
     [SerializeField] private GameObject messagesObject;
-
 
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
@@ -89,7 +85,6 @@ public class ControllerChapter3 : MonoBehaviour
     private GameObject controllers;
 
     // BargainConversation vars
-    //[HideInInspector] public int conversationIndex = 0;
     public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
@@ -330,7 +325,6 @@ public class ControllerChapter3 : MonoBehaviour
         for (int i = 0; i < alternatives.Length; i++)
         {
             string text = alternatives[i].gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
-            print("Texte : " + text);
             alternativesDescription.Add(text);
         }
         
@@ -341,12 +335,6 @@ public class ControllerChapter3 : MonoBehaviour
             //print(message);
             //alternativesDescription.Add("Text");
         }
-        /*
-        foreach (string a in alternativesDescription) //DEBUG
-        {
-            Console.WriteLine(a);
-        }
-        */
         /*
         var lengendSmall = messagesObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
         print("legend small = " + lengendSmall);
@@ -474,8 +462,6 @@ public class ControllerChapter3 : MonoBehaviour
         Button1st_MCDA.gameObject.SetActive(false); //8
         Button2orMore_MCDA.gameObject.SetActive(false); //9 Used
         ButtonNone.gameObject.SetActive(false); //10
-        //.transform.localScale = new Vector3(0, 0, 0);
-        //.gameObject.GetComponent<Renderer>().enabled = false;
 
         if (fromState == 0) //3.5.2 - 1st or 3.5.3 - 2nd or more
         {
@@ -507,9 +493,6 @@ public class ControllerChapter3 : MonoBehaviour
 
     public void DnD_ResultAdapt(int caseState)
     {
-        //string alternativeName;
-        //int alternativeNumber = 0;
-
         switch (caseState)
         {
             case 0:
@@ -531,29 +514,8 @@ public class ControllerChapter3 : MonoBehaviour
             default:
                 break;
         }
-
         UpdateResultList(resultList1, alternativeNames1);
         UpdateResultList(resultList2, alternativeNames2);
-
-        //Set player choice
-        /*
-        for (int i = 0; i < panels1.Length; i++)
-        {
-            alternativeName = alternativeNames1[i];
-            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            //Fix player choice
-            alternatives1[alternativeNumber].gameObject.transform.position = panels1[i].gameObject.transform.position;
-        }
-
-        //Set player choice
-        for (int i = 0; i < panels2.Length; i++)
-        {
-            alternativeName = alternativeNames2[i];
-            alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-            //Fix player choice
-            alternatives2[alternativeNumber].gameObject.transform.position = panels2[i].gameObject.transform.position;
-        }
-        */
     }
     public void RedoAll()
     {
@@ -627,8 +589,6 @@ public class ControllerChapter3 : MonoBehaviour
     {
         int alternativeIndex = Convert.ToInt32($"{number.Last()}");
         string output = alternativesDescription[alternativeIndex];
-        //return alternativesDescription[alternativeIndex].ToString();
-        print("Texte2: " + output);
         return output;
     }
 }

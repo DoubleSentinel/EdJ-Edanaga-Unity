@@ -1,9 +1,7 @@
-﻿using DG.Tweening;
-using Doozy.Engine;
+﻿using Doozy.Engine;
 using Doozy.Engine.UI;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -86,9 +84,6 @@ public class ControllerChapter2_1 : MonoBehaviour
                 }
             }
         }
-
-        //Allow the others buttons action
-
     }
 
     public void ClearCharacters()
