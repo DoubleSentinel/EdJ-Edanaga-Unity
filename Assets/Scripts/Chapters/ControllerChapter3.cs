@@ -44,6 +44,9 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject[] panels1;
     [SerializeField] private GameObject[] panels2;
 
+    [SerializeField] private GameObject messagesObject;
+
+
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
     [SerializeField] private GameObject[] panelsDnD;
@@ -343,6 +346,15 @@ public class ControllerChapter3 : MonoBehaviour
         {
             Console.WriteLine(a);
         }
+        */
+        /*
+        var lengendSmall = messagesObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        print("legend small = " + lengendSmall);
+        string message1 = messagesObject.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text;
+        string message2 = messagesObject.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text;
+        string message3 = messagesObject.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>().text;
+        string message4 = messagesObject.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>().text;
+        string message5 = messagesObject.transform.GetChild(5).GetComponent<TMPro.TextMeshProUGUI>().text;
         */
     }
 
