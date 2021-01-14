@@ -36,10 +36,10 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject resultList1;
     [SerializeField] private GameObject resultList2;
 
-    [SerializeField] private GameObject[] alternatives1;
-    [SerializeField] private GameObject[] alternatives2;
-    [SerializeField] private GameObject[] panels1;
-    [SerializeField] private GameObject[] panels2;
+    //[SerializeField] private GameObject[] alternatives1;
+    //[SerializeField] private GameObject[] alternatives2;
+    //[SerializeField] private GameObject[] panels1;
+    //[SerializeField] private GameObject[] panels2;
 
     [SerializeField] private GameObject messagesObject;
 
