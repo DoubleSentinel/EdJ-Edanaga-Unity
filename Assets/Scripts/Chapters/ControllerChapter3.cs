@@ -41,7 +41,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject[] panels1;
     [SerializeField] private GameObject[] panels2;
 
-    [SerializeField] private GameObject messagesObject;
+    [SerializeField] private GameObject objectivesObject;
 
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
@@ -74,7 +74,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject ButtonNone;
 
     [Header("Ojectives description")]
-    [SerializeField] private List<string> texts;
+    [SerializeField] private List<string> texts; //Not used anymore
 
     [Header("Popup Values")] public string PopupName = "Popup1";
     [SerializeField] private string Title = "Title";
@@ -234,8 +234,7 @@ public class ControllerChapter3 : MonoBehaviour
         DisableEnableDnD();
 
         //PREBAB resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
-        
-        //GetObjectives();
+        //GetandSetObjectives();
     }
 
     private void Conv(int conversationIndex)
@@ -294,7 +293,6 @@ public class ControllerChapter3 : MonoBehaviour
         sceneEngineer.SetActive(true);
     }
 
-
     private void DnD_ResultInitial()
     {
         string alternativeName;
@@ -322,7 +320,7 @@ public class ControllerChapter3 : MonoBehaviour
         alternativesDescription.Clear();
         //Save alternatives description
 
-        // Getting alternatives gameobjects text
+        // Getting alternatives gameobjects description
         for (int i = 0; i < alternatives.Length; i++)
         {
             string text = alternatives[i].gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
@@ -336,15 +334,6 @@ public class ControllerChapter3 : MonoBehaviour
             //print(message);
             //alternativesDescription.Add("Text");
         }
-        /*
-        var lengendSmall = messagesObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        print("legend small = " + lengendSmall);
-        string message1 = messagesObject.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text;
-        string message2 = messagesObject.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text;
-        string message3 = messagesObject.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>().text;
-        string message4 = messagesObject.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>().text;
-        string message5 = messagesObject.transform.GetChild(5).GetComponent<TMPro.TextMeshProUGUI>().text;
-        */
     }
 
     //Get objectives texts from TestingEnvironment 
@@ -354,12 +343,12 @@ public class ControllerChapter3 : MonoBehaviour
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
 
         // Reset the list of the texts
-        texts.Clear();
+        //texts.Clear();
 
-        //Get texts of the objectives description
+        //Set texts of the objectives description
         for (int i = 0; i < 10; i++)
         {
-            texts.Add(objectives.ElementAt(i).Value.description);
+            objectivesObject.transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
         }
     }
 
@@ -419,16 +408,6 @@ public class ControllerChapter3 : MonoBehaviour
         popup.Data.SetLabelsTexts(Title, Message);
 
         popup.Show(); //show the popup
-    }
-
-    private void ShowGo(GameObject go)
-    {
-        go.SetActive(true);
-    }
-
-    private void HideGo(GameObject go)
-    {
-        go.SetActive(false);
     }
 
     private bool TestCoherent()
@@ -518,46 +497,6 @@ public class ControllerChapter3 : MonoBehaviour
         UpdateResultList(resultList1, alternativeNames1);
         UpdateResultList(resultList2, alternativeNames2);
     }
-    public void RedoAll()
-    {
-        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
-        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = false;
-        SceneManager.LoadScene("Chapter2.2");
-    }
-    public void RedoSwing()
-    {
-        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
-        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = true;
-        SceneManager.LoadScene("Chapter2.2");
-    }
-
-    private void SetPreferedUser(int choice)
-    {
-        switch (choice)
-        {
-            case 0:
-                if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
-                {
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistant1st";
-                }
-                else
-                {
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistant2ndOrMore";
-                }
-                break;
-            case 1:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "Uninformed";
-                break;
-            case 2:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
-                break;
-            case 3:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "Informed";
-                break;
-            default:
-                break;
-        }
-    }
 
     private void UpdateResultList(GameObject resultList, List<string> alternativeNames)
     {
@@ -591,6 +530,58 @@ public class ControllerChapter3 : MonoBehaviour
         int alternativeIndex = Convert.ToInt32($"{number.Last()}");
         string output = alternativesDescription[alternativeIndex];
         return output;
+    }
+
+    private void SetPreferedUser(int choice)
+    {
+        switch (choice)
+        {
+            case 0:
+                if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
+                {
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistent1st";
+                }
+                else
+                {
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistent2ndOrMore";
+                }
+                break;
+            case 1:
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "Uninformed";
+                break;
+            case 2:
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
+                break;
+            case 3:
+                controllers.GetComponent<TestingEnvironment>().UserPreference = "Informed";
+                break;
+            default:
+                print("SetPreferedUser : choice not allowed!");
+                break;
+        }
+    }
+
+    public void RedoAll()
+    {
+        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
+        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = false;
+        SceneManager.LoadScene("Chapter2.2");
+    }
+    public void RedoSwing()
+    {
+        controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
+        controllers.GetComponent<TestingEnvironment>().SkipTradeOff = true;
+        SceneManager.LoadScene("Chapter2.2");
+    }
+
+    private void ShowGo(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    private void HideGo(GameObject go)
+    {
+        go.SetActive(false);
     }
 }
  
