@@ -71,6 +71,7 @@ public class ConversationHandler : MonoBehaviour
 
     public void GenerateConversation(int conversationId)
     {
+        ToggleConversation(true);
         currentConversationSnippet = 0;
         currentConversationPage = 1;
         currentConversationTitle = conversationTitles[conversationId];
@@ -85,7 +86,6 @@ public class ConversationHandler : MonoBehaviour
 
         conversationBubble.StopAllCoroutines();
         conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
-        ToggleConversation(true);
     }
 
     public void GenerateConversation(string title)
@@ -152,7 +152,21 @@ public class ConversationHandler : MonoBehaviour
 
     private void ToggleConversation(bool showConversation)
     {
-        conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade(showConversation ? 1f : 0f, 0.2f);
+        if (showConversation)
+        {
+            var parent = conversationBubble.transform.parent;
+            parent.gameObject.SetActive(true);
+            parent.GetComponent<CanvasGroup>().DOFade(1f, 0.2f);
+        }
+        else
+        {
+            conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade( 0f, 0.2f).OnComplete(
+                () =>
+                {
+                    conversationBubble.transform.parent.gameObject.SetActive(false);
+                });
+        }
+
     }
 
     private string ConditionalObjectiveValueReplacement(string[] parameters,
