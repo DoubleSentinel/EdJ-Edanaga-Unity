@@ -38,8 +38,8 @@ public class ControllerChapter3 : MonoBehaviour
 
     //[SerializeField] private GameObject[] alternatives1;
     //[SerializeField] private GameObject[] alternatives2;
-    //[SerializeField] private GameObject[] panels1;
-    //[SerializeField] private GameObject[] panels2;
+    [SerializeField] private GameObject[] panels1;
+    [SerializeField] private GameObject[] panels2;
 
     [SerializeField] private GameObject messagesObject;
 
@@ -233,7 +233,8 @@ public class ControllerChapter3 : MonoBehaviour
         EnableFlag = false;
         DisableEnableDnD();
 
-        resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
+        //PREBAB resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
+        
         //GetObjectives();
     }
 
