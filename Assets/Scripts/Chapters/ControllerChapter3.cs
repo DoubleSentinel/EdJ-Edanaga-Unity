@@ -245,7 +245,7 @@ public class ControllerChapter3 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
-    public void StartConversation()
+    private void StartConversation()
     {
         SetupConversation();
         Conv(conversationIndex);
@@ -273,7 +273,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void SetupConversation()
+    private void SetupConversation()
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
@@ -294,7 +294,7 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
 
-    public void DnD_ResultInitial()
+    private void DnD_ResultInitial()
     {
         string alternativeName;
         int alternativeNumber = 0;
@@ -347,7 +347,7 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     //Get objectives texts from TestingEnvironment 
-    public void GetObjectives()
+    private void GetObjectives()
     {
         //Get Objectives values to set the Matrix labels
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
@@ -362,7 +362,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void CheckPriorities()
+    private void CheckPriorities()
     {
         ShowGo(buttonToConv2);
 
@@ -382,7 +382,7 @@ public class ControllerChapter3 : MonoBehaviour
         DragNdropResInformed.ForEach((item) => { alt2.Add((string)item.Clone()); });
     }
 
-    public void DisableEnableDnD()
+    private void DisableEnableDnD()
     {
         if (!enableFlag)
         {
@@ -420,17 +420,17 @@ public class ControllerChapter3 : MonoBehaviour
         popup.Show(); //show the popup
     }
 
-    public void ShowGo(GameObject go)
+    private void ShowGo(GameObject go)
     {
         go.SetActive(true);
     }
 
-    public void HideGo(GameObject go)
+    private void HideGo(GameObject go)
     {
         go.SetActive(false);
     }
 
-    public bool TestCoherent()
+    private bool TestCoherent()
     {
         //If the 4th element of the two lists are the same
         for (int i = 0; i < 4; i++)
@@ -444,12 +444,12 @@ public class ControllerChapter3 : MonoBehaviour
         return true;
     }
 
-    public bool TestAreTheSame()
+    private bool TestAreTheSame()
     { 
         return dragNdropResUninformed.SequenceEqual(dragNdropResInformed);
     }
 
-    public void AdaptListUI(int fromState)
+    private void AdaptListUI(int fromState)
     {
         label_Inconsistent_ranking.gameObject.SetActive(false); //0
         label_Consistent1_ranking.gameObject.SetActive(false); //1
@@ -491,7 +491,7 @@ public class ControllerChapter3 : MonoBehaviour
         DnD_ResultAdapt(fromState);
     }
 
-    public void DnD_ResultAdapt(int caseState)
+    private void DnD_ResultAdapt(int caseState)
     {
         switch (caseState)
         {
@@ -530,7 +530,7 @@ public class ControllerChapter3 : MonoBehaviour
         SceneManager.LoadScene("Chapter2.2");
     }
 
-    public void SetPreferedUser(int choice)
+    private void SetPreferedUser(int choice)
     {
         switch (choice)
         {
@@ -558,14 +558,14 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void UpdateResultList(GameObject resultList, List<string> alternativeNames)
+    private void UpdateResultList(GameObject resultList, List<string> alternativeNames)
     {
         foreach (Transform child in resultList.transform)
         {
             Destroy(child.gameObject);
         }
 
-        // creating the visual list with the given prefab
+        // creating the visual alternatives list with prefab
         foreach (string alternativeNumber in alternativeNames)
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
@@ -575,9 +575,9 @@ public class ControllerChapter3 : MonoBehaviour
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{alternativeDescription}";
 
-            // background color
+            // Set background color
             resultItem.GetComponent<Image>().color = BackgroundColor;
-            // fill color
+            // Set filled color
             resultItem.transform.GetChild(0).GetComponent<Image>().color = FillColor;
 
             var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
@@ -585,7 +585,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public string ConvertAlternativeNToDescription(string number)
+    private string ConvertAlternativeNToDescription(string number)
     {
         int alternativeIndex = Convert.ToInt32($"{number.Last()}");
         string output = alternativesDescription[alternativeIndex];
