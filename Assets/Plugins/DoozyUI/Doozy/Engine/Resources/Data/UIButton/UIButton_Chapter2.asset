@@ -21,3 +21,4 @@ MonoBehaviour:
   - ContinueToTradeOff
   - ContinueToTown
   - ContinueToConversation
+  - InnerLoop
