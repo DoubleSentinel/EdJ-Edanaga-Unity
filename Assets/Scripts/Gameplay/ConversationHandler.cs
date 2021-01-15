@@ -11,8 +11,10 @@ public class ConversationHandler : MonoBehaviour
 {
     [SerializeField] private GameObject talkingCharacterPointer;
     [SerializeField] private string[] conversationTitles;
-    [SerializeField] private bool isVertical = false;
-
+    [SerializeField] private Transform LeftCursorPosition;
+    [SerializeField] private Transform CenterCursorPosition;
+    [SerializeField] private Transform RightCursorPosition;
+    
     private GameObject controllers;
     private BackendAPI m_api;
 
@@ -198,23 +200,24 @@ public class ConversationHandler : MonoBehaviour
             ? GameObject.Find(FirstLetterToUpper(replacement))
             : GameObject.Find(FirstLetterToUpper(tgtName));
 
-        MoveCloserToTarget(talkingCharacterPointer, tgtGameObject, -420);
+        MoveCloserToTarget(talkingCharacterPointer, tgtGameObject);
         LookAt2D(talkingCharacterPointer, tgtGameObject, 180);
     }
 
-    private void MoveCloserToTarget(GameObject source2D, GameObject worldTarget, float positionOffset)
+    private void MoveCloserToTarget(GameObject cursor, GameObject worldTarget)
     {
-        var rt = source2D.GetComponent<RectTransform>();
+        var rt = cursor.GetComponent<RectTransform>();
         var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position);
-        //var parentWidth = source2D.transform.parent.GetComponent<RectTransform>().sizeDelta.x;
-        // var clampedX = 0f;
-        // if (tgt.x > parentWidth / 2)
-        //     clampedX = parentWidth / 2;
-        // else if (tgt.x < -parentWidth / 2)
-        //     clampedX = -parentWidth / 2;
-        // else
-        //     clampedX = tgt.x;
-        rt.localPosition = new Vector3(tgt.x + positionOffset, rt.localPosition.y, rt.localPosition.z);
+        var screenThird = Screen.width * 1/3;
+        
+        print(tgt.x);
+        print(screenThird);
+        if (tgt.x <= screenThird)
+            rt.position = LeftCursorPosition.position;
+        else if (tgt.x <= screenThird * 2)
+            rt.position = CenterCursorPosition.position;
+        else
+            rt.position = RightCursorPosition.position;
     }
 
     private void LookAt2D(GameObject source2D, GameObject worldTarget, float angleOffset)
