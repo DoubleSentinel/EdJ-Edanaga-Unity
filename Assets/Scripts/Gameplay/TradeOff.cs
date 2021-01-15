@@ -76,7 +76,8 @@ public class TradeOff : MonoBehaviour
     private void Awake()
     {
         controllers = GameObject.Find("Controllers");
-
+        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Clear();
+        
         currentTradeOffPair = -1;
         m_familyTradeoffs = new List<(GameObject, GameObject)>();
 

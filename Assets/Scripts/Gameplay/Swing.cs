@@ -35,6 +35,7 @@ public class Swing : MonoBehaviour
         characterToUIMap = new Dictionary<GameObject, GameObject>();
         userInputValues = new Dictionary<GameObject, Dictionary<GameObject, float>>();
         controllers = GameObject.Find("Controllers");
+        controllers.GetComponent<TestingEnvironment>().SwingClassification.Clear();
         ToggleValidationButton();
     }
 

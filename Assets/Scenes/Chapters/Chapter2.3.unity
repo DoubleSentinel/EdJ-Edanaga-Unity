@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2150947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468189824}
@@ -275,7 +275,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 267.98438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132054668
 MonoBehaviour:
@@ -294,13 +294,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
 --- !u!1 &349884916
 GameObject:
@@ -338,7 +338,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 267.98438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349884918
 MonoBehaviour:
@@ -357,13 +357,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
 --- !u!1 &407104519
 GameObject:
@@ -1020,12 +1020,12 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 8372244568009916933}
-            m_MethodName: 
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: UpdateResultLists
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -1135,7 +1135,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 113.88219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435886015
 MonoBehaviour:
@@ -2016,7 +2016,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: InconsistentUserChoice
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 3
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -3574,7 +3585,7 @@ PrefabInstance:
     - target: {fileID: 978024336451026195, guid: b8d0849d771f15e44b3aa69829474447,
         type: 3}
       propertyPath: m_Name
-      value: Objective0 (Character Variant)
+      value: Objective0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8d0849d771f15e44b3aa69829474447, type: 3}
@@ -3797,7 +3808,7 @@ PrefabInstance:
     - target: {fileID: 1456951166090244793, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102,
         type: 3}
       propertyPath: m_Name
-      value: Objective1 (Character Variant)
+      value: Objective1
       objectReference: {fileID: 0}
     - target: {fileID: 1456951166090244794, guid: 1ec5d8bd4db74cd499a36b4d6d7dc102,
         type: 3}
@@ -4084,7 +4095,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 267.98438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622162135
 MonoBehaviour:
@@ -4103,13 +4114,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
 --- !u!1 &623349238
 GameObject:
@@ -4253,7 +4264,7 @@ PrefabInstance:
     - target: {fileID: 6441385730092680871, guid: 1f0711e959c5f1c429fadf738a79f96f,
         type: 3}
       propertyPath: m_Name
-      value: Objective9 (Character Variant)
+      value: Objective9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f0711e959c5f1c429fadf738a79f96f, type: 3}
@@ -4463,7 +4474,7 @@ PrefabInstance:
     - target: {fileID: 2127760006461303991, guid: d8701e82814f7ac46aa9b7f29b4506bc,
         type: 3}
       propertyPath: m_Name
-      value: Objective4 (Character Variant)
+      value: Objective4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8701e82814f7ac46aa9b7f29b4506bc, type: 3}
@@ -5392,7 +5403,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: ResultsUserChoice
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       GameEvents:
       - GoToConversation
       SoundData:
@@ -6991,7 +7013,7 @@ MonoBehaviour:
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
-  DisableGameObjectWhenHidden: 1
+  DisableGameObjectWhenHidden: 0
   DisableGraphicRaycasterWhenHidden: 1
   HideBehavior:
     Animation:
@@ -7064,7 +7086,7 @@ MonoBehaviour:
         Duration: 1
       Fade:
         AnimationType: 2
-        Enabled: 0
+        Enabled: 1
         From: 0
         To: 0
         By: 0.5
@@ -7072,7 +7094,7 @@ MonoBehaviour:
         NumberOfLoops: -1
         LoopType: 1
         EaseType: 0
-        Ease: 1
+        Ease: 5
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -7080,7 +7102,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         StartDelay: 0
-        Duration: 1
+        Duration: 0.5
     AutoStartLoopAnimation: 1
     LoadSelectedPresetAtRuntime: 0
     InstantAnimation: 0
@@ -7338,7 +7360,7 @@ MonoBehaviour:
         Duration: 1
       Fade:
         AnimationType: 1
-        Enabled: 0
+        Enabled: 1
         From: 0
         To: 0
         By: 0.5
@@ -7346,7 +7368,7 @@ MonoBehaviour:
         NumberOfLoops: -1
         LoopType: 1
         EaseType: 0
-        Ease: 1
+        Ease: 5
         AnimationCurve:
           serializedVersion: 2
           m_Curve: []
@@ -7354,7 +7376,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         StartDelay: 0
-        Duration: 1
+        Duration: 0.5
     AutoStartLoopAnimation: 1
     LoadSelectedPresetAtRuntime: 0
     InstantAnimation: 0
@@ -7390,7 +7412,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: UpdateInnerLoopChoices
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -7495,7 +7528,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 113.88219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807037443
 MonoBehaviour:
@@ -10061,7 +10094,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 154.10219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &926997509
 MonoBehaviour:
@@ -10082,7 +10115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Chapter 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -10110,10 +10143,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 50.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -10691,7 +10724,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -84}
-  m_SizeDelta: {x: 735.48816, y: 267.98438}
+  m_SizeDelta: {x: 1027.7266, y: 267.98438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1116019535
 MonoBehaviour:
@@ -10711,13 +10744,13 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
 --- !u!1 &1118072197
 GameObject:
   m_ObjectHideFlags: 0
@@ -13664,7 +13697,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 113.88219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237186199
 MonoBehaviour:
@@ -14545,7 +14578,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: InconsistentUserChoice
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -16256,7 +16300,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 267.98438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275316973
 MonoBehaviour:
@@ -16275,13 +16319,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
 --- !u!1001 &1339418451
 PrefabInstance:
@@ -16348,7 +16392,7 @@ PrefabInstance:
     - target: {fileID: 8858840956402846962, guid: cf87e746b33ddd84696412c38bcd352d,
         type: 3}
       propertyPath: m_Name
-      value: Objective6 (Character Variant)
+      value: Objective6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf87e746b33ddd84696412c38bcd352d, type: 3}
@@ -16423,7 +16467,7 @@ PrefabInstance:
     - target: {fileID: 2422768354624725483, guid: 1c4570f4aebc85248a746ae4b5a5810e,
         type: 3}
       propertyPath: m_Name
-      value: Objective5 (Character Variant)
+      value: Objective5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4570f4aebc85248a746ae4b5a5810e, type: 3}
@@ -18883,7 +18927,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 113.88219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497215397
 MonoBehaviour:
@@ -19764,7 +19808,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: InconsistentUserChoice
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -22332,7 +22387,7 @@ PrefabInstance:
     - target: {fileID: 4020388328008014218, guid: f38c2efce299dbb488e98617dfdb3346,
         type: 3}
       propertyPath: m_Name
-      value: Objective7 (Character Variant)
+      value: Objective7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f38c2efce299dbb488e98617dfdb3346, type: 3}
@@ -22377,7 +22432,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 154.10219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1661234618
 MonoBehaviour:
@@ -22398,7 +22453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Chapter 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -22426,10 +22481,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 50.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -22607,7 +22662,7 @@ PrefabInstance:
     - target: {fileID: 4256839961765656348, guid: 14b72f8d61917cc4890725ebceaa7a38,
         type: 3}
       propertyPath: m_Name
-      value: Objective3 (Character Variant)
+      value: Objective3
       objectReference: {fileID: 0}
     - target: {fileID: 4256839961765656351, guid: 14b72f8d61917cc4890725ebceaa7a38,
         type: 3}
@@ -22707,7 +22762,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 154.10219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1724098897
 MonoBehaviour:
@@ -22728,7 +22783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Manually Select Order
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -22756,10 +22811,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 44.95
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -23190,7 +23245,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 154.10219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1886177012
 MonoBehaviour:
@@ -23211,7 +23266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Chapter 3 and 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -23239,10 +23294,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 50.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -23299,7 +23354,7 @@ PrefabInstance:
     - target: {fileID: 1282085148082905445, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
         type: 3}
       propertyPath: m_Name
-      value: Objective8 (Character Variant)
+      value: Objective8
       objectReference: {fileID: 0}
     - target: {fileID: 1282085148082905446, guid: 8cf251e62267ffc4d9ef77f6e01d207b,
         type: 3}
@@ -23374,7 +23429,7 @@ PrefabInstance:
     - target: {fileID: 1452724184992119621, guid: cf7f9f6a512924b44a902cb6e0baa188,
         type: 3}
       propertyPath: m_Name
-      value: Objective2 (Character Variant)
+      value: Objective2
       objectReference: {fileID: 0}
     - target: {fileID: 1452724184992119622, guid: cf7f9f6a512924b44a902cb6e0baa188,
         type: 3}
@@ -24358,7 +24413,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 8372244568009916934}
+            m_MethodName: ResultsUserChoice
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents:
       - GoToConversation
       SoundData:
@@ -25950,7 +26016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12156863, g: 0.53333336, b: 0.7882353, a: 1}
+  m_Color: {r: 0.9528302, g: 0.4719206, b: 0.718048, a: 0.19607843}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25999,7 +26065,7 @@ MonoBehaviour:
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
-  DisableGameObjectWhenHidden: 1
+  DisableGameObjectWhenHidden: 0
   DisableGraphicRaycasterWhenHidden: 1
   HideBehavior:
     Animation:
@@ -26542,6 +26608,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5451090914586281327, guid: 090388d8c3c4c3745b177036e239b65e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6561007709569815170, guid: 090388d8c3c4c3745b177036e239b65e,
         type: 3}
       propertyPath: m_Name
@@ -26556,6 +26627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490046573750203349, guid: 090388d8c3c4c3745b177036e239b65e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7490046573750203350, guid: 090388d8c3c4c3745b177036e239b65e,
         type: 3}
@@ -26589,7 +26665,7 @@ MonoBehaviour:
   - {fileID: 1514527481}
   TradeOffList: {fileID: 963704106}
   SwingList: {fileID: 571461428}
-  ListItemPrefab: {fileID: 5313111449302125352, guid: bd69a497e96d5a14ea3312ce5e46b018,
+  ListItemPrefab: {fileID: 6487837004238365438, guid: bd5d51369c0217f4fb4b416d6bd9e922,
     type: 3}
   SwingSelectButton: {fileID: 2063460077}
   TradeOffSelectButton: {fileID: 723978945}

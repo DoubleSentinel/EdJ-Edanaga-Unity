@@ -54,15 +54,17 @@ public class TestingEnvironment : MonoBehaviour
         isInnerLoopFirstRun = true;
         SkipSwing = false;
         SkipTradeOff = false;
+        SceneCallback = "Chapter2.3";
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }
     public Dictionary<string, float> TradeOffClassification { get; set; }
     public Dictionary<string, float> SwingClassification { get; set; }
+    public Dictionary<string, float> UsersSelectedClassification { get; set; }
 
     public bool SkipSwing;
     public bool SkipTradeOff;
-    public string SceneCallback = "Chapter3";
+    public string SceneCallback;
 
     public bool isInnerLoopFirstRun;
 }
