@@ -1453,7 +1453,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -37352,7 +37352,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -37769,7 +37769,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -38946,7 +38946,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -45684,7 +45684,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -51949,7 +51949,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585315, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: Id
-      value: Alternative0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585325, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}

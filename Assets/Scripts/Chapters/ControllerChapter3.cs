@@ -539,11 +539,13 @@ public class ControllerChapter3 : MonoBehaviour
             case 0:
                 if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
                 {
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistent1st";
+                    //If 100% conscistent - 1st try
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
                 }
                 else
                 {
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "Consistent2ndOrMore";
+                    //If 100% conscistent - 2nd or more
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
                 }
                 break;
             case 1:

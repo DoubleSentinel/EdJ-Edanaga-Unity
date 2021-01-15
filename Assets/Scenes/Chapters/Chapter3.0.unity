@@ -47492,7 +47492,7 @@ MonoBehaviour:
   StartAlpha: 1
   AllowMultipleClicks: 1
   ButtonCategory: Chapter3
-  ButtonName: ContinueToMatrix
+  ButtonName: ContinueToConv
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -48352,7 +48352,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 2056255396}
+            m_MethodName: SetConversationIndex
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 4
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -82487,7 +82498,7 @@ MonoBehaviour:
   resultList2: {fileID: 663055934}
   panels1: []
   panels2: []
-  messagesObject: {fileID: 1854711392}
+  objectivesObject: {fileID: 0}
   alternativesDnD:
   - {fileID: 585148928}
   - {fileID: 1219618997}
