@@ -206,18 +206,19 @@ public class ConversationHandler : MonoBehaviour
 
     private void MoveCloserToTarget(GameObject cursor, GameObject worldTarget)
     {
+        cursor.SetActive(true);
         var rt = cursor.GetComponent<RectTransform>();
         var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position);
         var screenThird = Screen.width * 1/3;
         
-        print(tgt.x);
-        print(screenThird);
         if (tgt.x <= screenThird)
             rt.position = LeftCursorPosition.position;
         else if (tgt.x <= screenThird * 2)
             rt.position = CenterCursorPosition.position;
-        else
+        else if(tgt.x <= screenThird * 3)
             rt.position = RightCursorPosition.position;
+        else
+            rt.gameObject.SetActive(false);
     }
 
     private void LookAt2D(GameObject source2D, GameObject worldTarget, float angleOffset)
