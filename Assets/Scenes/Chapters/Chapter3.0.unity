@@ -10633,7 +10633,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative2
+  Id: 2
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
@@ -24602,7 +24602,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative0
+  Id: 0
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
@@ -37924,7 +37924,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative5
+  Id: 5
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
@@ -51457,7 +51457,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative1
+  Id: 1
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
@@ -53349,7 +53349,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative4
+  Id: 4
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
@@ -68411,7 +68411,7 @@ MonoBehaviour:
   DefaultPanel: 0
   Dropped: 0
   OnReturning: 0
-  Id: Alternative3
+  Id: 3
   UserControl: 1
   AIControl: 1
   ReturnSmoothly: 0
