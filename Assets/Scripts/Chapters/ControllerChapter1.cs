@@ -41,10 +41,10 @@ public class ControllerChapter1 : MonoBehaviour
     [Header("Drag&Drop result")] [SerializeField]
     private int[] dragNdropRes;
     private string panelObjectValue;
+    private bool fisrtDrag = false;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
 
-    //[SerializeField] private GameObject TitleObject;
     [SerializeField] private string Title = "Title";
     [SerializeField] private GameObject MessageObject;
     [SerializeField] private string Message = "Popup message for player";
@@ -200,8 +200,12 @@ public class ControllerChapter1 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD action
-        if (DragNdropRes.Length == 0)
+        //if (DragNdropRes.Length == 0)
+        if(!fisrtDrag)
+        { 
             ShowGo(buttonToConv);
+            fisrtDrag = true;
+        }
 
         //Reset the list of the Drag&Drops result
         Array.Clear(DragNdropRes, 0, DragNdropRes.Length);
