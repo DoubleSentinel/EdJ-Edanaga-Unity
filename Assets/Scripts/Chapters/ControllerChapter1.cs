@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
 using Doozy.Engine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class ControllerChapter1 : MonoBehaviour
     public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
 
     [Header("Drag&Drop result")] [SerializeField]
-    private List<string> dragNdropRes;
+    private int[] dragNdropRes;
     private string panelObjectValue;
 
     [Header("Popup Values")] public string PopupName = "Popup1";
@@ -55,7 +56,7 @@ public class ControllerChapter1 : MonoBehaviour
     [HideInInspector] public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
-    public List<string> DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
+    public int[] DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
 
     void Awake()
     {
@@ -77,7 +78,7 @@ public class ControllerChapter1 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        DragNdropRes = new List<string>();
+        DragNdropRes = new int[6];
         prioIds = new string[6];
         Panels = new GameObject[6];
 
@@ -199,23 +200,25 @@ public class ControllerChapter1 : MonoBehaviour
     public void CheckPriorities()
     {
         //First DnD action
-        if (DragNdropRes.Count == 0)
+        if (DragNdropRes.Length == 0)
             ShowGo(buttonToConv);
 
         //Reset the list of the Drag&Drops result
-        DragNdropRes.Clear();
+        Array.Clear(DragNdropRes, 0, DragNdropRes.Length);
 
         //Update Drag & Drop results
         for (int i = 0; i < alternatives.Length; i++)
         {
             panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
-            DragNdropRes.Add(panelObjectValue);
+            DragNdropRes[i] = Convert.ToInt32($"{panelObjectValue}");
         }
 
         //Set Alternative values to TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
-        alt.Clear();
-        DragNdropRes.ForEach((item) => { alt.Add((string)item.Clone()); });
+        //alt.Clear();
+        //DragNdropRes.ForEach((item) => { alt.Add((string)item.Clone()); });
+        Array.Clear(alt, 0, alt.Length);
+        alt = (int[])DragNdropRes.Clone();
     }
 
     public void DisableDnD()
