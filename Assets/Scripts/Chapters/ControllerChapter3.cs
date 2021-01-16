@@ -52,9 +52,14 @@ public class ControllerChapter3 : MonoBehaviour
 
     [Header("Drag&Drop result")]
     [SerializeField] private bool enableFlag;
+    /*
     [SerializeField] private List<string> dragNdropResUninformed;
     [SerializeField] private List<string> dragNdropResMCDA;
     [SerializeField] private List<string> dragNdropResInformed;
+    */
+    [SerializeField] private int[] dragNdropResUninformed;
+    [SerializeField] private int[] dragNdropResMCDA;
+    [SerializeField] private int[] dragNdropResInformed;
 
     [SerializeField] private GameObject buttonToConv1;
     [SerializeField] private GameObject buttonToConv2;
@@ -88,13 +93,13 @@ public class ControllerChapter3 : MonoBehaviour
     public int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
-    public List<string> DragNdropResMCDA { get => dragNdropResMCDA; set => dragNdropResMCDA = value; }
+    public int[] DragNdropResMCDA { get => dragNdropResMCDA; set => dragNdropResMCDA = value; }
     public bool EnableFlag { get => enableFlag; set => enableFlag = value; }
-    public List<string> DragNdropResInformed { get => dragNdropResInformed; set => dragNdropResInformed = value; }
+    public int[] DragNdropResInformed { get => dragNdropResInformed; set => dragNdropResInformed = value; }
 
     public int fromState = 0;
-    private List<string> alternativeNames1;
-    private List<string> alternativeNames2;
+    private int[] alternativeNumber1;
+    private int[] alternativeNumber2;
     public List<string> alternativesDescription = new List<string>();
 
     void Awake()
@@ -198,20 +203,24 @@ public class ControllerChapter3 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         panelIds = new string[6];
-        DragNdropResMCDA = new List<string>();
-        DragNdropResInformed = new List<string>();
-        
+        DragNdropResMCDA = new int[6];
+        DragNdropResInformed = new int[6];
+
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
-        dragNdropResUninformed.Clear();
-        alt.ForEach((item) => { dragNdropResUninformed.Add((string)item.Clone()); });
+
+        Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
+        dragNdropResUninformed = (int[])alt.Clone();
+        //dragNdropResUninformed.Clear();
+        //alt.ForEach((item) => { dragNdropResUninformed.Add((string)item.Clone()); });
 
         //Get MCDA alternative values from TestingEnvironment
         var altObj = controllers.GetComponent<TestingEnvironment>().AlternativesMCDA;
-        dragNdropResMCDA.Clear();
-        altObj.ForEach((item) => { dragNdropResMCDA.Add((string)item.Clone()); });
-        dragNdropResInformed.Clear();
-        altObj.ForEach((item) => { dragNdropResInformed.Add((string)item.Clone()); });
+
+        Array.Clear(dragNdropResMCDA, 0, dragNdropResMCDA.Length);
+        dragNdropResMCDA = (int[])altObj.Clone();
+        Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
+        dragNdropResInformed = (int[])altObj.Clone();
 
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
@@ -357,19 +366,22 @@ public class ControllerChapter3 : MonoBehaviour
         ShowGo(buttonToConv2);
 
         //Reset the list of the Drag&Drops result
-        DragNdropResInformed.Clear();
+        Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
+        //DragNdropResInformed.Clear();
 
         //Update Drag & Drop results
         for (int i = 0; i < alternativesDnD.Length; i++)
         {
             panelObjectValue = DragDropManager.GetPanelObject(panelIds[i]);
-            DragNdropResInformed.Add(panelObjectValue);
+            DragNdropResInformed[i] = Convert.ToInt32($"{panelObjectValue}");
         }
 
         //Set new informed alternatives values to TestingEnvironment
         var alt2 = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
-        alt2.Clear();
-        DragNdropResInformed.ForEach((item) => { alt2.Add((string)item.Clone()); });
+        //alt2.Clear();
+        //DragNdropResInformed.ForEach((item) => { alt2.Add((string)item.Clone()); });
+        Array.Clear(alt2, 0, alt2.Length);
+        alt2 = (int[])DragNdropResInformed.Clone();  
     }
 
     private void DisableEnableDnD()
@@ -415,8 +427,8 @@ public class ControllerChapter3 : MonoBehaviour
         //If the 4th element of the two lists are the same
         for (int i = 0; i < 4; i++)
         {
-            //print (i + ": Unifmed :" + dragNdropResUninformed[i] + " : informed: " + dragNdropResInformed[i]);
-            if (dragNdropResUninformed[i].ToLower() != dragNdropResInformed[i].ToLower())
+            //if (dragNdropResUninformed[i].ToLower() != dragNdropResInformed[i].ToLower())
+            if (dragNdropResUninformed[i] != dragNdropResInformed[i])
             {
                 return false;
             }
@@ -478,27 +490,27 @@ public class ControllerChapter3 : MonoBehaviour
             case 0:
                 if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
                 {
-                    alternativeNames1 = dragNdropResUninformed;
-                    alternativeNames2 = dragNdropResMCDA;
+                    alternativeNumber1 = dragNdropResUninformed;
+                    alternativeNumber2 = dragNdropResMCDA;
                 }
                 else
                 { 
-                    alternativeNames1 = dragNdropResInformed;
-                    alternativeNames2 = dragNdropResMCDA;
+                    alternativeNumber1 = dragNdropResInformed;
+                    alternativeNumber2 = dragNdropResMCDA;
                 }
                 break;
             case 1:
-                alternativeNames1 = dragNdropResInformed.ToList();
-                alternativeNames2 = dragNdropResMCDA;
+                alternativeNumber1 = dragNdropResInformed;
+                alternativeNumber2 = dragNdropResMCDA;
                 break;
             default:
                 break;
         }
-        UpdateResultList(resultList1, alternativeNames1);
-        UpdateResultList(resultList2, alternativeNames2);
+        UpdateResultList(resultList1, alternativeNumber1);
+        UpdateResultList(resultList2, alternativeNumber2);
     }
 
-    private void UpdateResultList(GameObject resultList, List<string> alternativeNames)
+    private void UpdateResultList(GameObject resultList, int[] alternativeNames)
     {
         foreach (Transform child in resultList.transform)
         {
@@ -506,11 +518,11 @@ public class ControllerChapter3 : MonoBehaviour
         }
 
         // creating the visual alternatives list with prefab
-        foreach (string alternativeNumber in alternativeNames)
+        foreach (int alternativeNumber in alternativeNames)
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
 
-            string alternativeDescription = ConvertAlternativeNToDescription(alternativeNumber);
+            string alternativeDescription = alternativesDescription[alternativeNumber];
 
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{alternativeDescription}";
@@ -525,12 +537,14 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
+    /*
     private string ConvertAlternativeNToDescription(string number)
     {
         int alternativeIndex = Convert.ToInt32($"{number.Last()}");
         string output = alternativesDescription[alternativeIndex];
         return output;
     }
+    */
 
     private void SetPreferedUser(int choice)
     {
