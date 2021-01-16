@@ -29,15 +29,13 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage2;
 
     [Header("List scene")]
-
     public Color BackgroundColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
     public Color FillColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
     [SerializeField] private GameObject resultListItemPrefab;
     [SerializeField] private GameObject resultList1;
     [SerializeField] private GameObject resultList2;
+    [SerializeField] private GameObject resultList3;
 
-    //[SerializeField] private GameObject[] alternatives1;
-    //[SerializeField] private GameObject[] alternatives2;
     [SerializeField] private GameObject[] panels1;
     [SerializeField] private GameObject[] panels2;
 
@@ -52,11 +50,6 @@ public class ControllerChapter3 : MonoBehaviour
 
     [Header("Drag&Drop result")]
     [SerializeField] private bool enableFlag;
-    /*
-    [SerializeField] private List<string> dragNdropResUninformed;
-    [SerializeField] private List<string> dragNdropResMCDA;
-    [SerializeField] private List<string> dragNdropResInformed;
-    */
     [SerializeField] private int[] dragNdropResUninformed;
     [SerializeField] private int[] dragNdropResMCDA;
     [SerializeField] private int[] dragNdropResInformed;
@@ -65,6 +58,9 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject buttonToConv2;
 
     [Header("List elemts")]
+    [SerializeField] private GameObject priorities1;
+    [SerializeField] private GameObject priorities2;
+    [SerializeField] private GameObject priorities3;
     [SerializeField] private GameObject label_Inconsistent_ranking;
     [SerializeField] private GameObject label_Consistent1_ranking;
     [SerializeField] private GameObject label_Consistent2_ranking;
@@ -77,6 +73,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject Button1st_MCDA;
     [SerializeField] private GameObject Button2orMore_MCDA;
     [SerializeField] private GameObject ButtonNone;
+    [SerializeField] private GameObject ButtonNext;
 
     [Header("Ojectives description")]
     [SerializeField] private List<string> texts; //Not used anymore
@@ -163,26 +160,34 @@ public class ControllerChapter3 : MonoBehaviour
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
             {
-                GameEventMessage.SendEvent("ContinueToList");
-                print("ContinueToList");
                 fromState = 1; //3.4.2
                 AdaptListUI(fromState);
+                GameEventMessage.SendEvent("ContinueToList");
+                print("ContinueToList");
             }
             //3.5.1_Consistent_choice_Chap6
             if (conversationIndex == 6)
             {
-                print("ContinueToList");
-                GameEventMessage.SendEvent("ContinueToList");
-                fromState = 0; //3.5.2 or 3.5.3
+                if (TestAreTheSame())
+                {
+                    SetPreferedUser(0); //Consistent 100%
+                    fromState = 2; //3.5.4
+                }
+                else
+                {
+                    fromState = 0; //3.5.2 or 3.5.3
+                }
                 AdaptListUI(fromState);
+                GameEventMessage.SendEvent("ContinueToList");
+                print("ContinueToList");
             }
             //3.6_Inconsistent_but_ok_Chap6 (if not consistant!)
             if (conversationIndex == 7)
             {
-                print("ContinueToEnd");
                 //Go to the next convversation
                 SetConversationIndex(8);
                 GameEventMessage.SendEvent("ContinueToNextConv");
+                print("ContinueToEnd");
             }
             //3.7_Outro_Chap6
             if (conversationIndex == 8)
@@ -200,6 +205,9 @@ public class ControllerChapter3 : MonoBehaviour
 
     private void Start()
     {
+        //dragNdropResUninformed.Clear();
+        //alt.ForEach((item) => { dragNdropResUninformed.Add((string)item.Clone()); });
+        //PREBAB resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
         controllers.GetComponent<LanguageHandler>().translateUI();
 
         panelIds = new string[6];
@@ -208,17 +216,15 @@ public class ControllerChapter3 : MonoBehaviour
 
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
-
         Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
         dragNdropResUninformed = (int[])alt.Clone();
-        //dragNdropResUninformed.Clear();
-        //alt.ForEach((item) => { dragNdropResUninformed.Add((string)item.Clone()); });
+        
 
         //Get MCDA alternative values from TestingEnvironment
         var altObj = controllers.GetComponent<TestingEnvironment>().AlternativesMCDA;
-
         Array.Clear(dragNdropResMCDA, 0, dragNdropResMCDA.Length);
         dragNdropResMCDA = (int[])altObj.Clone();
+
         Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
         dragNdropResInformed = (int[])altObj.Clone();
 
@@ -241,9 +247,7 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false;
         DisableEnableDnD();
-
-        //PREBAB resultListItemPrefab.transform.GetChild(2).gameObject.SetActive(false);
-        //GetandSetObjectives();
+        //SetObjectives();
     }
 
     private void Conv(int conversationIndex)
@@ -270,15 +274,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
         else
         {
-            if (TestAreTheSame())
-            {
-                SetPreferedUser(0); //Consistent 100%
-                conversationIndex = 8;
-            }
-            else
-            {
-                conversationIndex = index;
-            }
+            conversationIndex = index;
         }
     }
 
@@ -326,8 +322,8 @@ public class ControllerChapter3 : MonoBehaviour
             alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
         }
 
-        alternativesDescription.Clear();
         //Save alternatives description
+        alternativesDescription.Clear();
 
         // Getting alternatives gameobjects description
         for (int i = 0; i < alternatives.Length; i++)
@@ -335,24 +331,13 @@ public class ControllerChapter3 : MonoBehaviour
             string text = alternatives[i].gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
             alternativesDescription.Add(text);
         }
-        
-        foreach (GameObject alternative in alternatives)
-        {
-            //alternativesDescription.Add(alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text);
-            //string message = alternative.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
-            //print(message);
-            //alternativesDescription.Add("Text");
-        }
     }
 
-    //Get objectives texts from TestingEnvironment 
-    private void GetObjectives()
+    //Set objectives texts from TestingEnvironment 
+    private void SetObjectives()
     {
         //Get Objectives values to set the Matrix labels
         var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
-
-        // Reset the list of the texts
-        //texts.Clear();
 
         //Set texts of the objectives description
         for (int i = 0; i < 10; i++)
@@ -363,11 +348,12 @@ public class ControllerChapter3 : MonoBehaviour
 
     private void CheckPriorities()
     {
+        //alt2.Clear();
+        //DragNdropResInformed.ForEach((item) => { alt2.Add((string)item.Clone()); });
         ShowGo(buttonToConv2);
 
         //Reset the list of the Drag&Drops result
-        Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
-        //DragNdropResInformed.Clear();
+        Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
 
         //Update Drag & Drop results
         for (int i = 0; i < alternativesDnD.Length; i++)
@@ -378,8 +364,6 @@ public class ControllerChapter3 : MonoBehaviour
 
         //Set new informed alternatives values to TestingEnvironment
         var alt2 = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
-        //alt2.Clear();
-        //DragNdropResInformed.ForEach((item) => { alt2.Add((string)item.Clone()); });
         Array.Clear(alt2, 0, alt2.Length);
         alt2 = (int[])DragNdropResInformed.Clone();  
     }
@@ -424,10 +408,10 @@ public class ControllerChapter3 : MonoBehaviour
 
     private bool TestCoherent()
     {
+        //if (dragNdropResUninformed[i].ToLower() != dragNdropResInformed[i].ToLower())
         //If the 4th element of the two lists are the same
         for (int i = 0; i < 4; i++)
         {
-            //if (dragNdropResUninformed[i].ToLower() != dragNdropResInformed[i].ToLower())
             if (dragNdropResUninformed[i] != dragNdropResInformed[i])
             {
                 return false;
@@ -454,6 +438,10 @@ public class ControllerChapter3 : MonoBehaviour
         Button1st_MCDA.gameObject.SetActive(false); //8
         Button2orMore_MCDA.gameObject.SetActive(false); //9 Used
         ButtonNone.gameObject.SetActive(false); //10
+        ButtonNext.gameObject.SetActive(false); //11
+        //priorities1.gameObject.SetActive(false);
+        //priorities2.gameObject.SetActive(false);
+        priorities3.gameObject.SetActive(false);
 
         if (fromState == 0) //3.5.2 - 1st or 3.5.3 - 2nd or more
         {
@@ -479,6 +467,15 @@ public class ControllerChapter3 : MonoBehaviour
             ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
             ButtonNone.gameObject.SetActive(true); //10
         }
+        if (fromState == 2) //3.5.3
+        {
+            label_Consistent1_ranking.gameObject.SetActive(true); //1
+            ButtonNext.gameObject.SetActive(true); //11
+            priorities1.gameObject.SetActive(false);
+            priorities2.gameObject.SetActive(false);
+            priorities3.gameObject.SetActive(true);
+
+        }
         DnD_ResultInitial();
         DnD_ResultAdapt(fromState);
     }
@@ -503,11 +500,22 @@ public class ControllerChapter3 : MonoBehaviour
                 alternativeNumber1 = dragNdropResInformed;
                 alternativeNumber2 = dragNdropResMCDA;
                 break;
+            case 2:
+                alternativeNumber1 = dragNdropResMCDA;
+                alternativeNumber2 = dragNdropResMCDA;
+                break;
             default:
                 break;
         }
-        UpdateResultList(resultList1, alternativeNumber1);
-        UpdateResultList(resultList2, alternativeNumber2);
+        if(caseState!=2)
+        { 
+            UpdateResultList(resultList1, alternativeNumber1);
+            UpdateResultList(resultList2, alternativeNumber2);
+        }
+        else
+        {
+            UpdateResultList(resultList3, alternativeNumber1);
+        }
     }
 
     private void UpdateResultList(GameObject resultList, int[] alternativeNames)
@@ -521,9 +529,7 @@ public class ControllerChapter3 : MonoBehaviour
         foreach (int alternativeNumber in alternativeNames)
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
-
             string alternativeDescription = alternativesDescription[alternativeNumber];
-
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{alternativeDescription}";
 
@@ -537,15 +543,6 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    /*
-    private string ConvertAlternativeNToDescription(string number)
-    {
-        int alternativeIndex = Convert.ToInt32($"{number.Last()}");
-        string output = alternativesDescription[alternativeIndex];
-        return output;
-    }
-    */
-
     private void SetPreferedUser(int choice)
     {
         switch (choice)
@@ -553,7 +550,7 @@ public class ControllerChapter3 : MonoBehaviour
             case 0:
                 if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
                 {
-                    //If 100% conscistent - 1st try
+                    //If 100% conscistent
                     controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
                 }
                 else
@@ -599,5 +596,13 @@ public class ControllerChapter3 : MonoBehaviour
     {
         go.SetActive(false);
     }
+
+    /*
+    private string ConvertAlternativeNToDescription(string number)
+    {
+        int alternativeIndex = Convert.ToInt32($"{number.Last()}");
+        string output = alternativesDescription[alternativeIndex];
+        return output;
+    }
+    */
 }
- 
