@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class ControllerChapter2_1 : MonoBehaviour
 {
     [Header("2D Scene References")]
-    public Camera cam;
-    Animator animator;
-    int state;
-    bool batHover = false;
+    [SerializeField] private Camera cam;
+    [SerializeField] private Animator animator;
+    private int state;
+    private bool batHover = false;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
@@ -23,7 +23,8 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     private int notifications;
     private int objectiveNumber = 0;
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    [Header("Conversation References")]
+    [SerializeField] private GameObject[] ConversationBubbles;
 
     // Local variables
     private GameObject controllers;
@@ -39,7 +40,8 @@ public class ControllerChapter2_1 : MonoBehaviour
             btnContinue = GameObject.Find("btnContinue").GetComponent<Button>();
         }
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => {
+        conversationCallback = () => 
+        {
             //Change state of animator
             animator.SetBool("isVisited", true);
             GameEventMessage.SendEvent("ContinueToTown");
@@ -54,20 +56,10 @@ public class ControllerChapter2_1 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
-    private void Call(int conversationIndex)
-    {
-        string title = "";
-        title = $"2.1.2_Dialogue_objective{conversationIndex}";
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
-    }
-
     //Button continue appears when all the objectives have been read
     IEnumerator UpdateObjectiveButton()
     {
-         notifications = 0;
+        notifications = 0;
 
         yield return new WaitForSeconds(2); //Wait 2s
 
@@ -86,16 +78,7 @@ public class ControllerChapter2_1 : MonoBehaviour
         }
     }
 
-    public void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-    }
-
-    public void SetupCallConversation()
+    private void SetupCallConversation()
     {
         ClearCharacters();
 
@@ -111,6 +94,57 @@ public class ControllerChapter2_1 : MonoBehaviour
         sceneObjective.SetActive(true);
     }
 
+    private void ClearCharacters()
+    {
+        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
+        {
+            character.transform.position = new Vector3(11, 0, 1);
+            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+    }
+
+    private void Call(int conversationIndex)
+    {
+        string title = "";
+        title = $"2.1.2_Dialogue_objective{conversationIndex}";
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
+    }
+
+    //Set buttons position to the batiments position
+    private void SetupButtons()
+    {
+        //Set buttons position to the batiments postion
+        for (int i = 0; i < sceneBats.Length; i++)
+        {
+            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
+        }
+    }
+
+    //Block the other buttons when one objective is selected 
+    private void ControlButtons(bool actionEnable)
+    {
+        for (int i = 0; i < sceneBats.Length; i++)
+        {
+            if (actionEnable)
+            {
+                //Enable all the buttons
+                if (sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable == false)
+                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = true;
+            }
+            else
+            {
+                //Disable all the buttons except the selected one 
+                if (i != objectiveNumber)
+                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
+            }
+        }
+    }
+
+    // --------------------  UI Callables  --------------------------------
+
     public void StartCall(GameObject objective)
     {
         GameEventMessage.SendEvent("GoToPhoneCall");
@@ -121,39 +155,13 @@ public class ControllerChapter2_1 : MonoBehaviour
         Call(objectiveNumber);
     }
 
-    //Started when the scene is shown
-    public void SetupButtons()
-    {
-        //Set buttons position to the batiments postion
-        for (int i = 0; i < sceneBats.Length; i++)
-        {
-            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
-        }
-    }
-
-    public void ControlButtons(bool actionEnable)
-    {
-        //Set buttons position to the batiments postion
-        for (int i = 0; i < sceneBats.Length; i++)
-        {
-            if (actionEnable)
-            {
-                if (sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable == false)
-                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = true;
-            }
-            else
-            {
-                if (i != objectiveNumber)
-                    sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
-            }
-        }
-    }
-
+    // set state of the animation
     public void SetAnimatorState(int stateButton)
     {
         state = stateButton;
     }
 
+    //Set the correct animation of the gameobject
     public void SetAnimatorParameter(GameObject obj)
     {
         animator = obj.gameObject.GetComponent<Animator>();
