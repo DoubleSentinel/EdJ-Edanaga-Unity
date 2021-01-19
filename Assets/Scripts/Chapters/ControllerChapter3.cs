@@ -406,22 +406,15 @@ public class ControllerChapter3 : MonoBehaviour
         popup.Show(); //show the popup
     }
 
+    //Return true if the 4 first elements of the two Array are the same
     private bool TestCoherent()
     {
-        //if (dragNdropResUninformed[i].ToLower() != dragNdropResInformed[i].ToLower())
-        //If the 4th element of the two lists are the same
-        for (int i = 0; i < 4; i++)
-        {
-            if (dragNdropResUninformed[i] != dragNdropResInformed[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        return dragNdropResUninformed.Take(4).SequenceEqual(dragNdropResInformed.Take(4));
     }
 
+    //Return true if the all the elements of the two Array are the same
     private bool TestAreTheSame()
-    { 
+    {
         return dragNdropResUninformed.SequenceEqual(dragNdropResInformed);
     }
 
