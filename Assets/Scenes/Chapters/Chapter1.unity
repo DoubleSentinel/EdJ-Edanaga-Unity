@@ -4233,7 +4233,7 @@ GameObject:
   - component: {fileID: 339472886}
   - component: {fileID: 339472885}
   m_Layer: 5
-  m_Name: Priority3
+  m_Name: Panel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4270,7 +4270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority3
+  Id: 2
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -4610,7 +4610,7 @@ GameObject:
   - component: {fileID: 377307751}
   - component: {fileID: 377307750}
   m_Layer: 5
-  m_Name: Priority5
+  m_Name: Panel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4647,7 +4647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority5
+  Id: 4
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -9548,7 +9548,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 831151397}
+  - {fileID: 1291283954}
   m_Father: {fileID: 1112530074}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14694,7 +14694,7 @@ GameObject:
   - component: {fileID: 788110044}
   - component: {fileID: 788110043}
   m_Layer: 5
-  m_Name: Priority4
+  m_Name: Panel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14731,7 +14731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority4
+  Id: 3
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -14944,13 +14944,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 687599250}
-  m_Father: {fileID: 610299349}
+  m_Father: {fileID: 1291283954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 60, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831151398
 MonoBehaviour:
@@ -30944,7 +30944,7 @@ GameObject:
   - component: {fileID: 1140388010}
   - component: {fileID: 1140388009}
   m_Layer: 5
-  m_Name: Priority2
+  m_Name: Panel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30981,7 +30981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority2
+  Id: 1
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -31970,6 +31970,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277521735}
   m_CullTransparentMesh: 0
+--- !u!1 &1291283953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291283954}
+  m_Layer: 0
+  m_Name: Container - Button - ContinueToAltDnD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1291283954
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291283953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 831151397}
+  m_Father: {fileID: 610299349}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1313322400
 GameObject:
   m_ObjectHideFlags: 0
@@ -38808,7 +38844,7 @@ GameObject:
   - component: {fileID: 1733215724}
   - component: {fileID: 1733215723}
   m_Layer: 5
-  m_Name: Priority1
+  m_Name: Panel0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38845,7 +38881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority1
+  Id: 0
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -45924,7 +45960,7 @@ GameObject:
   - component: {fileID: 1963769042}
   - component: {fileID: 1963769041}
   m_Layer: 5
-  m_Name: Priority6
+  m_Name: Panel5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45961,7 +45997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20eea2141976447aaccd6f3c331433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: priority6
+  Id: 5
   ObjectPosition: 0
   LockObject: 0
   ObjectReplacement: 0
@@ -46493,6 +46529,9 @@ MonoBehaviour:
   sceneEngineer: {fileID: 4783305941575667341}
   ConversationBubbles:
   - {fileID: 910047588}
+  HiddenAltColor: {r: 0.36862746, g: 0.5803922, b: 0.81960785, a: 0.7}
+  VisibleAltColor: {r: 0.37, g: 0.58, b: 0.82, a: 0}
+  VisibleAltColor25: {r: 0.37, g: 0.58, b: 0.82, a: 0.2}
   alternatives:
   - {fileID: 1468929189}
   - {fileID: 1692481748}
@@ -46500,7 +46539,7 @@ MonoBehaviour:
   - {fileID: 1656067267}
   - {fileID: 1742185273}
   - {fileID: 1944757395}
-  priorities:
+  panels:
   - {fileID: 1733215721}
   - {fileID: 1140388007}
   - {fileID: 339472883}
@@ -46512,22 +46551,11 @@ MonoBehaviour:
   buttonToConv: {fileID: 431063027}
   altDnDMessage: {fileID: 94459104}
   altDiscoveryMessage: {fileID: 1940346181}
-  Panels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  HiddenAltColor: {r: 0.36862746, g: 0.5803922, b: 0.81960785, a: 0.7}
-  VisibleAltColor: {r: 0.37, g: 0.58, b: 0.82, a: 0}
-  VisibleAltColor25: {r: 0.37, g: 0.58, b: 0.82, a: 0.2}
   dragNdropRes: 
   PopupName: Popup1
   Title: Title
   MessageObject: {fileID: 216478154}
   Message: Popup message for player
-  conversationIndex: 0
 --- !u!1 &2056326701
 GameObject:
   m_ObjectHideFlags: 0

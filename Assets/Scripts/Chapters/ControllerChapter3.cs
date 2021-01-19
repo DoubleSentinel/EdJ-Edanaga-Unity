@@ -183,11 +183,6 @@ public class ControllerChapter3 : MonoBehaviour
         };
     }
 
-    public void NextConv()
-    {
-        GameEventMessage.SendEvent("ContinueToConv");
-    }
-
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
@@ -246,7 +241,11 @@ public class ControllerChapter3 : MonoBehaviour
         Conv(conversationIndex);
     }
 
-    // --------------------  UI Callables  --------------------------------
+   private void NextConv()
+    {
+        GameEventMessage.SendEvent("ContinueToConv");
+    }
+
     public void SetConversationIndex(int index)
     {
         if (index == 2 && !TestCoherent())
@@ -368,7 +367,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    public void ShowPopup()
+    private void ShowPopup()
     {
         //Getting a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
         UIPopup popup = UIPopup.GetPopup(PopupName);
@@ -523,7 +522,19 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    //Redo Swing and TradeOff
+    private void ShowGo(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    private void HideGo(GameObject go)
+    {
+        go.SetActive(false);
+    }
+
+    // --------------------  UI Callables  --------------------------------
+
+        //Redo Swing and TradeOff
     public void RedoAll()
     {
         controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
@@ -540,7 +551,7 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     //Update the User preference in TestingEnvironment
-    private void SetPreferedUser(int choice)
+    public void SetPreferedUser(int choice)
     {
         switch (choice)
         {
@@ -571,13 +582,4 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    private void ShowGo(GameObject go)
-    {
-        go.SetActive(true);
-    }
-
-    private void HideGo(GameObject go)
-    {
-        go.SetActive(false);
-    }
 }
