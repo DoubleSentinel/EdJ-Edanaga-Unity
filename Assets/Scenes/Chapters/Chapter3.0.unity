@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -51642,7 +51642,7 @@ MonoBehaviour:
   ReturnObject: 0
   ReplaceSmoothly: 0
   ReplacementSpeed: 1
-  SwitchObjects: 0
+  SwitchObjects: 1
   MoveSmoothly: 0
   MovementSpeed: 1
   FilterPanels: 0
@@ -85024,15 +85024,6 @@ MonoBehaviour:
   altDiscoveryMessage: {fileID: 557264000}
   altDnDMessage1: {fileID: 94459104}
   altDnDMessage2: {fileID: 1942074347}
-  BackgroundColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
-  FillColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
-  resultListItemPrefab: {fileID: 5313111449302125352, guid: fcf3571b962a6e4459a7081762be9ac9,
-    type: 3}
-  resultList1: {fileID: 1203762497}
-  resultList2: {fileID: 663055934}
-  resultList3: {fileID: 687440278}
-  panels1: []
-  panels2: []
   objectivesObject: {fileID: 0}
   alternativesDnD:
   - {fileID: 585148928}
@@ -85053,6 +85044,13 @@ MonoBehaviour:
   dragNdropResInformed: 
   buttonToConv1: {fileID: 1713827899}
   buttonToConv2: {fileID: 506244659}
+  BackgroundColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
+  FillColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
+  resultListItemPrefab: {fileID: 5313111449302125352, guid: fcf3571b962a6e4459a7081762be9ac9,
+    type: 3}
+  resultList1: {fileID: 1203762497}
+  resultList2: {fileID: 663055934}
+  resultList3: {fileID: 687440278}
   priorities1: {fileID: 1436145985}
   priorities2: {fileID: 670635688}
   priorities3: {fileID: 1667073667}
@@ -85068,20 +85066,10 @@ MonoBehaviour:
   Button2orMore_MCDA: {fileID: 819345722}
   ButtonNone: {fileID: 1979595026}
   ButtonNext: {fileID: 1333889811}
-  texts: []
   PopupName: Popup1
   Title: Title
   MessageObject: {fileID: 216478154}
   Message: Popup message for player
-  conversationIndex: 0
-  fromState: 0
-  alternativesDescription:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
 --- !u!1 &2060709267
 GameObject:
   m_ObjectHideFlags: 0
