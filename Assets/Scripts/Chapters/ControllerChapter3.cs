@@ -28,7 +28,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
-    [SerializeField] private GameObject objectivesObject;
+    [SerializeField] private GameObject panelLabel;
 
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
@@ -92,7 +92,7 @@ public class ControllerChapter3 : MonoBehaviour
     private int[] alternativeNumber2;
     private List<string> alternativesDescription = new List<string>();
 
-    //User preference choice
+    //User preference possible choice
     private enum Prefered
     {
         MCDA,
@@ -230,7 +230,7 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
-        //SetObjectives();
+        SetObjectives();
     }
 
     private void StartConversation()
@@ -323,7 +323,7 @@ public class ControllerChapter3 : MonoBehaviour
         //Set texts of the objectives description
         for (int i = 0; i < 10; i++)
         {
-            objectivesObject.transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
+            panelLabel.gameObject.transform.GetChild(0).GetChild(i).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
         }
     }
 
@@ -397,8 +397,6 @@ public class ControllerChapter3 : MonoBehaviour
         button2orMore_MCDA.gameObject.SetActive(false); //9 Used
         buttonNone.gameObject.SetActive(false); //10
         buttonNext.gameObject.SetActive(false); //11
-        //priorities1.gameObject.SetActive(false);
-        //priorities2.gameObject.SetActive(false);
         priorities3.gameObject.SetActive(false);
 
         if (fromState == 0) //3.5.2 - 1st or 3.5.3 - 2nd or more
@@ -417,7 +415,6 @@ public class ControllerChapter3 : MonoBehaviour
                 button2orMore_informed.gameObject.SetActive(true); //5
                 button2orMore_MCDA.gameObject.SetActive(true); //8
             }
-
         }
         if (fromState == 1) //3.4.2
         {
