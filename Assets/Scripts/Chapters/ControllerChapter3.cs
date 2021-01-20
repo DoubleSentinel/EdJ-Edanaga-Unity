@@ -84,7 +84,7 @@ public class ControllerChapter3 : MonoBehaviour
     public ConversationHandler.ConversationEnd conversationCallback;
 
     public int[] DragNdropResMCDA { get => dragNdropResMCDA; set => dragNdropResMCDA = value; }
-    public bool EnableFlag { get; set; }
+    private bool EnableFlag { get; set; }
     public int[] DragNdropResInformed { get => dragNdropResInformed; set => dragNdropResInformed = value; }
 
     private int fromState = 0;
@@ -110,8 +110,8 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(altDnDMessage2);
                 ShowGo(buttonToConv1);
                 HideGo(buttonToConv2);
-                EnableFlag = false;
-                DisableEnableDnD();
+                //EnableFlag = false;
+                //DisableEnableDnD();
             }
             //3.2_Consistent_check_Chap6
             if (conversationIndex == 2)
@@ -144,7 +144,8 @@ public class ControllerChapter3 : MonoBehaviour
                 ShowGo(altDnDMessage2);
                 HideGo(buttonToConv1);
                 EnableFlag = true;
-                DisableEnableDnD();
+                ToggleDnD();
+                //DisableEnableDnD();
             }
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
@@ -222,8 +223,9 @@ public class ControllerChapter3 : MonoBehaviour
 
         DnD_ResultInitial();
 
-        EnableFlag = false;
-        DisableEnableDnD();
+        EnableFlag = false; //Disable Drag and Drop 
+        ToggleDnD();
+        //DisableEnableDnD();
         //SetObjectives();
     }
 
@@ -346,8 +348,17 @@ public class ControllerChapter3 : MonoBehaviour
         alt = (int[])DragNdropResInformed.Clone();  
     }
 
-    private void DisableEnableDnD()
+    //Lock and unlock the drag&drop property of the elements
+    private void ToggleDnD()
     {
+        for (int i = 0; i < alternativesDnD.Length; i++)
+        {
+            alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = !EnableFlag;
+        }
+        if (EnableFlag)
+            ShowPopup();
+
+        /*
         if (!EnableFlag)
         {
             //Lock the drag&drop property of the elements
@@ -365,16 +376,13 @@ public class ControllerChapter3 : MonoBehaviour
             }
             ShowPopup();
         }
+        */
     }
 
     private void ShowPopup()
     {
         //Getting a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
         UIPopup popup = UIPopup.GetPopup(PopupName);
-
-        //make sure that a popup clone was actually created
-        if (popup == null)
-            return;
 
         Title = "Consignes";
         Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
