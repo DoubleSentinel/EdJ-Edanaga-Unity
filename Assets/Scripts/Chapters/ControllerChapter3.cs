@@ -92,6 +92,14 @@ public class ControllerChapter3 : MonoBehaviour
     private int[] alternativeNumber2;
     private List<string> alternativesDescription = new List<string>();
 
+    //User preference choice
+    private enum Prefered
+    {
+        MCDA,
+        Uniformed,
+        Informed
+    }
+
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
@@ -231,9 +239,12 @@ public class ControllerChapter3 : MonoBehaviour
         Conv(conversationIndex);
     }
 
-    private void NextConv()
+    private void Conv(int conversationIndex)
     {
-        GameEventMessage.SendEvent("ContinueToConv");
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
     }
 
     public void SetConversationIndex(int index)
@@ -268,15 +279,6 @@ public class ControllerChapter3 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
     }
-
-    //User prefrence choice
-    private enum Prefered
-    {
-        MCDA,
-        Uniformed,
-        Informed
-    }
-
 
     private void DnD_ResultInitial()
     {
@@ -519,13 +521,12 @@ public class ControllerChapter3 : MonoBehaviour
 
     // --------------------  UI Callables  --------------------------------
 
-    public void Conv(int conversationIndex) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Used to allows to consecutive conversations
+    public void NextConv()
     {
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
+        GameEventMessage.SendEvent("ContinueToConv");
     }
+
 
     //Redo Swing and TradeOff
     public void RedoAll()
@@ -546,32 +547,6 @@ public class ControllerChapter3 : MonoBehaviour
     //Update the User preference in TestingEnvironment
     public void SetPreferedUser(int choice)
     {
-        switch (choice)
-        {
-            case 0:
-                if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
-                {
-                    //If 100% consistent
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = Prefered.MCDA;
-                }
-                else
-                {
-                    //If 100% consistent - 2nd or more
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
-                }
-                break;
-            case 1:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "Uninformed";
-                break;
-            case 2:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
-                break;
-            case 3:
-                controllers.GetComponent<TestingEnvironment>().UserPreference = "Informed";
-                break;
-            default:
-                print("SetPreferedUser : choice not allowed!");
-                break;
-        }
+        controllers.GetComponent<TestingEnvironment>().UserPreference = ((Prefered)choice).ToString();
     }
 }

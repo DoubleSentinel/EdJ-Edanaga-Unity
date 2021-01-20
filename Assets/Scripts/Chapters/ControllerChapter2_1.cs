@@ -12,7 +12,7 @@ public class ControllerChapter2_1 : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Animator animator;
     private int state;
-    private bool batHover = false;
+    //private bool batHover = false; //Building over
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
