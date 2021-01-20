@@ -22,7 +22,7 @@ public class ControllerChapter2_1 : MonoBehaviour
     [SerializeField] private Button btnContinue;
 
     private int notifications;
-    private int objectiveNumber = 0;
+    private int userSelectedObjectiveNumber = 0;
     [Header("Conversation References")]
     [SerializeField] private GameObject[] ConversationBubbles;
 
@@ -137,7 +137,7 @@ public class ControllerChapter2_1 : MonoBehaviour
             else
             {
                 //Disable all the buttons except the selected one 
-                if (i != objectiveNumber)
+                if (i != userSelectedObjectiveNumber)
                     sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
             }
         }
@@ -149,10 +149,10 @@ public class ControllerChapter2_1 : MonoBehaviour
     {
         GameEventMessage.SendEvent("GoToPhoneCall");
         string objectiveName = objective.name;
-        objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
-        sceneObjective = sceneObjectives[objectiveNumber];
+        userSelectedObjectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
+        sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
         SetupCallConversation();
-        Call(objectiveNumber);
+        Call(userSelectedObjectiveNumber);
     }
 
     // set state of the animation
