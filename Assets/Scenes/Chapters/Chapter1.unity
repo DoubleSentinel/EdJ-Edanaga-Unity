@@ -46552,10 +46552,10 @@ MonoBehaviour:
   altDnDMessage: {fileID: 94459104}
   altDiscoveryMessage: {fileID: 1940346181}
   dragNdropRes: 
-  PopupName: Popup1
-  Title: Title
-  MessageObject: {fileID: 216478154}
-  Message: Popup message for player
+  popupName: Popup1
+  title: Title
+  messageObject: {fileID: 216478154}
+  message: Popup message for player
 --- !u!1 &2056326701
 GameObject:
   m_ObjectHideFlags: 0

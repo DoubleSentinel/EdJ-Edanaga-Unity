@@ -73,7 +73,7 @@ public class ControllerChapter3 : MonoBehaviour
     [Header("Popup Values")]
     [SerializeField] private string popupName = "Popup1";
     [SerializeField] private string title = "Title";
-    [SerializeField] private GameObject MessageObject;
+    [SerializeField] private GameObject messageObject;
     [SerializeField] private string message = "Popup message for player";
 
     // Local variables
@@ -110,8 +110,6 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(altDnDMessage2);
                 ShowGo(buttonToConv1);
                 HideGo(buttonToConv2);
-                //EnableFlag = false;
-                //DisableEnableDnD();
             }
             //3.2_Consistent_check_Chap6
             if (conversationIndex == 2)
@@ -145,7 +143,6 @@ public class ControllerChapter3 : MonoBehaviour
                 HideGo(buttonToConv1);
                 EnableFlag = true;
                 ToggleDnD();
-                //DisableEnableDnD();
             }
             //3.4.1_Multiple_choices_rankings_Chap6
             if (conversationIndex == 5)
@@ -169,7 +166,7 @@ public class ControllerChapter3 : MonoBehaviour
                 AdaptListUI(fromState);
                 GameEventMessage.SendEvent("ContinueToList");
             }
-            //3.6_Inconsistent_but_ok_Chap6 (if not consistant!)
+            //3.6_Inconsistent_but_ok_Chap6 (if not consistent!)
             if (conversationIndex == 7)
             {
                 //Go to the next convversation
@@ -225,16 +222,7 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
-        //DisableEnableDnD();
         //SetObjectives();
-    }
-
-    private void Conv(int conversationIndex)
-    {
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
     }
 
     private void StartConversation()
@@ -243,7 +231,7 @@ public class ControllerChapter3 : MonoBehaviour
         Conv(conversationIndex);
     }
 
-   private void NextConv()
+    private void NextConv()
     {
         GameEventMessage.SendEvent("ContinueToConv");
     }
@@ -280,6 +268,15 @@ public class ControllerChapter3 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
     }
+
+    //User prefrence choice
+    private enum Prefered
+    {
+        MCDA,
+        Uniformed,
+        Informed
+    }
+
 
     private void DnD_ResultInitial()
     {
@@ -357,26 +354,6 @@ public class ControllerChapter3 : MonoBehaviour
         }
         if (EnableFlag)
             ShowPopup();
-
-        /*
-        if (!EnableFlag)
-        {
-            //Lock the drag&drop property of the elements
-            for (int i = 0; i < alternativesDnD.Length; i++)
-            {
-                alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = true;
-            }
-        }
-        else
-        {
-            //Unlock the drag&drop property of the elements
-            for (int i = 0; i < alternativesDnD.Length; i++)
-            {
-                alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = false;
-            }
-            ShowPopup();
-        }
-        */
     }
 
     private void ShowPopup()
@@ -385,7 +362,7 @@ public class ControllerChapter3 : MonoBehaviour
         UIPopup popup = UIPopup.GetPopup(popupName);
 
         title = "Consignes";
-        message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        message = messageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
         popup.Data.SetLabelsTexts(title, message);
 
         popup.Show(); //show the popup
@@ -542,7 +519,15 @@ public class ControllerChapter3 : MonoBehaviour
 
     // --------------------  UI Callables  --------------------------------
 
-        //Redo Swing and TradeOff
+    public void Conv(int conversationIndex) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    {
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
+    }
+
+    //Redo Swing and TradeOff
     public void RedoAll()
     {
         controllers.GetComponent<TestingEnvironment>().SkipSwing = false;
@@ -567,7 +552,7 @@ public class ControllerChapter3 : MonoBehaviour
                 if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
                 {
                     //If 100% consistent
-                    controllers.GetComponent<TestingEnvironment>().UserPreference = "MCDA";
+                    controllers.GetComponent<TestingEnvironment>().UserPreference = Prefered.MCDA;
                 }
                 else
                 {
@@ -589,5 +574,4 @@ public class ControllerChapter3 : MonoBehaviour
                 break;
         }
     }
-
 }

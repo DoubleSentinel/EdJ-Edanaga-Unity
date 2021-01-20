@@ -37,10 +37,10 @@ public class ControllerChapter1 : MonoBehaviour
     private bool fisrtDrag = false;
 
     [Header("Popup Values")]
-    [SerializeField] private string PopupName = "Popup1";
-    [SerializeField] private string Title = "Title";
-    [SerializeField] private GameObject MessageObject;
-    [SerializeField] private string Message = "Popup message for player";
+    [SerializeField] private string popupName = "Popup1";
+    [SerializeField] private string title = "Title";
+    [SerializeField] private GameObject messageObject;
+    [SerializeField] private string message = "Popup message for player";
 
     // Local variables
     private GameObject controllers;
@@ -195,20 +195,18 @@ public class ControllerChapter1 : MonoBehaviour
         alt = (int[])DragNdropRes.Clone();
     }
 
-   
-
     private void ShowPopup()
     {
         //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
-        UIPopup popup = UIPopup.GetPopup(PopupName);
+        UIPopup popup = UIPopup.GetPopup(popupName);
 
         //make sure that a popup clone was actually created
         if (popup == null)
             return;
 
-        Title = "Consignes";
-        Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
-        popup.Data.SetLabelsTexts(Title, Message);
+        title = "Consignes";
+        message = messageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        popup.Data.SetLabelsTexts(title, message);
 
         popup.Show(); //show the popup
     }

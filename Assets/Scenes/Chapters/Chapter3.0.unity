@@ -85068,7 +85068,7 @@ MonoBehaviour:
   buttonNext: {fileID: 1333889811}
   popupName: Popup1
   title: Title
-  MessageObject: {fileID: 216478154}
+  messageObject: {fileID: 216478154}
   message: Popup message for player
 --- !u!1 &2060709267
 GameObject:

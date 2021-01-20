@@ -50,6 +50,8 @@ public class TestingEnvironment : MonoBehaviour
     {
         TradeOffClassification = new Dictionary<string, float>();
         SwingClassification = new Dictionary<string, float>();
+        
+        //Testing purpose
         AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
         AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
         AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
@@ -58,9 +60,6 @@ public class TestingEnvironment : MonoBehaviour
     public Dictionary<string, Objective> Objectives { get; set; }
     public Dictionary<string, float> TradeOffClassification { get; set; }
     public Dictionary<string, float> SwingClassification { get; set; }
-    //public List<string> AlternativesUninformed { get; set; }
-    //public List<string> AlternativesMCDA { get; set; }
-    //public List<string> AlternativesInformed { get; set; }
     public int[] AlternativesUninformed { get; set; }
     public int[] AlternativesMCDA { get; set; }
     public int[] AlternativesInformed { get; set; }
