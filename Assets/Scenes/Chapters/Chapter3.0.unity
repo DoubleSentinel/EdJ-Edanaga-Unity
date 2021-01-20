@@ -22772,13 +22772,12 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: ShowBackground
-            m_Mode: 2
+          - m_Target: {fileID: 2056255396}
+            m_MethodName: StartConversation
+            m_Mode: 1
             m_Arguments:
-              m_ObjectArgument: {fileID: 1615453370245123123, guid: af00f76035a644a8597d2d683276d2d6,
-                type: 3}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -36742,18 +36741,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: ShowPopup
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -72689,7 +72677,6 @@ MonoBehaviour:
   altDiscoveryMessage: {fileID: 557264000}
   altDnDMessage1: {fileID: 94459104}
   altDnDMessage2: {fileID: 1942074347}
-  objectivesObject: {fileID: 0}
   alternativesDnD:
   - {fileID: 585148928}
   - {fileID: 1219618997}
@@ -72704,6 +72691,7 @@ MonoBehaviour:
   - {fileID: 939640983}
   - {fileID: 985520084}
   - {fileID: 272708809}
+  panelLabel: {fileID: 31826953}
   dragNdropResUninformed: 
   dragNdropResMCDA: 
   dragNdropResInformed: 
@@ -72737,6 +72725,7 @@ MonoBehaviour:
   title: Title
   messageObject: {fileID: 216478154}
   message: Popup message for player
+  conversationIndex: 0
 --- !u!1 &2060709267
 GameObject:
   m_ObjectHideFlags: 0

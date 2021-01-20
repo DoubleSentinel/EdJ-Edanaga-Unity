@@ -20,3 +20,4 @@ MonoBehaviour:
   - ContinueToMatrix
   - ContinueToList
   - ContinueToLoopback
+  - ContinueToNextConv

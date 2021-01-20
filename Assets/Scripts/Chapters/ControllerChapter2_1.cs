@@ -142,6 +142,7 @@ public class ControllerChapter2_1 : MonoBehaviour
         }
     }
 
+    //Get objective number from building
     private int GetObjectiveNumer(GameObject building)
     {
         for (int i = 0; i < sceneBuildings.Length; i++)

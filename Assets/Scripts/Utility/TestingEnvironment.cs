@@ -51,10 +51,12 @@ public class TestingEnvironment : MonoBehaviour
         TradeOffClassification = new Dictionary<string, float>();
         SwingClassification = new Dictionary<string, float>();
         
-        //Testing purpose
+        //Testing purpose!
+        /*
         AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
         AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
         AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
+        */
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }

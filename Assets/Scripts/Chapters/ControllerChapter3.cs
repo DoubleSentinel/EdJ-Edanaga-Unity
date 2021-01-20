@@ -28,11 +28,10 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
-    [SerializeField] private GameObject objectivesObject;
-
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
     [SerializeField] private GameObject[] panelsDnD;
+    [SerializeField] private GameObject panelLabel;
     private string[] panelIds;
     private string panelObjectValue;
 
@@ -94,6 +93,8 @@ public class ControllerChapter3 : MonoBehaviour
     private int[] alternativeNumber2;
     private List<string> alternativesDescription = new List<string>();
 
+    private ConversationHandler.ConversationEnd[] conversationCallbacks;
+
     //User preference possible choice
     private enum Prefered
     {
@@ -102,93 +103,110 @@ public class ControllerChapter3 : MonoBehaviour
         Informed
     }
 
+    //3.1_Intro_journalist_Chap6
+    private void Intro_journalist_Chap6()
+    {
+        GameEventMessage.SendEvent("ContinueToAlt");
+        ShowGo(buttonToConv);
+    }
+
+    //3.1.3_Intro_engineer_Chap6
+    private void Intro_engineer_Chap6()
+    {
+        GameEventMessage.SendEvent("ContinueToMatrix");
+        ShowGo(altDnDMessage1);
+        HideGo(altDnDMessage2);
+        ShowGo(buttonToConv1);
+        HideGo(buttonToConv2);
+    }
+
+    //3.2_Consistent_check_Chap6
+    private void Consistent_check_Chap6()
+    {
+        //Go to the next conversation
+        SetConversationIndex(6);
+        GameEventMessage.SendEvent("ContinueToNextConv")<
+    }
+
+    //3.2_Inconsistent_check_Chap6
+    private void Inconsistent_check_Chap6()
+    {
+        if (!EnableFlag) //1st DnD or coming back from 3.4
+        {
+            //Go to the next convversation
+            SetConversationIndex(4);
+            GameEventMessage.SendEvent("ContinueToNextConv");
+        }
+        else
+        {
+            //Go to the next convversation
+            SetConversationIndex(5);
+            GameEventMessage.SendEvent("ContinueToNextConv");
+        }
+    }
+
+    //3.3.1_Informed_ranking_Chap6
+    private void Informed_ranking_Chap6()
+    {
+        GameEventMessage.SendEvent("ContinueToMatrix");
+        HideGo(altDnDMessage1);
+        ShowGo(altDnDMessage2);
+        HideGo(buttonToConv1);
+        EnableFlag = true;
+        ToggleDnD();
+    }
+
+    //3.4.1_Multiple_choices_rankings_Chap6
+    private void Multiple_choices_rankings_Chap6()
+    {
+        fromState = 1; //3.4.2
+        AdaptListUI(fromState);
+        GameEventMessage.SendEvent("ContinueToList");
+    }
+
+    //3.5.1_Consistent_choice_Chap6
+    private void Consistent_choice_Chap6()
+    {
+        if (TestAreTheSame())
+        {
+            SetPreferedUser(0); //Consistent 100%
+            fromState = 2; //3.5.4
+        }
+        else
+        {
+            fromState = 0; //3.5.2 or 3.5.3
+        }
+        AdaptListUI(fromState);
+        GameEventMessage.SendEvent("ContinueToList");
+    }
+
+    //3.6_Inconsistent_but_ok_Chap6
+    private void Inconsistent_but_ok_Chap6()
+    {
+        //Go to the next convversation
+        SetConversationIndex(8);
+        GameEventMessage.SendEvent("ContinueToNextConv");
+    }
+
+    //3.7_Outro_Chap6
+    private void Outro_Chap6()
+    {
+        GameEventMessage.SendEvent("ContinueToChapter4");
+    }
+
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => {
-            //3.1_Intro_journalist_Chap6
-            if (conversationIndex == 0)
-            {
-                GameEventMessage.SendEvent("ContinueToAlt");
-                ShowGo(buttonToConv);
-            }
-            //3.1.3_Intro_engineer_Chap6
-            if (conversationIndex == 1)
-            {
-                GameEventMessage.SendEvent("ContinueToMatrix");
-                ShowGo(altDnDMessage1);
-                HideGo(altDnDMessage2);
-                ShowGo(buttonToConv1);
-                HideGo(buttonToConv2);
-            }
-            //3.2_Consistent_check_Chap6
-            if (conversationIndex == 2)
-            {
-                //Go to the next conversation
-                SetConversationIndex(6);
-                GameEventMessage.SendEvent("ContinueToNextConv");
-            }
-            //3.2_Inconsistent_check_Chap6
-            if (conversationIndex == 3)
-            {
-                if (!EnableFlag) //1st DnD or coming back from 3.4
-                {
-                    //Go to the next convversation
-                    SetConversationIndex(4);
-                    GameEventMessage.SendEvent("ContinueToNextConv");
-                }
-                else
-                {
-                    //Go to the next convversation
-                    SetConversationIndex(5);
-                    GameEventMessage.SendEvent("ContinueToNextConv");
-                }
-            }
-            //3.3.1_Informed_ranking_Chap6
-            if (conversationIndex == 4)
-            {
-                GameEventMessage.SendEvent("ContinueToMatrix");
-                HideGo(altDnDMessage1);
-                ShowGo(altDnDMessage2);
-                HideGo(buttonToConv1);
-                EnableFlag = true;
-                ToggleDnD();
-            }
-            //3.4.1_Multiple_choices_rankings_Chap6
-            if (conversationIndex == 5)
-            {
-                fromState = 1; //3.4.2
-                AdaptListUI(fromState);
-                GameEventMessage.SendEvent("ContinueToList");
-            }
-            //3.5.1_Consistent_choice_Chap6
-            if (conversationIndex == 6)
-            {
-                if (TestAreTheSame())
-                {
-                    SetPreferedUser(0); //Consistent 100%
-                    fromState = 2; //3.5.4
-                }
-                else
-                {
-                    fromState = 0; //3.5.2 or 3.5.3
-                }
-                AdaptListUI(fromState);
-                GameEventMessage.SendEvent("ContinueToList");
-            }
-            //3.6_Inconsistent_but_ok_Chap6 (if not consistent!)
-            if (conversationIndex == 7)
-            {
-                //Go to the next convversation
-                SetConversationIndex(8);
-                GameEventMessage.SendEvent("ContinueToNextConv");
-            }
-            //3.7_Outro_Chap6
-            if (conversationIndex == 8)
-            {
-                GameEventMessage.SendEvent("ContinueToChapter4");
-            }
-        };
+        conversationCallbacks = new ConversationHandler.ConversationEnd[9];
+        conversationCallbacks[0] = Intro_journalist_Chap6;
+        conversationCallbacks[1] = Intro_engineer_Chap6;
+        conversationCallbacks[2] = Consistent_check_Chap6;
+        conversationCallbacks[3] = Inconsistent_check_Chap6;
+        conversationCallbacks[4] = Informed_ranking_Chap6;
+        conversationCallbacks[5] = Multiple_choices_rankings_Chap6;
+        conversationCallbacks[6] = Consistent_choice_Chap6;
+        conversationCallbacks[7] = Inconsistent_but_ok_Chap6;
+        conversationCallbacks[8] = Outro_Chap6;
     }
 
     private void Start()
@@ -232,34 +250,15 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
-        //SetObjectives();
+        SetObjectives();
     }
 
-    private void StartConversation()
-    {
-        SetupConversation();
-        Conv(conversationIndex);
-    }
-
-    private void Conv(int conversationIndex)
+    private void Conv()
     {
         var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
+        ch.callback = conversationCallbacks[conversationIndex];
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
-    }
-
-    public void SetConversationIndex(int index)
-    {
-        if (index == 2 && !TestCoherent())
-        {
-            controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
-            conversationIndex = index + 1;
-        }
-        else
-        {
-            conversationIndex = index;
-        }
     }
 
     private void SetupConversation()
@@ -316,7 +315,7 @@ public class ControllerChapter3 : MonoBehaviour
         }
     }
 
-    //Set objectives texts from TestingEnvironment 
+    //Set objectives texts in the prefab
     private void SetObjectives()
     {
         //Get Objectives values to set the Matrix labels
@@ -325,7 +324,7 @@ public class ControllerChapter3 : MonoBehaviour
         //Set texts of the objectives description
         for (int i = 0; i < 10; i++)
         {
-            objectivesObject.transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
+            panelLabel.gameObject.transform.GetChild(0).GetChild(i).GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
         }
     }
 
@@ -520,6 +519,25 @@ public class ControllerChapter3 : MonoBehaviour
     }
 
     // --------------------  UI Callables  --------------------------------
+
+    public void SetConversationIndex(int index)
+    {
+        if (index == 2 && !TestCoherent())
+        {
+            controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
+            conversationIndex = index + 1;
+        }
+        else
+        {
+            conversationIndex = index;
+        }
+    }
+
+    public void StartConversation()
+    {
+        SetupConversation();
+        Conv();
+    }
 
     //Used to allows to consecutive conversations
     public void NextConv()
