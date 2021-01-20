@@ -28,7 +28,7 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage1;
     [SerializeField] private GameObject altDnDMessage2;
 
-    [SerializeField] private GameObject panelLabel;
+    [SerializeField] private GameObject objectivesObject;
 
     [Header("Matrix Drag&Drop scene")]
     [SerializeField] private GameObject[] alternativesDnD;
@@ -59,6 +59,8 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject label_Inconsistent_ranking;
     [SerializeField] private GameObject label_Consistent1_ranking;
     [SerializeField] private GameObject label_Consistent2_ranking;
+    [SerializeField] private GameObject label_VeryConsistent1_ranking;
+    [SerializeField] private GameObject label_VeryConsistent2_ranking;
 
     [SerializeField] private GameObject buttonInconsistent_informed;
     [SerializeField] private GameObject button1st_initial;
@@ -230,7 +232,7 @@ public class ControllerChapter3 : MonoBehaviour
 
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
-        SetObjectives();
+        //SetObjectives();
     }
 
     private void StartConversation()
@@ -323,7 +325,7 @@ public class ControllerChapter3 : MonoBehaviour
         //Set texts of the objectives description
         for (int i = 0; i < 10; i++)
         {
-            panelLabel.gameObject.transform.GetChild(0).GetChild(i).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
+            objectivesObject.transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>().text = objectives.ElementAt(i).Value.description;
         }
     }
 
@@ -385,18 +387,20 @@ public class ControllerChapter3 : MonoBehaviour
     //Adapt UI view depending of the current state
     private void AdaptListUI(int fromState)
     {
-        label_Inconsistent_ranking.gameObject.SetActive(false); //0
-        label_Consistent1_ranking.gameObject.SetActive(false); //1
-        label_Consistent2_ranking.gameObject.SetActive(false); //2 Used
-        buttonInconsistent_informed.gameObject.SetActive(false); //3
-        button1st_initial.gameObject.SetActive(false); //4
-        button1st_pick_ranking.gameObject.SetActive(false); //5 Not used
-        button2orMore_informed.gameObject.SetActive(false); //6 Used
-        buttonInconsistent_MCDA.gameObject.SetActive(false); //7
-        button1st_MCDA.gameObject.SetActive(false); //8
-        button2orMore_MCDA.gameObject.SetActive(false); //9 Used
-        buttonNone.gameObject.SetActive(false); //10
-        buttonNext.gameObject.SetActive(false); //11
+        label_Inconsistent_ranking.gameObject.SetActive(false);
+        label_Consistent1_ranking.gameObject.SetActive(false);
+        label_Consistent2_ranking.gameObject.SetActive(false);
+        label_VeryConsistent1_ranking.gameObject.SetActive(false);
+        label_VeryConsistent2_ranking.gameObject.SetActive(false);
+        buttonInconsistent_informed.gameObject.SetActive(false);
+        button1st_initial.gameObject.SetActive(false);
+        button1st_pick_ranking.gameObject.SetActive(false);
+        button2orMore_informed.gameObject.SetActive(false);
+        buttonInconsistent_MCDA.gameObject.SetActive(false);
+        button1st_MCDA.gameObject.SetActive(false);
+        button2orMore_MCDA.gameObject.SetActive(false);
+        buttonNone.gameObject.SetActive(false);
+        buttonNext.gameObject.SetActive(false);
         priorities3.gameObject.SetActive(false);
 
         if (fromState == 0) //3.5.2 - 1st or 3.5.3 - 2nd or more
@@ -404,28 +408,28 @@ public class ControllerChapter3 : MonoBehaviour
             //3.5.2 - 1st
             if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
             { 
-                label_Consistent1_ranking.gameObject.SetActive(true); //1
-                button1st_initial.gameObject.SetActive(true); //4
-                button1st_MCDA.gameObject.SetActive(true); //8
+                label_Consistent1_ranking.gameObject.SetActive(true);
+                button1st_initial.gameObject.SetActive(true);
+                button1st_MCDA.gameObject.SetActive(true);
                 controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
             }
             else //3.5.3 - 2nd or more
             {
-                label_Consistent2_ranking.gameObject.SetActive(true); //2
-                button2orMore_informed.gameObject.SetActive(true); //5
-                button2orMore_MCDA.gameObject.SetActive(true); //8
+                label_Consistent2_ranking.gameObject.SetActive(true);
+                button2orMore_informed.gameObject.SetActive(true);
+                button2orMore_MCDA.gameObject.SetActive(true);
             }
         }
         if (fromState == 1) //3.4.2
         {
-            label_Inconsistent_ranking.gameObject.SetActive(true); //0
-            buttonInconsistent_informed.gameObject.SetActive(true); //3
-            buttonInconsistent_MCDA.gameObject.SetActive(true); //7
-            buttonNone.gameObject.SetActive(true); //10
+            label_Inconsistent_ranking.gameObject.SetActive(true);
+            buttonInconsistent_informed.gameObject.SetActive(true);
+            buttonInconsistent_MCDA.gameObject.SetActive(true);
+            buttonNone.gameObject.SetActive(true);
         }
         if (fromState == 2) //3.5.4 Consistent 100%
         {
-            label_Consistent1_ranking.gameObject.SetActive(true); //1
+            label_VeryConsistent1_ranking.gameObject.SetActive(true);
             buttonNext.gameObject.SetActive(true); //11
             priorities1.gameObject.SetActive(false);
             priorities2.gameObject.SetActive(false);
@@ -476,7 +480,6 @@ public class ControllerChapter3 : MonoBehaviour
         {
             UpdateResultList(resultList1, alternativeNumber1);
             UpdateResultList(resultList2, alternativeNumber2);
-
         }
     }
 
