@@ -45,8 +45,8 @@ public class ControllerChapter2_1 : MonoBehaviour
             animator.SetBool("isVisited", true);
             GameEventMessage.SendEvent("ContinueToTown");
             StartCoroutine(UpdateObjectiveButton());
-            //Block the others buttons action
-            ControlButtons(true);
+            //Allow the buildings selection after the end of the conversation
+            AllowBuildingsSelection(true);
         };
     }
 
@@ -122,33 +122,44 @@ public class ControllerChapter2_1 : MonoBehaviour
         }
     }
 
-    //Block the other buttons when one objective is selected by the user
-    private void ControlButtons(bool actionEnable)
+    //Block the other buildings selection when one during the conversation
+    private void AllowBuildingsSelection(bool actionEnable)
     {
         for (int i = 0; i < sceneBuildings.Length; i++)
         {
             if (actionEnable)
             {
-                //Enable all the buttons
+                //Allow the selection of all the buildings
                 if (sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable == false)
                     sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = true;
             }
             else
             {
-                //Disable all the buttons except the selected one 
+                //Don't allow buildings selection when one building is already selected 
                 if (i != userSelectedObjectiveNumber)
                     sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
             }
         }
     }
 
+    private int GetObjectiveNumer(GameObject building)
+    {
+        for (int i = 0; i < sceneBuildings.Length; i++)
+        {
+            if (building == sceneBuildings[i])
+            {
+                return userSelectedObjectiveNumber = i;
+            }
+        }
+        return userSelectedObjectiveNumber;
+    }
+
     // --------------------  UI Callables  --------------------------------
 
-    public void StartCall(GameObject objective)
+    public void StartCall(GameObject building)
     {
         GameEventMessage.SendEvent("GoToPhoneCall");
-        string objectiveName = objective.name;
-        userSelectedObjectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
+        userSelectedObjectiveNumber = GetObjectiveNumer(building);
         sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
         SetupCallConversation();
         Call(userSelectedObjectiveNumber);
@@ -194,8 +205,8 @@ public class ControllerChapter2_1 : MonoBehaviour
         //State:  BuildingHover -> BuildingAcivited
         if (state == 4)
         {
-            //Block the others buttons action
-            ControlButtons(false);
+            //Don't allow the others buildings selection when one building is already selected
+            AllowBuildingsSelection(false);
             animator.Play("BatActivated");
         }
 
@@ -203,17 +214,6 @@ public class ControllerChapter2_1 : MonoBehaviour
         if (state == 5)
         {
             animator.Play("BatVisited");
-        }
-    }
-
-    public void MyMethod(GameObject building)
-    {
-        for (int i = 0; i < sceneBuildings.Length; i++)
-        {
-            if (building == sceneBuildings[i])
-            {
-                var objectiveNumber = i;
-            }
         }
     }
 }
