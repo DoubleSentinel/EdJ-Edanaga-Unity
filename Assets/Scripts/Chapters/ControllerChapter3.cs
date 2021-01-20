@@ -60,21 +60,21 @@ public class ControllerChapter3 : MonoBehaviour
     [SerializeField] private GameObject label_Consistent1_ranking;
     [SerializeField] private GameObject label_Consistent2_ranking;
 
-    [SerializeField] private GameObject ButtonInconsistent_informed;
-    [SerializeField] private GameObject Button1st_initial;
-    [SerializeField] private GameObject Button1st_pick_ranking;
-    [SerializeField] private GameObject Button2orMore_informed;
-    [SerializeField] private GameObject ButtonInconsistent_MCDA;
-    [SerializeField] private GameObject Button1st_MCDA;
-    [SerializeField] private GameObject Button2orMore_MCDA;
-    [SerializeField] private GameObject ButtonNone;
-    [SerializeField] private GameObject ButtonNext;
+    [SerializeField] private GameObject buttonInconsistent_informed;
+    [SerializeField] private GameObject button1st_initial;
+    [SerializeField] private GameObject button1st_pick_ranking;
+    [SerializeField] private GameObject button2orMore_informed;
+    [SerializeField] private GameObject buttonInconsistent_MCDA;
+    [SerializeField] private GameObject button1st_MCDA;
+    [SerializeField] private GameObject button2orMore_MCDA;
+    [SerializeField] private GameObject buttonNone;
+    [SerializeField] private GameObject buttonNext;
 
     [Header("Popup Values")]
-    [SerializeField] private string PopupName = "Popup1";
-    [SerializeField] private string Title = "Title";
+    [SerializeField] private string popupName = "Popup1";
+    [SerializeField] private string title = "Title";
     [SerializeField] private GameObject MessageObject;
-    [SerializeField] private string Message = "Popup message for player";
+    [SerializeField] private string message = "Popup message for player";
 
     // Local variables
     private GameObject controllers;
@@ -382,11 +382,11 @@ public class ControllerChapter3 : MonoBehaviour
     private void ShowPopup()
     {
         //Getting a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
-        UIPopup popup = UIPopup.GetPopup(PopupName);
+        UIPopup popup = UIPopup.GetPopup(popupName);
 
-        Title = "Consignes";
-        Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
-        popup.Data.SetLabelsTexts(Title, Message);
+        title = "Consignes";
+        message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        popup.Data.SetLabelsTexts(title, message);
 
         popup.Show(); //show the popup
     }
@@ -409,15 +409,15 @@ public class ControllerChapter3 : MonoBehaviour
         label_Inconsistent_ranking.gameObject.SetActive(false); //0
         label_Consistent1_ranking.gameObject.SetActive(false); //1
         label_Consistent2_ranking.gameObject.SetActive(false); //2 Used
-        ButtonInconsistent_informed.gameObject.SetActive(false); //3
-        Button1st_initial.gameObject.SetActive(false); //4
-        Button1st_pick_ranking.gameObject.SetActive(false); //5 Not used
-        Button2orMore_informed.gameObject.SetActive(false); //6 Used
-        ButtonInconsistent_MCDA.gameObject.SetActive(false); //7
-        Button1st_MCDA.gameObject.SetActive(false); //8
-        Button2orMore_MCDA.gameObject.SetActive(false); //9 Used
-        ButtonNone.gameObject.SetActive(false); //10
-        ButtonNext.gameObject.SetActive(false); //11
+        buttonInconsistent_informed.gameObject.SetActive(false); //3
+        button1st_initial.gameObject.SetActive(false); //4
+        button1st_pick_ranking.gameObject.SetActive(false); //5 Not used
+        button2orMore_informed.gameObject.SetActive(false); //6 Used
+        buttonInconsistent_MCDA.gameObject.SetActive(false); //7
+        button1st_MCDA.gameObject.SetActive(false); //8
+        button2orMore_MCDA.gameObject.SetActive(false); //9 Used
+        buttonNone.gameObject.SetActive(false); //10
+        buttonNext.gameObject.SetActive(false); //11
         //priorities1.gameObject.SetActive(false);
         //priorities2.gameObject.SetActive(false);
         priorities3.gameObject.SetActive(false);
@@ -428,29 +428,29 @@ public class ControllerChapter3 : MonoBehaviour
             if (controllers.GetComponent<TestingEnvironment>().ConsistentFirst == true)
             { 
                 label_Consistent1_ranking.gameObject.SetActive(true); //1
-                Button1st_initial.gameObject.SetActive(true); //4
-                Button1st_MCDA.gameObject.SetActive(true); //8
+                button1st_initial.gameObject.SetActive(true); //4
+                button1st_MCDA.gameObject.SetActive(true); //8
                 controllers.GetComponent<TestingEnvironment>().ConsistentFirst = false;
             }
             else //3.5.3 - 2nd or more
             {
                 label_Consistent2_ranking.gameObject.SetActive(true); //2
-                Button2orMore_informed.gameObject.SetActive(true); //5
-                Button2orMore_MCDA.gameObject.SetActive(true); //8
+                button2orMore_informed.gameObject.SetActive(true); //5
+                button2orMore_MCDA.gameObject.SetActive(true); //8
             }
 
         }
         if (fromState == 1) //3.4.2
         {
             label_Inconsistent_ranking.gameObject.SetActive(true); //0
-            ButtonInconsistent_informed.gameObject.SetActive(true); //3
-            ButtonInconsistent_MCDA.gameObject.SetActive(true); //7
-            ButtonNone.gameObject.SetActive(true); //10
+            buttonInconsistent_informed.gameObject.SetActive(true); //3
+            buttonInconsistent_MCDA.gameObject.SetActive(true); //7
+            buttonNone.gameObject.SetActive(true); //10
         }
         if (fromState == 2) //3.5.4 Consistent 100%
         {
             label_Consistent1_ranking.gameObject.SetActive(true); //1
-            ButtonNext.gameObject.SetActive(true); //11
+            buttonNext.gameObject.SetActive(true); //11
             priorities1.gameObject.SetActive(false);
             priorities2.gameObject.SetActive(false);
             priorities3.gameObject.SetActive(true);

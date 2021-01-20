@@ -1512,7 +1512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -29.599915, y: -24.400002}
+  m_AnchoredPosition: {x: -29.599976, y: -24.400002}
   m_SizeDelta: {x: -1055, y: -165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94479443
@@ -85057,19 +85057,19 @@ MonoBehaviour:
   label_Inconsistent_ranking: {fileID: 839058448}
   label_Consistent1_ranking: {fileID: 370473510}
   label_Consistent2_ranking: {fileID: 1231822853}
-  ButtonInconsistent_informed: {fileID: 2092681857}
-  Button1st_initial: {fileID: 424640299}
-  Button1st_pick_ranking: {fileID: 1543778208}
-  Button2orMore_informed: {fileID: 1830755706}
-  ButtonInconsistent_MCDA: {fileID: 857922362}
-  Button1st_MCDA: {fileID: 160720913}
-  Button2orMore_MCDA: {fileID: 819345722}
-  ButtonNone: {fileID: 1979595026}
-  ButtonNext: {fileID: 1333889811}
-  PopupName: Popup1
-  Title: Title
+  buttonInconsistent_informed: {fileID: 2092681857}
+  button1st_initial: {fileID: 424640299}
+  button1st_pick_ranking: {fileID: 1543778208}
+  button2orMore_informed: {fileID: 1830755706}
+  buttonInconsistent_MCDA: {fileID: 857922362}
+  button1st_MCDA: {fileID: 160720913}
+  button2orMore_MCDA: {fileID: 819345722}
+  buttonNone: {fileID: 1979595026}
+  buttonNext: {fileID: 1333889811}
+  popupName: Popup1
+  title: Title
   MessageObject: {fileID: 216478154}
-  Message: Popup message for player
+  message: Popup message for player
 --- !u!1 &2060709267
 GameObject:
   m_ObjectHideFlags: 0
