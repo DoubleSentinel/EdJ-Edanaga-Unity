@@ -35,7 +35,6 @@ public class Swing : MonoBehaviour
         characterToUIMap = new Dictionary<GameObject, GameObject>();
         userInputValues = new Dictionary<GameObject, Dictionary<GameObject, float>>();
         controllers = GameObject.Find("Controllers");
-        controllers.GetComponent<TestingEnvironment>().SwingClassification.Clear();
         ToggleValidationButton();
     }
 
@@ -217,6 +216,7 @@ public class Swing : MonoBehaviour
     private void CalculateFinalWeights()
     {
         var familyWeights = userInputValues[SwingFinalists];
+        controllers.GetComponent<TestingEnvironment>().SwingClassification.Clear();
         foreach (var family in userInputValues)
         {
             if (family.Key != SwingFinalists)

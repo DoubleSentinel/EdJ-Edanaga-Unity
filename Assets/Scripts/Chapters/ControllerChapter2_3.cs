@@ -25,6 +25,7 @@ public class ControllerChapter2_3 : MonoBehaviour
     public GameObject ListItemPrefab;
     public GameObject SwingSelectButton;
     public GameObject TradeOffSelectButton;
+    public GameObject CustomOrderingButton;
     public GameObject ResultContinueButton;
     public GameObject Choice4;
     
@@ -53,10 +54,10 @@ public class ControllerChapter2_3 : MonoBehaviour
             .OrderByDescending(x => x.Value).Take(5).ToList();
         
         // if tradeOffList contains the same objectives as swinglist regardless of order (checking their names [Key])
-        if (areListsEqual(tradeOffList.OrderBy(e => e.Key).ToList(), swingList.OrderBy(e => e.Key).ToList()))
+        if (AreListsEqual(tradeOffList.OrderBy(e => e.Key).ToList(), swingList.OrderBy(e => e.Key).ToList()))
         {
             // if tradeOffList contains the same objectives as swing list in the same order
-            if (areListsEqual(tradeOffList, swingList))
+            if (AreListsEqual(tradeOffList, swingList))
             {
                 return true;
             }
@@ -68,17 +69,9 @@ public class ControllerChapter2_3 : MonoBehaviour
         }
         return false;
 
-    bool areListsEqual(List<KeyValuePair<string, float>> list1, List<KeyValuePair<string, float>> list2)
+        bool AreListsEqual(List<KeyValuePair<string, float>> list1, List<KeyValuePair<string, float>> list2)
         {
-            foreach (var list1Data in list1)
-            {
-                foreach (var list2Data in list2)
-                {
-                    if (list1Data.Key != list2Data.Key)
-                        return false;
-                }
-            }
-            return true;
+            return !(from list1Data in list1 from list2Data in list2 where list1Data.Key != list2Data.Key select list1Data).Any();
         }
     }
 
@@ -210,6 +203,7 @@ public class ControllerChapter2_3 : MonoBehaviour
     {
         SwingSelectButton.SetActive(isVisible);
         TradeOffSelectButton.SetActive(isVisible);
+        CustomOrderingButton.SetActive(isVisible);
     }
 
     private void ToggleContinueButton(bool isVisible)

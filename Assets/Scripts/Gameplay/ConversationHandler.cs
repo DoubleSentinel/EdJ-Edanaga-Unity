@@ -168,7 +168,6 @@ public class ConversationHandler : MonoBehaviour
                     conversationBubble.transform.parent.gameObject.SetActive(false);
                 });
         }
-
     }
 
     private string ConditionalObjectiveValueReplacement(string[] parameters,
