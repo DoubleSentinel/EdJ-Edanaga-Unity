@@ -29,6 +29,7 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject altDnDMessage;
     [SerializeField] private GameObject altDiscoveryMessage;
     private string[] prioIds;
+    private string texts;
     private GameObject[] PanelsAlt;
 
     [Header("Drag&Drop result")] [SerializeField]
@@ -48,7 +49,7 @@ public class ControllerChapter1 : MonoBehaviour
     // BargainConversation vars
     [HideInInspector] private int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
-
+    
     public int[] DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
 
     void Awake()
@@ -222,13 +223,30 @@ public class ControllerChapter1 : MonoBehaviour
     }
 
     // --------------------  UI Callables  --------------------------------
-    public void SetConversationIndex(int index)
+    public void SetConversationIndex(int index) => conversationIndex = index;
+
+    //Prepare texts for the detailled description of the alternative
+    public void PrepareTextAlternative(GameObject TextsBox)
     {
-        conversationIndex = index;
+        //Get texts from TextBox
+        texts = "";
+        for (int i = 0; i < TextsBox.transform.childCount; i++)
+        {
+            texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
+            texts += "\n\n"; //new line characters
+        }
+        TextsBox.gameObject.SetActive(false); //Disable TextsBox
+    }
+
+
+    //Add the texts to the scroll view prefab
+    public void SetTextAlternative(GameObject TargetText)
+    { 
+        TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
     }
 
     //Enable drag and drop process
-    private void StartDnD()
+    public void StartDnD()
     {
         //Enable DnD buttons
         buttonToDnd.GetComponent<Button>().interactable = true;
