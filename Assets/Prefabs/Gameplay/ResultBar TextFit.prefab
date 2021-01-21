@@ -167,6 +167,11 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 5313111451079192623, guid: bd69a497e96d5a14ea3312ce5e46b018,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7795934795346447974, guid: bd69a497e96d5a14ea3312ce5e46b018,
         type: 3}
       propertyPath: m_SizeDelta.x

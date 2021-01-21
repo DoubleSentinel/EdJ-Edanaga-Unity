@@ -708,7 +708,7 @@ MonoBehaviour:
     m_id: 22d21b76-b6b7-4bfb-83e3-4b88b3cac6df
     m_nodeId: 5a468793-8e1a-450c-900b-c73504c22cda
     m_socketName: OutputSocket_4
-    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"ContinueToConv","TimeDelay":3.0,"Trigger":3}'
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"ContinueToNextConv","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 514a28db-79a2-4ad4-afb6-1f69d17d1dfe
-  m_lastModified: 132556413524313841
+  m_lastModified: 132557090111527963
 --- !u!114 &1163251933334834503
 MonoBehaviour:
   m_ObjectHideFlags: 1
