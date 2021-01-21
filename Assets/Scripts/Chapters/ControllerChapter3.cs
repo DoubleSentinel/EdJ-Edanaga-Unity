@@ -125,7 +125,7 @@ public class ControllerChapter3 : MonoBehaviour
     {
         //Go to the next conversation
         SetConversationIndex(6);
-        GameEventMessage.SendEvent("ContinueToNextConv")<
+        GameEventMessage.SendEvent("ContinueToNextConv");
     }
 
     //3.2_Inconsistent_check_Chap6
