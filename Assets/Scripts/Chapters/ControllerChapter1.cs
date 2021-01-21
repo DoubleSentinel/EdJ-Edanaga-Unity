@@ -1,61 +1,55 @@
 ﻿using DG.Tweening;
 using Doozy.Engine;
 using Doozy.Engine.UI;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ControllerChapter1 : MonoBehaviour
 {
-    [Header("2D Scene References")] [SerializeField]
-    private GameObject scenePlayer;
-
+    [Header("2D Scene References")]
+    [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject sceneJournalist;
     [SerializeField] private GameObject sceneEngineer;
 
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    [Header("Conversation References")]
+    [SerializeField] private GameObject[] ConversationBubbles;
 
-    [Header("Drag&Drop scene")] [SerializeField]
-    private GameObject[] alternatives;
+    [Header("Alternative shaders")]
+    [SerializeField] private Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
+    [SerializeField] private Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
+    [SerializeField] private Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
 
-    [SerializeField] private GameObject[] priorities;
-    private string newPrioIds;
-
+    [Header("Drag&Drop scene")]
+    [SerializeField] private GameObject[] alternatives;
+    [SerializeField] private GameObject[] panels;
     [SerializeField] private GameObject prioritiesIcon;
     [SerializeField] private GameObject buttonToDnd;
     [SerializeField] private GameObject buttonToConv;
     [SerializeField] private GameObject altDnDMessage;
     [SerializeField] private GameObject altDiscoveryMessage;
-
     private string[] prioIds;
-    public GameObject[] Panels;
-    private GameObject NewPanels;
-
-    public Color HiddenAltColor = new Color(0.37f, 0.58f, 0.82f, 0.7f);
-    public Color VisibleAltColor = new Color(0.37f, 0.58f, 0.82f, 0);
-    public Color VisibleAltColor25 = new Color(0.37f, 0.58f, 0.82f, 0.5f);
+    private GameObject[] PanelsAlt;
 
     [Header("Drag&Drop result")] [SerializeField]
-    private List<string> dragNdropRes;
+    private int[] dragNdropRes;
     private string panelObjectValue;
+    private bool fisrtDrag = false;
 
-    [Header("Popup Values")] public string PopupName = "Popup1";
-
-    //[SerializeField] private GameObject TitleObject;
-    [SerializeField] private string Title = "Title";
-    [SerializeField] private GameObject MessageObject;
-    [SerializeField] private string Message = "Popup message for player";
+    [Header("Popup Values")]
+    [SerializeField] private string popupName = "Popup1";
+    [SerializeField] private string title = "Title";
+    [SerializeField] private GameObject messageObject;
+    [SerializeField] private string message = "Popup message for player";
 
     // Local variables
     private GameObject controllers;
 
     // BargainConversation vars
-    [HideInInspector] public int conversationIndex = 0;
+    [HideInInspector] private int conversationIndex = 0;
     public ConversationHandler.ConversationEnd conversationCallback;
 
-    public List<string> DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
+    public int[] DragNdropRes { get => dragNdropRes; set => dragNdropRes = value; }
 
     void Awake()
     {
@@ -77,31 +71,28 @@ public class ControllerChapter1 : MonoBehaviour
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
 
-        DragNdropRes = new List<string>();
+        DragNdropRes = new int[6];
         prioIds = new string[6];
-        Panels = new GameObject[6];
+        PanelsAlt = new GameObject[6];
 
-        // Setting alternatives gameobjects and panels for locking mechanism
+        // Setting alternatives gameobjects and their panels for locking mechanism
+        //Get Panels Id name
         for (int i = 0; i < alternatives.Length; i++)
         {
-            Panels[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+            PanelsAlt[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
 
             if (i == 0)
             {
-                NextAlternative(Panels[i]);
+                NextAlternative(PanelsAlt[i]);
                 alternatives[i].GetComponent<UIButton>().Interactable = true;
             }
             else
             {
-                HideAlternative(Panels[i]);
+                HideAlternative(PanelsAlt[i]);
                 alternatives[i].GetComponent<UIButton>().Interactable = false;
             }
-        }
-
-        //Get Priority Id name
-        for (int i=0; i < priorities.Length; i++)
-        {
-            prioIds[i] = priorities[i].gameObject.GetComponent<PanelSettings>().Id;
+            //Get Panels Id name
+            prioIds[i] = panels[i].gameObject.GetComponent<PanelSettings>().Id;
         }
 
         //Default Setup
@@ -112,23 +103,7 @@ public class ControllerChapter1 : MonoBehaviour
         DisableDnD();
     }
 
-    // --------------------  UI Callables  --------------------------------
-    public void SetConversationIndex(int index)
-    {
-        conversationIndex = index;
-    }
-
-    //Not used in the this chapter
-    public void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-    }
-
-    public void SetupHostConversation()
+    private void SetupHostConversation()
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
@@ -153,9 +128,117 @@ public class ControllerChapter1 : MonoBehaviour
         ch.NextConversationSnippet();
     }
 
+    //Disable drag and drop process
+    private void DisableDnD()
+    {
+        //Lock the drag&drop property of the elements
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            alternatives[i].GetComponent<ObjectSettings>().LockObject = true;
+        }
+        prioritiesIcon.SetActive(false);
+    }
+
+    private void EnableDnD()
+    {
+        //Disable the alternatives buttons and unlock the drag&drop property of the elements
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            alternatives[i].GetComponent<UIButton>().Interactable = false;
+            alternatives[i].GetComponent<ObjectSettings>().LockObject = false;
+        }
+        prioritiesIcon.SetActive(true); //Show the icons representing the priorities weight 
+
+        ShowPopup();
+    }
+
+    //Show specific alternative
+    private void ShowAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
+    }
+
+    //Shaded alternative to 25%
+    private void NextAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
+    }
+
+    //Shaded alternative
+    private void HideAlternative(GameObject o)
+    {
+        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
+    }
+
+    public void CheckPriorities()
+    {
+        //First DnD action
+        if(!fisrtDrag)
+        { 
+            ShowGo(buttonToConv);
+            fisrtDrag = true;
+        }
+
+        //Reset the list of the Drag&Drops result
+        Array.Clear(DragNdropRes, 0, DragNdropRes.Length);
+        
+        //Update Drag & Drop results
+        for (int i = 0; i < alternatives.Length; i++)
+        {
+            panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
+            DragNdropRes[i] = Convert.ToInt32($"{panelObjectValue}");
+        }
+
+        //Update uniformed alternative values to TestingEnvironment
+        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
+        Array.Clear(alt, 0, alt.Length);
+        alt = (int[])DragNdropRes.Clone();
+    }
+
+    private void ShowPopup()
+    {
+        //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
+        UIPopup popup = UIPopup.GetPopup(popupName);
+
+        //make sure that a popup clone was actually created
+        if (popup == null)
+            return;
+
+        title = "Consignes";
+        message = messageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        popup.Data.SetLabelsTexts(title, message);
+
+        popup.Show(); //show the popup
+    }
+
+    private void ShowGo(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    private void HideGo(GameObject go)
+    {
+        go.SetActive(false);
+    }
+
+    // --------------------  UI Callables  --------------------------------
+    public void SetConversationIndex(int index)
+    {
+        conversationIndex = index;
+    }
+
+    //Enable drag and drop process
+    private void StartDnD()
+    {
+        //Enable DnD buttons
+        buttonToDnd.GetComponent<Button>().interactable = true;
+        EnableDnD();
+    }
+
+    //Display the alternatives with correct shader 
     public void SetOrderAlternatives(int alternativeN)
     {
-        ShowAlternative(Panels[alternativeN]);
+        ShowAlternative(PanelsAlt[alternativeN]);
 
         if (alternativeN == alternatives.Length - 1)
         {
@@ -165,107 +248,8 @@ public class ControllerChapter1 : MonoBehaviour
         }
         else
         {
-            NextAlternative(Panels[alternativeN+1]);
-            alternatives[alternativeN+1].GetComponent<UIButton>().Interactable = true;
+            NextAlternative(PanelsAlt[alternativeN + 1]);
+            alternatives[alternativeN + 1].GetComponent<UIButton>().Interactable = true;
         }
-    }
-
-    public void StartDnD()
-    {
-        //Enable DnD buttons
-        buttonToDnd.GetComponent<Button>().interactable = true;
-        //Enable DnD
-        EnableDnD();
-    }
-
-    //Show specific alternative
-    public void ShowAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor, 1f);
-    }
-
-    //Shaded alternative to 25%
-    public void NextAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(VisibleAltColor25, 1f);
-    }
-
-    //Shaded alternative
-    public void HideAlternative(GameObject o)
-    {
-        o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
-    }
-
-    public void CheckPriorities()
-    {
-        //First DnD action
-        if (DragNdropRes.Count == 0)
-            ShowGo(buttonToConv);
-
-        //Reset the list of the Drag&Drops result
-        DragNdropRes.Clear();
-
-        //Update Drag & Drop results
-        for (int i = 0; i < alternatives.Length; i++)
-        {
-            panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
-            DragNdropRes.Add(panelObjectValue);
-        }
-    }
-
-    public void DisableDnD()
-    {
-        //Lock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<ObjectSettings>().LockObject = true;
-        }
-
-        prioritiesIcon.SetActive(false);
-    }
-
-    public void EnableDnD()
-    {
-        //Disable the alternatives buttons
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<UIButton>().Interactable = false;
-        }
-
-        //Unlock the drag&drop property of the elements
-        for (int i = 0; i < 6; i++)
-        {
-            alternatives[i].GetComponent<ObjectSettings>().LockObject = false;
-        }
-
-        prioritiesIcon.SetActive(true); //Show the icons representing the priorities weight 
-
-        ShowPopup();
-    }
-
-    public void ShowPopup()
-    {
-        //get a clone of the UIPopup, with the given PopupName, from the UIPopup Database 
-        UIPopup popup = UIPopup.GetPopup(PopupName);
-
-        //make sure that a popup clone was actually created
-        if (popup == null)
-            return;
-
-        Title = "Consignes";
-        Message = MessageObject.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
-        popup.Data.SetLabelsTexts(Title, Message);
-
-        popup.Show(); //show the popup
-    }
-
-    public void ShowGo(GameObject go)
-    {
-        go.SetActive(true);
-    }
-
-    public void HideGo(GameObject go)
-    {
-        go.SetActive(false);
     }
 }

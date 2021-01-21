@@ -147,7 +147,7 @@ MonoBehaviour:
   AllowSceneActivation: 1
   SceneActivationDelay: 0.2
   SceneBuildIndex: 0
-  SceneName: Chapter2.1
+  SceneName: Chapter3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 74c564c7-2235-4e4f-84d0-65ca56538fc2
-  m_lastModified: 132523166272207847
+  m_lastModified: 132537113651522102
 --- !u!114 &5739405873325594145
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,13 +15,14 @@ MonoBehaviour:
   DatabaseType: 2
   CategoryNames:
   - Custom
+  - Chapter1
   - Chapter2
   - General
   - LanguageSelectionMenu
   - Swing
   - TitleScreen
   - TradeOff
-  - Chapter1
+  - Chapter3
   Categories:
   - {fileID: 11400000, guid: 3476cb55f51bd594182b5a8e027d4f15, type: 2}
   - {fileID: 11400000, guid: 6abca8ef23377374fb880e0d48bd076b, type: 2}
@@ -30,3 +31,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c068705af7acfd4ab0e170b8e2481eb, type: 2}
   - {fileID: 11400000, guid: 358321ab023434c40b4f43864b34b8bd, type: 2}
   - {fileID: 11400000, guid: c9553d054e85bb14f9c9b611a03d508e, type: 2}
+  - {fileID: 11400000, guid: a20214e3f343e264e8f8a0c59e9fd46d, type: 2}

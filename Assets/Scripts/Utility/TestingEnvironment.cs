@@ -55,6 +55,13 @@ public class TestingEnvironment : MonoBehaviour
         SkipSwing = false;
         SkipTradeOff = false;
         SceneCallback = "Chapter2.3";
+        
+        //Testing purpose!
+        /*
+        AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
+        AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
+        AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
+        */
     }
 
     public Dictionary<string, Objective> Objectives { get; set; }
@@ -67,4 +74,10 @@ public class TestingEnvironment : MonoBehaviour
     public string SceneCallback;
 
     public bool isInnerLoopFirstRun;
+    public int[] AlternativesUninformed { get; set; }
+    public int[] AlternativesMCDA { get; set; }
+    public int[] AlternativesInformed { get; set; }
+
+    public bool ConsistentFirst = true;
+    public string UserPreference = "";
 }
