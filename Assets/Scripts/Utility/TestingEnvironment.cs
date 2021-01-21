@@ -50,6 +50,11 @@ public class TestingEnvironment : MonoBehaviour
     {
         TradeOffClassification = new Dictionary<string, float>();
         SwingClassification = new Dictionary<string, float>();
+
+        isInnerLoopFirstRun = true;
+        SkipSwing = false;
+        SkipTradeOff = false;
+        SceneCallback = "Chapter2.3";
         
         //Testing purpose!
         /*
@@ -62,13 +67,16 @@ public class TestingEnvironment : MonoBehaviour
     public Dictionary<string, Objective> Objectives { get; set; }
     public Dictionary<string, float> TradeOffClassification { get; set; }
     public Dictionary<string, float> SwingClassification { get; set; }
+    public Dictionary<string, float> UsersSelectedClassification { get; set; }
+
+    public bool SkipSwing;
+    public bool SkipTradeOff;
+    public string SceneCallback;
+
+    public bool isInnerLoopFirstRun;
     public int[] AlternativesUninformed { get; set; }
     public int[] AlternativesMCDA { get; set; }
     public int[] AlternativesInformed { get; set; }
-
-    public bool SkipSwing = false;
-    public bool SkipTradeOff = false;
-    public string SceneCallback = "Chapter3";
 
     public bool ConsistentFirst = true;
     public string UserPreference = "";

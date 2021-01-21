@@ -216,6 +216,7 @@ public class Swing : MonoBehaviour
     private void CalculateFinalWeights()
     {
         var familyWeights = userInputValues[SwingFinalists];
+        controllers.GetComponent<TestingEnvironment>().SwingClassification.Clear();
         foreach (var family in userInputValues)
         {
             if (family.Key != SwingFinalists)

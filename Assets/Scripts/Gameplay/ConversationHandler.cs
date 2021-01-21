@@ -11,8 +11,10 @@ public class ConversationHandler : MonoBehaviour
 {
     [SerializeField] private GameObject talkingCharacterPointer;
     [SerializeField] private string[] conversationTitles;
-    [SerializeField] private bool isVertical = false;
-
+    [SerializeField] private Transform LeftCursorPosition;
+    [SerializeField] private Transform CenterCursorPosition;
+    [SerializeField] private Transform RightCursorPosition;
+    
     private GameObject controllers;
     private BackendAPI m_api;
 
@@ -71,6 +73,7 @@ public class ConversationHandler : MonoBehaviour
 
     public void GenerateConversation(int conversationId)
     {
+        ToggleConversation(true);
         currentConversationSnippet = 0;
         currentConversationPage = 1;
         currentConversationTitle = conversationTitles[conversationId];
@@ -85,7 +88,6 @@ public class ConversationHandler : MonoBehaviour
 
         conversationBubble.StopAllCoroutines();
         conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
-        ToggleConversation(true);
     }
 
     public void GenerateConversation(string title)
@@ -152,7 +154,20 @@ public class ConversationHandler : MonoBehaviour
 
     private void ToggleConversation(bool showConversation)
     {
-        conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade(showConversation ? 1f : 0f, 0.2f);
+        if (showConversation)
+        {
+            var parent = conversationBubble.transform.parent;
+            parent.gameObject.SetActive(true);
+            parent.GetComponent<CanvasGroup>().DOFade(1f, 0.2f);
+        }
+        else
+        {
+            conversationBubble.transform.parent.GetComponent<CanvasGroup>().DOFade( 0f, 0.2f).OnComplete(
+                () =>
+                {
+                    conversationBubble.transform.parent.gameObject.SetActive(false);
+                });
+        }
     }
 
     private string ConditionalObjectiveValueReplacement(string[] parameters,
@@ -184,23 +199,25 @@ public class ConversationHandler : MonoBehaviour
             ? GameObject.Find(FirstLetterToUpper(replacement))
             : GameObject.Find(FirstLetterToUpper(tgtName));
 
-        MoveCloserToTarget(talkingCharacterPointer, tgtGameObject, -420);
+        MoveCloserToTarget(talkingCharacterPointer, tgtGameObject);
         LookAt2D(talkingCharacterPointer, tgtGameObject, 180);
     }
 
-    private void MoveCloserToTarget(GameObject source2D, GameObject worldTarget, float positionOffset)
+    private void MoveCloserToTarget(GameObject cursor, GameObject worldTarget)
     {
-        var rt = source2D.GetComponent<RectTransform>();
+        cursor.SetActive(true);
+        var rt = cursor.GetComponent<RectTransform>();
         var tgt = Camera.main.WorldToScreenPoint(worldTarget.transform.position);
-        //var parentWidth = source2D.transform.parent.GetComponent<RectTransform>().sizeDelta.x;
-        // var clampedX = 0f;
-        // if (tgt.x > parentWidth / 2)
-        //     clampedX = parentWidth / 2;
-        // else if (tgt.x < -parentWidth / 2)
-        //     clampedX = -parentWidth / 2;
-        // else
-        //     clampedX = tgt.x;
-        rt.localPosition = new Vector3(tgt.x + positionOffset, rt.localPosition.y, rt.localPosition.z);
+        var screenThird = Screen.width * 1/3;
+        
+        if (tgt.x <= screenThird)
+            rt.position = LeftCursorPosition.position;
+        else if (tgt.x <= screenThird * 2)
+            rt.position = CenterCursorPosition.position;
+        else if(tgt.x <= screenThird * 3)
+            rt.position = RightCursorPosition.position;
+        else
+            rt.gameObject.SetActive(false);
     }
 
     private void LookAt2D(GameObject source2D, GameObject worldTarget, float angleOffset)

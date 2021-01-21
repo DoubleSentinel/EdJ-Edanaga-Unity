@@ -76,7 +76,7 @@ public class TradeOff : MonoBehaviour
     private void Awake()
     {
         controllers = GameObject.Find("Controllers");
-
+        
         currentTradeOffPair = -1;
         m_familyTradeoffs = new List<(GameObject, GameObject)>();
 
@@ -344,6 +344,7 @@ public class TradeOff : MonoBehaviour
     private void CalculateClassification()
     {
         var classification = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
+        classification.Clear();
         // FamilyA
         classification.Add(
             objectiveWeightsFamilyA[0].Item1,
