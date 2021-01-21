@@ -1,9 +1,7 @@
-﻿using DG.Tweening;
-using Doozy.Engine;
+﻿using Doozy.Engine;
 using Doozy.Engine.UI;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,21 +9,21 @@ using UnityEngine.UI;
 public class ControllerChapter2_1 : MonoBehaviour
 {
     [Header("2D Scene References")]
-    public Camera cam;
-    Animator animator;
-    int state;
-    bool batHover = false;
+    [SerializeField] private Camera cam;
+    [SerializeField] private Animator animator;
+    private int state;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
-    [SerializeField] private GameObject[] sceneBats;
+    [SerializeField] private GameObject[] sceneBuildings;
     [SerializeField] private GameObject[] sceneButtons;
     [SerializeField] private GameObject sceneObjective;
     [SerializeField] private Button btnContinue;
 
     private int notifications;
-    private int objectiveNumber = 0;
-    [Header("Conversation References")] public GameObject[] ConversationBubbles;
+    private int userSelectedObjectiveNumber = 0;
+    [Header("Conversation References")]
+    [SerializeField] private GameObject[] ConversationBubbles;
 
     // Local variables
     private GameObject controllers;
@@ -41,13 +39,14 @@ public class ControllerChapter2_1 : MonoBehaviour
             btnContinue = GameObject.Find("btnContinue").GetComponent<Button>();
         }
         controllers = GameObject.Find("Controllers");
-        conversationCallback = () => {
+        conversationCallback = () => 
+        {
             //Change state of animator
             animator.SetBool("isVisited", true);
             GameEventMessage.SendEvent("ContinueToTown");
             StartCoroutine(UpdateObjectiveButton());
-            //Block the others buttons action
-            ControlButtons(true);
+            //Allow the buildings selection after the end of the conversation
+            AllowBuildingsSelection(true);
         };
     }
 
@@ -56,27 +55,17 @@ public class ControllerChapter2_1 : MonoBehaviour
         controllers.GetComponent<LanguageHandler>().translateUI();
     }
 
-    private void Call(int conversationIndex)
-    {
-        string title = "";
-        title = $"2.1.2_Dialogue_objective{conversationIndex}";
-        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
-        ch.callback = conversationCallback;
-        ch.GenerateConversation(conversationIndex);
-        ch.NextConversationSnippet();
-    }
-
     //Button continue appears when all the objectives have been read
     IEnumerator UpdateObjectiveButton()
     {
-         notifications = 0;
+        notifications = 0;
 
         yield return new WaitForSeconds(2); //Wait 2s
 
-        for (int i = 0; i < sceneBats.Length; i++)
+        for (int i = 0; i < sceneBuildings.Length; i++)
         {
             //Check state of animator
-            if (sceneBats[i].gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BatVisited"))
+            if (sceneBuildings[i].gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BatVisited"))
             {
                 notifications += 1;
                 if (notifications == 10)
@@ -86,21 +75,9 @@ public class ControllerChapter2_1 : MonoBehaviour
                 }
             }
         }
-
-        //Allow the others buttons action
-
     }
 
-    public void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-    }
-
-    public void SetupCallConversation()
+    private void SetupCallConversation()
     {
         ClearCharacters();
 
@@ -116,49 +93,86 @@ public class ControllerChapter2_1 : MonoBehaviour
         sceneObjective.SetActive(true);
     }
 
-    public void StartCall(GameObject objective)
+    private void ClearCharacters()
     {
-        GameEventMessage.SendEvent("GoToPhoneCall");
-        string objectiveName = objective.name;
-        objectiveNumber = Convert.ToInt32($"{objective.name.Last()}");
-        sceneObjective = sceneObjectives[objectiveNumber];
-        SetupCallConversation();
-        Call(objectiveNumber);
-    }
-
-    //Started when the scene is shown
-    public void SetupButtons()
-    {
-        //Set buttons position to the batiments postion
-        for (int i = 0; i < sceneBats.Length; i++)
+        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
         {
-            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBats[i].transform.position);
+            character.transform.position = new Vector3(11, 0, 1);
+            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
     }
 
-    public void ControlButtons(bool actionEnable)
+    private void Call(int conversationIndex)
     {
-        //Set buttons position to the batiments postion
-        for (int i = 0; i < sceneBats.Length; i++)
+        string title = "";
+        title = $"2.1.2_Dialogue_objective{conversationIndex}";
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
+        ch.callback = conversationCallback;
+        ch.GenerateConversation(conversationIndex);
+        ch.NextConversationSnippet();
+    }
+
+    //Set buttons position to the buildings position
+    private void SetupButtons()
+    {
+        //Set buttons position to the buildings postion
+        for (int i = 0; i < sceneBuildings.Length; i++)
+        {
+            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBuildings[i].transform.position);
+        }
+    }
+
+    //Block the other buildings selection when one during the conversation
+    private void AllowBuildingsSelection(bool actionEnable)
+    {
+        for (int i = 0; i < sceneBuildings.Length; i++)
         {
             if (actionEnable)
             {
+                //Allow the selection of all the buildings
                 if (sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable == false)
                     sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = true;
             }
             else
             {
-                if (i != objectiveNumber)
+                //Don't allow buildings selection when one building is already selected 
+                if (i != userSelectedObjectiveNumber)
                     sceneButtons[i].gameObject.GetComponent<UIButton>().Interactable = false;
             }
         }
     }
 
+    //Get objective number from building
+    private int GetObjectiveNumer(GameObject building)
+    {
+        for (int i = 0; i < sceneBuildings.Length; i++)
+        {
+            if (building == sceneBuildings[i])
+            {
+                return userSelectedObjectiveNumber = i;
+            }
+        }
+        return userSelectedObjectiveNumber;
+    }
+
+    // --------------------  UI Callables  --------------------------------
+
+    public void StartCall(GameObject building)
+    {
+        GameEventMessage.SendEvent("GoToPhoneCall");
+        userSelectedObjectiveNumber = GetObjectiveNumer(building);
+        sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
+        SetupCallConversation();
+        Call(userSelectedObjectiveNumber);
+    }
+
+    // set state of the animation
     public void SetAnimatorState(int stateButton)
     {
         state = stateButton;
     }
 
+    //Set the correct animation of the gameobject
     public void SetAnimatorParameter(GameObject obj)
     {
         animator = obj.gameObject.GetComponent<Animator>();
@@ -171,33 +185,33 @@ public class ControllerChapter2_1 : MonoBehaviour
             animator.SetBool("isActivated", false);
         }
 
-        //State: BatIdle -> BatHover
+        //State: BuildingIdle -> BuildingHover
         if (state == 1)
         {
             animator.SetBool("isHover", true);
         }
 
-        //State: BatHover -> BatIdle
+        //State: BuildingHover -> BuildingIdle
         if (state == 2)
         {
             animator.SetBool("isHover", false);
         }
 
-        //State:  BatHover -> BatVisted : Not used yet
+        //State:  BuildingHover -> BuildingVisted : Not used yet
         if (state == 3)
         {
             //Add action if necessary 
         }
 
-        //State:  BatHover -> BatAcivited
+        //State:  BuildingHover -> BuildingAcivited
         if (state == 4)
         {
-            //Block the others buttons action
-            ControlButtons(false);
+            //Don't allow the others buildings selection when one building is already selected
+            AllowBuildingsSelection(false);
             animator.Play("BatActivated");
         }
 
-        //State: BatAcivited -> BatVisted
+        //State: BuildingAcivited -> BuildingVisted
         if (state == 5)
         {
             animator.Play("BatVisited");
