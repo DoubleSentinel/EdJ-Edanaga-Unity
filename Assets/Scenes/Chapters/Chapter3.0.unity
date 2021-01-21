@@ -72699,7 +72699,7 @@ MonoBehaviour:
   buttonToConv2: {fileID: 506244659}
   BackgroundColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
   FillColor: {r: 0.37, g: 0.58, b: 0.82, a: 0.7}
-  resultListItemPrefab: {fileID: 5313111449302125352, guid: fcf3571b962a6e4459a7081762be9ac9,
+  resultListItemPrefab: {fileID: 6487837004238365438, guid: bd5d51369c0217f4fb4b416d6bd9e922,
     type: 3}
   resultList1: {fileID: 1203762497}
   resultList2: {fileID: 663055934}
@@ -72725,7 +72725,6 @@ MonoBehaviour:
   title: Title
   messageObject: {fileID: 216478154}
   message: Popup message for player
-  conversationIndex: 0
 --- !u!1 &2060709267
 GameObject:
   m_ObjectHideFlags: 0
