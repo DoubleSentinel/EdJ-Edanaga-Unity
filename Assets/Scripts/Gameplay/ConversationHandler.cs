@@ -99,7 +99,10 @@ public class ConversationHandler : MonoBehaviour
     public void NextConversationSnippet()
     {
         if (conversationBubble.isWriting)
+        {
+            StopAllCoroutines();
             conversationBubble.ShowCurrentPage();
+        }
         else
         {
             // while there still are conversation snippets

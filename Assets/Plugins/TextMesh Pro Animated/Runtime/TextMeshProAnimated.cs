@@ -209,11 +209,11 @@ namespace TMPro
 
         public void ShowCurrentPage()
         {
-            int pageInfoIndex = pageToDisplay - 1 < 0 ? 0 : pageToDisplay -1;
-            maxVisibleCharacters = Math.Abs(textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
-                textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1);
+            //int pageInfoIndex = pageToDisplay - 1 < 0 ? 0 : pageToDisplay -1;
+            //maxVisibleCharacters = Math.Abs(textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
+            //    textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1);
+            maxVisibleCharacters = 10000;
             isWriting = false;
-            StopAllCoroutines();
             ForceMeshUpdate();
         }
     }
