@@ -42,7 +42,8 @@ MonoBehaviour:
   m_Name: SoundDatabase_Music
   m_EditorClassIdentifier: 
   DatabaseName: Music
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3998848650885851087, guid: 384701fa03c68cd40bb0ca302f4c5b69,
+    type: 2}
   SoundNames:
   - No Sound
   - No Sound
