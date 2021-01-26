@@ -201,9 +201,18 @@ namespace TMPro
 
         public IEnumerator ResetState()
         {
-
             yield return new WaitForEndOfFrame();
             maxVisibleCharacters = 0;
+            StopAllCoroutines();
+            ForceMeshUpdate();
+        }
+
+        public void ShowCurrentPage()
+        {
+            int pageInfoIndex = pageToDisplay - 1 < 0 ? 0 : pageToDisplay -1;
+            maxVisibleCharacters = Math.Abs(textInfo.pageInfo[pageInfoIndex].lastCharacterIndex -
+                textInfo.pageInfo[pageInfoIndex].firstCharacterIndex + 1);
+            isWriting = false;
             StopAllCoroutines();
             ForceMeshUpdate();
         }
