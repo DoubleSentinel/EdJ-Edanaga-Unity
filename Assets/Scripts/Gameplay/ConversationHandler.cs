@@ -98,28 +98,36 @@ public class ConversationHandler : MonoBehaviour
     // Method used on button click and to start the conversation
     public void NextConversationSnippet()
     {
-        // while there still are conversation snippets
-        if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
+        if (conversationBubble.isWriting)
         {
-            MoveAndRotateCharacterPointer();
-            // as long as we're not at the end of all the pages, the button will show the next page
-            if (currentConversationPage <= conversationBubble.textInfo.pageCount)
+            StopAllCoroutines();
+            conversationBubble.ShowCurrentPage();
+        }
+        else
+        {
+            // while there still are conversation snippets
+            if (currentConversationSnippet < conversations[currentConversationTitle]["conversation_content"].Count)
             {
-                StartCoroutine(conversationBubble.ReadPage(currentConversationPage));
-                currentConversationPage++;
-            }
-            // when out of pages for the current snippet, reset page number and move to the next snippet
-            else
-            {
-                currentConversationPage = 1;
-                currentConversationSnippet++;
-
-                if(currentConversationSnippet>=conversationToRead.Length)
-                    EndConversation();
+                MoveAndRotateCharacterPointer();
+                // as long as we're not at the end of all the pages, the button will show the next page
+                if (currentConversationPage <= conversationBubble.textInfo.pageCount)
+                {
+                    StartCoroutine(conversationBubble.ReadPage(currentConversationPage));
+                    currentConversationPage++;
+                }
+                // when out of pages for the current snippet, reset page number and move to the next snippet
                 else
                 {
-                    conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
-                    NextConversationSnippet();
+                    currentConversationPage = 1;
+                    currentConversationSnippet++;
+
+                    if(currentConversationSnippet>=conversationToRead.Length)
+                        EndConversation();
+                    else
+                    {
+                        conversationBubble.ParseText(conversationToRead[currentConversationSnippet]);
+                        NextConversationSnippet();
+                    }
                 }
             }
         }
@@ -148,7 +156,8 @@ public class ConversationHandler : MonoBehaviour
             var conditional = ConditionalObjectiveValueReplacement(parameters, replacementObjective);
             if (conditional != null)
                 return conditional;
-            return $"{replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower()):0.0}";
+            var value = Convert.ToDecimal(replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower()).ToString());
+            return $"{Math.Round(value)}";
         });
     }
 
