@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9850,7 +9850,7 @@ MonoBehaviour:
   Id: 2
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -9859,10 +9859,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
@@ -21404,7 +21404,7 @@ MonoBehaviour:
   Id: 0
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -21413,10 +21413,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
@@ -33946,7 +33946,7 @@ MonoBehaviour:
   Id: 5
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -33955,10 +33955,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
@@ -43592,7 +43592,7 @@ MonoBehaviour:
   Id: 1
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -43601,10 +43601,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
@@ -47653,7 +47653,7 @@ MonoBehaviour:
   Id: 4
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -47662,10 +47662,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
@@ -48443,6 +48443,11 @@ PrefabInstance:
       propertyPath: AllPanels.Array.data[5]
       value: 
       objectReference: {fileID: 272708811}
+    - target: {fileID: 5191443666830701246, guid: 68605e69b00148942843e15174faca77,
+        type: 3}
+      propertyPath: DraggingModes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5300878704867065544, guid: 68605e69b00148942843e15174faca77,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -59499,7 +59504,7 @@ MonoBehaviour:
   Id: 3
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
@@ -59508,10 +59513,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
   SwitchObjects: 1
-  MoveSmoothly: 0
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
