@@ -156,7 +156,8 @@ public class ConversationHandler : MonoBehaviour
             var conditional = ConditionalObjectiveValueReplacement(parameters, replacementObjective);
             if (conditional != null)
                 return conditional;
-            return $"{replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower()):0.0}";
+            var value = Convert.ToDecimal(replacementObjective[parameters[0].ToLower()].GetValue(parameters[1].ToLower()).ToString());
+            return $"{Math.Round(value)}";
         });
     }
 
