@@ -68,6 +68,7 @@ public class ControllerChapter2_1 : MonoBehaviour
             if (sceneBuildings[i].gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BatVisited"))
             {
                 notifications += 1;
+                
                 if (notifications == 10)
                 {
                     btnContinue.gameObject.SetActive(true);

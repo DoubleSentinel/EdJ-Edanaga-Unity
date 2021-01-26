@@ -2773,7 +2773,7 @@ MonoBehaviour:
   Id: alt0
   UserControl: 1
   AIControl: 1
-  ReturnSmoothly: 0
+  ReturnSmoothly: 1
   ReturnSpeed: 1
   ScaleOnDrag: 0
   DragScale: {x: 1, y: 1, z: 1}
