@@ -2782,10 +2782,10 @@ MonoBehaviour:
   DropScale: {x: 1, y: 1, z: 1}
   LockObject: 0
   ReturnObject: 0
-  ReplaceSmoothly: 0
+  ReplaceSmoothly: 1
   ReplacementSpeed: 1
-  SwitchObjects: 0
-  MoveSmoothly: 0
+  SwitchObjects: 1
+  MoveSmoothly: 1
   MovementSpeed: 1
   FilterPanels: 0
   AllowedPanels: []
