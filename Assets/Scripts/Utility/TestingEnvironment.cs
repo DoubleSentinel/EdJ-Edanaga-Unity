@@ -19,7 +19,8 @@ public class Objective
 
     public override string ToString()
     {
-        return $"name: {this.name}, description: {this.description}, unit: {this.unit}, worst: {this.worst}, best: {this.best}, global: {this.global_weight}";
+        return
+            $"name: {this.name}, description: {this.description}, unit: {this.unit}, worst: {this.worst}, best: {this.best}, global: {this.global_weight}";
     }
 
     public object GetValue(string parameterName)
@@ -54,30 +55,38 @@ public class TestingEnvironment : MonoBehaviour
         isInnerLoopFirstRun = true;
         SkipSwing = false;
         SkipTradeOff = false;
+        ConsistentFirst = true;
         SceneCallback = "Chapter2.3";
+        UserPreference = "";
+        AlternativesUninformed = new int[6];
+        AlternativesMCDA = new int[6];
+        AlternativesInformed = new int[6];
         
         //Testing purpose!
-        /*
+        
         AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
         AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
         AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
-        */
     }
 
+    // Objective Definitions
     public Dictionary<string, Objective> Objectives { get; set; }
+    // TradeOff and Swing results
     public Dictionary<string, float> TradeOffClassification { get; set; }
     public Dictionary<string, float> SwingClassification { get; set; }
     public Dictionary<string, float> UsersSelectedClassification { get; set; }
 
-    public bool SkipSwing;
-    public bool SkipTradeOff;
-    public string SceneCallback;
-
-    public bool isInnerLoopFirstRun;
+    // Alternative lists by category
     public int[] AlternativesUninformed { get; set; }
     public int[] AlternativesMCDA { get; set; }
     public int[] AlternativesInformed { get; set; }
-
-    public bool ConsistentFirst = true;
-    public string UserPreference = "";
+    
+    // Testing flags
+    [HideInInspector]public bool SkipSwing;
+    [HideInInspector]public bool SkipTradeOff;
+    [HideInInspector]public bool isInnerLoopFirstRun;
+    [HideInInspector]public bool ConsistentFirst;
+    
+    [HideInInspector]public string UserPreference = "";
+    [HideInInspector]public string SceneCallback;
 }
