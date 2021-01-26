@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &22718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22720}
+  - component: {fileID: 22719}
+  m_Layer: 0
+  m_Name: Soundy Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd032348cab27545ba8b7eca1c0c9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &22720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28650619
 GameObject:
   m_ObjectHideFlags: 0
@@ -9188,6 +9231,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -14386,6 +14434,11 @@ PrefabInstance:
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,
@@ -36489,6 +36542,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -42854,6 +42912,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -43177,6 +43240,11 @@ PrefabInstance:
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,
@@ -47836,6 +47904,26 @@ MonoBehaviour:
   title: Title
   messageObject: {fileID: 216478154}
   message: Popup message for player
+--- !u!114 &2056255396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056255394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d05a10390c54d46bb8dd61fc2a1cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MySoundDatabaseName: 
+  MySoundName: 
+  MyController: {fileID: 0}
+  Clip: {fileID: 0}
+  Volume: 0
+  Pitch: 0
+  Loop: 0
+  SpatialBlend: 0
 --- !u!1 &2056326701
 GameObject:
   m_ObjectHideFlags: 0
@@ -53447,6 +53535,11 @@ PrefabInstance:
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3614625502049931802, guid: 1d7286cc7156a0747b1127b86f0dd986,

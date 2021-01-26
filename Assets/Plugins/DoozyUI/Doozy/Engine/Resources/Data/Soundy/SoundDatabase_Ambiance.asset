@@ -69,7 +69,8 @@ MonoBehaviour:
   m_Name: SoundDatabase_Ambiance
   m_EditorClassIdentifier: 
   DatabaseName: Ambiance
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3236965409327855242, guid: 384701fa03c68cd40bb0ca302f4c5b69,
+    type: 2}
   SoundNames:
   - No Sound
   - AMB_City
