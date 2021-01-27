@@ -6,31 +6,60 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioMixer _MasterMixer;
+    public AudioMixer masterMixer;
+    public Slider masterSlider;
+    public Slider uiSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    public Toggle toggle;
+    private float masterVolume = 0;
+
+    //Mute/Unmute toogle
+    public void ToggleMute(Toggle mute)
+    {
+        if (mute.isOn)
+        {
+            masterMixer.SetFloat("VolumeMaster", -80.0f);
+            masterSlider.interactable = false;
+            uiSlider.interactable = false;
+            musicSlider.interactable = false;
+            sfxSlider.interactable = false;
+        }
+        else
+        {
+            masterSlider.interactable = true;
+            uiSlider.interactable = true;
+            musicSlider.interactable = true;
+            sfxSlider.interactable = true;
+            masterMixer.SetFloat("VolumeMaster", masterVolume);
+        }
+    }
 
     //Set Master Mixer volume from the slider value
-    public void SetMasterVolume(Slider volume)
+    public void SetMasterVolume()
     {
-        _MasterMixer.SetFloat("VolumeMaster", volume.value);
+        masterVolume = masterSlider.value;
+        masterMixer.SetFloat("VolumeMaster", masterSlider.value);
     }
 
     //Set UI Mixer volume from the slider value
 
-    public void SetUIVolume(Slider volume)
+    public void SetUIVolume()
     {
-        _MasterMixer.SetFloat("VolumeUI", volume.value);
+        masterMixer.SetFloat("VolumeUI", uiSlider.value);
     }
 
     //Set Music Mixer volume from the slider value
 
-    public void SetMusicVolume(Slider volume)
+    public void SetMusicVolume()
     {
-        _MasterMixer.SetFloat("VolumeMusic", volume.value);
+        masterMixer.SetFloat("VolumeMusic", musicSlider.value);
     }
 
     //Set SFX Mixer volume from the slider value
-    public void SetSFXVolume(Slider volume)
+    public void SetSFXVolume()
     {
-        _MasterMixer.SetFloat("VolumeSFX", volume.value);
+        masterMixer.SetFloat("VolumeSFX", sfxSlider.value);
     }
 }
