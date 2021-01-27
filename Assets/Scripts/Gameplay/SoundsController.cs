@@ -1,80 +1,90 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Doozy.Engine.Soundy;
 using UnityEngine.UI;
 
 public class SoundsController : MonoBehaviour
 {
-    public Slider slider;
+    public Slider masterSlider;
+    public Slider uiSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
     //The sound category
-    public string MySoundDatabaseName;
-    //Sound Name
-    public string MySoundName;
-
-    public SoundyController MyController;
-    //The AudioClip to play
-    public AudioClip Clip;
-    //The volume of the audio source (0.0 to 1.0)
-    public float Volume;
-    //The pitch of the audio source
-    public float Pitch;
-    //Is the audio clip looping?
-    public bool Loop;
-    //Sets how much this AudioSource is affected by 3D spatialisation calculations (attenuation, doppler etc). 0.0 makes the sound full 2D, 1.0 makes it full 3D
-    public float SpatialBlend = 0.0f; //Default
+    private string mySoundDatabaseName;
+    
+    private Slider slider;
+    private float duration = 1.0f; //fade sound speed
+    private float targetVolume = 0.0f;
+    public bool isFinished = false; //fade sound state
 
     private void Start()
     {
         SoundyManager.Init();
     }
 
-    //Play specific UI sound
-    public void PlaySoundUI(string MySoundName)
+    //Set FadeSound targetVolume value
+    private void FadeSoundParam(bool UpToDown)
     {
-        SoundyManager.StopAllSounds();
+        targetVolume = UpToDown ? targetVolume = masterSlider.minValue : targetVolume = 0;
+    }
+    
+    //Fade sound using master slider volume values
+    private IEnumerator StartFade(Slider slider, float duration, float targetVolume)
+    {
+        isFinished = false;
+        float currentTime = 0;
+        float start = slider.value;
 
-        MySoundDatabaseName = "UI"; 
-	    SoundyManager.Play(MySoundDatabaseName, MySoundName);
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            slider.value = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        isFinished = true;
+        yield break;
+    }
+
+    //Wait the end of the StartFade coroutine
+    IEnumerator NextFade(string mySoundDatabaseName, string mySoundName)
+    {
+        while (!isFinished)
+            yield return new WaitForSeconds(0.1f);
+
+        SoundyManager.KillAllControllers(); //Destroy the other controllers
+        FadeSoundParam(false);
+        StartCoroutine(StartFade(masterSlider, duration, targetVolume));
+        SoundyManager.Play(mySoundDatabaseName, mySoundName);
+        yield break;
+    }
+
+    //Play specific UI sound
+    public void PlaySoundUI(string mySoundName)
+    {
+        mySoundDatabaseName = "UI";
+        FadeSoundParam(true);
+        StartCoroutine(StartFade(masterSlider, duration, targetVolume));
+        StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
+        //print("PlayUI : " + mySoundName);
     }
 
     //Play specific Ambiance sound
-    public void PlaySoundAmbiance(string MySoundName)
+    public void PlaySoundAmbiance(string mySoundName)
     {
-        MySoundDatabaseName = "Ambiance";
-        SoundyManager.Play(MySoundDatabaseName, MySoundName);
-        print("PlayAmbiance : " + MySoundName);
+        mySoundDatabaseName = "Ambiance";
+        FadeSoundParam(true);
+        StartCoroutine(StartFade(masterSlider, duration, targetVolume));
+        StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
+        //print("PlayAmbiance : " + mySoundName);
     }
 
-    public void PlaySoundMusic(string MySoundName)
+    public void PlaySoundMusic(string mySoundName)
     {
-        MySoundDatabaseName = "Music";
-        SoundyManager.Play(MySoundDatabaseName, MySoundName);
-        print("PlayMusic : " + MySoundName);
-    }
-
-    //Stop all sounds
-    public void StopSounds()
-    {
-        SoundyManager.StopAllSounds();
-    }
-
-    //Mute all sounds
-    public void MuteSounds()
-    {
-        SoundyManager.MuteAllSounds();
-    }
-
-    //Set the given settings to the target AudioSource
-    public void SetAudio()
-    { 
-	    //Sets how much this AudioSource is affected by 3D spatialisation calculations (attenuation, doppler etc). 0.0 makes the sound full 2D, 1.0 makes it full 3D        public float SpatialBlend;
-        MyController.SetSourceProperties(Clip, Volume, Pitch, Loop, SpatialBlend);
-    }
-
-    public void sliderChanged(float newValue)
-    {
-        slider.value = newValue;
+        mySoundDatabaseName = "Music";
+        FadeSoundParam(true);
+        StartCoroutine(StartFade(masterSlider, duration, targetVolume));
+        StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
+        //print("PlayMusic : " + mySoundName);
     }
 }

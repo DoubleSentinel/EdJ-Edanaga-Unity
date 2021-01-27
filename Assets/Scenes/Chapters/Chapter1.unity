@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -50924,15 +50924,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d05a10390c54d46bb8dd61fc2a1cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  masterSlider: {fileID: 1703302301}
+  uiSlider: {fileID: 1575970800}
+  musicSlider: {fileID: 1862167117}
+  sfxSlider: {fileID: 69399893}
   MySoundDatabaseName: 
   MySoundName: 
-  MyController: {fileID: 0}
-  Clip: {fileID: 0}
-  Volume: 0
-  Pitch: 0
-  Loop: 0
-  SpatialBlend: 0
 --- !u!114 &2056255397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50951,7 +50948,6 @@ MonoBehaviour:
   musicSlider: {fileID: 1862167117}
   sfxSlider: {fileID: 69399893}
   toggle: {fileID: 1379075816}
-  masterVolume: 0
 --- !u!1 &2056326701
 GameObject:
   m_ObjectHideFlags: 0
