@@ -2,6 +2,7 @@
 using UnityEngine;
 using Doozy.Engine.Soundy;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SoundsController : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class SoundsController : MonoBehaviour
         float currentTime = 0;
         float start = slider.value;
 
+        //DOTween.To() Lerp() --> OnComplete()
+        
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
@@ -57,6 +60,7 @@ public class SoundsController : MonoBehaviour
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         SoundyManager.Play(mySoundDatabaseName, mySoundName);
         yield break;
+
     }
 
     //Play specific UI sound
