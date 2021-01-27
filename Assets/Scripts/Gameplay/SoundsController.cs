@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Doozy.Engine.Soundy;
+using UnityEngine.UI;
 
 public class SoundsController : MonoBehaviour
 {
+    public Slider slider;
+
     //The sound category
     public string MySoundDatabaseName;
     //Sound Name
@@ -30,6 +33,8 @@ public class SoundsController : MonoBehaviour
     //Play specific UI sound
     public void PlaySoundUI(string MySoundName)
     {
+        SoundyManager.StopAllSounds();
+
         MySoundDatabaseName = "UI"; 
 	    SoundyManager.Play(MySoundDatabaseName, MySoundName);
     }
@@ -66,5 +71,10 @@ public class SoundsController : MonoBehaviour
     { 
 	    //Sets how much this AudioSource is affected by 3D spatialisation calculations (attenuation, doppler etc). 0.0 makes the sound full 2D, 1.0 makes it full 3D        public float SpatialBlend;
         MyController.SetSourceProperties(Clip, Volume, Pitch, Loop, SpatialBlend);
+    }
+
+    public void sliderChanged(float newValue)
+    {
+        slider.value = newValue;
     }
 }
