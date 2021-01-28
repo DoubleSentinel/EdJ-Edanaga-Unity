@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -18770,6 +18770,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390f3eaafafa07d4581143a0b143ec32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1458454401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458454399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d05a10390c54d46bb8dd61fc2a1cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterSlider: {fileID: 1089968015}
+  uiSlider: {fileID: 1165596521}
+  musicSlider: {fileID: 1799725970}
+  sfxSlider: {fileID: 926101342}
+  isFinished: 0
+--- !u!114 &1458454402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458454399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c4bda70f40c2247bf303a285dcd156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 384701fa03c68cd40bb0ca302f4c5b69, type: 2}
+  masterSlider: {fileID: 1089968015}
+  uiSlider: {fileID: 1165596521}
+  musicSlider: {fileID: 1799725970}
+  sfxSlider: {fileID: 926101342}
+  toggle: {fileID: 2071158807}
 --- !u!1 &1481827990
 GameObject:
   m_ObjectHideFlags: 0
@@ -19923,8 +19958,6 @@ GameObject:
   - component: {fileID: 1653026161}
   - component: {fileID: 1653026160}
   - component: {fileID: 1653026159}
-  - component: {fileID: 1653026165}
-  - component: {fileID: 1653026164}
   m_Layer: 0
   m_Name: OptionsCanvas
   m_TagString: Untagged
@@ -20010,7 +20043,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1653026163
 RectTransform:
@@ -20033,41 +20066,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1653026164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653026158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d05a10390c54d46bb8dd61fc2a1cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterSlider: {fileID: 1089968015}
-  uiSlider: {fileID: 1165596521}
-  musicSlider: {fileID: 1799725970}
-  sfxSlider: {fileID: 926101342}
-  isFinished: 0
---- !u!114 &1653026165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653026158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90c4bda70f40c2247bf303a285dcd156, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: 384701fa03c68cd40bb0ca302f4c5b69, type: 2}
-  masterSlider: {fileID: 1089968015}
-  uiSlider: {fileID: 1165596521}
-  musicSlider: {fileID: 1799725970}
-  sfxSlider: {fileID: 926101342}
-  toggle: {fileID: 2071158807}
 --- !u!1 &1656610393
 GameObject:
   m_ObjectHideFlags: 0
