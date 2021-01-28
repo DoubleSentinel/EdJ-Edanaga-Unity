@@ -69,6 +69,7 @@ public class ControllerChapter2_3 : MonoBehaviour
         }
         return false;
 
+        // TODO: verify this again
         bool AreListsEqual(List<KeyValuePair<string, float>> list1, List<KeyValuePair<string, float>> list2)
         {
             return !(from list1Data in list1 from list2Data in list2 where list1Data.Key != list2Data.Key select list1Data).Any();
