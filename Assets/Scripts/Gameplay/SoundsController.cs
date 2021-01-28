@@ -2,10 +2,11 @@
 using UnityEngine;
 using Doozy.Engine.Soundy;
 using UnityEngine.UI;
-using DG.Tweening;
 
+//Used to set the sounds to play and make transition between sounds
 public class SoundsController : MonoBehaviour
 {
+    //Sliders on the SoundsView
     public Slider masterSlider;
     public Slider uiSlider;
     public Slider musicSlider;
@@ -37,8 +38,6 @@ public class SoundsController : MonoBehaviour
         float currentTime = 0;
         float start = slider.value;
 
-        //DOTween.To() Lerp() --> OnComplete()
-        
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
@@ -49,19 +48,17 @@ public class SoundsController : MonoBehaviour
         yield break;
     }
 
-    //Wait the end of the StartFade coroutine
+    //Wait the end of the StartFade coroutine and start next sound
     IEnumerator NextFade(string mySoundDatabaseName, string mySoundName)
     {
         while (!isFinished)
             yield return new WaitForSeconds(0.1f);
 
-        //SoundyManager.KillAllControllers(); //Destroy the other controllers
         SoundyManager.StopAllSounds();
         FadeSoundParam(false);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         SoundyManager.Play(mySoundDatabaseName, mySoundName);
         yield break;
-
     }
 
     //Play specific UI sound
@@ -71,7 +68,6 @@ public class SoundsController : MonoBehaviour
         FadeSoundParam(true);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
-        //print("PlayUI : " + mySoundName);
     }
 
     //Play specific Ambiance sound
@@ -81,15 +77,14 @@ public class SoundsController : MonoBehaviour
         FadeSoundParam(true);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
-        print("PlayAmbiance : " + mySoundName);
     }
 
+    //Play specific Music sound
     public void PlaySoundMusic(string mySoundName)
     {
         mySoundDatabaseName = "Music";
         FadeSoundParam(true);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
-        print("PlayMusic : " + mySoundName);
     }
 }

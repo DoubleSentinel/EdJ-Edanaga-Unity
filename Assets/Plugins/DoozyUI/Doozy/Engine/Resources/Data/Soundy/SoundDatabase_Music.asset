@@ -75,12 +75,13 @@ MonoBehaviour:
     type: 2}
   SoundNames:
   - No Sound
+  - EDGA_MUS_Ch1_office
   - No Sound
   - Title
   Database:
   - {fileID: 5683484420739364406}
-  - {fileID: -7122523585309315577}
   - {fileID: -7995577917590619189}
+  - {fileID: -7122523585309315577}
 --- !u!114 &5683484420739364406
 MonoBehaviour:
   m_ObjectHideFlags: 0

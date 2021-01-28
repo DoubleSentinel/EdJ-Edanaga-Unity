@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+//This class is used to mute/unute the sounds 
+//and control the sound volumes using the sliders on the SoundsView
 public class AudioManager : MonoBehaviour
 {
+    //Sliders on the SoundsView
     public AudioMixer masterMixer;
     public Slider masterSlider;
     public Slider uiSlider;
@@ -15,7 +16,7 @@ public class AudioManager : MonoBehaviour
     public Toggle toggle;
     private float masterVolume = 0;
 
-    //Mute/Unmute toogle
+    //Mute and unmute toogle
     public void ToggleMute(Toggle mute)
     {
         if (mute.isOn)
@@ -44,14 +45,12 @@ public class AudioManager : MonoBehaviour
     }
 
     //Set UI Mixer volume from the slider value
-
     public void SetUIVolume()
     {
         masterMixer.SetFloat("VolumeUI", uiSlider.value);
     }
 
     //Set Music Mixer volume from the slider value
-
     public void SetMusicVolume()
     {
         masterMixer.SetFloat("VolumeMusic", musicSlider.value);
