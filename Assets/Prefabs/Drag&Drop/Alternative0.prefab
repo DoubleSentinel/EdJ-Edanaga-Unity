@@ -2775,8 +2775,8 @@ MonoBehaviour:
   AIControl: 1
   ReturnSmoothly: 1
   ReturnSpeed: 1
-  ScaleOnDrag: 0
-  DragScale: {x: 1, y: 1, z: 1}
+  ScaleOnDrag: 1
+  DragScale: {x: 0.9, y: 0.9, z: 0.9}
   StayDroppedPos: 0
   ScaleOnDropped: 0
   DropScale: {x: 1, y: 1, z: 1}
