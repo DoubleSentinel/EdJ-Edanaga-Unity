@@ -69,10 +69,12 @@ MonoBehaviour:
   m_Name: SoundDatabase_Ambiance
   m_EditorClassIdentifier: 
   DatabaseName: Ambiance
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3236965409327855242, guid: 384701fa03c68cd40bb0ca302f4c5b69,
+    type: 2}
   SoundNames:
   - No Sound
   - AMB_City
+  - EDGA_AMB_Ch1_office
   - Loops
   - No Sound
   - OneShots
@@ -80,6 +82,7 @@ MonoBehaviour:
   Database:
   - {fileID: -5855622759119082922}
   - {fileID: 3766026188266235706}
+  - {fileID: 1897881008491198149}
   - {fileID: 1759900531043160401}
   - {fileID: -1780503428647623037}
   - {fileID: 5954019191960072606}
@@ -111,6 +114,35 @@ MonoBehaviour:
   SequenceResetTime: 5
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 2d886c66ca304df4a86f97f1bfbdfae9, type: 3}
+    Weight: 1
+--- !u!114 &1897881008491198149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_AMB_Ch1_office
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_AMB_Ch1_office
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 2c7390c41f22f1b4ca21da5d80a8d3ed, type: 3}
     Weight: 1
 --- !u!114 &3766026188266235706
 MonoBehaviour:
