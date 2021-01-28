@@ -30,7 +30,7 @@ public class ControllerChapter1 : MonoBehaviour
     [SerializeField] private GameObject altDiscoveryMessage;
     private string[] prioIds;
     private string texts;
-    private GameObject[] PanelsAlt;
+    private GameObject[] panelsAlt;
 
     [Header("Drag&Drop result")] [SerializeField]
     private int[] dragNdropRes;
@@ -74,22 +74,22 @@ public class ControllerChapter1 : MonoBehaviour
 
         DragNdropRes = new int[6];
         prioIds = new string[6];
-        PanelsAlt = new GameObject[6];
+        panelsAlt = new GameObject[6];
 
         // Setting alternatives gameobjects and their panels for locking mechanism
         //Get Panels Id name
         for (int i = 0; i < alternatives.Length; i++)
         {
-            PanelsAlt[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
+            panelsAlt[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
 
             if (i == 0)
             {
-                NextAlternative(PanelsAlt[i]);
+                NextAlternative(panelsAlt[i]);
                 alternatives[i].GetComponent<UIButton>().Interactable = true;
             }
             else
             {
-                HideAlternative(PanelsAlt[i]);
+                HideAlternative(panelsAlt[i]);
                 alternatives[i].GetComponent<UIButton>().Interactable = false;
             }
             //Get Panels Id name
@@ -256,7 +256,7 @@ public class ControllerChapter1 : MonoBehaviour
     //Display the alternatives with correct shader 
     public void SetOrderAlternatives(int alternativeN)
     {
-        ShowAlternative(PanelsAlt[alternativeN]);
+        ShowAlternative(panelsAlt[alternativeN]);
 
         if (alternativeN == alternatives.Length - 1)
         {
@@ -266,8 +266,27 @@ public class ControllerChapter1 : MonoBehaviour
         }
         else
         {
-            NextAlternative(PanelsAlt[alternativeN + 1]);
+            NextAlternative(panelsAlt[alternativeN + 1]);
             alternatives[alternativeN + 1].GetComponent<UIButton>().Interactable = true;
         }
+    }
+
+    //Play specific UI sound
+    public void PlaySoundUI(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundUI(mySoundName);
+    }
+   
+
+    //Play specific Ambiance sound
+    public void PlaySoundAmbiance(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
+    }
+
+    //Play specific Music sound
+    public void PlaySoundMusic(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
     }
 }

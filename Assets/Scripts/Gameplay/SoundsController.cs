@@ -55,7 +55,8 @@ public class SoundsController : MonoBehaviour
         while (!isFinished)
             yield return new WaitForSeconds(0.1f);
 
-        SoundyManager.KillAllControllers(); //Destroy the other controllers
+        //SoundyManager.KillAllControllers(); //Destroy the other controllers
+        SoundyManager.StopAllSounds();
         FadeSoundParam(false);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         SoundyManager.Play(mySoundDatabaseName, mySoundName);
@@ -80,7 +81,7 @@ public class SoundsController : MonoBehaviour
         FadeSoundParam(true);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
-        //print("PlayAmbiance : " + mySoundName);
+        print("PlayAmbiance : " + mySoundName);
     }
 
     public void PlaySoundMusic(string mySoundName)
@@ -89,6 +90,6 @@ public class SoundsController : MonoBehaviour
         FadeSoundParam(true);
         StartCoroutine(StartFade(masterSlider, duration, targetVolume));
         StartCoroutine(NextFade(mySoundDatabaseName, mySoundName));
-        //print("PlayMusic : " + mySoundName);
+        print("PlayMusic : " + mySoundName);
     }
 }
