@@ -27,6 +27,64 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds: []
+--- !u!114 &-3970859604772531970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Ch01_Office_AMB
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_Ch01_Office_AMB
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: bde3837d0ecdb0f4bad71be952de1547, type: 3}
+    Weight: 1
+--- !u!114 &-2038003220131810972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Ch01_USINE_AMB_01
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_Ch01_USINE_AMB_01
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: dc4105730b19a06439f70262430c88c1, type: 3}
+    Weight: 1
 --- !u!114 &-1780503428647623037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +114,35 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 4c4d3186ba22ab24db07525a8d4732b7, type: 3}
     Weight: 1
+--- !u!114 &-960180281033683202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Ch02_Ville_AMB
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_Ch02_Ville_AMB
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 7dc5973785378e54cabfb10b900af0e6, type: 3}
+    Weight: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +162,11 @@ MonoBehaviour:
   - No Sound
   - AMB_City
   - EDGA_AMB_Ch1_office
+  - EDGA_Ch01_Office_AMB
+  - EDGA_Ch01_USINE_AMB_01
+  - EDGA_Ch01_USINE_AMB_02
+  - EDGA_Ch02_Ville_AMB
+  - EDGA_Ch03_Bar_AMB
   - Loops
   - No Sound
   - OneShots
@@ -82,7 +174,12 @@ MonoBehaviour:
   Database:
   - {fileID: -5855622759119082922}
   - {fileID: 3766026188266235706}
-  - {fileID: 1897881008491198149}
+  - {fileID: 1813362445668569664}
+  - {fileID: -3970859604772531970}
+  - {fileID: -2038003220131810972}
+  - {fileID: 5333978012744929839}
+  - {fileID: -960180281033683202}
+  - {fileID: 2284066152518257471}
   - {fileID: 1759900531043160401}
   - {fileID: -1780503428647623037}
   - {fileID: 5954019191960072606}
@@ -115,7 +212,7 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 2d886c66ca304df4a86f97f1bfbdfae9, type: 3}
     Weight: 1
---- !u!114 &1897881008491198149
+--- !u!114 &1813362445668569664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +240,35 @@ MonoBehaviour:
   SequenceResetTime: 5
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 2c7390c41f22f1b4ca21da5d80a8d3ed, type: 3}
+    Weight: 1
+--- !u!114 &2284066152518257471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Ch03_Bar_AMB
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_Ch03_Bar_AMB
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 26c8ebd2ca1080645a46510954a09771, type: 3}
     Weight: 1
 --- !u!114 &3766026188266235706
 MonoBehaviour:
@@ -176,6 +302,35 @@ MonoBehaviour:
   - AudioClip: {fileID: 8300000, guid: e561c3bb2133dd742ad8a53551d74fd4, type: 3}
     Weight: 1
   - AudioClip: {fileID: 8300000, guid: 40b0aa1988f00c343858e72b7b224bb2, type: 3}
+    Weight: 1
+--- !u!114 &5333978012744929839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Ch01_USINE_AMB_02
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_Ch01_USINE_AMB_02
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 5510c0d51f5949446a96fb4e83ee444d, type: 3}
     Weight: 1
 --- !u!114 &5954019191960072606
 MonoBehaviour:

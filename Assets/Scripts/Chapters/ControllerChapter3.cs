@@ -215,7 +215,7 @@ public class ControllerChapter3 : MonoBehaviour
 
         panelIds = new string[6];
         DragNdropResMCDA = new int[6];
-        DragNdropResInformed = new int[6] { 0, 1, 2, 3, 4, 5 }; //Initial values fir the informed Drag & Drop
+        DragNdropResInformed = new int[6];
 
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
@@ -228,10 +228,8 @@ public class ControllerChapter3 : MonoBehaviour
         Array.Clear(dragNdropResMCDA, 0, dragNdropResMCDA.Length);
         dragNdropResMCDA = (int[])altObj.Clone();
 
-        //Update informed alternatives values with the default values
-        var altInformed = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
-        Array.Clear(altInformed, 0, altInformed.Length);
-        altInformed = (int[])DragNdropResInformed.Clone();
+        Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
+        dragNdropResInformed = (int[])altObj.Clone();
 
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
@@ -298,7 +296,7 @@ public class ControllerChapter3 : MonoBehaviour
             //Set player choice
             alternatives[alternativeNumber].gameObject.transform.position = panels[i].gameObject.transform.position;
         }
-        //Set alternatives Drag and Drop
+        //Set MCDA alternatives
         for (int i = 0; i < panels.Length; i++)
         {
             alternativeName = dragNdropResMCDA[i].ToString();
@@ -358,20 +356,7 @@ public class ControllerChapter3 : MonoBehaviour
             alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = !EnableFlag;
         }
         if (EnableFlag)
-        {
-            string alternativeName;
-            int alternativeNumber = 0;
-
-            //Set alternatives Drag and Drop
-            for (int i = 0; i < panels.Length; i++)
-            {
-                alternativeName = dragNdropResInformed[i].ToString();
-                alternativeNumber = Convert.ToInt32($"{alternativeName.Last()}");
-                //Set DnD default values
-                alternativesDnD[alternativeNumber].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
-            }
             ShowPopup();
-        }
     }
 
     private void ShowPopup()
@@ -581,5 +566,23 @@ public class ControllerChapter3 : MonoBehaviour
     public void SetPreferedUser(int choice)
     {
         controllers.GetComponent<TestingEnvironment>().UserPreference = ((Prefered)choice).ToString();
+    }
+
+    //Play specific UI sound
+    public void PlaySoundUI(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundUI(mySoundName);
+    }
+
+    //Play specific Ambiance sound
+    public void PlaySoundAmbiance(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
+    }
+
+    //Play specific Music sound
+    public void PlaySoundMusic(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
     }
 }

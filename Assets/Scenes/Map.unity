@@ -2159,7 +2159,7 @@ Transform:
   - {fileID: 151857267}
   - {fileID: 507256721}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423502118
 GameObject:
@@ -2599,7 +2599,7 @@ Transform:
   - {fileID: 1520706819}
   - {fileID: 1874377592}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507256720
 GameObject:
@@ -3318,7 +3318,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &614528584
 GameObject:
@@ -4539,7 +4539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1005320901
 GameObject:
@@ -6678,7 +6678,7 @@ PrefabInstance:
     - target: {fileID: 714296193048071524, guid: e23aab4a42e5644edbffa7891e933841,
         type: 3}
       propertyPath: m_Name
-      value: )ead (tests)
+      value: Head (tests)
       objectReference: {fileID: 0}
     - target: {fileID: 714296193048071526, guid: e23aab4a42e5644edbffa7891e933841,
         type: 3}
@@ -7423,7 +7423,7 @@ Transform:
   - {fileID: 1524731728}
   - {fileID: 1659595796}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1730559425
 GameObject:
@@ -8476,7 +8476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1982391434
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9327,7 +9327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2122830719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9421,7 +9421,7 @@ RectTransform:
   m_Children:
   - {fileID: 1982391434}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12041,7 +12041,7 @@ PrefabInstance:
     - target: {fileID: 8124936206842175747, guid: f8eee599ab15645389ee2d8905835e28,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8124936206842175747, guid: f8eee599ab15645389ee2d8905835e28,
         type: 3}
