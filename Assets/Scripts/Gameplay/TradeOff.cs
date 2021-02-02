@@ -7,6 +7,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 public struct IntermediateTradeOffPair
 {
@@ -62,12 +65,12 @@ public class TradeOff : MonoBehaviour
     private int currentTradeOffPair;
 
     // TradeOff calculations variables
-    private List<IntermediateTradeOffPair> tradeOffWeightMatrix;
-    public List<(string, float)> objectiveWeightsFamilyA;
-    public List<(string, float)> objectiveWeightsFamilyB;
-    public List<(string, float)> objectiveWeightsFamilyC;
-    public List<(string, float)> objectiveWeightsFamilyD;
-    public List<(string, float)> globalWeights;
+   // private List<IntermediateTradeOffPair> tradeOffWeightMatrix;
+   // public List<(string, float)> objectiveWeightsFamilyA;
+   // public List<(string, float)> objectiveWeightsFamilyB;
+   // public List<(string, float)> objectiveWeightsFamilyC;
+   // public List<(string, float)> objectiveWeightsFamilyD;
+   // public List<(string, float)> globalWeights;
     private string winnerName;
     private string loserName;
 
@@ -77,7 +80,7 @@ public class TradeOff : MonoBehaviour
     private void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        
+
         currentTradeOffPair = -1;
         m_familyTradeoffs = new List<(GameObject, GameObject)>();
 
@@ -96,12 +99,12 @@ public class TradeOff : MonoBehaviour
         tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
 
         // TradeOff weight calculation
-        tradeOffWeightMatrix = new List<IntermediateTradeOffPair>();
-        objectiveWeightsFamilyA = new List<(string, float)>();
-        objectiveWeightsFamilyB = new List<(string, float)>();
-        objectiveWeightsFamilyC = new List<(string, float)>();
-        objectiveWeightsFamilyD = new List<(string, float)>();
-        globalWeights = new List<(string, float)>();
+       // tradeOffWeightMatrix = new List<IntermediateTradeOffPair>();
+       // objectiveWeightsFamilyA = new List<(string, float)>();
+       // objectiveWeightsFamilyB = new List<(string, float)>();
+       // objectiveWeightsFamilyC = new List<(string, float)>();
+       // objectiveWeightsFamilyD = new List<(string, float)>();
+       // globalWeights = new List<(string, float)>();
     }
 
     public void PrepareTradeOffs(GameObject family)
@@ -126,7 +129,7 @@ public class TradeOff : MonoBehaviour
             var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
             var sliderWinner = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
 
-            tradeOffWeightMatrix.Add(new IntermediateTradeOffPair(sliderWinner.value, winnerData, loserData));
+            //tradeOffWeightMatrix.Add(new IntermediateTradeOffPair(sliderWinner.value, winnerData, loserData));
 
             tradeOffLoserUI = null;
             tradeOffWinnerUI = null;
@@ -201,6 +204,7 @@ public class TradeOff : MonoBehaviour
             {
                 go.transform.SetParent(tradeOffFinalists.transform);
             }
+
             tradeOffFinalistsList.Clear();
         }
     }
@@ -296,11 +300,16 @@ public class TradeOff : MonoBehaviour
             GameEventMessage.SendEvent("GoToTables");
             ShowTradeOffBackground(false);
         }
+
         HideTradeOffUI();
     }
 
     private void CalculateLocalWeights(List<(string, float)> family)
     {
+        Matrix<double> coefficients = DenseMatrix.OfArray(new double[,]
+        {
+            
+        });
         if (tradeOffWeightMatrix.Count == 1)
         {
             var pair = tradeOffWeightMatrix[0];
@@ -532,7 +541,8 @@ public class TradeOff : MonoBehaviour
 
         GetComponent<ControllerChapter2_2>().isTradeOff = true;
         GetComponent<ControllerChapter2_2>().hostConversationIndex = 0;
-        GetComponent<ControllerChapter2_2>().hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        GetComponent<ControllerChapter2_2>().hostConversationCallback =
+            () => { GameEventMessage.SendEvent("GoToTables"); };
 
         finals = false;
         currentTradeOffPair = -1;
