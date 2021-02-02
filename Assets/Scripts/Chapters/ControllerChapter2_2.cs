@@ -260,4 +260,22 @@ public class ControllerChapter2_2 : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+
+    //Play specific UI sound
+    public void PlaySoundUI(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundUI(mySoundName);
+    }
+
+    //Play specific Ambiance sound
+    public void PlaySoundAmbiance(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
+    }
+
+    //Play specific Music sound
+    public void PlaySoundMusic(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
 }
