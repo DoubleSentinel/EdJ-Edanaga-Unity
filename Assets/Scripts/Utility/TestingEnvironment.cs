@@ -63,10 +63,11 @@ public class TestingEnvironment : MonoBehaviour
         AlternativesInformed = new int[6];
         
         //Testing purpose!
-        
-        AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
+        /*
+        AlternativesUninformed = new int[6] { 2, 1, 0, 3, 4, 5 };
         AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
-        AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
+        AlternativesInformed = new int[6] { 0, 2, 3, 1, 4, 5 };
+        */
     }
 
     // Objective Definitions
