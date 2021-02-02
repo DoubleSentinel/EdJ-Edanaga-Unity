@@ -5485,6 +5485,17 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_02
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -28033,15 +28044,15 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: ShowPopup
-            m_Mode: 1
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -28346,14 +28357,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundMusic
+            m_MethodName: PlaySoundAmbiance
             m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Title
+              m_StringArgument: EDGA_Ch01_Office_AMB
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -28630,15 +28641,15 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: PlaySoundAmbiance
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundMusic
             m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: AMB_City
+              m_StringArgument: Title
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
