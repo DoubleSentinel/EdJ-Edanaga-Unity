@@ -50,7 +50,7 @@ public class Swing : MonoBehaviour
 
         // This isn't great but due to time constraints I had to generate the string here instead of creating a proper 
         // structure that handles these associations
-        string title = !finals ? $"2.2.8.2_Swing_fam{currentSwingFamily.name.Last()}" : $"2.2.9_Swing_round2";
+        string title = !finals ? $"2.2.8.2_Swing_fam{currentSwingFamily.name.Last()}" : $"2.2.10_Swing_round2";
 
         SwingConversationBubble.GetComponent<ConversationHandler>().GenerateConversation(title);
         SwingConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
