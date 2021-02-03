@@ -1,8 +1,6 @@
 ﻿using Doozy.Engine;
 using Doozy.Engine.UI;
-using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 

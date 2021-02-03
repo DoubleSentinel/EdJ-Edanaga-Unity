@@ -16,8 +16,8 @@ public class SoundsController : MonoBehaviour
     private string mySoundDatabaseName;
     
     private Slider slider;
-    private float duration = 1.0f; //fade sound speed
-    private float targetVolume = 0.0f;
+    private float duration = 0.5f; //fade sound speed
+    private float targetVolume = 0.0f; //Default volume intensity
     public bool isFinished = false; //fade sound state
 
     private void Start()
@@ -28,7 +28,7 @@ public class SoundsController : MonoBehaviour
     //Set FadeSound targetVolume value
     private void FadeSoundParam(bool UpToDown)
     {
-        targetVolume = UpToDown ? targetVolume = masterSlider.minValue : targetVolume = 0;
+        targetVolume = UpToDown ? targetVolume = masterSlider.minValue+40 : targetVolume = 0; //Slow down to -40dB or default value
     }
     
     //Fade sound using master slider volume values

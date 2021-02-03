@@ -27,6 +27,35 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds: []
+--- !u!114 &-4578249229160041266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_Point&click
+  m_EditorClassIdentifier: 
+  DatabaseName: UI
+  SoundName: EDGA_Point&click
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 86f7314bbcfa2694fa1474b2bcbe19fb, type: 3}
+    Weight: 1
 --- !u!114 &-726521365796003798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +135,7 @@ MonoBehaviour:
     type: 2}
   SoundNames:
   - No Sound
+  - EDGA_Point&click
   - No Sound
   - UI_PC_Check
   - UI_PC_Invalid
@@ -114,6 +144,7 @@ MonoBehaviour:
   - UI_TR_ChangeScene
   Database:
   - {fileID: -7226302953576583650}
+  - {fileID: -4578249229160041266}
   - {fileID: 2921917995275301457}
   - {fileID: -456396997418342109}
   - {fileID: 4343734611800792762}
