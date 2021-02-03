@@ -1638,8 +1638,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: ButtonName
       value: ContinueToAltInfo2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -6482,6 +6517,17 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_Office_AMB
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -9150,7 +9196,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00002193451
+      value: -0.00014972687
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -14370,7 +14416,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000012397766
+      value: -0.00009059906
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -16421,6 +16467,17 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_02
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -19692,6 +19749,17 @@ MonoBehaviour:
               m_IntArgument: 5
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -25418,14 +25486,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 2056255395}
-            m_MethodName: SetOrderAlternatives
-            m_Mode: 3
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 2
               m_FloatArgument: 0
-              m_StringArgument: 
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -27966,7 +28034,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_Office_AMB
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -30454,15 +30533,15 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: ShowPopup
-            m_Mode: 1
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: 
+              m_StringArgument: EDGA_Ch01_USINE_AMB
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -31039,15 +31118,15 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: PlaySoundAmbiance
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundMusic
             m_Mode: 5
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: AMB_City
+              m_StringArgument: Title
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -36357,7 +36436,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00015258789
+      value: -0.0002784729
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -38265,8 +38344,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: ButtonName
       value: ContinueToAltInfo3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -38682,8 +38796,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: ButtonName
       value: ContinueToAltInfo1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -39877,8 +40026,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: ButtonName
       value: ContinueToAltinfo4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -42732,7 +42916,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000012397766
+      value: -0.00009059906
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -43067,7 +43251,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000012397766
+      value: -0.00009059906
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -44303,6 +44487,17 @@ MonoBehaviour:
               m_IntArgument: 3
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -47023,8 +47218,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: ButtonName
       value: ContinueToAltInfo5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -48590,6 +48820,17 @@ MonoBehaviour:
               m_IntArgument: 4
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -51015,6 +51256,17 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -53241,6 +53493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
       propertyPath: OnClick.OnTrigger.SoundData.DatabaseName
       value: UI
       objectReference: {fileID: 0}
@@ -53248,6 +53505,36 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.OnTrigger.SoundData.SoundName
       value: EDGA_Point&click
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2056255395}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundAmbiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
+        type: 3}
+      propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: EDGA_Ch01_USINE_AMB_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -53281,7 +53568,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000012397766
+      value: -0.00009059906
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
