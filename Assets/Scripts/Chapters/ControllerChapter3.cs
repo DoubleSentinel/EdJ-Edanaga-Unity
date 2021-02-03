@@ -335,17 +335,16 @@ public class ControllerChapter3 : MonoBehaviour
         //Reset the array with the Drag&Drop results
         Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
 
+        //Get informed alternatives values from TestingEnvironment
+        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
+
         //Update Drag & Drop results
         for (int i = 0; i < alternativesDnD.Length; i++)
         {
             panelObjectValue = DragDropManager.GetPanelObject(panelIds[i]);
             DragNdropResInformed[i] = Convert.ToInt32($"{panelObjectValue}");
-        }
-
-        //Update new informed alternatives values to TestingEnvironment
-        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
-        Array.Clear(alt, 0, alt.Length);
-        alt = (int[])DragNdropResInformed.Clone();  
+            alt[i] = DragNdropResInformed[i]; //Update new informed alternatives values to TestingEnvironmen
+        }  
     }
 
     //Lock and unlock the drag&drop property of the elements
