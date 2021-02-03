@@ -58,15 +58,9 @@ public class TestingEnvironment : MonoBehaviour
         ConsistentFirst = true;
         SceneCallback = "Chapter2.3";
         UserPreference = "";
-        AlternativesUninformed = new int[6];
-        AlternativesMCDA = new int[6];
-        AlternativesInformed = new int[6];
-        
-        //Testing purpose!
-        
         AlternativesUninformed = new int[6] { 0, 1, 2, 3, 4, 5 };
-        AlternativesMCDA = new int[6] { 1, 0, 2, 3, 4, 5 };
-        AlternativesInformed = new int[6] { 1, 0, 2, 3, 4, 5 };
+        AlternativesMCDA = new int[6] { 0, 1, 2, 3, 4, 5 };
+        AlternativesInformed = new int[6] { 0, 1, 2, 3, 4, 5 };
     }
 
     // Objective Definitions

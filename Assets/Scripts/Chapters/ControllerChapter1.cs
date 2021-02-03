@@ -182,18 +182,17 @@ public class ControllerChapter1 : MonoBehaviour
 
         //Reset the list of the Drag&Drops result
         Array.Clear(DragNdropRes, 0, DragNdropRes.Length);
-        
+
+        //Get uniformed alternative values from TestingEnvironment
+        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
+
         //Update Drag & Drop results
         for (int i = 0; i < alternatives.Length; i++)
         {
             panelObjectValue = DragDropManager.GetPanelObject(prioIds[i]);
             DragNdropRes[i] = Convert.ToInt32($"{panelObjectValue}");
+            alt[i] = DragNdropRes[i]; //Update uniformed alternative values to TestingEnvironment
         }
-
-        //Update uniformed alternative values to TestingEnvironment
-        var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
-        Array.Clear(alt, 0, alt.Length);
-        alt = (int[])DragNdropRes.Clone();
     }
 
     private void ShowPopup()
