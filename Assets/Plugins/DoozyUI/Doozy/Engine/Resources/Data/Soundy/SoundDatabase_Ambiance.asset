@@ -310,7 +310,7 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   SpatialBlend: 0
-  Loop: 1
+  Loop: 0
   Mode: 0
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
@@ -436,10 +436,10 @@ MonoBehaviour:
   - EDGA_CH04_AMB_BarTable_Loop
   - EDGA_CH04_AMB_Battle_Loop
   - EDGA_CH04_AMB_Battle_Oneshot
-  - Loops
   - MU_Beat_4mesures_84_Loop
   - MU_Beat_4mesures_84_Loop_02
   - No Sound
+  - One shot  battle and continue
   - OneShots
   - Test Loops
   Database:
@@ -459,9 +459,9 @@ MonoBehaviour:
   - {fileID: -3267445299189995799}
   - {fileID: -5146188752789916059}
   - {fileID: -73853744298932996}
-  - {fileID: 1759900531043160401}
   - {fileID: -3067761979563722763}
   - {fileID: -874715742222847129}
+  - {fileID: 6210463050029129700}
   - {fileID: -1780503428647623037}
   - {fileID: 5954019191960072606}
 --- !u!114 &1283437379292750308
@@ -492,35 +492,6 @@ MonoBehaviour:
   SequenceResetTime: 5
   Sounds:
   - AudioClip: {fileID: 8300000, guid: dadc59b477086f94b8cd1ae308cf6746, type: 3}
-    Weight: 1
---- !u!114 &1759900531043160401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: Loops
-  m_EditorClassIdentifier: 
-  DatabaseName: Ambiance
-  SoundName: Loops
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 0
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: 2d886c66ca304df4a86f97f1bfbdfae9, type: 3}
     Weight: 1
 --- !u!114 &1813362445668569664
 MonoBehaviour:
@@ -672,4 +643,35 @@ MonoBehaviour:
   - AudioClip: {fileID: 8300000, guid: 23de8bf0f81934340ba53b5ef5c77287, type: 3}
     Weight: 1
   - AudioClip: {fileID: 8300000, guid: ab4f9fbf1dd74ae42ba004383adbb8ab, type: 3}
+    Weight: 1
+--- !u!114 &6210463050029129700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: One shot  battle and continue
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: One shot  battle and continue
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 1
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: c2617720aef763c4687213f9927d79a0, type: 3}
+    Weight: 1
+  - AudioClip: {fileID: 8300000, guid: 3f8595757ed731148a3e94a0cac5c475, type: 3}
     Weight: 1
