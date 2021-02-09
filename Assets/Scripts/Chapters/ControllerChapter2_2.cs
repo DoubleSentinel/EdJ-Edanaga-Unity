@@ -272,7 +272,9 @@ public class ControllerChapter2_2 : MonoBehaviour
     public void PlaySoundAmbiance(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
-        /*
+        
+        //Doesn't work yet --> need some investigations
+        /* 
         if (mySoundName == "EDGA_CH04_AMB_Battle_Oneshot")
         {
             Task.Delay(57000).ContinueWith(t => NextSound()); //Wait 57s before playing next sound
