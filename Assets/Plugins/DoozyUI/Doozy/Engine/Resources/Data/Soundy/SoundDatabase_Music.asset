@@ -105,15 +105,16 @@ MonoBehaviour:
   SoundNames:
   - No Sound
   - EDGA_Ch03_INTRO
+  - EDGA_Chapitres_Musique_Loop
   - EDGA_MUS_Ch1_office
   - No Sound
   - Title
   Database:
   - {fileID: 5683484420739364406}
   - {fileID: -8177715150070185558}
+  - {fileID: 4889573068850734456}
   - {fileID: -7995577917590619189}
   - {fileID: -7122523585309315577}
-  - {fileID: 4889573068850734456}
 --- !u!114 &4889573068850734456
 MonoBehaviour:
   m_ObjectHideFlags: 0

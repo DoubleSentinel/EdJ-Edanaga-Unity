@@ -1674,7 +1674,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -6525,7 +6525,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_Office_AMB
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -9196,7 +9196,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150436
+      value: -0.0004081726
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -10640,7 +10640,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -10956,7 +10956,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_Office_AMB
+              m_StringArgument: EDGA_Ch01_Office_AMB_Loop
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -14416,7 +14416,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150488
+      value: -0.00039196014
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -14719,12 +14719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vous venez de d\xE9couvrir plusieurs possibilit\xE9s pour remplacer le
-    syst\xE8me actuel de traitement des eaux us\xE9es. Maintenant, vous allez classer
-    ces alternatives, de votre pr\xE9f\xE9r\xE9e \xE0 celle que vous souhaitez le
-    moins impl\xE9menter. Rappelons-nous du cadre sp\xE9cifique dans lequel nous
-    sommes, soit celui d\u2019un village d\u2019environ 2'000 habitant\xB7e\xB7s.
-    Il n\u2019y a pas de bonne ou mauvaise r\xE9ponse, seule votre opinion nous importe."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -16477,7 +16472,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_02
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_zoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -19759,7 +19754,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -22193,7 +22188,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -25515,7 +25510,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -36411,7 +36406,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150609
+      value: -0.00035572052
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -38355,7 +38350,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -38807,7 +38802,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -40037,7 +40032,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -42891,7 +42886,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150488
+      value: -0.00039196014
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -43226,7 +43221,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150488
+      value: -0.00039196014
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -44472,7 +44467,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -47229,7 +47224,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -48805,7 +48800,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -51239,7 +51234,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch01_USINE_AMB_01
+              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -53509,7 +53504,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: EDGA_Ch01_USINE_AMB_02
+      value: EDGA_CH01_USINE_AMB_Loop_zoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f891c406f0c58b44b4f1cdff5079790, type: 3}
@@ -53543,7 +53538,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.150488
+      value: -0.00039196014
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
