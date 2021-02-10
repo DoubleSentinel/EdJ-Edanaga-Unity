@@ -60,10 +60,12 @@ public class ControllerChapter1 : MonoBehaviour
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
                 ShowGo(altDiscoveryMessage);
+                EnableOptions(false);
             }
             else
             {
                 GameEventMessage.SendEvent("ContinueToChapter2.1");
+                EnableOptions(true);
             }
         };
     }
@@ -287,5 +289,11 @@ public class ControllerChapter1 : MonoBehaviour
     public void PlaySoundMusic(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
+
+    //Play specific Music sound
+    public void EnableOptions(bool enable)
+    {
+        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
     }
 }
