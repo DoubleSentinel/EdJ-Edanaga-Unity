@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 //This class is used to mute/unute the sounds 
 //and control the sound volumes using the sliders on the SoundsView
+//Public method is used to enable or disable the option wheel
 public class AudioManager : MonoBehaviour
 {
     //Sliders on the SoundsView
@@ -12,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public Slider uiSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Button optionWheel;
 
     public Toggle toggle;
     private float masterVolume = 0;
@@ -60,5 +62,11 @@ public class AudioManager : MonoBehaviour
     public void SetSFXVolume()
     {
         masterMixer.SetFloat("VolumeSFX", sfxSlider.value);
+    }
+
+    //Enable or disable option wheel
+    public void EnableOptionWheel(bool enable)
+    {
+        optionWheel.gameObject.SetActive(enable);
     }
 }
