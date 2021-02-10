@@ -232,8 +232,10 @@ public class ControllerChapter3 : MonoBehaviour
         Array.Clear(dragNdropResMCDA, 0, dragNdropResMCDA.Length);
         dragNdropResMCDA = (int[])altObj.Clone();
 
+        //Get informed alternative values from TestingEnvironment
+        var altInformed = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
         Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
-        dragNdropResInformed = (int[])altObj.Clone();
+        dragNdropResInformed = (int[])altInformed.Clone();
 
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
@@ -358,6 +360,11 @@ public class ControllerChapter3 : MonoBehaviour
         for (int i = 0; i < alternativesDnD.Length; i++)
         {
             alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = !EnableFlag;
+            if(EnableFlag) //Set default values and position
+            {
+                //Set DnD default values
+                alternativesDnD[i].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
+            }
         }
         if (EnableFlag)
             ShowPopup();
