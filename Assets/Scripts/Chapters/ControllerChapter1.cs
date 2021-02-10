@@ -290,7 +290,7 @@ public class ControllerChapter1 : MonoBehaviour
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
     }
 
-    //Play specific Music sound
+    //Enable or disable options wheel
     public void EnableOptions(bool enable)
     {
         controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed

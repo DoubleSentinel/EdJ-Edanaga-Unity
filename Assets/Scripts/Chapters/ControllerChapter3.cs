@@ -154,6 +154,7 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(buttonToConv1);
         EnableFlag = true;
         ToggleDnD();
+        EnableOptions(false);
     }
 
     //3.4.1_Multiple_choices_rankings_Chap6
@@ -251,6 +252,7 @@ public class ControllerChapter3 : MonoBehaviour
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
         SetObjectives();
+        EnableOptions(true);
     }
 
     private void Conv()
@@ -583,5 +585,11 @@ public class ControllerChapter3 : MonoBehaviour
     public void PlaySoundMusic(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
+
+    //Enable or disable options wheel
+    public void EnableOptions(bool enable)
+    {
+        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
     }
 }
