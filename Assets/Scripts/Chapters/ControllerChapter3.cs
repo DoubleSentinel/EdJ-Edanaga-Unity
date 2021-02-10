@@ -218,6 +218,9 @@ public class ControllerChapter3 : MonoBehaviour
         DragNdropResMCDA = new int[6];
         DragNdropResInformed = new int[6];
 
+        int[] ResMCDA = new int[6] { 0, 2, 1, 4, 3, 5 }; //Testing purpose
+        CalculatedMCDA(ResMCDA); //Testing purpose
+
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
         Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
@@ -591,5 +594,11 @@ public class ControllerChapter3 : MonoBehaviour
     public void EnableOptions(bool enable)
     {
         controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
+    }
+
+    //Set MCDA calculated result in TestingEnvironment
+    public void CalculatedMCDA(int[] ResMCDA)
+    {
+        controllers.GetComponent<TestingEnvironment>().AlternativesMCDA = ResMCDA;
     }
 }
