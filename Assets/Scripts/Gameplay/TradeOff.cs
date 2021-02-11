@@ -44,6 +44,7 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
     [SerializeField] private GameObject[] tradeOffStartUIElements;
     [SerializeField] private GameObject resultListItemPrefab;
+    [SerializeField] private Sprite[] resultListIcons;
 
     // Environment
     private GameObject controllers;
@@ -88,6 +89,11 @@ public class TradeOff : MonoBehaviour
         rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
 
         HideTradeOffUI();
+        // initial situation where selection buttons are not visible
+        // this allows design to be handled on inspector without having to change object
+        // state there
+        tradeoffLeftBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
+        tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
 
         // TradeOff weight calculation
         tradeOffWeightMatrix = new List<IntermediateTradeOffPair>();
@@ -484,8 +490,13 @@ public class TradeOff : MonoBehaviour
         tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;
         tradeoffLeftBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
         tradeoffRightBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
-        tradeoffLeftBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
-        tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
+    }
+    private void ShowTradeOffUI()
+    {
+        tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 1;
+        tradeoffRightBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 1;
+        tradeoffLeftBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 1;
+        tradeoffRightBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 1;
     }
 
     private void ToggleNextTradeOffButton()
@@ -555,6 +566,7 @@ public class TradeOff : MonoBehaviour
         UpdateTradeOffLoserCompromiseSlider(controllers.GetComponent<TestingEnvironment>()
             .Objectives[winnerName.ToLower()]);
         ToggleSelectionButtons();
+        ShowTradeOffUI();
     }
 
     public void UpdateUserSelection(GameObject handleLabel)
@@ -588,6 +600,8 @@ public class TradeOff : MonoBehaviour
 
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{resultData.description} ({result.Value * 100:0.0}%)";
+
+            resultItem.transform.GetChild(2).GetComponent<Image>().sprite = resultListIcons[int.Parse(result.Key.Last().ToString())];
 
             // background color
             resultItem.GetComponent<Image>().color = goRef.GetComponent<Coloration>().fond;
