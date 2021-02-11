@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapters/Chapter2.1.unity
     guid: 62ad92ae20eb76548b8e9172c354455d
   - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter2.2.unity
+    path: Assets/Scenes/Chapters/Chapter2.2_sounds.unity
     guid: 6627b784aa65bb047a6f4acdb3dda347
   - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter2.3.unity
+    path: Assets/Scenes/Chapters/Chapter2.3_sounds.unity
     guid: c983b62c6e15f7c4c809d3de60e56cff
   - enabled: 1
     path: Assets/Scenes/Chapters/Chapter3.0.unity
