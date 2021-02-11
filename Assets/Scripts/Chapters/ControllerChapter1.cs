@@ -60,10 +60,12 @@ public class ControllerChapter1 : MonoBehaviour
             {
                 GameEventMessage.SendEvent("ContinueToAlt");
                 ShowGo(altDiscoveryMessage);
+                EnableOptions(false);
             }
             else
             {
                 GameEventMessage.SendEvent("ContinueToChapter2.1");
+                EnableOptions(true);
             }
         };
     }
@@ -82,16 +84,9 @@ public class ControllerChapter1 : MonoBehaviour
         {
             panelsAlt[i] = alternatives[i].gameObject.transform.GetChild(2).gameObject;
 
-            if (i == 0)
-            {
-                NextAlternative(panelsAlt[i]);
-                alternatives[i].GetComponent<UIButton>().Interactable = true;
-            }
-            else
-            {
-                HideAlternative(panelsAlt[i]);
-                alternatives[i].GetComponent<UIButton>().Interactable = false;
-            }
+            HideAlternative(panelsAlt[i]);
+            alternatives[i].GetComponent<UIButton>().Interactable = false;
+
             //Get Panels Id name
             prioIds[i] = panels[i].gameObject.GetComponent<PanelSettings>().Id;
         }
@@ -169,6 +164,12 @@ public class ControllerChapter1 : MonoBehaviour
     private void HideAlternative(GameObject o)
     {
         o.GetComponent<Image>().DOColor(HiddenAltColor, 1f);
+    }
+
+    public void StartAlternative0()
+    {
+        NextAlternative(panelsAlt[0]);
+        alternatives[0].GetComponent<UIButton>().Interactable = true;
     }
 
     public void CheckPriorities()
@@ -287,5 +288,11 @@ public class ControllerChapter1 : MonoBehaviour
     public void PlaySoundMusic(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
+
+    //Enable or disable options wheel
+    public void EnableOptions(bool enable)
+    {
+        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
     }
 }

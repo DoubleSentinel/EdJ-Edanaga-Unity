@@ -154,6 +154,7 @@ public class ControllerChapter3 : MonoBehaviour
         HideGo(buttonToConv1);
         EnableFlag = true;
         ToggleDnD();
+        EnableOptions(false);
     }
 
     //3.4.1_Multiple_choices_rankings_Chap6
@@ -217,6 +218,8 @@ public class ControllerChapter3 : MonoBehaviour
         DragNdropResMCDA = new int[6];
         DragNdropResInformed = new int[6];
 
+        controllers.GetComponent<TestingEnvironment>().AlternativesMCDA = CalculateMCDA();
+
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
         Array.Clear(dragNdropResUninformed, 0, dragNdropResUninformed.Length);
@@ -228,8 +231,10 @@ public class ControllerChapter3 : MonoBehaviour
         Array.Clear(dragNdropResMCDA, 0, dragNdropResMCDA.Length);
         dragNdropResMCDA = (int[])altObj.Clone();
 
+        //Get informed alternative values from TestingEnvironment
+        var altInformed = controllers.GetComponent<TestingEnvironment>().AlternativesInformed;
         Array.Clear(dragNdropResInformed, 0, dragNdropResInformed.Length);
-        dragNdropResInformed = (int[])altObj.Clone();
+        dragNdropResInformed = (int[])altInformed.Clone();
 
         //Get panel Id name
         for (int i = 0; i < panelsDnD.Length; i++)
@@ -251,6 +256,7 @@ public class ControllerChapter3 : MonoBehaviour
         EnableFlag = false; //Disable Drag and Drop 
         ToggleDnD();
         SetObjectives();
+        EnableOptions(true);
     }
 
     private void Conv()
@@ -353,6 +359,11 @@ public class ControllerChapter3 : MonoBehaviour
         for (int i = 0; i < alternativesDnD.Length; i++)
         {
             alternativesDnD[i].GetComponent<ObjectSettings>().LockObject = !EnableFlag;
+            if(EnableFlag) //Set default values and position
+            {
+                //Set DnD default values
+                alternativesDnD[i].gameObject.transform.position = panelsDnD[i].gameObject.transform.position;
+            }
         }
         if (EnableFlag)
             ShowPopup();
@@ -517,6 +528,13 @@ public class ControllerChapter3 : MonoBehaviour
         go.SetActive(false);
     }
 
+    //Set MCDA calculated result
+    private int[] CalculateMCDA()
+    {
+        int[] result = new int[6] { 0, 2, 1, 4, 3, 5 };
+        return result;
+    }
+
     // --------------------  UI Callables  --------------------------------
 
     public void SetConversationIndex(int index)
@@ -583,5 +601,11 @@ public class ControllerChapter3 : MonoBehaviour
     public void PlaySoundMusic(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
+
+    //Enable or disable options wheel
+    public void EnableOptions(bool enable)
+    {
+        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
     }
 }
