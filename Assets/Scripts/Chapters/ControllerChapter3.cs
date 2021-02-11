@@ -218,8 +218,7 @@ public class ControllerChapter3 : MonoBehaviour
         DragNdropResMCDA = new int[6];
         DragNdropResInformed = new int[6];
 
-        int[] ResMCDA = new int[6] { 0, 2, 1, 4, 3, 5 }; //Testing purpose
-        CalculatedMCDA(ResMCDA); //Testing purpose
+        controllers.GetComponent<TestingEnvironment>().AlternativesMCDA = CalculateMCDA();
 
         //Get uninformed alternative values from TestingEnvironment
         var alt = controllers.GetComponent<TestingEnvironment>().AlternativesUninformed;
@@ -529,6 +528,13 @@ public class ControllerChapter3 : MonoBehaviour
         go.SetActive(false);
     }
 
+    //Set MCDA calculated result
+    private int[] CalculateMCDA()
+    {
+        int[] result = new int[6] { 0, 2, 1, 4, 3, 5 };
+        return result;
+    }
+
     // --------------------  UI Callables  --------------------------------
 
     public void SetConversationIndex(int index)
@@ -601,11 +607,5 @@ public class ControllerChapter3 : MonoBehaviour
     public void EnableOptions(bool enable)
     {
         controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
-    }
-
-    //Set MCDA calculated result in TestingEnvironment
-    public void CalculatedMCDA(int[] ResMCDA)
-    {
-        controllers.GetComponent<TestingEnvironment>().AlternativesMCDA = ResMCDA;
     }
 }
