@@ -44,6 +44,7 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
     [SerializeField] private GameObject[] tradeOffStartUIElements;
     [SerializeField] private GameObject resultListItemPrefab;
+    [SerializeField] private Sprite[] resultListIcons;
 
     // Environment
     private GameObject controllers;
@@ -599,6 +600,8 @@ public class TradeOff : MonoBehaviour
 
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{resultData.description} ({result.Value * 100:0.0}%)";
+
+            resultItem.transform.GetChild(2).GetComponent<Image>().sprite = resultListIcons[int.Parse(result.Key.Last().ToString())];
 
             // background color
             resultItem.GetComponent<Image>().color = goRef.GetComponent<Coloration>().fond;

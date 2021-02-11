@@ -5160,7 +5160,7 @@ MonoBehaviour:
         Enabled: 1
         From: {x: 0, y: 0, z: 0}
         To: {x: 0, y: 0, z: 0}
-        By: {x: 0, y: 0, z: 15}
+        By: {x: 0, y: 0, z: 30}
         UseCustomFromAndTo: 0
         Vibrato: 10
         Elasticity: 1
@@ -5251,16 +5251,16 @@ MonoBehaviour:
         Duration: 1
       Rotate:
         AnimationType: 3
-        Enabled: 0
+        Enabled: 1
         From: {x: 0, y: 0, z: 0}
         To: {x: 0, y: 0, z: 0}
-        By: {x: 0, y: 0, z: 0}
+        By: {x: 0, y: 0, z: 30}
         UseCustomFromAndTo: 0
         Vibrato: 10
         Elasticity: 1
         NumberOfLoops: -1
         LoopType: 1
-        RotateMode: 1
+        RotateMode: 0
         EaseType: 0
         Ease: 1
         AnimationCurve:
@@ -5311,12 +5311,12 @@ MonoBehaviour:
           m_RotationOrder: 4
         StartDelay: 0
         Duration: 1
-    Enabled: 0
+    Enabled: 1
     IsPlaying: 0
     LoopAnimationType: 1
     LoadSelectedPresetAtRuntime: 0
-    PresetCategory: 
-    PresetName: 
+    PresetCategory: Uncategorized
+    PresetName: Default
   TargetLabel: 2
   TextLabel: {fileID: 0}
 --- !u!225 &9207236784862557699

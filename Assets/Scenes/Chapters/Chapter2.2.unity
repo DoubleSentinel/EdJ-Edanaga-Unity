@@ -1274,13 +1274,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.990566, g: 0.81759006, b: 0.1728818, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: aa83acf26ad80a047bb82b5f53b3b088, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13521,6 +13521,17 @@ MonoBehaviour:
   - {fileID: 618945763}
   resultListItemPrefab: {fileID: 5313111449302125352, guid: bd69a497e96d5a14ea3312ce5e46b018,
     type: 3}
+  resultListIcons:
+  - {fileID: 21300000, guid: b2a151b6ee1f6478499d23e199211901, type: 3}
+  - {fileID: 21300000, guid: 1ccabc60550254cab947fee66688361b, type: 3}
+  - {fileID: 21300000, guid: 9b60fdb48a94a44b7844ecfbc1ae502f, type: 3}
+  - {fileID: 21300000, guid: 2cd973f27574c4b508549e0c5c6d4dc9, type: 3}
+  - {fileID: 21300000, guid: 416f73edfe3e64d58a528b2bce59e58e, type: 3}
+  - {fileID: 21300000, guid: 14880635866a74fd5932e766604d6ed0, type: 3}
+  - {fileID: 21300000, guid: 492adacc52a2041fd9eeb0435b567b54, type: 3}
+  - {fileID: 21300000, guid: cf45ee989c8a04c1894c8f377219c915, type: 3}
+  - {fileID: 21300000, guid: 48dfca08536ec443db0815c00d311f3d, type: 3}
+  - {fileID: 21300000, guid: fc4501cc445a046ca96dee93797d6973, type: 3}
 --- !u!114 &745463522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17926,7 +17937,7 @@ PrefabInstance:
     - target: {fileID: 9057655428065676473, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 16.542969
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320dbd36062a00429c628a7606e860d, type: 3}
@@ -18239,7 +18250,7 @@ PrefabInstance:
     - target: {fileID: 9057655428065676473, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320dbd36062a00429c628a7606e860d, type: 3}
@@ -20378,7 +20389,7 @@ PrefabInstance:
     - target: {fileID: 9057655428065676473, guid: 0320dbd36062a00429c628a7606e860d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 16.542969
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320dbd36062a00429c628a7606e860d, type: 3}
