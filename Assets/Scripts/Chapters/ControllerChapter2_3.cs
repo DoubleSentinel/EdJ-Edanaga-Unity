@@ -12,6 +12,7 @@ public class ControllerChapter2_3 : MonoBehaviour
     [Header("2D Scene References")]
     [SerializeField] private GameObject sceneHost;
     [SerializeField] private GameObject scenePlayer;
+    [SerializeField] private Sprite[] resultListIcons;
     
     
     [Header("Conversation References")]
@@ -188,6 +189,9 @@ public class ControllerChapter2_3 : MonoBehaviour
                 
                 listItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                     $"{objectiveData.description} ({objective.Value * 100:0.0}%)";
+
+                // objective icon
+                listItem.transform.GetChild(2).GetComponent<Image>().sprite = resultListIcons[int.Parse(objective.Key.Last().ToString())];
 
                 // background color
                 listItem.GetComponent<Image>().color = objectiveRef.GetComponent<Coloration>().fond;

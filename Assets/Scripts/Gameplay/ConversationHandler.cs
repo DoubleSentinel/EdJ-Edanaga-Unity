@@ -64,7 +64,7 @@ public class ConversationHandler : MonoBehaviour
         {
             m_api.parameters.Clear();
             m_api.parameters.Add("conversation_title", title);
-            m_api.parameters.Add("language", controllers.GetComponent<LanguageHandler>().GetCurrentLanguage());
+            m_api.parameters.Add("language", controllers.GetComponent<LanguageHandler>().GetCurrentLanguageID());
 
             m_api.ApiList("scenes", response => { conversations.Add(title, JSONNode.Parse(response)["data"][0]); },
                 m_api.parameters);
@@ -138,6 +138,8 @@ public class ConversationHandler : MonoBehaviour
         currentConversationSnippet = 0;
         currentConversationPage = 1;
         conversationBubble.text = string.Empty;
+        conversationBubble.isWriting = false;
+        conversationBubble.maxVisibleCharacters = 0;
         callback?.Invoke();
         ToggleConversation(false);
     }

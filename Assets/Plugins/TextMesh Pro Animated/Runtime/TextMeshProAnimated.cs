@@ -48,7 +48,14 @@ namespace TMPro
         // Helper for text skip
         private string currentText = "";
         [HideInInspector]
-        public bool isWriting = false;
+        public bool isWriting;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            currentText = "";
+            isWriting = false;
+        }
 
         public void ParseText(string text)
         {
