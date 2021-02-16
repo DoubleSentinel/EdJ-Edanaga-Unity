@@ -138,6 +138,8 @@ public class ConversationHandler : MonoBehaviour
         currentConversationSnippet = 0;
         currentConversationPage = 1;
         conversationBubble.text = string.Empty;
+        conversationBubble.isWriting = false;
+        conversationBubble.maxVisibleCharacters = 0;
         callback?.Invoke();
         ToggleConversation(false);
     }
