@@ -36,7 +36,7 @@ public class ControllerChapter0 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
-        characterCount = scenePlayer.gameObject.transform.GetChild(1).GetChild(2).childCount; //Number of possible characters
+        characterCount = scenePlayer.gameObject.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
         UpdateCharacterSelectionUI();
     }
     private void Update()
@@ -52,7 +52,6 @@ public class ControllerChapter0 : MonoBehaviour
         if (selectedCharacterIndex < 0)
             selectedCharacterIndex = characterCount - 1;
 
-        print("selectedCharacterIndex = " + selectedCharacterIndex); 
         scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         UpdateCharacterSelectionUI();
     }
@@ -65,7 +64,6 @@ public class ControllerChapter0 : MonoBehaviour
         if (selectedCharacterIndex == characterCount)
             selectedCharacterIndex = 0;
         
-        print("selectedCharacterIndex = " + selectedCharacterIndex);
         scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         UpdateCharacterSelectionUI();
     }
