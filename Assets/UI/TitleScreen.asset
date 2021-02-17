@@ -191,7 +191,10 @@ MonoBehaviour:
     Name: Login
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews: []
+  m_onExitHideViews:
+  - Category: TitleScreen
+    InstantAction: 0
+    Name: Login
 --- !u!114 &-7084639724917927555
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,11 +644,11 @@ MonoBehaviour:
     InstantAction: 0
     Name: Intro
   m_onEnterHideViews: []
-  m_onExitShowViews:
+  m_onExitShowViews: []
+  m_onExitHideViews:
   - Category: Chapter0
     InstantAction: 0
     Name: Intro
-  m_onExitHideViews: []
 --- !u!114 &1905106907574740632
 MonoBehaviour:
   m_ObjectHideFlags: 1

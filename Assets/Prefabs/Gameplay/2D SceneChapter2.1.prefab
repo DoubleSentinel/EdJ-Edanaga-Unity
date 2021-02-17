@@ -7019,7 +7019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &572163435036880795
 Transform:
   m_ObjectHideFlags: 0
@@ -7889,7 +7889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &572163435304365104
 Transform:
   m_ObjectHideFlags: 0
@@ -80321,7 +80321,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6012704412705178023}
-  - component: {fileID: 3474540633429901417}
   m_Layer: 0
   m_Name: 2D SceneChapter2.1
   m_TagString: Untagged
@@ -80345,59 +80344,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3474540633429901417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012704412705178009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf94ec521a32d6a48b2318e06de05f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  animator: {fileID: 0}
-  scenePlayer: {fileID: 572163434652014864}
-  sceneObjectives:
-  - {fileID: 6837529923781037523}
-  - {fileID: 5136719946113753522}
-  - {fileID: 5140988982977208920}
-  - {fileID: 7521644331109089519}
-  - {fileID: 5689797565407341069}
-  - {fileID: 8281570190051593989}
-  - {fileID: 2990819130614029080}
-  - {fileID: 7258152424480112741}
-  - {fileID: 4808590309805991740}
-  - {fileID: 726501206161154106}
-  sceneBuildings:
-  - {fileID: 727007481878234777}
-  - {fileID: 727007481881590231}
-  - {fileID: 727007482054393027}
-  - {fileID: 727007480023434934}
-  - {fileID: 727007480450795851}
-  - {fileID: 727007481617907727}
-  - {fileID: 727007481299524813}
-  - {fileID: 727007480289329663}
-  - {fileID: 727007480485493100}
-  - {fileID: 727007479966012319}
-  sceneButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sceneObjective: {fileID: 0}
-  btnContinue: {fileID: 0}
-  ConversationBubbles:
-  - {fileID: 0}
-  conversationIndex: 0
 --- !u!1 &6012704412814174463
 GameObject:
   m_ObjectHideFlags: 0

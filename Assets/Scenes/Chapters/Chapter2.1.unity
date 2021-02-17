@@ -1041,7 +1041,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: PlaySoundAmbiance
             m_Mode: 5
             m_Arguments:
@@ -2636,7 +2636,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -2647,7 +2647,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -2865,7 +2865,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -2876,7 +2876,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -3094,7 +3094,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -3530,7 +3530,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -3541,7 +3541,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -5007,7 +5007,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -5147,7 +5147,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -5158,7 +5158,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -5376,7 +5376,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -5387,7 +5387,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -5605,7 +5605,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -6041,7 +6041,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -6052,7 +6052,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -7518,7 +7518,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -7736,7 +7736,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -7747,7 +7747,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -7965,7 +7965,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -7976,7 +7976,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -8194,7 +8194,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -8630,7 +8630,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -8641,7 +8641,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -10107,7 +10107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -10247,7 +10247,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -10258,7 +10258,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -10476,7 +10476,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -10487,7 +10487,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -10705,7 +10705,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -11141,7 +11141,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -11152,7 +11152,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -12618,7 +12618,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -12758,7 +12758,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -12769,7 +12769,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -12987,7 +12987,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -12998,7 +12998,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -13216,7 +13216,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -13652,7 +13652,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -13663,7 +13663,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -15129,7 +15129,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -15405,7 +15405,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -15416,7 +15416,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -15634,7 +15634,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -15645,7 +15645,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -15863,7 +15863,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -16299,7 +16299,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -16310,7 +16310,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -17776,7 +17776,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -17963,7 +17963,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -17974,7 +17974,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -18192,7 +18192,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -18203,7 +18203,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -18421,7 +18421,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -18857,7 +18857,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -18868,7 +18868,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -20334,7 +20334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -24532,7 +24532,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: ClearCharacters
             m_Mode: 1
             m_Arguments:
@@ -24543,7 +24543,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetupButtons
             m_Mode: 1
             m_Arguments:
@@ -25127,7 +25127,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: PlaySoundMusic
             m_Mode: 5
             m_Arguments:
@@ -25807,7 +25807,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -25818,7 +25818,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -26036,7 +26036,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -26047,7 +26047,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -26265,7 +26265,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -26701,7 +26701,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -26712,7 +26712,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -28178,7 +28178,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -28659,18 +28659,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749459535}
   m_CullTransparentMesh: 0
---- !u!114 &1756059567 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 3474540635185960902}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf94ec521a32d6a48b2318e06de05f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1772022827
 GameObject:
   m_ObjectHideFlags: 0
@@ -28898,7 +28886,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -28909,7 +28897,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -29127,7 +29115,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -29138,7 +29126,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -29356,7 +29344,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -29792,7 +29780,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -29803,7 +29791,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -31269,7 +31257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -31409,7 +31397,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -31420,7 +31408,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -31638,7 +31626,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -31649,7 +31637,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -31867,7 +31855,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: setAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -32303,7 +32291,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorState
             m_Mode: 3
             m_Arguments:
@@ -32314,7 +32302,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 1756059567}
+          - m_Target: {fileID: 0}
             m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
@@ -33780,7 +33768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756059567}
+      - m_Target: {fileID: 0}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -33957,71 +33945,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 971721044}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[0]
-      value: 
-      objectReference: {fileID: 149588427}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[1]
-      value: 
-      objectReference: {fileID: 1522083897}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[2]
-      value: 
-      objectReference: {fileID: 626259544}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[3]
-      value: 
-      objectReference: {fileID: 403947965}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[4]
-      value: 
-      objectReference: {fileID: 1841449495}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[5]
-      value: 
-      objectReference: {fileID: 116767278}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[6]
-      value: 
-      objectReference: {fileID: 1930475652}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[7]
-      value: 
-      objectReference: {fileID: 408022399}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[8]
-      value: 
-      objectReference: {fileID: 237423516}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: sceneButtons.Array.data[9]
-      value: 
-      objectReference: {fileID: 306627923}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: btnContinue
-      value: 
-      objectReference: {fileID: 1017650383}
-    - target: {fileID: 3474540633429901417, guid: c0353029b8104374790cb10b51f253a8,
-        type: 3}
-      propertyPath: ConversationBubbles.Array.data[0]
-      value: 
-      objectReference: {fileID: 910047588}
     - target: {fileID: 6012704412705178009, guid: c0353029b8104374790cb10b51f253a8,
         type: 3}
       propertyPath: m_Name
@@ -34084,6 +34007,131 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0353029b8104374790cb10b51f253a8, type: 3}
+--- !u!1 &3474540635185960903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6012704412705178009, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 726501206161154106, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4808590309805991740, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7258152424480112741, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2990819130614029080, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8281570190051593989, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5689797565407341069, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7521644331109089519, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5140988982977208920, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5136719946113753522, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6837529923781037523, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3474540635185960914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 572163434652014864, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3474540635185960902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3474540635185960915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474540635185960903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf94ec521a32d6a48b2318e06de05f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 971721044}
+  animator: {fileID: 0}
+  scenePlayer: {fileID: 3474540635185960914}
+  sceneObjectives:
+  - {fileID: 3474540635185960913}
+  - {fileID: 3474540635185960912}
+  - {fileID: 3474540635185960911}
+  - {fileID: 3474540635185960910}
+  - {fileID: 3474540635185960909}
+  - {fileID: 3474540635185960908}
+  - {fileID: 3474540635185960907}
+  - {fileID: 3474540635185960906}
+  - {fileID: 3474540635185960905}
+  - {fileID: 3474540635185960904}
+  sceneBuildings:
+  - {fileID: 4192522772096487775}
+  - {fileID: 4192522772094725649}
+  - {fileID: 4192522771853241093}
+  - {fileID: 4192522773952860528}
+  - {fileID: 4192522773458394765}
+  - {fileID: 4192522772356290505}
+  - {fileID: 4192522772674743051}
+  - {fileID: 4192522773687031353}
+  - {fileID: 4192522773488791210}
+  - {fileID: 4192522773941601369}
+  sceneButtons:
+  - {fileID: 149588427}
+  - {fileID: 1522083897}
+  - {fileID: 626259544}
+  - {fileID: 403947965}
+  - {fileID: 1841449495}
+  - {fileID: 116767278}
+  - {fileID: 1930475652}
+  - {fileID: 408022399}
+  - {fileID: 237423516}
+  - {fileID: 306627923}
+  sceneObjective: {fileID: 0}
+  btnContinue: {fileID: 1017650383}
+  ConversationBubbles:
+  - {fileID: 910047588}
+  conversationIndex: 0
 --- !u!1 &4192522771853241093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 727007482054393027, guid: c0353029b8104374790cb10b51f253a8,

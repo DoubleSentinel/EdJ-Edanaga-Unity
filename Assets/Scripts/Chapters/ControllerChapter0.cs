@@ -41,8 +41,6 @@ public class ControllerChapter0 : MonoBehaviour
 
     private void Start()
     {
-        controllers.GetComponent<LanguageHandler>().translateUI();
-
         scenePlayer = scenePlayer.gameObject.transform.GetChild(0).GetChild(0).gameObject;
         scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
         scenePlayerCh1 = scenePlayerCh1.gameObject.transform.GetChild(0).GetChild(2).gameObject;
