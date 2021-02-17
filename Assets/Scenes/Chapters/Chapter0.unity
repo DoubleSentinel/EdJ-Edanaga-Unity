@@ -26063,6 +26063,8 @@ MonoBehaviour:
   scenePlayerCh0: {fileID: 1776884109}
   scenePlayerCh1: {fileID: 4783305942205593902, guid: 06f41e947f1461b4ab51472342c2e309,
     type: 3}
+  scenePlayerCh2_1: {fileID: 6012704412705178009, guid: c0353029b8104374790cb10b51f253a8,
+    type: 3}
   scenePlayerCh5: {fileID: 6561007709569815170, guid: 090388d8c3c4c3745b177036e239b65e,
     type: 3}
   characterName: {fileID: 817700286}
@@ -37304,7 +37306,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 379734136686595453}
   m_HandleRect: {fileID: 379734136686595452}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -37504,7 +37506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -10.999878, y: 0}
   m_SizeDelta: {x: -11, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &379734136650199214
