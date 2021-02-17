@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ControllerChapter0 : MonoBehaviour
 {
-    private int selectedCharacterIndex = 7;
+    private int selectedCharacterIndex = 0;
     private int characterCount;
     private Color desiredColor;
 
@@ -37,20 +37,36 @@ public class ControllerChapter0 : MonoBehaviour
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
+
         scenePlayerCh1 = scenePlayerCh1.gameObject.transform.GetChild(0).GetChild(2).gameObject;
         scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
+
         characterCount = scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
 
         int i = 0;
+        int randomVal = Random.Range(0, characterCount);
         while (i < characterCount)
         {
-            if (scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).gameObject.activeSelf)
+            /*
+            if (scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.activeSelf)
             {
                 selectedCharacterIndex = i;
             }
+            */
+            if( i == randomVal)
+            {
+                scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
+                scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
+                scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
+            }
+
             i++;
         }
-        print("Selected head = " + selectedCharacterIndex);
+        selectedCharacterIndex = randomVal;
         UpdateCharacterSelectionUI();
     }
     private void Update()
@@ -98,7 +114,7 @@ public class ControllerChapter0 : MonoBehaviour
         SetupPlayer();
     }
 
-    private void SetupPlayer()
+    public void SetupPlayer()
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
