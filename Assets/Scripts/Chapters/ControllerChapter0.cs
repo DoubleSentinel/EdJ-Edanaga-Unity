@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelection : MonoBehaviour
+public class ControllerChapter0 : MonoBehaviour
 {
     private int selectedCharacterIndex;
     private Color desiredColor;
@@ -24,8 +24,17 @@ public class CharacterSelection : MonoBehaviour
     [Header("Tweaks")]
     [SerializeField] private float backgroudColorTransitionSpeed = 10f;
 
+    // Local variables
+    private GameObject controllers;
+
+    void Awake()
+    {
+        controllers = GameObject.Find("Controllers");
+    }
+
     private void Start()
     {
+        controllers.GetComponent<LanguageHandler>().translateUI();
         UpdateCharacterSelectionUI();
     }
     private void Update()

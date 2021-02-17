@@ -164,7 +164,7 @@ MonoBehaviour:
     m_id: 1194eeed-c0f5-40b3-b93f-3354720ad10f
     m_nodeId: c6e6842d-cbc1-4011-8513-2a6c1da5dba1
     m_socketName: OutputSocket_3
-    m_value: '{"ButtonCategory":"Chapter0","ButtonName":"ContinueToCharacter","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Chapter0","ButtonName":"ContinueToCharacter","GameEvent":"ContinueToCharacter","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -352,7 +352,7 @@ MonoBehaviour:
     m_id: 8bd7b1dc-40ac-4778-8a22-9351bd610efe
     m_nodeId: 748e67ea-55c0-47b3-9bdb-155cb196cbb9
     m_socketName: OutputSocket_1
-    m_value: '{"ButtonCategory":"Test","ButtonName":"LoadChapter2.1","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Test","ButtonName":"LoadChapter1","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -617,7 +617,7 @@ MonoBehaviour:
   AllowSceneActivation: 1
   SceneActivationDelay: 0.2
   SceneBuildIndex: 0
-  SceneName: Chapter2.1
+  SceneName: Chapter1
 --- !u!114 &7027682683133159683
 MonoBehaviour:
   m_ObjectHideFlags: 1
