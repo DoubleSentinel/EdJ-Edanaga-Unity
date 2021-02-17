@@ -29,6 +29,8 @@ public class ControllerChapter0 : MonoBehaviour
     // Local variables
     private GameObject controllers;
 
+    private string texts;
+
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
@@ -123,6 +125,26 @@ public class ControllerChapter0 : MonoBehaviour
         scenePlayerCh0.transform.position = new Vector3(player.x, player.y, depth);
         scenePlayerCh0.SetActive(true);
     }
+
+    //Prepare texts for the detailled description of the alternative
+    public void PrepareTextAlternative(GameObject TextsBox)
+    {
+        //Get texts from TextBox
+        texts = "";
+        for (int i = 0; i < TextsBox.transform.childCount; i++)
+        {
+            texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
+            texts += "\n\n"; //new line characters
+        }
+        TextsBox.gameObject.SetActive(false); //Disable TextsBox
+    }
+
+    //Add the texts to the scroll view prefab
+    public void SetTextAlternative(GameObject TargetText)
+    {
+        TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
+    }
+
 
     [System.Serializable]
     public class CharacterSelectObject
