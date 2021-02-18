@@ -3911,7 +3911,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: UI_PC_Next
+        SoundName: EDGA_Point&click
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
