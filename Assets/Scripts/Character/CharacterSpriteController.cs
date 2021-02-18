@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class CharacterSpriteController : MonoBehaviour
 {
@@ -8,11 +10,13 @@ public class CharacterSpriteController : MonoBehaviour
     private GameObject symbolComplete;
     [SerializeField]
     private GameObject fullBody;
+    [SerializeField]
+    private Transform heads;
 
     // Local variables
     private GameObject controllers;
     private string head_to_show;
-
+    
     private void Awake()
     {
         controllers = GameObject.Find("Controllers");
@@ -21,12 +25,21 @@ public class CharacterSpriteController : MonoBehaviour
         symbolChest.SetActive(true); 
         symbolComplete.SetActive(false);
         fullBody.SetActive(true);
-               
-        head_to_show = controllers.GetComponent<TestingEnvironment>().Characters[this.name];
+
+        try
+        { 
+            head_to_show = controllers.GetComponent<TestingEnvironment>().Characters[this.name];
+
+        }
+        catch(KeyNotFoundException)
+        {
+            //Default value for chapter0
+            head_to_show = "Otarie";
+        }
         
-        foreach (GameObject child in this.gameObject.transform.GetChild(1).GetChild(2)) //Character Heads
+        foreach (Transform child in heads) //Character Heads
 		{
-		    child.gameObject.SetActive(child.name != head_to_show);
+		    child.gameObject.SetActive(child.name == head_to_show);
 		}
     }
 
