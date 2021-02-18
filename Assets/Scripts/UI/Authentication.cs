@@ -174,7 +174,7 @@ public class Authentication : MonoBehaviour
                 }
 
                 GetComponent<TestingEnvironment>().Objectives = objectives;
-                GameEventMessage.SendEvent("ContinueToCharacter");  //SceneManager.LoadScene(sceneToLoad);
+                SceneManager.LoadScene(sceneToLoad);
             }
             else
             {

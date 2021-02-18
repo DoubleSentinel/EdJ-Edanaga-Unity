@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Doozy.Engine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -117,7 +118,7 @@ public class ControllerChapter0 : MonoBehaviour
     {
         float height = Screen.height * 0.75f / 2f;
         float depth = -1f;
-        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, height));
+        Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4, height*1.2f));
 
         scenePlayerCh0.transform.position = new Vector3(player.x, player.y, depth);
         scenePlayerCh0.SetActive(true);
@@ -140,6 +141,12 @@ public class ControllerChapter0 : MonoBehaviour
     public void SetTextAlternative(GameObject TargetText)
     {
         TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
+    }
+
+    //Load Ctreate Account View
+    public void LoadAccountCreation()
+    {
+        GameEventMessage.SendEvent("LoadCreateAccount");
     }
 
     [System.Serializable]

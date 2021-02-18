@@ -3005,7 +3005,7 @@ RectTransform:
   - {fileID: 633534351}
   - {fileID: 522097162}
   m_Father: {fileID: 760120369}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5889,8 +5889,8 @@ MonoBehaviour:
       GameEvents: []
       SoundData:
         SoundSource: 0
-        DatabaseName: General
-        SoundName: No Sound
+        DatabaseName: UI
+        SoundName: EDGA_Point&click
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -15336,8 +15336,8 @@ RectTransform:
   m_Children:
   - {fileID: 451296127}
   - {fileID: 1546740555}
-  - {fileID: 318377795}
   - {fileID: 1400340202}
+  - {fileID: 318377795}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15681,7 +15681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &817700285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21941,7 +21941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Go !
+  m_text: OK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4591b77b284bc7d48aeb7827047df6ca, type: 2}
   m_sharedMaterial: {fileID: 6846770730612099582, guid: 4591b77b284bc7d48aeb7827047df6ca,
@@ -25330,7 +25330,7 @@ RectTransform:
   m_Children:
   - {fileID: 1756777190}
   m_Father: {fileID: 760120369}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -25356,9 +25356,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 09f381077881386469a5875daa0386eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb8fb37c673ceb941be3259de1d7e192, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -25799,8 +25799,8 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 0}
-            m_MethodName: SetupPlayer
+          - m_Target: {fileID: 4783305942921700866}
+            m_MethodName: LoadAccountCreation
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -25809,17 +25809,6 @@ MonoBehaviour:
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1458454402}
-            m_MethodName: EnableOptionWheel
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
             m_CallState: 2
       GameEvents: []
       SoundData:
@@ -27961,7 +27950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -269.02, y: -0}
   m_SizeDelta: {x: 320, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756777191
@@ -29492,9 +29481,9 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 4783305942921700866}
-            m_MethodName: Confirm
-            m_Mode: 1
+          - m_Target: {fileID: 1812507785}
+            m_MethodName: SetActive
+            m_Mode: 6
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -29506,8 +29495,8 @@ MonoBehaviour:
       GameEvents: []
       SoundData:
         SoundSource: 0
-        DatabaseName: General
-        SoundName: No Sound
+        DatabaseName: UI
+        SoundName: EDGA_Point&click
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -30957,18 +30946,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1812507789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Confirm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1812507789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34818,8 +34796,8 @@ MonoBehaviour:
       GameEvents: []
       SoundData:
         SoundSource: 0
-        DatabaseName: General
-        SoundName: No Sound
+        DatabaseName: UI
+        SoundName: EDGA_Point&click
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -37470,7 +37448,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 379734135609176666}
   m_HandleRect: {fileID: 379734135609176665}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
