@@ -70,6 +70,8 @@ public class TestingEnvironment : MonoBehaviour
     public Dictionary<string, float> SwingClassification { get; set; }
     public Dictionary<string, float> UsersSelectedClassification { get; set; }
 
+    public Dictionary<string, string> Characters { get; set; }
+
     // Alternative lists by category
     public int[] AlternativesUninformed { get; set; }
     public int[] AlternativesMCDA { get; set; }

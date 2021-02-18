@@ -23,19 +23,19 @@ public class ControllerChapter0 : MonoBehaviour
 
     // Local variables
     private GameObject controllers;
-
     private string texts;
+    private List<string> listHeads = new List<string>();
 
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
+
+        scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
+        characterCount = scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
     }
 
     private void Start()
     {
-        scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
-        characterCount = scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
-
         int i = 0;
         int randomVal = Random.Range(0, characterCount);
         while (i < characterCount)
@@ -84,7 +84,25 @@ public class ControllerChapter0 : MonoBehaviour
 
     public void Confirm()
     {
-        //Load Chapter1
+        //get currently selected head as player
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Player", characterName.text);
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Host", "Bernard");
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Journalist", "Mouse");
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Engineer", "Hibou");
+
+        //List of the possible heads for the Objectives
+        for (int i = 0; i < characterCount; i++)
+        {
+            listHeads.Add(scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.name);
+        }
+        listHeads.Remove(characterName.text); //Remove Player choice from the list
+
+        for (int i = 0; i < 10; i++) //Objective0 to Objective9 
+        {
+            int index = Random.Range(0, listHeads.Count);
+            controllers.GetComponent<TestingEnvironment>().Characters.Add($"Objective{i}", listHeads[index]);
+            listHeads.RemoveAt(index); //Adapt listHeads
+        }
     }
 
     private void UpdateCharacterSelectionUI()
@@ -122,7 +140,6 @@ public class ControllerChapter0 : MonoBehaviour
     {
         TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
     }
-
 
     [System.Serializable]
     public class CharacterSelectObject
