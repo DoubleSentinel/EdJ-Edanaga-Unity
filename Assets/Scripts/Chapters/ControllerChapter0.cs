@@ -106,6 +106,10 @@ public class ControllerChapter0 : MonoBehaviour
             controllers.GetComponent<TestingEnvironment>().Characters.Add($"Objective{i}", listHeads[index]);
             listHeads.RemoveAt(index); //Adapt listHeads
         }
+        foreach (KeyValuePair<string, string> character in controllers.GetComponent<TestingEnvironment>().Characters)
+        {
+            print($"Char: {character.Key} Head: {character.Value}");
+        }         
     }
 
     private void UpdateCharacterSelectionUI()
