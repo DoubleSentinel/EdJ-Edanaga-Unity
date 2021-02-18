@@ -11,16 +11,8 @@ public class ControllerChapter0 : MonoBehaviour
     private Color desiredColor;
 
     [Header("2D Scene References")]
-    //[SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject scenePlayerCh0;
-    //[SerializeField] private GameObject scenePlayerCh1;
-    //[SerializeField] private GameObject scenePlayerCh2_1;
-    //[SerializeField] private GameObject scenePlayerCh5;
-
-    /*
-    [Header("List of characters")]
-    [SerializeField] private List<CharacterSelectObject> characterList = new List<CharacterSelectObject>();
-    */
+    
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image characterImage;
@@ -41,41 +33,21 @@ public class ControllerChapter0 : MonoBehaviour
 
     private void Start()
     {
-        //scenePlayer = scenePlayer.gameObject.transform.GetChild(0).GetChild(0).gameObject;
         scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
-        //scenePlayerCh1 = scenePlayerCh1.gameObject.transform.GetChild(0).GetChild(2).gameObject;
-        //scenePlayerCh2_1 = scenePlayerCh2_1.gameObject.transform.GetChild(0).GetChild(0).gameObject;
-        //scenePlayerCh5 = scenePlayerCh5.gameObject.transform.GetChild(0).GetChild(0).gameObject;
-
         characterCount = scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
 
         int i = 0;
         int randomVal = Random.Range(0, characterCount);
         while (i < characterCount)
         {
-            /*
-            if (scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.activeSelf)
-            {
-                selectedCharacterIndex = i;
-            }
-            */
             if( i == randomVal)
             {
-                //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
                 scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
-                //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
-                //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
-                //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(true);
             }
             else
             {
-                //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
                 scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
-                //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
-                //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
-                //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(i).gameObject.SetActive(false);
             }
-
             i++;
         }
         selectedCharacterIndex = randomVal;
@@ -88,41 +60,25 @@ public class ControllerChapter0 : MonoBehaviour
 
     public void LeftArrow()
     {
-        //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
         scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-
+        
         selectedCharacterIndex--;
         if (selectedCharacterIndex < 0)
             selectedCharacterIndex = characterCount - 1;
 
-        //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         UpdateCharacterSelectionUI();
     }
 
     public void RightArrow()
     {
-        //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
         scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-
+        
         selectedCharacterIndex++;
         if (selectedCharacterIndex == characterCount)
             selectedCharacterIndex = 0;
 
-        //scenePlayer.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh2_1.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        //scenePlayerCh5.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         UpdateCharacterSelectionUI();
     }
 
