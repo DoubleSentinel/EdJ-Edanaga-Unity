@@ -352,7 +352,7 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   SpatialBlend: 0
-  Loop: 1
+  Loop: 0
   Mode: 0
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5

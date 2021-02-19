@@ -6646,7 +6646,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: No Sound
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -12637,7 +12637,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -32807,7 +32807,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: No Sound
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized

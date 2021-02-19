@@ -153,7 +153,6 @@ public class ControllerChapter2_1 : MonoBehaviour
         userSelectedObjectiveNumber = GetObjectiveNumer(building);
         sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
         SetupCallConversation();
-        print(userSelectedObjectiveNumber);
         Call(userSelectedObjectiveNumber);
     }
 

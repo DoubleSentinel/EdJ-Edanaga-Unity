@@ -271,7 +271,6 @@ public class ControllerChapter2_2 : MonoBehaviour
     //Play specific Ambiance sound
     public void PlaySoundAmbiance(string mySoundName)
     {
-        print($"playing: {mySoundName}");
         controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
     }
 

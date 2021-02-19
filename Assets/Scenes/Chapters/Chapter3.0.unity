@@ -3810,7 +3810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -29.599854, y: -24.400002}
+  m_AnchoredPosition: {x: -29.599915, y: -24.400002}
   m_SizeDelta: {x: -1055, y: -165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94479443
@@ -22385,7 +22385,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -41176,7 +41176,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -54069,7 +54069,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -61494,7 +61494,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
