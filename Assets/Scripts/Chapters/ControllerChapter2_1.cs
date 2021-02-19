@@ -15,8 +15,9 @@ public class ControllerChapter2_1 : MonoBehaviour
     [SerializeField] private GameObject[] sceneObjectives;
     [SerializeField] private GameObject[] sceneBuildings;
     [SerializeField] private GameObject[] sceneButtons;
-    [SerializeField] private GameObject sceneObjective;
     [SerializeField] private Button btnContinue;
+
+    private GameObject sceneObjective;
 
     private int notifications;
     private int userSelectedObjectiveNumber = 0;
@@ -152,6 +153,7 @@ public class ControllerChapter2_1 : MonoBehaviour
         userSelectedObjectiveNumber = GetObjectiveNumer(building);
         sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
         SetupCallConversation();
+        print(userSelectedObjectiveNumber);
         Call(userSelectedObjectiveNumber);
     }
 

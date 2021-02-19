@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective0 (Character Variant)
       objectReference: {fileID: 0}
+    - target: {fileID: 4914549490132693290, guid: ab875cfd99a1d2248986509f78bc5573,
+        type: 3}
+      propertyPath: m_TagString
+      value: Character
+      objectReference: {fileID: 0}
     - target: {fileID: 4914549490555338303, guid: ab875cfd99a1d2248986509f78bc5573,
         type: 3}
       propertyPath: m_IsActive
