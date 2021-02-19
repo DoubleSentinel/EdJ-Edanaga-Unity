@@ -3536,24 +3536,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522772356290505}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522772356290505}
@@ -5018,7 +5007,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -6058,24 +6047,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522772096487775}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522772096487775}
@@ -7539,7 +7517,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 149588431}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3474540635185960915}
+        m_MethodName: StartCall
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4192522772096487775}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &149588431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8654,17 +8643,6 @@ MonoBehaviour:
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
             m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773488791210}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773488791210}
@@ -10129,7 +10107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -11170,17 +11148,6 @@ MonoBehaviour:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773941601369}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
@@ -12651,7 +12618,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -13021,18 +12988,18 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
+            m_MethodName: SetAnimatorState
+            m_Mode: 3
             m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773952860528}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773952860528}
@@ -13691,24 +13658,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773952860528}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773952860528}
@@ -15173,7 +15129,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -16349,24 +16305,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773687031353}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773687031353}
@@ -17831,7 +17776,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -18918,24 +18863,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522771853241093}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522771853241093}
@@ -20400,7 +20334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -24898,18 +24832,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: ClearCharacters
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -26784,24 +26707,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522772094725649}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522772094725649}
@@ -28265,7 +28177,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1522083901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3474540635185960915}
+        m_MethodName: StartCall
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4192522772094725649}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1522083901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29193,18 +29116,18 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
+            m_MethodName: SetAnimatorState
+            m_Mode: 3
             m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773458394765}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773458394765}
@@ -29863,24 +29786,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522773458394765}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522773458394765}
@@ -31345,7 +31257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:
@@ -32385,24 +32297,13 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: SetAnimatorParameter
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 4192522772674743051}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 3474540635185960915}
-            m_MethodName: StartCall
+            m_MethodName: SetAnimatorParameter
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 4192522772674743051}
@@ -33867,7 +33768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3474540635185960915}
         m_MethodName: StartCall
         m_Mode: 2
         m_Arguments:

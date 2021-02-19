@@ -204,7 +204,7 @@ public class ControllerChapter2_1 : MonoBehaviour
             //Add action if necessary 
         }
 
-        //State:  BuildingHover -> BuildingAcivited
+        //State:  BuildingHover -> BuildingActivited
         if (state == 4)
         {
             //Don't allow the others buildings selection when one building is already selected
