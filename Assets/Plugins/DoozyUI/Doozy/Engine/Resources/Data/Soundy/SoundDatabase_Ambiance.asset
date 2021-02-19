@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8689395431912807713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_CH03&04_AMB_BarTable_Loop
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_CH03&04_AMB_BarTable_Loop
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: a9493e806d728704e872713ce7491478, type: 3}
+    Weight: 1
 --- !u!114 &-6881304342048145937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +143,35 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 3f8595757ed731148a3e94a0cac5c475, type: 3}
     Weight: 1
+--- !u!114 &-3863940037218692082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_CH03&04_AMB_Battles_Loop
+  m_EditorClassIdentifier: 
+  DatabaseName: Ambiance
+  SoundName: EDGA_CH03&04_AMB_Battles_Loop
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 1
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 9400c95d787539049a379386243907fe, type: 3}
+    Weight: 1
 --- !u!114 &-3326627461859060084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +278,7 @@ MonoBehaviour:
   - No Sound
   - EDGA_CH01&06_Office_AMB_Loop
   - EDGA_CH01_USINE_AMB_Loop_dezoom
+  - EDGA_CH02_AMB_Ville_Loop_long
   - EDGA_CH03_AMB_Bar_Loop
   - EDGA_Ch03_Bar_AMB
   - EDGA_CH04_AMB_BarTable_Loop
@@ -230,12 +289,14 @@ MonoBehaviour:
   - {fileID: -5855622759119082922}
   - {fileID: 6332516360603285783}
   - {fileID: -6444746589799553579}
+  - {fileID: -6881304342048145937}
   - {fileID: -3326627461859060084}
   - {fileID: 2284066152518257471}
   - {fileID: -3267445299189995799}
   - {fileID: -5146188752789916059}
   - {fileID: -73853744298932996}
-  - {fileID: -6881304342048145937}
+  - {fileID: -8689395431912807713}
+  - {fileID: -3863940037218692082}
 --- !u!114 &2284066152518257471
 MonoBehaviour:
   m_ObjectHideFlags: 0
