@@ -136,6 +136,9 @@ MonoBehaviour:
   SoundNames:
   - No Sound
   - EDGA_Point&click
+  - EDGA_PointClick_A
+  - EDGA_PointClick_B
+  - EDGA_PointClick_C
   - No Sound
   - UI_PC_Check
   - UI_PC_Invalid
@@ -145,14 +148,14 @@ MonoBehaviour:
   Database:
   - {fileID: -7226302953576583650}
   - {fileID: -4578249229160041266}
+  - {fileID: 7954372138706245010}
+  - {fileID: 2855683741049716921}
+  - {fileID: 4766606763077542279}
   - {fileID: 2921917995275301457}
   - {fileID: -456396997418342109}
   - {fileID: 4343734611800792762}
   - {fileID: 1696745406998880289}
   - {fileID: -726521365796003798}
-  - {fileID: 7954372138706245010}
-  - {fileID: 2855683741049716921}
-  - {fileID: 4766606763077542279}
 --- !u!114 &1696745406998880289
 MonoBehaviour:
   m_ObjectHideFlags: 0
