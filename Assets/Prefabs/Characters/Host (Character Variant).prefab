@@ -7,66 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: contour.r
-      value: 0.7372549
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: contour.g
-      value: 0.19215687
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: contour.b
-      value: 0.49019608
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: fond.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: fond.g
-      value: 0.7019608
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: fond.b
-      value: 0.8666667
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: accent.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: accent.g
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: accent.b
-      value: 0.78039217
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: contour.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: fond.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1376204332177324404, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: accent.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4914549490132693289, guid: ab875cfd99a1d2248986509f78bc5573,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -126,41 +66,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Host (Character Variant)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549490132693290, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_TagString
-      value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549490555338303, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549490715824965, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549490784988382, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549490833303089, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549491233543861, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914549491305249006, guid: ab875cfd99a1d2248986509f78bc5573,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab875cfd99a1d2248986509f78bc5573, type: 3}

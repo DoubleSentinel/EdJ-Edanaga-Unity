@@ -67,5 +67,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective5 (Character Variant)
       objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: contour.r
+      value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: contour.g
+      value: 0.60784316
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: contour.b
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: fond.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: fond.g
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: fond.b
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: accent.r
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: accent.g
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842155118937021201, guid: d8701e82814f7ac46aa9b7f29b4506bc,
+        type: 3}
+      propertyPath: accent.b
+      value: 0.47843137
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8701e82814f7ac46aa9b7f29b4506bc, type: 3}

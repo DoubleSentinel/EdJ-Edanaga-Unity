@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 51466698690335065}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1608,9 +1608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e1bfe15b4edc84e80393597f988432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contour: {r: 0, g: 0, b: 0, a: 0}
-  fond: {r: 0, g: 0, b: 0, a: 0}
-  accent: {r: 0, g: 0, b: 0, a: 0}
+  contour: {r: 0.7372549, g: 0.19215687, b: 0.49019608, a: 1}
+  fond: {r: 1, g: 0.7019608, b: 0.8666667, a: 1}
+  accent: {r: 1, g: 0.6, b: 0.78039217, a: 1}
   blanc: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &51466698690335065
 MonoBehaviour:
@@ -3262,7 +3262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4914549490555338302
 Transform:
   m_ObjectHideFlags: 0
@@ -3850,7 +3850,7 @@ GameObject:
   - component: {fileID: 4914549490715824963}
   m_Layer: 0
   m_Name: obg1
-  m_TagString: Color:Fond
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4012,7 +4012,7 @@ GameObject:
   - component: {fileID: 4914549490784988380}
   m_Layer: 0
   m_Name: obg3
-  m_TagString: Color:Accent
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4096,7 +4096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4914549490833303088
 Transform:
   m_ObjectHideFlags: 0
@@ -5987,7 +5987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4914549491233543860
 Transform:
   m_ObjectHideFlags: 0
@@ -6426,7 +6426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4914549491305249005
 Transform:
   m_ObjectHideFlags: 0
