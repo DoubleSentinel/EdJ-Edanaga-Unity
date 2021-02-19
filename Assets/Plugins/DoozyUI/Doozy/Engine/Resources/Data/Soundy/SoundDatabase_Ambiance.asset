@@ -230,35 +230,6 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 0629e606852ab8d4c9ca53b826775bff, type: 3}
     Weight: 1
---- !u!114 &-3067761979563722763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: MU_Beat_4mesures_84_Loop
-  m_EditorClassIdentifier: 
-  DatabaseName: Ambiance
-  SoundName: MU_Beat_4mesures_84_Loop
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 1
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: 23de8bf0f81934340ba53b5ef5c77287, type: 3}
-    Weight: 1
 --- !u!114 &-2038003220131810972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,35 +317,6 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 7dc5973785378e54cabfb10b900af0e6, type: 3}
     Weight: 1
---- !u!114 &-874715742222847129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: MU_Beat_4mesures_84_Loop_02
-  m_EditorClassIdentifier: 
-  DatabaseName: Ambiance
-  SoundName: MU_Beat_4mesures_84_Loop_02
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 1
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: ab4f9fbf1dd74ae42ba004383adbb8ab, type: 3}
-    Weight: 1
 --- !u!114 &-73853744298932996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,12 +378,9 @@ MonoBehaviour:
   - EDGA_CH04_AMB_BarTable_Loop
   - EDGA_CH04_AMB_Battle_Loop
   - EDGA_CH04_AMB_Battle_Oneshot
-  - MU_Beat_4mesures_84_Loop
-  - MU_Beat_4mesures_84_Loop_02
   - No Sound
   - One shot  battle and continue
   - OneShots
-  - Test Loops
   Database:
   - {fileID: -5855622759119082922}
   - {fileID: 3766026188266235706}
@@ -459,11 +398,8 @@ MonoBehaviour:
   - {fileID: -3267445299189995799}
   - {fileID: -5146188752789916059}
   - {fileID: -73853744298932996}
-  - {fileID: -3067761979563722763}
-  - {fileID: -874715742222847129}
   - {fileID: 6210463050029129700}
   - {fileID: -1780503428647623037}
-  - {fileID: 5954019191960072606}
 --- !u!114 &1283437379292750308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,37 +548,6 @@ MonoBehaviour:
   SequenceResetTime: 5
   Sounds:
   - AudioClip: {fileID: 8300000, guid: 5510c0d51f5949446a96fb4e83ee444d, type: 3}
-    Weight: 1
---- !u!114 &5954019191960072606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: Test Loops
-  m_EditorClassIdentifier: 
-  DatabaseName: Ambiance
-  SoundName: Test Loops
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 0
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: 23de8bf0f81934340ba53b5ef5c77287, type: 3}
-    Weight: 1
-  - AudioClip: {fileID: 8300000, guid: ab4f9fbf1dd74ae42ba004383adbb8ab, type: 3}
     Weight: 1
 --- !u!114 &6210463050029129700
 MonoBehaviour:

@@ -143,6 +143,30 @@ public class ControllerChapter0 : MonoBehaviour
         TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
     }
 
+    //Play specific UI sound
+    public void PlaySoundUI(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundUI(mySoundName);
+    }
+
+    //Play specific Ambiance sound
+    public void PlaySoundAmbiance(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
+    }
+
+    //Play specific Music sound
+    public void PlaySoundMusic(string mySoundName)
+    {
+        controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
+    }
+
+    //Enable or disable options wheel
+    public void EnableOptions(bool enable)
+    {
+        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
+    }
+
     //Load Ctreate Account View
     public void LoadAccountCreation()
     {
