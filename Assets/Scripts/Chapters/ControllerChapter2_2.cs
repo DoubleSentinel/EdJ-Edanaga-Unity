@@ -271,25 +271,13 @@ public class ControllerChapter2_2 : MonoBehaviour
     //Play specific Ambiance sound
     public void PlaySoundAmbiance(string mySoundName)
     {
+        print($"playing: {mySoundName}");
         controllers.GetComponent<SoundsController>().PlaySoundAmbiance(mySoundName);
-        
-        //Doesn't work yet --> need some investigations
-        /* 
-        if (mySoundName == "EDGA_CH04_AMB_Battle_Oneshot")
-        {
-            Task.Delay(57000).ContinueWith(t => NextSound()); //Wait 57s before playing next sound
-        }
-        */
     }
 
     //Play specific Music sound
     public void PlaySoundMusic(string mySoundName)
     {
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
-    }
-
-    public void NextSound()
-    {
-        controllers.GetComponent<SoundsController>().PlaySoundAmbiance("EDGA_CH04_AMB_Battle_Loop");
     }
 }
