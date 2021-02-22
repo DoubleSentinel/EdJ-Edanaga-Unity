@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ControllerChapter0 : MonoBehaviour
 {
@@ -13,14 +12,6 @@ public class ControllerChapter0 : MonoBehaviour
     [Header("2D Scene References")]
     [SerializeField] private GameObject scenePlayerCh0;
     [SerializeField] private Transform heads;
-
-    [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI characterName;
-    [SerializeField] private Image characterImage;
-    [SerializeField] private Image backgroundColor;
-
-    [Header("Tweaks")]
-    [SerializeField] private float backgroudColorTransitionSpeed = 10f;
 
     // Local variables
     private GameObject controllers;
@@ -37,34 +28,35 @@ public class ControllerChapter0 : MonoBehaviour
     private void Start()
     {
         selectedCharacterIndex = 10; //Otarie as head default
-        UpdateCharacterSelectionUI();
+        SetupPlayer();
     }
 
     public void ChangeHead(int direction)
     {
-        var totalSize = headCount - 4;
+        var totalSize = headCount - 3;
         heads.GetChild(selectedCharacterIndex).gameObject.SetActive(false);
         selectedCharacterIndex = (selectedCharacterIndex + direction + totalSize) % totalSize;
         heads.GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        UpdateCharacterSelectionUI();
+        SetupPlayer();
     }
 
     public void Confirm()
     {
         listHeads = new List<string>();
-
-        //get currently selected head as player
-        controllers.GetComponent<TestingEnvironment>().Characters.Add("Player", characterName.text);
-        controllers.GetComponent<TestingEnvironment>().Characters.Add("Host", "Bernard");
-        controllers.GetComponent<TestingEnvironment>().Characters.Add("Journalist", "Mouse");
-        controllers.GetComponent<TestingEnvironment>().Characters.Add("Engineer", "Hibou");
+        controllers.GetComponent<TestingEnvironment>().Characters.Clear();
 
         //List of the possible heads for the Objectives
         for (int i = 0; i < headCount -3; i++)
         {
             listHeads.Add(heads.GetChild(i).gameObject.name);
         }
-        listHeads.Remove(characterName.text); //Remove Player choice from the list
+        
+        //get currently selected head as player
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Player", listHeads[selectedCharacterIndex]);
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Host", "Bernard");
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Journalist", "Mouse");
+        controllers.GetComponent<TestingEnvironment>().Characters.Add("Engineer", "Hibou");
+
 
         for (int i = 0; i < 10; i++) //Objective0 to Objective9 
         {
@@ -72,12 +64,6 @@ public class ControllerChapter0 : MonoBehaviour
             controllers.GetComponent<TestingEnvironment>().Characters.Add($"Objective{i}", listHeads[index]);
             listHeads.RemoveAt(index); //Adapt listHeads
         }
-    }
-
-    private void UpdateCharacterSelectionUI()
-    {
-        characterName.text = heads.GetChild(selectedCharacterIndex).gameObject.name;
-        SetupPlayer();
     }
 
     public void SetupPlayer()
@@ -97,7 +83,7 @@ public class ControllerChapter0 : MonoBehaviour
         texts = "";
         for (int i = 0; i < TextsBox.transform.childCount; i++)
         {
-            texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text;
+            texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
             texts += "\n\n"; //new line characters
         }
         TextsBox.gameObject.SetActive(false); //Disable TextsBox
@@ -106,7 +92,7 @@ public class ControllerChapter0 : MonoBehaviour
     //Add the texts to the scroll view prefab
     public void SetTextAlternative(GameObject TargetText)
     {
-        TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = texts;
+        TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = texts;
     }
 
     //Play specific UI sound
