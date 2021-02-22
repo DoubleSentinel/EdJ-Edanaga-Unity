@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8177715150070185558
+--- !u!114 &-5383288668261538698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: EDGA_Ch03_INTRO
+  m_Name: 00_MU_Introduction_OneShot
   m_EditorClassIdentifier: 
   DatabaseName: Music
-  SoundName: EDGA_Ch03_INTRO
+  SoundName: 00_MU_Introduction_OneShot
   IgnoreListenerPause: 1
   Volume:
     MinValue: 0
@@ -27,95 +27,9 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: adb4734f06f6ca94497636a61f40e7f7, type: 3}
+  - AudioClip: {fileID: 8300000, guid: cfd799bcbb36e6943bebf4374ae9ae34, type: 3}
     Weight: 1
---- !u!114 &-7995577917590619189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: EDGA_MUS_Ch1_office
-  m_EditorClassIdentifier: 
-  DatabaseName: Music
-  SoundName: EDGA_MUS_Ch1_office
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: 0
-    MaxValue: 0
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 1
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: fc3f496f04ef9d249b2dca326b736b0c, type: 3}
-    Weight: 1
---- !u!114 &-7122523585309315577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
-  m_Name: Title
-  m_EditorClassIdentifier: 
-  DatabaseName: Music
-  SoundName: Title
-  IgnoreListenerPause: 1
-  Volume:
-    MinValue: -19.9
-    MaxValue: -19.9
-  Pitch:
-    MinValue: 0
-    MaxValue: 0
-  SpatialBlend: 0
-  Loop: 1
-  Mode: 0
-  ResetSequenceAfterInactiveTime: 0
-  SequenceResetTime: 5
-  Sounds:
-  - AudioClip: {fileID: 8300000, guid: 8640d6da7ac0fde40a37d1b6ea76b965, type: 3}
-    Weight: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b400ee936d64d0e93e3892c7c321e09, type: 3}
-  m_Name: SoundDatabase_Music
-  m_EditorClassIdentifier: 
-  DatabaseName: Music
-  OutputAudioMixerGroup: {fileID: -3998848650885851087, guid: 384701fa03c68cd40bb0ca302f4c5b69,
-    type: 2}
-  SoundNames:
-  - No Sound
-  - EDGA_Ch03_INTRO
-  - EDGA_Chapitres_Musique_Loop
-  - EDGA_MUS_Ch1_office
-  - No Sound
-  - Title
-  Database:
-  - {fileID: 5683484420739364406}
-  - {fileID: -8177715150070185558}
-  - {fileID: 4889573068850734456}
-  - {fileID: -7995577917590619189}
-  - {fileID: -7122523585309315577}
---- !u!114 &4889573068850734456
+--- !u!114 &-1545102554660006475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,13 +51,39 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   SpatialBlend: 0
-  Loop: 1
+  Loop: 0
   Mode: 0
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds:
-  - AudioClip: {fileID: 8300000, guid: 32e018c83c832a64b92e2770b4e6a8bf, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 55a2b0461421eb940b61ffb843366720, type: 3}
     Weight: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b400ee936d64d0e93e3892c7c321e09, type: 3}
+  m_Name: SoundDatabase_Music
+  m_EditorClassIdentifier: 
+  DatabaseName: Music
+  OutputAudioMixerGroup: {fileID: -3998848650885851087, guid: 384701fa03c68cd40bb0ca302f4c5b69,
+    type: 2}
+  SoundNames:
+  - No Sound
+  - 00_MU_Introduction_OneShot
+  - 00_MU_outro_OneShot
+  - EDGA_Chapitres_Musique_Loop
+  - No Sound
+  Database:
+  - {fileID: 5683484420739364406}
+  - {fileID: -5383288668261538698}
+  - {fileID: 8876382005782047174}
+  - {fileID: -1545102554660006475}
 --- !u!114 &5683484420739364406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +111,32 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds: []
+--- !u!114 &8876382005782047174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: 00_MU_outro_OneShot
+  m_EditorClassIdentifier: 
+  DatabaseName: Music
+  SoundName: 00_MU_outro_OneShot
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 67b5dd3bad6ee9445b18ef4cf96da883, type: 3}
+    Weight: 1

@@ -1500,7 +1500,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 2056255396}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_CH01&06_Office_AMB_Loop
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -3799,7 +3810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -29.599854, y: -24.400002}
+  m_AnchoredPosition: {x: -29.599915, y: -24.400002}
   m_SizeDelta: {x: -1055, y: -165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94479443
@@ -22374,7 +22385,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -25335,7 +25346,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -35452,6 +35463,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7393731665568355227, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320dbd36062a00429c628a7606e860d, type: 3}
 --- !u!224 &910047587 stripped
@@ -41160,7 +41176,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -54053,7 +54069,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -61478,7 +61494,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized

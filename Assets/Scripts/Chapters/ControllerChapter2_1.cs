@@ -8,15 +8,16 @@ public class ControllerChapter2_1 : MonoBehaviour
 {
     [Header("2D Scene References")]
     [SerializeField] private Camera cam;
-    [SerializeField] private Animator animator;
+    private Animator animator;
     private int state;
 
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private GameObject[] sceneObjectives;
     [SerializeField] private GameObject[] sceneBuildings;
     [SerializeField] private GameObject[] sceneButtons;
-    [SerializeField] private GameObject sceneObjective;
     [SerializeField] private Button btnContinue;
+
+    private GameObject sceneObjective;
 
     private int notifications;
     private int userSelectedObjectiveNumber = 0;
@@ -92,15 +93,6 @@ public class ControllerChapter2_1 : MonoBehaviour
         sceneObjective.SetActive(true);
     }
 
-    private void ClearCharacters()
-    {
-        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
-        {
-            character.transform.position = new Vector3(11, 0, 1);
-            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-    }
-
     private void Call(int conversationIndex)
     {
         string title = "";
@@ -109,16 +101,6 @@ public class ControllerChapter2_1 : MonoBehaviour
         ch.callback = conversationCallback;
         ch.GenerateConversation(conversationIndex);
         ch.NextConversationSnippet();
-    }
-
-    //Set buttons position to the buildings position
-    private void SetupButtons()
-    {
-        //Set buttons position to the buildings postion
-        for (int i = 0; i < sceneBuildings.Length; i++)
-        {
-            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBuildings[i].transform.position);
-        }
     }
 
     //Block the other buildings selection when one during the conversation
@@ -156,6 +138,15 @@ public class ControllerChapter2_1 : MonoBehaviour
 
     // --------------------  UI Callables  --------------------------------
 
+    public void ClearCharacters()
+    {
+        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
+        {
+            character.transform.position = new Vector3(11, 0, 1);
+            character.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+    }
+
     public void StartCall(GameObject building)
     {
         GameEventMessage.SendEvent("GoToPhoneCall");
@@ -163,6 +154,16 @@ public class ControllerChapter2_1 : MonoBehaviour
         sceneObjective = sceneObjectives[userSelectedObjectiveNumber];
         SetupCallConversation();
         Call(userSelectedObjectiveNumber);
+    }
+
+    //Set buttons position to the buildings position
+    public void SetupButtons()
+    {
+        //Set buttons position to the buildings postion
+        for (int i = 0; i < sceneBuildings.Length; i++)
+        {
+            sceneButtons[i].gameObject.transform.position = cam.WorldToScreenPoint(sceneBuildings[i].transform.position);
+        }
     }
 
     // set state of the animation
@@ -202,7 +203,7 @@ public class ControllerChapter2_1 : MonoBehaviour
             //Add action if necessary 
         }
 
-        //State:  BuildingHover -> BuildingAcivited
+        //State:  BuildingHover -> BuildingActivited
         if (state == 4)
         {
             //Don't allow the others buildings selection when one building is already selected

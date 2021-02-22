@@ -136,6 +136,9 @@ MonoBehaviour:
   SoundNames:
   - No Sound
   - EDGA_Point&click
+  - EDGA_PointClick_A
+  - EDGA_PointClick_B
+  - EDGA_PointClick_C
   - No Sound
   - UI_PC_Check
   - UI_PC_Invalid
@@ -145,6 +148,9 @@ MonoBehaviour:
   Database:
   - {fileID: -7226302953576583650}
   - {fileID: -4578249229160041266}
+  - {fileID: 7954372138706245010}
+  - {fileID: 2855683741049716921}
+  - {fileID: 4766606763077542279}
   - {fileID: 2921917995275301457}
   - {fileID: -456396997418342109}
   - {fileID: 4343734611800792762}
@@ -182,6 +188,35 @@ MonoBehaviour:
   - AudioClip: {fileID: 8300000, guid: 23bd38718eba9bc4b82b18c7c500a542, type: 3}
     Weight: 1
   - AudioClip: {fileID: 8300000, guid: d677a10bdecc6594ba08f64c7845f78b, type: 3}
+    Weight: 1
+--- !u!114 &2855683741049716921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_PointClick_B
+  m_EditorClassIdentifier: 
+  DatabaseName: UI
+  SoundName: EDGA_PointClick_B
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: b875a211915acea44bf4bb346ddc511a, type: 3}
     Weight: 1
 --- !u!114 &2921917995275301457
 MonoBehaviour:
@@ -246,4 +281,62 @@ MonoBehaviour:
   - AudioClip: {fileID: 8300000, guid: 35465658fcb6eea408eac5a06d08c187, type: 3}
     Weight: 1
   - AudioClip: {fileID: 8300000, guid: a40b07d705c92a2419269ff6398e7fd9, type: 3}
+    Weight: 1
+--- !u!114 &4766606763077542279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_PointClick_C
+  m_EditorClassIdentifier: 
+  DatabaseName: UI
+  SoundName: EDGA_PointClick_C
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 1078e6d9c422a574cbca7cc0da86888f, type: 3}
+    Weight: 1
+--- !u!114 &7954372138706245010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: EDGA_PointClick_A
+  m_EditorClassIdentifier: 
+  DatabaseName: UI
+  SoundName: EDGA_PointClick_A
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: f1afcebe6d23e8c47a266c018b962c60, type: 3}
     Weight: 1

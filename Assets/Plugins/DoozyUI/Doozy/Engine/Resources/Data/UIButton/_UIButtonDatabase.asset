@@ -15,6 +15,7 @@ MonoBehaviour:
   DatabaseType: 0
   CategoryNames:
   - Custom
+  - Chapter0
   - Chapter1
   - Chapter2
   - Chapter3
@@ -23,6 +24,7 @@ MonoBehaviour:
   - Test
   - TitleScreen
   Categories:
+  - {fileID: 11400000, guid: 150ac3d8a58d43c4c9d59bd86e9e5a7c, type: 2}
   - {fileID: 11400000, guid: f17b782152fbb9a4f8540211ae6d63cc, type: 2}
   - {fileID: 11400000, guid: 5f5c8219ee484ea4b866f60849f2ed47, type: 2}
   - {fileID: 11400000, guid: 8df6a9c57dba7ce458d8212b8b71100f, type: 2}

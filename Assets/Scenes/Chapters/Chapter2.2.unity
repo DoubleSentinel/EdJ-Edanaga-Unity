@@ -1934,11 +1934,10 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_CH04_AMB_Battle_Loop
+              m_StringArgument: EDGA_CH03_AMB_Battles_Loop
               m_BoolArgument: 0
             m_CallState: 2
-      GameEvents:
-      - 
+      GameEvents: []
       SoundData:
         SoundSource: 0
         DatabaseName: General
@@ -2284,17 +2283,6 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 801531602}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 745463520}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -9789,7 +9777,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized
@@ -19701,6 +19689,17 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 745463520}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: "EDGA_CH04_AMB_Tourn\xE9e_Loop"
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -21068,18 +21067,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 745463520}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch03_Bar_AMB
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -22022,6 +22010,17 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 745463520}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_CH04_AMB_BarTable_Loop
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -28974,18 +28973,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 745463520}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_Ch03_Bar_AMB
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -34712,7 +34700,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: UI
-        SoundName: EDGA_Point&click
+        SoundName: EDGA_PointClick_B
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Uncategorized

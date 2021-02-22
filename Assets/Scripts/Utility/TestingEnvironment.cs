@@ -51,6 +51,7 @@ public class TestingEnvironment : MonoBehaviour
     {
         TradeOffClassification = new Dictionary<string, float>();
         SwingClassification = new Dictionary<string, float>();
+        Characters = new Dictionary<string, string>();
 
         isInnerLoopFirstRun = true;
         SkipSwing = false;
@@ -69,6 +70,8 @@ public class TestingEnvironment : MonoBehaviour
     public Dictionary<string, float> TradeOffClassification { get; set; }
     public Dictionary<string, float> SwingClassification { get; set; }
     public Dictionary<string, float> UsersSelectedClassification { get; set; }
+
+    public Dictionary<string, string> Characters { get; set; }
 
     // Alternative lists by category
     public int[] AlternativesUninformed { get; set; }

@@ -15,6 +15,7 @@ MonoBehaviour:
   DatabaseType: 2
   CategoryNames:
   - Custom
+  - Chapter0
   - Chapter1
   - Chapter2
   - Chapter3
@@ -24,6 +25,7 @@ MonoBehaviour:
   - TitleScreen
   - TradeOff
   Categories:
+  - {fileID: 11400000, guid: 3f12f850c9728e44f87c89277ece4fab, type: 2}
   - {fileID: 11400000, guid: 3476cb55f51bd594182b5a8e027d4f15, type: 2}
   - {fileID: 11400000, guid: 6abca8ef23377374fb880e0d48bd076b, type: 2}
   - {fileID: 11400000, guid: a20214e3f343e264e8f8a0c59e9fd46d, type: 2}

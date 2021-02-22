@@ -1639,7 +1639,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -6518,17 +6518,6 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
           - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_Office_AMB_Loop
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2056255395}
             m_MethodName: EnableOptions
             m_Mode: 6
             m_Arguments:
@@ -6537,6 +6526,17 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 2056255395}
+            m_MethodName: PlaySoundAmbiance
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: EDGA_CH01&06_Office_AMB_Loop
               m_BoolArgument: 1
             m_CallState: 2
       GameEvents: []
@@ -9196,7 +9196,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000061035156
+      value: -10.999947
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -11010,7 +11010,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -14425,7 +14425,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000045776367
+      value: -10.999863
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -16517,17 +16517,6 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_zoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -19801,17 +19790,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
-              m_BoolArgument: 0
-            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -22235,17 +22213,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
-              m_BoolArgument: 0
-            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -23874,6 +23841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393731665568355227, guid: 0320dbd36062a00429c628a7606e860d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0320dbd36062a00429c628a7606e860d, type: 3}
@@ -25555,17 +25527,6 @@ MonoBehaviour:
               m_IntArgument: 2
               m_FloatArgument: 0
               m_StringArgument: EDGA_Ch01_USINE_AMB_01
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -28115,7 +28076,7 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_Office_AMB_Loop
+              m_StringArgument: EDGA_CH01&06_Office_AMB_Loop
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -38895,7 +38856,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000091552734
+      value: -11.000046
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -40804,7 +40765,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -41256,7 +41217,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -42527,7 +42488,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -43069,7 +43030,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000045776367
+      value: -10.999863
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -43404,7 +43365,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000045776367
+      value: -10.999863
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501545855462, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -44640,17 +44601,6 @@ MonoBehaviour:
               m_IntArgument: 3
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -47450,7 +47400,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -49051,17 +49001,6 @@ MonoBehaviour:
               m_IntArgument: 4
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -51487,17 +51426,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 2056255395}
-            m_MethodName: PlaySoundAmbiance
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: EDGA_CH01_USINE_AMB_Loop_dezoom
-              m_BoolArgument: 0
-            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -53725,7 +53653,7 @@ PrefabInstance:
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2316632251966585327, guid: 0f891c406f0c58b44b4f1cdff5079790,
         type: 3}
@@ -53844,7 +53772,7 @@ PrefabInstance:
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000045776367
+      value: -10.999863
       objectReference: {fileID: 0}
     - target: {fileID: 3614625501515203639, guid: 1d7286cc7156a0747b1127b86f0dd986,
         type: 3}
@@ -54060,6 +53988,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3869766497411044524, guid: 06f41e947f1461b4ab51472342c2e309,
+        type: 3}
+      propertyPath: heads
+      value: 
+      objectReference: {fileID: 4783305941575667345}
     - target: {fileID: 4783305942205593902, guid: 06f41e947f1461b4ab51472342c2e309,
         type: 3}
       propertyPath: m_Name
@@ -54120,6 +54053,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5295272743644928291, guid: 06f41e947f1461b4ab51472342c2e309,
+        type: 3}
+      propertyPath: heads
+      value: 
+      objectReference: {fileID: 4783305941575667346}
     - target: {fileID: 6477383405500629881, guid: 06f41e947f1461b4ab51472342c2e309,
         type: 3}
       propertyPath: fond.a
@@ -54158,6 +54096,18 @@ GameObject:
 --- !u!4 &4783305941575667344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4783305942205593903, guid: 06f41e947f1461b4ab51472342c2e309,
+    type: 3}
+  m_PrefabInstance: {fileID: 4783305941575667340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4783305941575667345 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8156309375731479948, guid: 06f41e947f1461b4ab51472342c2e309,
+    type: 3}
+  m_PrefabInstance: {fileID: 4783305941575667340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4783305941575667346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1007032291338139651, guid: 06f41e947f1461b4ab51472342c2e309,
     type: 3}
   m_PrefabInstance: {fileID: 4783305941575667340}
   m_PrefabAsset: {fileID: 0}
