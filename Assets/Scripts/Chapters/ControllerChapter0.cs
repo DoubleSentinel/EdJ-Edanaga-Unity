@@ -49,32 +49,6 @@ public class ControllerChapter0 : MonoBehaviour
         UpdateCharacterSelectionUI();
     }
 
-    /*
-    public void LeftArrow()
-    {
-        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        
-        selectedCharacterIndex--;
-        if (selectedCharacterIndex < 0)
-            selectedCharacterIndex = headCount - 4;
-
-        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        UpdateCharacterSelectionUI();
-    }
-
-    public void RightArrow()
-    {
-        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(false);
-        
-        selectedCharacterIndex++;
-        if (selectedCharacterIndex == headCount -3)
-            selectedCharacterIndex = 0;
-
-        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(true);
-        UpdateCharacterSelectionUI();
-    }
-    */
-
     public void Confirm()
     {
         listHeads = new List<string>();
