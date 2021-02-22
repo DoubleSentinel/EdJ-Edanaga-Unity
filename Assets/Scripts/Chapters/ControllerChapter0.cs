@@ -1,5 +1,4 @@
 ﻿using Doozy.Engine;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,31 +31,13 @@ public class ControllerChapter0 : MonoBehaviour
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
-
         headCount = heads.childCount;
-
-        //scenePlayerCh0 = scenePlayerCh0.gameObject.transform.GetChild(0).GetChild(2).gameObject;
-        //heads = scenePlayerCh0.transform.GetChild(1).GetChild(2).childCount - 3; //Number of possible characters
     }
 
     private void Start()
     {
-        int i = 0;
-        /*
-        int randomVal = Random.Range(0, headCount -3);
-
-        while (i < headCount -3)
-        {
-            heads.GetChild(i).gameObject.SetActive(i==randomVal);
-            i++;
-        }
-        */
         selectedCharacterIndex = 10; //Otarie as head default
         UpdateCharacterSelectionUI();
-    }
-    private void Update()
-    {
-        //backgroundColor.color = Color.Lerp(backgroundColor.color, desiredColor, Time.deltaTime * backgroudColorTransitionSpeed);
     }
 
     public void LeftArrow()
@@ -110,7 +91,7 @@ public class ControllerChapter0 : MonoBehaviour
 
     private void UpdateCharacterSelectionUI()
     {
-        characterName.text = scenePlayerCh0.gameObject.transform.GetChild(1).GetChild(2).GetChild(selectedCharacterIndex).gameObject.name;
+        characterName.text = heads.GetChild(selectedCharacterIndex).gameObject.name;
         SetupPlayer();
     }
 
@@ -161,23 +142,9 @@ public class ControllerChapter0 : MonoBehaviour
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
     }
 
-    //Enable or disable options wheel
-    public void EnableOptions(bool enable)
-    {
-        controllers.GetComponent<AudioManager>().EnableOptionWheel(enable); //options allowed or not allowed
-    }
-
     //Load Ctreate Account View
     public void LoadAccountCreation()
     {
         GameEventMessage.SendEvent("LoadCreateAccount");
-    }
-
-    [System.Serializable]
-    public class CharacterSelectObject
-    {
-        public Sprite splash;
-        public string characterName;
-        public Color characterColor;
     }
 }

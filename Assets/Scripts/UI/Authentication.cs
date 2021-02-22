@@ -8,7 +8,6 @@ using SimpleJSON;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Doozy.Engine;
 
 public class Authentication : MonoBehaviour
 {
