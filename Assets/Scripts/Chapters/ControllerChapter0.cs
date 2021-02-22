@@ -40,6 +40,16 @@ public class ControllerChapter0 : MonoBehaviour
         UpdateCharacterSelectionUI();
     }
 
+    public void ChangeHead(int direction)
+    {
+        var totalSize = headCount - 4;
+        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(false);
+        selectedCharacterIndex = (selectedCharacterIndex + direction + totalSize) % totalSize;
+        heads.GetChild(selectedCharacterIndex).gameObject.SetActive(true);
+        UpdateCharacterSelectionUI();
+    }
+
+    /*
     public void LeftArrow()
     {
         heads.GetChild(selectedCharacterIndex).gameObject.SetActive(false);
@@ -63,6 +73,7 @@ public class ControllerChapter0 : MonoBehaviour
         heads.GetChild(selectedCharacterIndex).gameObject.SetActive(true);
         UpdateCharacterSelectionUI();
     }
+    */
 
     public void Confirm()
     {
