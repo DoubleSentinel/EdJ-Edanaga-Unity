@@ -4146,7 +4146,7 @@ RectTransform:
   - {fileID: 966012043}
   - {fileID: 1025670168}
   m_Father: {fileID: 760120369}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4646,7 +4646,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
+              m_BoolArgument: 1
             m_CallState: 2
           - m_Target: {fileID: 4783305942921700866}
             m_MethodName: PlaySoundMusic
@@ -15100,17 +15100,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698365690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1817594054}
-  m_Father: {fileID: 1025670168}
-  m_RootOrder: 4
+  m_Father: {fileID: 1400340202}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100, y: 235}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &742500133
@@ -15356,8 +15356,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 451296127}
   - {fileID: 1546740555}
+  - {fileID: 451296127}
   - {fileID: 1400340202}
   - {fileID: 318377795}
   m_Father: {fileID: 0}
@@ -18831,8 +18831,8 @@ MonoBehaviour:
   StartScale: {x: 1, y: 1, z: 1}
   StartAlpha: 1
   AllowMultipleClicks: 1
-  ButtonCategory: Chapter0
-  ButtonName: ContinueToLogin
+  ButtonCategory: Test
+  ButtonName: LoadChapter1
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -21558,7 +21558,6 @@ RectTransform:
   - {fileID: 58387295}
   - {fileID: 467992836}
   - {fileID: 496446153}
-  - {fileID: 698365691}
   m_Father: {fileID: 451296127}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25171,6 +25170,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 698365691}
   - {fileID: 1756777190}
   m_Father: {fileID: 760120369}
   m_RootOrder: 2
@@ -26279,7 +26279,7 @@ RectTransform:
   - {fileID: 57148036}
   - {fileID: 262885042}
   m_Father: {fileID: 760120369}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -26919,7 +26919,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 1
+              m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
       SoundData:
@@ -27664,7 +27664,7 @@ RectTransform:
   - {fileID: 1992310455}
   - {fileID: 817700285}
   m_Father: {fileID: 1400340202}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28311,10 +28311,10 @@ RectTransform:
   m_Father: {fileID: 698365691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 300, y: 0}
+  m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817594055
 MonoBehaviour:
@@ -28363,8 +28363,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -35394,7 +35394,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenePlayerCh0: {fileID: 1648429867385726663}
   heads: {fileID: 1648429868191983508}
-  characterName: {fileID: 817700286}
-  characterImage: {fileID: 2135525140}
-  backgroundColor: {fileID: 1003903787}
-  backgroudColorTransitionSpeed: 10

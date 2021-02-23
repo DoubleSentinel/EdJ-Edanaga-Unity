@@ -8,6 +8,7 @@ using SimpleJSON;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Doozy.Engine;
 
 public class Authentication : MonoBehaviour
 {
@@ -173,7 +174,7 @@ public class Authentication : MonoBehaviour
                 }
 
                 GetComponent<TestingEnvironment>().Objectives = objectives;
-                SceneManager.LoadScene(sceneToLoad);
+                GameEventMessage.SendEvent("ContinueToIntro"); //SceneManager.LoadScene(sceneToLoad);
             }
             else
             {
