@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class ControllerChapter4 : MonoBehaviour
@@ -13,6 +12,7 @@ public class ControllerChapter4 : MonoBehaviour
 
     // Local variables
     private GameObject controllers;
+    private string texts;
 
     void Awake()
     {
@@ -55,6 +55,25 @@ public class ControllerChapter4 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
         sceneHost.SetActive(true);
+    }
+
+    //Prepare texts for the introduction
+    public void PrepareText(GameObject TextsBox)
+    {
+        //Get texts from TextBox
+        texts = "\n\n";
+        for (int i = 0; i < TextsBox.transform.childCount; i++)
+        {
+            texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
+            texts += "\n\n"; //new line characters
+        }
+        TextsBox.gameObject.SetActive(false); //Disable TextsBox
+    }
+
+    //Add the texts to the scroll view prefab
+    public void SetText(GameObject TargetText)
+    {
+        TargetText.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = texts;
     }
 
     //Play specific UI sound
