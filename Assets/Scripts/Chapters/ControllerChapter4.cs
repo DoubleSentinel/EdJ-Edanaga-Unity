@@ -34,6 +34,7 @@ public class ControllerChapter4 : MonoBehaviour
         float widthSpace = Screen.width / 10; 
 
         float depth = -1f;
+        int index, i = 0;
 
         //Default position of the Player, Journalist, engineer and host
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace*5, heightBottom));
@@ -48,6 +49,7 @@ public class ControllerChapter4 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
 
+        //10 posiible positions for 10 objectives
         Vector3[] positions = new[] { new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
                                       new Vector3(widthSpace*8, heightTop),
@@ -60,22 +62,8 @@ public class ControllerChapter4 : MonoBehaviour
                                       new Vector3(widthSpace*6, heightTop) };
 
         //Swing classification results
-        //var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
-
-        Dictionary<string, float> results = new Dictionary<string, float>();
-        results.Add("objective0", 9f);
-        results.Add("objective1", 10f);
-        results.Add("objective2", 8f);
-        results.Add("objective3", 7f);
-        results.Add("objective4", 6f);
-        results.Add("objective5", 5f);
-        results.Add("objective6", 4f);
-        results.Add("objective7", 3f);
-        results.Add("objective8", 2f);
-        results.Add("objective9", 1f);
-
-        int index, i = 0;
-
+        var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
+        
         // creating the visual list with the given prefab
         foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
         {
