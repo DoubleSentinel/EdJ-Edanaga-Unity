@@ -345,13 +345,7 @@ public class TradeOff : MonoBehaviour
             coefficients[i, i + 1] = sliderValues[i + 1].Item2[0] - sliderValues[i].Item2[1];
         }
         
-        print($"A = \n{coefficients.ToMatrixString()}");
-        print($"B = \n{equation_right_hand_side.ToVectorString()}");
-
         var results = coefficients.Solve(equation_right_hand_side);
-        
-        print($"X = \n{results.ToVectorString()}");
-
         for (int i = 0; i < family.Count; i++)
         {
             family[i] = (family[i].Item1, results[i]);
