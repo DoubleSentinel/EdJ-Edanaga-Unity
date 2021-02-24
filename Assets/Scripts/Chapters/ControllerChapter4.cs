@@ -34,8 +34,9 @@ public class ControllerChapter4 : MonoBehaviour
         float widthSpace = Screen.width / 10; 
 
         float depth = -1f;
+        int index, i = 0;
 
-        //Default position of the Player, Journalist, engineer and host
+        //Default position of the Player, Journalist, engineer
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace*5, heightBottom));
         Vector3 journalist = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace, heightMiddle));
         Vector3 engineer = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace*9, heightMiddle));
@@ -48,9 +49,10 @@ public class ControllerChapter4 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
 
+        //10 possible positions for 10 objectives
         Vector3[] positions = new[] { new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
-                                      new Vector3(widthSpace*8, heightTop),
+                                      new Vector3(widthSpace*7, heightTop),
                                       new Vector3(widthSpace*1, heightTop),
                                       new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
@@ -60,22 +62,8 @@ public class ControllerChapter4 : MonoBehaviour
                                       new Vector3(widthSpace*6, heightTop) };
 
         //Swing classification results
-        //var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
-
-        Dictionary<string, float> results = new Dictionary<string, float>();
-        results.Add("objective0", 9f);
-        results.Add("objective1", 10f);
-        results.Add("objective2", 8f);
-        results.Add("objective3", 7f);
-        results.Add("objective4", 6f);
-        results.Add("objective5", 5f);
-        results.Add("objective6", 4f);
-        results.Add("objective7", 3f);
-        results.Add("objective8", 2f);
-        results.Add("objective9", 1f);
-
-        int index, i = 0;
-
+        var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
+        
         // creating the visual list with the given prefab
         foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
         {
@@ -90,7 +78,7 @@ public class ControllerChapter4 : MonoBehaviour
 
                 if (positions[i].x < widthSpace*5) //On the left of the Player position
                 {
-                    sceneObjectives[index].gameObject.transform.rotation = Quaternion.Euler(0, -180, 0); //Turn the body and head
+                    sceneObjectives[index].gameObject.transform.rotation = Quaternion.Euler(0, 180, 0); //Turn the body and head
                 }
 
                 //Adapt size of the objectives
