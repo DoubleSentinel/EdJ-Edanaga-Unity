@@ -9,29 +9,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
-using Shapes2D;
-using Matrix = MathNet.Numerics.LinearAlgebra.Single.Matrix;
-using Vector = MathNet.Numerics.LinearAlgebra.Single.Vector;
-
-public struct IntermediateTradeOffPair
-{
-    public IntermediateTradeOffPair(float winnerSlider, Objective winner, Objective loser)
-    {
-        this.winner = winner;
-        this.winnerSlider = winnerSlider;
-        this.loser = loser;
-        winnerWeight = 0f;
-        loserWeight = 0f;
-    }
-
-    public Objective winner;
-    public Objective loser;
-    public float winnerWeight;
-    public float loserWeight;
-
-    public float winnerSlider;
-}
 
 public class TradeOff : MonoBehaviour
 {
@@ -52,7 +29,6 @@ public class TradeOff : MonoBehaviour
     [SerializeField] private GameObject rightRepresentationSlider;
     [SerializeField] private GameObject rightCompromiseSlider;
     [SerializeField] private GameObject[] tradeOffStartUIElements;
-    
     [SerializeField] private GameObject TradeoffBattleConversationBubble;
     
     [Header("Results UI References")]
@@ -352,27 +328,29 @@ public class TradeOff : MonoBehaviour
 
     private void CalculateLocalWeights(List<(string, double)> family)
     {
-        Matrix<double> coefficients = Matrix<double>.Build.DenseIdentity(4);
-        //coefficients[3, 3] = 0;
+        var order = sliderValues.Count / 2 + 1;
         
-        Vector<double> equation_right_hand_side = Vector<double>.Build.Dense(4, 1);
+        Matrix<double> coefficients = Matrix<double>.Build.Dense(order, order, 0d);
+        for (int i = 0; i < order; i++)
+        {
+            coefficients[order-1, i] = 1;
+        }
+        
+        Vector<double> equation_right_hand_side = Vector<double>.Build.Dense(sliderValues.Count/2 + 1, 1);
 
-        print(sliderValues.Count);
-        print(sliderValues.Count/2);
         for (int i = 0; i < sliderValues.Count/2; i++)
         {
             equation_right_hand_side[i] = 0;
             coefficients[i, i] = sliderValues[i].Item2[0] - sliderValues[i + 1].Item2[1];
             coefficients[i, i + 1] = sliderValues[i + 1].Item2[0] - sliderValues[i].Item2[1];
-            coefficients[3, i] = 1;
-            //coefficients[3, i + 1] = 1;
         }
         
-        print(coefficients.ToMatrixString());
+        print($"A = \n{coefficients.ToMatrixString()}");
+        print($"B = \n{equation_right_hand_side.ToVectorString()}");
 
         var results = coefficients.Solve(equation_right_hand_side);
         
-        print(results.ToVectorString());
+        print($"X = \n{results.ToVectorString()}");
 
         for (int i = 0; i < family.Count; i++)
         {
@@ -380,7 +358,6 @@ public class TradeOff : MonoBehaviour
         }
         
         family.Sort((x, y) => x.Item2.CompareTo(y.Item2));
-
     }
 
     private void CalculateClassification()
@@ -632,7 +609,6 @@ public class TradeOff : MonoBehaviour
         foreach (KeyValuePair<string, double> result in results.OrderByDescending(x => x.Value))
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
-            print(result.Key);
             var resultData = objectives[result.Key];
             var goRef = GameObject.Find(ConversationHandler.FirstLetterToUpper(result.Key));
 
