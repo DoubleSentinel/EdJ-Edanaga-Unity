@@ -71,7 +71,7 @@ public class ControllerChapter2_3 : MonoBehaviour
         return false;
 
         // TODO: verify this again
-        bool AreListsEqual(List<KeyValuePair<string, float>> list1, List<KeyValuePair<string, float>> list2)
+        bool AreListsEqual(List<KeyValuePair<string, double>> list1, List<KeyValuePair<string, double>> list2)
         {
             return !(from list1Data in list1 from list2Data in list2 where list1Data.Key != list2Data.Key select list1Data).Any();
         }
@@ -174,14 +174,14 @@ public class ControllerChapter2_3 : MonoBehaviour
             ToggleContinueButton(false);
         }
 
-        void BuildList(Dictionary<string, float> listData, Transform parent)
+        void BuildList(Dictionary<string, double> listData, Transform parent)
         {
             foreach (Transform child in parent)
             {
                 Destroy(child.gameObject);
             }
             
-            foreach (KeyValuePair<string, float> objective in listData.OrderByDescending(x => x.Value))
+            foreach (KeyValuePair<string, double> objective in listData.OrderByDescending(x => x.Value))
             {
                 var listItem = Instantiate(ListItemPrefab, parent);
                 var objectiveData = objectives[objective.Key];
@@ -199,7 +199,7 @@ public class ControllerChapter2_3 : MonoBehaviour
                 listItem.transform.GetChild(0).GetComponent<Image>().color = objectiveRef.GetComponent<Coloration>().contour;
 
                 var rt = listItem.transform.GetChild(0).GetComponent<RectTransform>();
-                rt.localScale = new Vector3(objective.Value, rt.localScale.y, rt.localScale.z);
+                rt.localScale = new Vector3((float) objective.Value, rt.localScale.y, rt.localScale.z);
             }
         }
     }

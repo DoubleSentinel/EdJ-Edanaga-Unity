@@ -49,8 +49,8 @@ public class TestingEnvironment : MonoBehaviour
 {
     private void Awake()
     {
-        TradeOffClassification = new Dictionary<string, float>();
-        SwingClassification = new Dictionary<string, float>();
+        TradeOffClassification = new Dictionary<string, double>();
+        SwingClassification = new Dictionary<string, double>();
         Characters = new Dictionary<string, string>();
 
         isInnerLoopFirstRun = true;
@@ -67,9 +67,9 @@ public class TestingEnvironment : MonoBehaviour
     // Objective Definitions
     public Dictionary<string, Objective> Objectives { get; set; }
     // TradeOff and Swing results
-    public Dictionary<string, float> TradeOffClassification { get; set; }
-    public Dictionary<string, float> SwingClassification { get; set; }
-    public Dictionary<string, float> UsersSelectedClassification { get; set; }
+    public Dictionary<string, double> TradeOffClassification { get; set; }
+    public Dictionary<string, double> SwingClassification { get; set; }
+    public Dictionary<string, double> UsersSelectedClassification { get; set; }
 
     public Dictionary<string, string> Characters { get; set; }
 
