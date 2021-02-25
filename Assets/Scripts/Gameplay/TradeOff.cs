@@ -342,7 +342,7 @@ public class TradeOff : MonoBehaviour
         {
             equation_right_hand_side[i] = 0;
             coefficients[i, i] = sliderValues[i].Item2[0] - sliderValues[i + 1].Item2[1];
-            coefficients[i, i + 1] = sliderValues[i + 1].Item2[0] - sliderValues[i].Item2[1];
+            coefficients[i, i + 1] = sliderValues[i].Item2[1] - sliderValues[i + 1].Item2[0];
         }
         
         var results = coefficients.Solve(equation_right_hand_side);
