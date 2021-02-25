@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControllerChapter0 : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class ControllerChapter0 : MonoBehaviour
     public void PrepareTextAlternative(GameObject TextsBox)
     {
         //Get texts from TextBox
-        texts = "";
+        texts = "\n\n";
         for (int i = 0; i < TextsBox.transform.childCount; i++)
         {
             texts += TextsBox.gameObject.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
@@ -113,7 +114,7 @@ public class ControllerChapter0 : MonoBehaviour
         controllers.GetComponent<SoundsController>().PlaySoundMusic(mySoundName);
     }
 
-    //Load Ctreate Account View
+    //Load Create Account View
     public void LoadAccountCreation()
     {
         GameEventMessage.SendEvent("LoadCreateAccount");
