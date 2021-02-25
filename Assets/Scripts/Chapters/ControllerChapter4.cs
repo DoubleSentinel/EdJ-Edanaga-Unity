@@ -65,7 +65,7 @@ public class ControllerChapter4 : MonoBehaviour
         var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
         
         // creating the visual list with the given prefab
-        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
+        foreach (KeyValuePair<string, double> result in results.OrderByDescending(x => x.Value))
         {
             index = int.Parse(result.Key.Last().ToString());
 
