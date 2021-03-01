@@ -84,7 +84,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: e01efaba-e705-4399-a2bb-02443fb37fc0
-  m_lastModified: 132585768160895183
+  m_lastModified: 132587243543247147
 --- !u!114 &4229734893023047040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
     m_id: 6e82df6c-c785-4371-a503-de800bf2d857
     m_nodeId: 94dee779-9b1b-493f-be66-aeb8aa9bb4f6
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"Chapter4","ButtonName":"ContinueToCredit","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"Chapter4","ButtonName":"ContinueToCredit","GameEvent":"ContinueToCredit","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp-firstpass,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4

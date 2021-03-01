@@ -36,7 +36,7 @@ public class ControllerChapter4 : MonoBehaviour
         float depth = -1f;
         int index, i = 0;
 
-        //Default position of the Player, Journalist, engineer and host
+        //Default position of the Player, Journalist, engineer
         Vector3 player = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace*5, heightBottom));
         Vector3 journalist = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace, heightMiddle));
         Vector3 engineer = Camera.main.ScreenToWorldPoint(new Vector3(widthSpace*9, heightMiddle));
@@ -49,10 +49,11 @@ public class ControllerChapter4 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
 
+
         //10 posiible positions for 10 objectives
         Vector3[] positions = new[] { new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
-                                      new Vector3(widthSpace*8, heightTop),
+                                      new Vector3(widthSpace*7, heightTop),
                                       new Vector3(widthSpace*1, heightTop),
                                       new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
@@ -78,7 +79,7 @@ public class ControllerChapter4 : MonoBehaviour
 
                 if (positions[i].x < widthSpace*5) //On the left of the Player position
                 {
-                    sceneObjectives[index].gameObject.transform.rotation = Quaternion.Euler(0, -180, 0); //Turn the body and head
+                    sceneObjectives[index].gameObject.transform.rotation = Quaternion.Euler(0, 180, 0); //Turn the body and head
                 }
 
                 //Adapt size of the objectives
