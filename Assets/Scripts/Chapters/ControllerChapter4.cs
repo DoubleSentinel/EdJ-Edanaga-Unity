@@ -49,7 +49,8 @@ public class ControllerChapter4 : MonoBehaviour
         sceneJournalist.SetActive(true);
         sceneEngineer.SetActive(true);
 
-        //10 possible positions for 10 objectives
+
+        //10 posiible positions for 10 objectives
         Vector3[] positions = new[] { new Vector3(widthSpace*3, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
                                       new Vector3(widthSpace*7, heightTop),
@@ -65,7 +66,7 @@ public class ControllerChapter4 : MonoBehaviour
         var results = controllers.GetComponent<TestingEnvironment>().SwingClassification;
         
         // creating the visual list with the given prefab
-        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
+        foreach (KeyValuePair<string, double> result in results.OrderByDescending(x => x.Value))
         {
             index = int.Parse(result.Key.Last().ToString());
 

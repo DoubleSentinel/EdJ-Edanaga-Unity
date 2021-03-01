@@ -7,25 +7,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-public struct IntermediateTradeOffPair
-{
-    public IntermediateTradeOffPair(float winnerSlider, Objective winner, Objective loser)
-    {
-        this.winner = winner;
-        this.winnerSlider = winnerSlider;
-        this.loser = loser;
-        winnerWeight = 0f;
-        loserWeight = 0f;
-    }
-
-    public Objective winner;
-    public Objective loser;
-    public float winnerWeight;
-    public float loserWeight;
-
-    public float winnerSlider;
-}
+using Vector3 = UnityEngine.Vector3;
+using MathNet.Numerics.LinearAlgebra;
 
 public class TradeOff : MonoBehaviour
 {
@@ -41,33 +24,36 @@ public class TradeOff : MonoBehaviour
 
     [SerializeField] private GameObject tradeoffLeftBattlerUIPosition;
     [SerializeField] private GameObject tradeoffRightBattlerUIPosition;
-    [SerializeField] private GameObject TradeoffBattleConversationBubble;
+    [SerializeField] private GameObject leftRepresentationSlider;
+    [SerializeField] private GameObject leftCompromiseSlider;
+    [SerializeField] private GameObject rightRepresentationSlider;
+    [SerializeField] private GameObject rightCompromiseSlider;
     [SerializeField] private GameObject[] tradeOffStartUIElements;
+    [SerializeField] private GameObject TradeoffBattleConversationBubble;
+    
+    [Header("Results UI References")]
     [SerializeField] private GameObject resultListItemPrefab;
     [SerializeField] private Sprite[] resultListIcons;
 
     // Environment
     private GameObject controllers;
+    private TestingEnvironment test_env;
 
     // UI
     private GameObject tradeOffLoserUI;
     private GameObject tradeOffWinnerUI;
-    private GameObject leftRepresentationSlider;
-    private GameObject leftCompromiseSlider;
-    private GameObject rightRepresentationSlider;
-    private GameObject rightCompromiseSlider;
 
     // Families
     private List<(GameObject, GameObject)> m_familyTradeoffs;
     private int currentTradeOffPair;
 
     // TradeOff calculations variables
-    private List<IntermediateTradeOffPair> tradeOffWeightMatrix;
-    public List<(string, float)> objectiveWeightsFamilyA;
-    public List<(string, float)> objectiveWeightsFamilyB;
-    public List<(string, float)> objectiveWeightsFamilyC;
-    public List<(string, float)> objectiveWeightsFamilyD;
-    public List<(string, float)> globalWeights;
+    private List<(string, double[])> sliderValues;
+    public List<(string, double)> objectiveWeightsFamilyA;
+    public List<(string, double)> objectiveWeightsFamilyB;
+    public List<(string, double)> objectiveWeightsFamilyC;
+    public List<(string, double)> objectiveWeightsFamilyD;
+    public List<(string, double)> globalWeights;
     private string winnerName;
     private string loserName;
 
@@ -77,16 +63,10 @@ public class TradeOff : MonoBehaviour
     private void Awake()
     {
         controllers = GameObject.Find("Controllers");
-        
+        test_env = controllers.GetComponent<TestingEnvironment>();
+
         currentTradeOffPair = -1;
         m_familyTradeoffs = new List<(GameObject, GameObject)>();
-
-        // UI references
-        leftRepresentationSlider = GameObject.Find("LeftBattlerRepresentationSlider");
-        leftCompromiseSlider = GameObject.Find("LeftBattlerCompromiseSlider");
-
-        rightRepresentationSlider = GameObject.Find("RightBattlerRepresentationSlider");
-        rightCompromiseSlider = GameObject.Find("RightBattlerCompromiseSlider");
 
         HideTradeOffUI();
         // initial situation where selection buttons are not visible
@@ -96,12 +76,43 @@ public class TradeOff : MonoBehaviour
         tradeoffRightBattlerUIPosition.transform.GetChild(0).gameObject.SetActive(false);
 
         // TradeOff weight calculation
-        tradeOffWeightMatrix = new List<IntermediateTradeOffPair>();
-        objectiveWeightsFamilyA = new List<(string, float)>();
-        objectiveWeightsFamilyB = new List<(string, float)>();
-        objectiveWeightsFamilyC = new List<(string, float)>();
-        objectiveWeightsFamilyD = new List<(string, float)>();
-        globalWeights = new List<(string, float)>();
+        sliderValues = new List<(string, double[])>();
+        
+        // Initializing lists
+        objectiveWeightsFamilyA = new List<(string, double)>
+        {
+            ("objective0", 0.0d),
+            ("objective1", 0.0d),
+        };
+        
+        objectiveWeightsFamilyB = new List<(string, double)>
+        {
+            ("objective2", 0.0d),
+            ("objective3", 0.0d),
+            ("objective4", 0.0d),
+        };
+
+        objectiveWeightsFamilyC = new List<(string, double)>
+        {
+            ("objective5", 0.0d),
+            ("objective6", 0.0d),
+            ("objective7", 0.0d),
+        };
+
+        objectiveWeightsFamilyD = new List<(string, double)>
+        {
+            ("objective8", 0.0d),
+            ("objective9", 0.0d),
+        };
+
+        globalWeights = new List<(string, double)>
+        {
+            ("objective0", 0.0d),
+            ("objective0", 0.0d),
+            ("objective0", 0.0d),
+            ("objective0", 0.0d),
+        };
+
     }
 
     public void PrepareTradeOffs(GameObject family)
@@ -122,11 +133,25 @@ public class TradeOff : MonoBehaviour
         if (tradeOffLoserUI != null && tradeOffWinnerUI != null)
         {
             // setting selected winner result
-            var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
-            var loserData = controllers.GetComponent<TestingEnvironment>().Objectives[loserName.ToLower()];
-            var sliderWinner = tradeOffLoserUI.transform.GetChild(2).GetComponent<Slider>();
+            var leftname = m_familyTradeoffs[currentTradeOffPair].Item1.name.ToLower();
+            var rightname = m_familyTradeoffs[currentTradeOffPair].Item2.name.ToLower();
 
-            tradeOffWeightMatrix.Add(new IntermediateTradeOffPair(sliderWinner.value, winnerData, loserData));
+            var rightCompromise = rightCompromiseSlider.GetComponent<Slider>();
+            var rightRepresentation = rightRepresentationSlider.GetComponent<Slider>();
+            var leftCompromise = leftCompromiseSlider.GetComponent<Slider>();
+            var leftRepresentation = leftRepresentationSlider.GetComponent<Slider>();
+            
+            sliderValues.Add((leftname, new[]
+            {
+                Convert.ToDouble(leftRepresentation.value / leftRepresentation.maxValue),
+                Convert.ToDouble(leftCompromise.value / leftCompromise.maxValue)
+            }));
+
+            sliderValues.Add((rightname, new[]
+            {
+                Convert.ToDouble(rightRepresentation.value / rightRepresentation.maxValue),
+                Convert.ToDouble(rightCompromise.value / rightCompromise.maxValue)
+            }));
 
             tradeOffLoserUI = null;
             tradeOffWinnerUI = null;
@@ -174,7 +199,7 @@ public class TradeOff : MonoBehaviour
                 }
 
                 CloneForFinals(winner2D);
-                tradeOffWeightMatrix.Clear();
+                sliderValues.Clear();
             }
             else
             {
@@ -201,6 +226,7 @@ public class TradeOff : MonoBehaviour
             {
                 go.transform.SetParent(tradeOffFinalists.transform);
             }
+
             tradeOffFinalistsList.Clear();
         }
     }
@@ -296,98 +322,79 @@ public class TradeOff : MonoBehaviour
             GameEventMessage.SendEvent("GoToTables");
             ShowTradeOffBackground(false);
         }
+
         HideTradeOffUI();
     }
 
-    private void CalculateLocalWeights(List<(string, float)> family)
+    private void CalculateLocalWeights(List<(string, double)> family)
     {
-        if (tradeOffWeightMatrix.Count == 1)
+        var order = sliderValues.Count / 2 + 1;
+        
+        Matrix<double> coefficients = Matrix<double>.Build.Dense(order, order, 0d);
+        for (int i = 0; i < order; i++)
         {
-            var pair = tradeOffWeightMatrix[0];
-            var R = 1 - pair.winnerSlider / 20;
-            pair.loserWeight = 1 / (R + 1);
-            pair.winnerWeight = R * pair.loserWeight;
-
-            family.Add((pair.loser.name, pair.loserWeight));
-            family.Add((pair.winner.name, pair.winnerWeight));
+            coefficients[order-1, i] = 1;
         }
-        else if (tradeOffWeightMatrix.Count == 2)
+        
+        Vector<double> equation_right_hand_side = Vector<double>.Build.Dense(sliderValues.Count/2 + 1, 1);
+
+        for (int i = 0; i < sliderValues.Count/2; i++)
         {
-            var pair = tradeOffWeightMatrix[0];
-            var pair1 = tradeOffWeightMatrix[1];
-            var R = 1 - pair.winnerSlider / 20;
-            var Z = 1 - pair1.winnerSlider / 20;
-            pair1.loserWeight = 1 / (R * Z + Z + 1);
-            pair1.winnerWeight = Z * pair1.loserWeight;
-            pair.winnerWeight = R * pair1.winnerWeight;
-
-            family.Add((pair1.loser.name, pair1.loserWeight));
-            family.Add((pair1.winner.name, pair1.winnerWeight));
-            family.Add((pair.loser.name, pair.winnerWeight));
+            equation_right_hand_side[i] = 0;
+            coefficients[i, i] = sliderValues[i].Item2[0] - sliderValues[i + 1].Item2[1];
+            coefficients[i, i + 1] = sliderValues[i].Item2[1] - sliderValues[i + 1].Item2[0];
         }
-        else if (tradeOffWeightMatrix.Count == 3)
+        
+        var results = coefficients.Solve(equation_right_hand_side);
+        for (int i = 0; i < family.Count; i++)
         {
-            var pair = tradeOffWeightMatrix[0];
-            var pair1 = tradeOffWeightMatrix[1];
-            var pair2 = tradeOffWeightMatrix[2];
-            var R = 1 - pair.winnerSlider / 20;
-            var Z = 1 - pair1.winnerSlider / 20;
-            var J = 1 - pair2.winnerSlider / 20;
-            pair2.loserWeight = 1 / ((R * Z * J) + (Z * J) + J + 1);
-            pair2.winnerWeight = J * pair2.loserWeight;
-            pair1.winnerWeight = Z * pair2.winnerWeight;
-            pair.winnerWeight = R * pair1.winnerWeight;
-
-            family.Add((pair2.loser.name, pair2.loserWeight));
-            family.Add((pair2.winner.name, pair2.winnerWeight));
-            family.Add((pair1.loser.name, pair1.winnerWeight));
-            family.Add((pair.loser.name, pair.winnerWeight));
+            family[i] = (family[i].Item1, results[i]);
         }
-
+        
         family.Sort((x, y) => x.Item2.CompareTo(y.Item2));
     }
 
     private void CalculateClassification()
     {
-        var classification = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
-        classification.Clear();
-        // FamilyA
-        classification.Add(
-            objectiveWeightsFamilyA[0].Item1,
-            objectiveWeightsFamilyA[0].Item2 * globalWeights[0].Item2);
-        classification.Add(
-            objectiveWeightsFamilyA[1].Item1,
-            objectiveWeightsFamilyA[1].Item2 * globalWeights[0].Item2);
+         var classification = test_env.TradeOffClassification;
+         classification.Clear();
+         // FamilyA
+         classification.Add(
+             objectiveWeightsFamilyA[0].Item1,
+             objectiveWeightsFamilyA[0].Item2 * globalWeights[0].Item2);
+         classification.Add(
+             objectiveWeightsFamilyA[1].Item1,
+             objectiveWeightsFamilyA[1].Item2 * globalWeights[0].Item2);
 
-        // FamilyB
-        classification.Add(
-            objectiveWeightsFamilyB[0].Item1,
-            objectiveWeightsFamilyB[0].Item2 * globalWeights[1].Item2);
-        classification.Add(
-            objectiveWeightsFamilyB[1].Item1,
-            objectiveWeightsFamilyB[1].Item2 * globalWeights[1].Item2);
-        classification.Add(
-            objectiveWeightsFamilyB[2].Item1,
-            objectiveWeightsFamilyB[2].Item2 * globalWeights[1].Item2);
+         // FamilyB
+         classification.Add(
+             objectiveWeightsFamilyB[0].Item1,
+             objectiveWeightsFamilyB[0].Item2 * globalWeights[1].Item2);
+         classification.Add(
+             objectiveWeightsFamilyB[1].Item1,
+             objectiveWeightsFamilyB[1].Item2 * globalWeights[1].Item2);
+         classification.Add(
+             objectiveWeightsFamilyB[2].Item1,
+             objectiveWeightsFamilyB[2].Item2 * globalWeights[1].Item2);
 
-        // FamilyC
-        classification.Add(
-            objectiveWeightsFamilyC[0].Item1,
-            objectiveWeightsFamilyC[0].Item2 * globalWeights[2].Item2);
-        classification.Add(
-            objectiveWeightsFamilyC[1].Item1,
-            objectiveWeightsFamilyC[1].Item2 * globalWeights[2].Item2);
-        classification.Add(
-            objectiveWeightsFamilyC[2].Item1,
-            objectiveWeightsFamilyC[2].Item2 * globalWeights[2].Item2);
+         // FamilyC
+         classification.Add(
+             objectiveWeightsFamilyC[0].Item1,
+             objectiveWeightsFamilyC[0].Item2 * globalWeights[2].Item2);
+         classification.Add(
+             objectiveWeightsFamilyC[1].Item1,
+             objectiveWeightsFamilyC[1].Item2 * globalWeights[2].Item2);
+         classification.Add(
+             objectiveWeightsFamilyC[2].Item1,
+             objectiveWeightsFamilyC[2].Item2 * globalWeights[2].Item2);
 
-        // FamilyD
-        classification.Add(
-            objectiveWeightsFamilyD[0].Item1,
-            objectiveWeightsFamilyD[0].Item2 * globalWeights[3].Item2);
-        classification.Add(
-            objectiveWeightsFamilyD[1].Item1,
-            objectiveWeightsFamilyD[1].Item2 * globalWeights[3].Item2);
+         // FamilyD
+         classification.Add(
+             objectiveWeightsFamilyD[0].Item1,
+             objectiveWeightsFamilyD[0].Item2 * globalWeights[3].Item2);
+         classification.Add(
+             objectiveWeightsFamilyD[1].Item1,
+             objectiveWeightsFamilyD[1].Item2 * globalWeights[3].Item2);
     }
 
     private void ShowTradeOffBackground(bool isShown)
@@ -431,9 +438,9 @@ public class TradeOff : MonoBehaviour
     private void UpdateTradeOffSliders(string leftObjectiveName, string rightObjectiveName)
     {
         Objective leftObjective =
-            controllers.GetComponent<TestingEnvironment>().Objectives[leftObjectiveName.ToLower()];
+            test_env.Objectives[leftObjectiveName.ToLower()];
         Objective rightObjective =
-            controllers.GetComponent<TestingEnvironment>().Objectives[rightObjectiveName.ToLower()];
+            test_env.Objectives[rightObjectiveName.ToLower()];
         // Representation sliders labels
         //    Best value
         leftRepresentationSlider.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text =
@@ -483,7 +490,6 @@ public class TradeOff : MonoBehaviour
         HideTradeOffUI();
     }
 
-    // TODO: rewrite this to toggle with fades
     private void HideTradeOffUI()
     {
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 0;
@@ -491,6 +497,7 @@ public class TradeOff : MonoBehaviour
         tradeoffLeftBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
         tradeoffRightBattlerUIPosition.transform.GetChild(0).GetComponent<CanvasGroup>().alpha = 0;
     }
+
     private void ShowTradeOffUI()
     {
         tradeoffLeftBattlerUIPosition.GetComponent<CanvasGroup>().alpha = 1;
@@ -527,12 +534,13 @@ public class TradeOff : MonoBehaviour
         objectiveWeightsFamilyC.Clear();
         objectiveWeightsFamilyD.Clear();
 
-        controllers.GetComponent<TestingEnvironment>().TradeOffClassification.Clear();
-        tradeOffWeightMatrix.Clear();
+        test_env.TradeOffClassification.Clear();
+        sliderValues.Clear();
 
         GetComponent<ControllerChapter2_2>().isTradeOff = true;
         GetComponent<ControllerChapter2_2>().hostConversationIndex = 0;
-        GetComponent<ControllerChapter2_2>().hostConversationCallback = () => { GameEventMessage.SendEvent("GoToTables"); };
+        GetComponent<ControllerChapter2_2>().hostConversationCallback =
+            () => { GameEventMessage.SendEvent("GoToTables"); };
 
         finals = false;
         currentTradeOffPair = -1;
@@ -563,7 +571,7 @@ public class TradeOff : MonoBehaviour
             .GenerateConversation("2.2.3_Battles_After_Selection");
         TradeoffBattleConversationBubble.GetComponent<ConversationHandler>().NextConversationSnippet();
 
-        UpdateTradeOffLoserCompromiseSlider(controllers.GetComponent<TestingEnvironment>()
+        UpdateTradeOffLoserCompromiseSlider(test_env
             .Objectives[winnerName.ToLower()]);
         ToggleSelectionButtons();
         ShowTradeOffUI();
@@ -571,7 +579,7 @@ public class TradeOff : MonoBehaviour
 
     public void UpdateUserSelection(GameObject handleLabel)
     {
-        var winnerData = controllers.GetComponent<TestingEnvironment>().Objectives[winnerName.ToLower()];
+        var winnerData = test_env.Objectives[winnerName.ToLower()];
         var slider = handleLabel.transform.parent.parent.parent.GetComponent<Slider>();
         handleLabel.GetComponent<TextMeshProUGUI>().text = $"{ConvertSliderValue(slider, winnerData):0.0}";
     }
@@ -584,15 +592,15 @@ public class TradeOff : MonoBehaviour
 
     public void UpdateResultList(GameObject resultList)
     {
-        var results = controllers.GetComponent<TestingEnvironment>().TradeOffClassification;
-        var objectives = controllers.GetComponent<TestingEnvironment>().Objectives;
+        var results = test_env.TradeOffClassification;
+        var objectives = test_env.Objectives;
         foreach (Transform child in resultList.transform)
         {
             Destroy(child.gameObject);
         }
 
         // creating the visual list with the given prefab
-        foreach (KeyValuePair<string, float> result in results.OrderByDescending(x => x.Value))
+        foreach (KeyValuePair<string, double> result in results.OrderByDescending(x => x.Value))
         {
             var resultItem = Instantiate(resultListItemPrefab, resultList.transform);
             var resultData = objectives[result.Key];
@@ -601,7 +609,8 @@ public class TradeOff : MonoBehaviour
             resultItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                 $"{resultData.description} ({result.Value * 100:0.0}%)";
 
-            resultItem.transform.GetChild(2).GetComponent<Image>().sprite = resultListIcons[int.Parse(result.Key.Last().ToString())];
+            resultItem.transform.GetChild(2).GetComponent<Image>().sprite =
+                resultListIcons[int.Parse(result.Key.Last().ToString())];
 
             // background color
             resultItem.GetComponent<Image>().color = goRef.GetComponent<Coloration>().fond;
@@ -609,7 +618,7 @@ public class TradeOff : MonoBehaviour
             resultItem.transform.GetChild(0).GetComponent<Image>().color = goRef.GetComponent<Coloration>().contour;
 
             var rt = resultItem.transform.GetChild(0).GetComponent<RectTransform>();
-            rt.localScale = new Vector3(result.Value, rt.localScale.y, rt.localScale.z);
+            rt.localScale = new Vector3((float) result.Value, rt.localScale.y, rt.localScale.z);
         }
     }
 }

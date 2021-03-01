@@ -13501,12 +13501,16 @@ MonoBehaviour:
   tradeOffFinalists: {fileID: 206077504}
   tradeoffLeftBattlerUIPosition: {fileID: 92879806}
   tradeoffRightBattlerUIPosition: {fileID: 747268898}
-  TradeoffBattleConversationBubble: {fileID: 1094737414}
+  leftRepresentationSlider: {fileID: 1314200226}
+  leftCompromiseSlider: {fileID: 248839985}
+  rightRepresentationSlider: {fileID: 1989272787}
+  rightCompromiseSlider: {fileID: 2037421560}
   tradeOffStartUIElements:
   - {fileID: 6345437522888708411}
   - {fileID: 514053299}
   - {fileID: 346627308}
   - {fileID: 618945763}
+  TradeoffBattleConversationBubble: {fileID: 1094737414}
   resultListItemPrefab: {fileID: 5313111449302125352, guid: bd69a497e96d5a14ea3312ce5e46b018,
     type: 3}
   resultListIcons:
