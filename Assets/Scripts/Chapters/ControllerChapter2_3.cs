@@ -9,19 +9,20 @@ using UnityEngine.UI;
 
 public class ControllerChapter2_3 : MonoBehaviour
 {
-    [Header("2D Scene References")]
-    [SerializeField] private GameObject sceneHost;
+    [Header("2D Scene References")] [SerializeField]
+    private GameObject sceneHost;
+
     [SerializeField] private GameObject scenePlayer;
     [SerializeField] private Sprite[] resultListIcons;
-    
-    
-    [Header("Conversation References")]
-    [HideInInspector] public int hostConversationIndex = 0;
+
+
+    [Header("Conversation References")] [HideInInspector]
+    public int hostConversationIndex = 0;
+
     public GameObject[] ConversationBubbles;
     public ConversationHandler.ConversationEnd hostConversationCallback;
 
-    [Header("UI References")] 
-    public GameObject TradeOffList;
+    [Header("UI References")] public GameObject TradeOffList;
     public GameObject SwingList;
     public GameObject ListItemPrefab;
     public GameObject SwingSelectButton;
@@ -29,12 +30,12 @@ public class ControllerChapter2_3 : MonoBehaviour
     public GameObject CustomOrderingButton;
     public GameObject ResultContinueButton;
     public GameObject Choice4;
-    
+
     private GameObject controllers;
     private TestingEnvironment env;
     private bool hadConsistencyCheck;
-    
-    
+
+
     void Awake()
     {
         controllers = GameObject.Find("Controllers");
@@ -42,6 +43,7 @@ public class ControllerChapter2_3 : MonoBehaviour
         hostConversationCallback = () => { GameEventMessage.SendEvent("GoToResults"); };
         hadConsistencyCheck = false;
     }
+
     private void Start()
     {
         controllers.GetComponent<LanguageHandler>().translateUI();
@@ -53,7 +55,7 @@ public class ControllerChapter2_3 : MonoBehaviour
             .OrderByDescending(x => x.Value).Take(5).ToList();
         var swingList = env.TradeOffClassification
             .OrderByDescending(x => x.Value).Take(5).ToList();
-        
+
         // if tradeOffList contains the same objectives as swinglist regardless of order (checking their names [Key])
         if (AreListsEqual(tradeOffList.OrderBy(e => e.Key).ToList(), swingList.OrderBy(e => e.Key).ToList()))
         {
@@ -63,17 +65,21 @@ public class ControllerChapter2_3 : MonoBehaviour
                 return true;
             }
 
-            var result =tradeOffList.All(tradeoff =>
+            var result = tradeOffList.All(tradeoff =>
                 !swingList.Where(swing => tradeoff.Key.ToLower() == swing.Key.ToLower())
                     .Any(swing => Math.Abs(tradeoff.Value - swing.Value) > 0.05f));
             return result;
         }
+
         return false;
 
         // TODO: verify this again
         bool AreListsEqual(List<KeyValuePair<string, double>> list1, List<KeyValuePair<string, double>> list2)
         {
-            return !(from list1Data in list1 from list2Data in list2 where list1Data.Key != list2Data.Key select list1Data).Any();
+            return !(from list1Data in list1
+                from list2Data in list2
+                where list1Data.Key != list2Data.Key
+                select list1Data).Any();
         }
     }
 
@@ -91,7 +97,7 @@ public class ControllerChapter2_3 : MonoBehaviour
         scenePlayer.SetActive(true);
         sceneHost.SetActive(true);
 
-        var ch =  ConversationBubbles[0].GetComponent<ConversationHandler>();
+        var ch = ConversationBubbles[0].GetComponent<ConversationHandler>();
         ch.callback = hostConversationCallback;
         ch.GenerateConversation(hostConversationIndex);
         ch.NextConversationSnippet();
@@ -133,10 +139,7 @@ public class ControllerChapter2_3 : MonoBehaviour
     {
         env.UsersSelectedClassification = isTradeOff ? env.TradeOffClassification : env.SwingClassification;
         hostConversationIndex = 3;
-        hostConversationCallback = () =>
-        {
-            GameEventMessage.SendEvent("GoToChapter6");
-        };
+        hostConversationCallback = () => { GameEventMessage.SendEvent("GoToChapter6"); };
     }
 
     public void UpdateResultLists()
@@ -148,31 +151,8 @@ public class ControllerChapter2_3 : MonoBehaviour
         BuildList(TradeOffData, TradeOffList.transform);
         BuildList(SwingData, SwingList.transform);
 
-        if (!hadConsistencyCheck)
-        {
-            print("consistency check");
-            ToggleSelectionButtons(false);
-            ToggleContinueButton(true);
-            if (IsConsistent())
-            {
-                hostConversationIndex = 2;
-                hostConversationCallback = () => { GameEventMessage.SendEvent("GoToResults"); };
-            }
-            else
-            {
-                hostConversationIndex = 1;
-                hostConversationCallback = () =>
-                {
-                    GameEventMessage.SendEvent("GoToInnerLoopSelect");
-                };
-            }
-            hadConsistencyCheck = true;
-        }
-        else
-        {
-            ToggleSelectionButtons(true);
-            ToggleContinueButton(false);
-        }
+        hostConversationCallback = () => { GameEventMessage.SendEvent("GoToInnerLoopSelect"); };
+        hostConversationIndex = IsConsistent() ? 2 : 1;
 
         void BuildList(Dictionary<string, double> listData, Transform parent)
         {
@@ -180,23 +160,25 @@ public class ControllerChapter2_3 : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            
+
             foreach (KeyValuePair<string, double> objective in listData.OrderByDescending(x => x.Value))
             {
                 var listItem = Instantiate(ListItemPrefab, parent);
                 var objectiveData = objectives[objective.Key];
                 var objectiveRef = GameObject.Find(ConversationHandler.FirstLetterToUpper(objective.Key));
-                
+
                 listItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
                     $"{objectiveData.description} ({objective.Value * 100:0.0}%)";
 
                 // objective icon
-                listItem.transform.GetChild(2).GetComponent<Image>().sprite = resultListIcons[int.Parse(objective.Key.Last().ToString())];
+                listItem.transform.GetChild(2).GetComponent<Image>().sprite =
+                    resultListIcons[int.Parse(objective.Key.Last().ToString())];
 
                 // background color
                 listItem.GetComponent<Image>().color = objectiveRef.GetComponent<Coloration>().fond;
                 // fill color
-                listItem.transform.GetChild(0).GetComponent<Image>().color = objectiveRef.GetComponent<Coloration>().contour;
+                listItem.transform.GetChild(0).GetComponent<Image>().color =
+                    objectiveRef.GetComponent<Coloration>().contour;
 
                 var rt = listItem.transform.GetChild(0).GetComponent<RectTransform>();
                 rt.localScale = new Vector3((float) objective.Value, rt.localScale.y, rt.localScale.z);
